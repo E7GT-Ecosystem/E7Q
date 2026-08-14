@@ -1,0 +1,32 @@
+context QECXXXLogical {
+  shots: 64
+  backend: statevector
+  seed: 101
+}
+
+qubits q[5]
+bits c[5]
+
+invariant normalized
+
+path ExposeXXXLogical {
+  X q[0]
+  X q[1]
+  X q[2]
+  CX q[0], q[3]
+  CX q[1], q[3]
+  CX q[1], q[4]
+  CX q[2], q[4]
+  measure q[3] -> c[0]
+  measure q[4] -> c[1]
+  assert c[0] == 0
+  assert c[1] == 0
+  measure q[0] -> c[2]
+  measure q[1] -> c[3]
+  measure q[2] -> c[4]
+  assert c[2] == 1
+  assert c[3] == 1
+  assert c[4] == 1
+}
+
+verify ExposeXXXLogical
