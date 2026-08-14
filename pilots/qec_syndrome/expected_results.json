@@ -1,0 +1,27 @@
+{
+  "schema": "e7q.qec-syndrome-pilot/v1alpha1",
+  "code": {
+    "name": "three-qubit repetition code",
+    "qubits": 3,
+    "generators": ["ZZI", "IZZ"],
+    "syndrome_order": ["ZZI", "IZZ"],
+    "error_model": "restricted X-error demonstration"
+  },
+  "cases": [
+    {"error": "III", "syndrome": [0, 0], "classification": "stabilizer"},
+    {"error": "XII", "syndrome": [1, 0], "classification": "detectable"},
+    {"error": "IXI", "syndrome": [1, 1], "classification": "detectable"},
+    {"error": "XXI", "syndrome": [0, 1], "classification": "detectable"},
+    {"error": "ZZI", "syndrome": [0, 0], "classification": "stabilizer"},
+    {"error": "XXX", "syndrome": [0, 0], "classification": "logical"}
+  ],
+  "homomorphism_case": {
+    "left": "XII",
+    "right": "IXI",
+    "product_modulo_phase": "XXI",
+    "left_syndrome": [1, 0],
+    "right_syndrome": [1, 1],
+    "product_syndrome": [0, 1]
+  },
+  "boundary": "Phase-insensitive stabilizer algebra and state-vector reference-circuit evidence only; no hardware execution, decoder performance, physical fidelity, fault-tolerance threshold, or new QEC theorem is established."
+}

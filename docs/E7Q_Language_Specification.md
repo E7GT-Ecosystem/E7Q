@@ -1,6 +1,6 @@
 # E7Q Language Specification
 
-**Version:** 1.0.0-rc6
+**Version:** 1.0.0-rc7
 **Status:** experimental draft
 **Documentation licence:** CC-BY-SA-4.0
 
@@ -10,6 +10,10 @@ E7Q describes quantum computations with intended invariants, equivalence
 criteria, measurement context, and an auditable execution path. Standard
 quantum mathematics is normative for execution. E7G-T supplies the
 modelling and accountability vocabulary.
+
+The optional `e7q.qec` API and `qec-syndrome`/`qec-homomorphism` commands are
+an experimental stabilizer-algebra pilot. They do not extend the E7Q program
+grammar or change the normative execution semantics in this specification.
 
 ## 2. Program model
 

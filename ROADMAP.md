@@ -231,3 +231,14 @@
 - [x] leave the UC4 topological-overlay pilot uninvoked until an inquiry has a
   separately declared carrier, topology, construction, and material
   topological claim.
+
+## v1.0rc7 — QEC syndrome-homomorphism pilot
+
+- [x] phase-insensitive Pauli and binary symplectic representation;
+- [x] fail-closed validation of commuting, independent stabilizer generators;
+- [x] syndrome, stabilizer-membership, and zero-syndrome classification;
+- [x] deterministic proof artifact for `sigma(EF) = sigma(E) xor sigma(F)`;
+- [x] six executable three-qubit repetition-code reference circuits;
+- [x] dependency-free oracle and regression coverage;
+- [x] explicit restricted-X-error, hardware, decoder, threshold, and novelty boundaries;
+- [ ] independent external mathematical review before any stable API claim.

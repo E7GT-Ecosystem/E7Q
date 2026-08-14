@@ -21,6 +21,10 @@ from .language import (
     compile_topology, load, openqasm, proof_json, run, topology_edges, verify,
 )
 from .planning import plan, plan_result
+from .qec import (
+    QECError, StabilizerCode, analyze_error, qec_proof_json,
+    syndrome_homomorphism_report,
+)
 from .results import build_execution_receipt, load_execution_bundle, load_execution_result
 
 
@@ -104,6 +108,23 @@ def _parser() -> argparse.ArgumentParser:
     artifact = commands.add_parser("validate-artifact")
     artifact.add_argument("source", type=Path)
     artifact.add_argument("-o", "--output", type=Path)
+    qec_syndrome = commands.add_parser(
+        "qec-syndrome",
+        help="analyze a phase-insensitive Pauli error against stabilizer generators",
+    )
+    qec_syndrome.add_argument("error")
+    qec_syndrome.add_argument("--generator", action="append", required=True)
+    qec_syndrome.add_argument("--name", default="declared stabilizer code")
+    qec_syndrome.add_argument("-o", "--output", type=Path)
+    qec_homomorphism = commands.add_parser(
+        "qec-homomorphism",
+        help="check sigma(EF) = sigma(E) xor sigma(F)",
+    )
+    qec_homomorphism.add_argument("left")
+    qec_homomorphism.add_argument("right")
+    qec_homomorphism.add_argument("--generator", action="append", required=True)
+    qec_homomorphism.add_argument("--name", default="declared stabilizer code")
+    qec_homomorphism.add_argument("-o", "--output", type=Path)
     select = commands.add_parser("select")
     select.add_argument("source")
     select.add_argument("--snapshot", required=True, type=Path)
@@ -134,6 +155,20 @@ def _parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     try:
+        if args.command in {"qec-syndrome", "qec-homomorphism"}:
+            code = StabilizerCode(args.name, tuple(args.generator))
+            report = (
+                analyze_error(code, args.error)
+                if args.command == "qec-syndrome"
+                else syndrome_homomorphism_report(code, args.left, args.right)
+            )
+            content = qec_proof_json(report)
+            if args.output:
+                args.output.write_text(content, encoding="utf-8")
+                print(f"QEC pilot report: {args.output}")
+            else:
+                print(content, end="")
+            return 0 if report.get("status", "PASS") == "PASS" else 1
         if args.command == "ingest-calibration":
             result = load_vendor_export(
                 args.source,
@@ -327,7 +362,7 @@ def main(argv: list[str] | None = None) -> int:
             if args.proof:
                 print(f"\nProof-of-Path: {args.proof}")
         return 0 if result["status"] == "PASS" else 1
-    except (E7QError, OSError) as exc:
+    except (E7QError, QECError, OSError) as exc:
         print(f"e7q: error: {exc}", file=sys.stderr)
         return 2
 
