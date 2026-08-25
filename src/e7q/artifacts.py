@@ -24,6 +24,17 @@ _REQUIREMENTS: dict[str, tuple[str, ...]] = {
     "e7q.external-evidence-receipt/v1alpha1": (
         "status", "source", "circuits", "judgments", "proof",
     ),
+    "e7q.openqasm2-circuit/v1alpha1": (
+        "status", "source", "registers", "operations", "proof",
+    ),
+    "e7q.deterministic-reference/v1alpha1": (
+        "name", "canonical_bit_order", "observed_label_order",
+        "primary_bit_indices", "minimum_success_probability",
+        "confidence_level", "threshold_provenance", "claim_mode", "cases",
+    ),
+    "e7q.deterministic-assessment/v1alpha1": (
+        "status", "reference", "cases", "judgments", "proof",
+    ),
 }
 
 

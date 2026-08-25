@@ -20,6 +20,14 @@
     discovers one or more circuit records, cross-checks manifests, counts,
     QASM, mappings and calibration coverage, and emits a bounded receipt without
     executing archive content or authenticating provider claims.
+11. **OpenQASM 2 importer** parses a bounded gate surface into a typed,
+    non-executable artifact, preserving device-register indices, parameters,
+    conditions and classical measurement destinations without allocating a
+    state vector.
+12. **Deterministic-reference assessor** normalizes supplied count labels under
+    an explicit classical-bit order and compares declared primary bits with a
+    threshold and Wilson confidence interval, separately from provenance and
+    physical-fidelity judgments.
 
 ## Boundary
 

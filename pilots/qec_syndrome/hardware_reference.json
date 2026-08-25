@@ -1,0 +1,34 @@
+{
+  "schema": "e7q.deterministic-reference/v1alpha1",
+  "name": "three-qubit repetition-code syndrome hardware profile",
+  "claim_mode": "exploratory",
+  "threshold_provenance": "Semantic majority threshold frozen after receipt of the first hardware bundle; retrospective for that bundle and prospective only for later executions.",
+  "canonical_bit_order": [
+    "syndrome_ZZI",
+    "syndrome_IZZ",
+    "data_0",
+    "data_1",
+    "data_2"
+  ],
+  "observed_label_order": "clbit-descending",
+  "primary_bit_indices": [0, 1],
+  "minimum_success_probability": 0.5,
+  "confidence_level": 0.95,
+  "cases": [
+    {"circuit_name": "identity", "expected_outcome": "00000"},
+    {"circuit_name": "x0", "expected_outcome": "10100"},
+    {"circuit_name": "x1", "expected_outcome": "11010"},
+    {"circuit_name": "x0_x1", "expected_outcome": "01110"},
+    {"circuit_name": "stabilizer_g1", "expected_outcome": "00000"},
+    {"circuit_name": "logical_x", "expected_outcome": "00111"}
+  ],
+  "relations": [
+    {"kind": "xor", "left": "x0", "right": "x1", "product": "x0_x1"},
+    {
+      "kind": "equal",
+      "cases": ["identity", "stabilizer_g1", "logical_x"],
+      "expected": "00"
+    }
+  ],
+  "boundary": "The primary criterion concerns the two syndrome bits. Full five-bit outcomes are descriptive. The threshold is exploratory for the first received hardware bundle, and modal relations compare separate circuit aggregates rather than paired shots."
+}

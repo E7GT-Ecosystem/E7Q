@@ -13,6 +13,7 @@ from typing import Any
 from zipfile import BadZipFile, ZipFile, is_zipfile
 
 from .language import E7QError
+from .openqasm2 import import_openqasm2
 from .temporal import temporal_evidence
 
 
@@ -204,58 +205,38 @@ def _parse_qasm(raw: bytes) -> dict[str, object]:
         text = raw.decode("utf-8")
     except UnicodeDecodeError as exc:
         raise ValueError("OpenQASM must be UTF-8 text") from exc
-    stripped_lines = [line.split("//", 1)[0] for line in text.splitlines()]
-    statements = [item.strip() for item in "\n".join(stripped_lines).split(";")]
-    qreg_width: int | None = None
-    creg_width: int | None = None
-    operations: dict[str, int] = {}
+    imported = import_openqasm2(text)
+    quantum = imported["registers"]["quantum"]
+    classical = imported["registers"]["classical"]
+    if len(quantum) != 1 or len(classical) != 1:
+        raise ValueError("external bundle profile requires one qreg and one creg")
+    qname, qreg_width = quantum[0]["name"], quantum[0]["width"]
+    cname, creg_width = classical[0]["name"], classical[0]["width"]
     instructions: list[dict[str, object]] = []
-    measurements: list[dict[str, int]] = []
-    unsupported: list[str] = []
-    for statement in statements:
-        if not statement:
-            continue
-        if statement.startswith("OPENQASM") or statement.startswith("include "):
-            continue
-        match = re.fullmatch(r"qreg\s+q\[(\d+)\]", statement)
-        if match:
-            qreg_width = int(match.group(1))
-            continue
-        match = re.fullmatch(r"creg\s+c\[(\d+)\]", statement)
-        if match:
-            creg_width = int(match.group(1))
-            continue
-        match = re.fullmatch(
-            r"measure\s+q\[(\d+)\]\s*->\s*c\[(\d+)\]", statement
-        )
-        if match:
-            qubit, clbit = map(int, match.groups())
-            operations["measure"] = operations.get("measure", 0) + 1
-            measurements.append({"physical_qubit": qubit, "clbit": clbit})
-            instructions.append({"name": "measure", "qubits": [qubit]})
-            continue
-        match = re.fullmatch(
-            r"([A-Za-z_][A-Za-z0-9_]*)(?:\s*\([^)]*\))?\s+(.+)", statement
-        )
-        if not match:
-            unsupported.append(statement[:160])
-            continue
-        name = match.group(1).lower()
-        qubits = [int(value) for value in re.findall(r"q\[(\d+)\]", match.group(2))]
-        if not qubits:
-            unsupported.append(statement[:160])
-            continue
-        operations[name] = operations.get(name, 0) + 1
-        instructions.append({"name": name, "qubits": qubits})
-    active = sorted(
-        {qubit for instruction in instructions for qubit in instruction["qubits"]}
-    )
+    for operation in imported["operations"]:
+        qubits = operation.get("qubits", [])
+        if any(item["register"] != qname for item in qubits):
+            raise ValueError("external bundle operations must use the declared qreg")
+        instructions.append({
+            "name": operation["name"],
+            "qubits": [item["index"] for item in qubits],
+        })
+    measurements = []
+    for item in imported["measurements"]:
+        if item["qubit"]["register"] != qname or item["clbit"]["register"] != cname:
+            raise ValueError("external bundle measurements use an unexpected register")
+        measurements.append({
+            "physical_qubit": item["qubit"]["index"],
+            "clbit": item["clbit"]["index"],
+        })
+    measurements.sort(key=lambda item: item["clbit"])
+    active = sorted({qubit for item in instructions for qubit in item["qubits"]})
     return {
         "qreg_width": qreg_width,
         "creg_width": creg_width,
-        "operations": operations,
+        "operations": imported["operation_counts"],
         "instructions": instructions,
-        "measurements": sorted(measurements, key=lambda item: item["clbit"]),
+        "measurements": measurements,
         "active_qubits": active,
         "two_qubit_edges": sorted(
             {
@@ -265,7 +246,7 @@ def _parse_qasm(raw: bytes) -> dict[str, object]:
                 and len(instruction["qubits"]) == 2
             }
         ),
-        "unsupported": unsupported,
+        "unsupported": [],
     }
 
 
