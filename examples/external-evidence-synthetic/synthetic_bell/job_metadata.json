@@ -1,0 +1,17 @@
+{
+  "job_id": "synthetic-job-001",
+  "backend": "synthetic_backend",
+  "circuit_name": "synthetic_bell",
+  "status": "DONE",
+  "creation_date": "2026-08-25T12:01:00+00:00",
+  "completion_time_utc": "2026-08-25T12:02:00+00:00",
+  "num_qubits_device": 2,
+  "circuit_depth": 3,
+  "shots": 1000,
+  "op_counts": {
+    "h": 1,
+    "cx": 1,
+    "measure": 2
+  },
+  "hieroglyphs_build": "synthetic-compiler@1.0.0"
+}

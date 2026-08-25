@@ -1,0 +1,9 @@
+{
+  "classical_register": "c",
+  "num_unique_bitstrings": 2,
+  "total_shots": 1000,
+  "counts": {
+    "00": 510,
+    "11": 490
+  }
+}

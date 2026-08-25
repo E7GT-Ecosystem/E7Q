@@ -1,0 +1,13 @@
+{
+  "backend": "synthetic_backend",
+  "properties_as_of": "2026-08-25T12:00:00+00:00",
+  "last_update_date": "2026-08-25T12:00:00+00:00",
+  "qubits_scope": "active qubits only",
+  "qubits": {
+    "0": {"T1_us": 100.0, "T2_us": 80.0, "readout_error": 0.01},
+    "1": {"T1_us": 110.0, "T2_us": 85.0, "readout_error": 0.01}
+  },
+  "gate_errors_sample": {
+    "cx_0_1": 0.01
+  }
+}
