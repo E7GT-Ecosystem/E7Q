@@ -1,0 +1,12 @@
+{
+  "device_num_qubits": 2,
+  "num_clbits": 2,
+  "active_qubits": [0, 1],
+  "num_active_qubits": 2,
+  "measurement_map": [
+    {"clbit": 0, "physical_qubit": 0},
+    {"clbit": 1, "physical_qubit": 1}
+  ],
+  "initial_index_layout": [0, 1],
+  "final_index_layout": [0, 1]
+}

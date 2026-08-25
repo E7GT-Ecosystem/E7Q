@@ -1,0 +1,12 @@
+{
+  "circuit_name": "synthetic_bell",
+  "n_qubits": 2,
+  "n_cbits": 2,
+  "num_gates": 4,
+  "gates": [
+    {"index": 0, "gate_type": "H", "qubits": [0], "params": []},
+    {"index": 1, "gate_type": "CNOT", "qubits": [0, 1], "params": []},
+    {"index": 2, "gate_type": "MEASURE", "qubits": [0], "clbit": 0, "params": []},
+    {"index": 3, "gate_type": "MEASURE", "qubits": [1], "clbit": 1, "params": []}
+  ]
+}

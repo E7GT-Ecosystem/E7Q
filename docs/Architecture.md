@@ -16,6 +16,10 @@
 9. **Temporal-orientation pilot** optionally declares observer locality,
    directional relation kinds, reverse-representation limits, and
    compatible-history relevance without changing executable quantum semantics.
+10. **External evidence importer** safely reads supplied ZIP/directory packages,
+    discovers one or more circuit records, cross-checks manifests, counts,
+    QASM, mappings and calibration coverage, and emits a bounded receipt without
+    executing archive content or authenticating provider claims.
 
 ## Boundary
 

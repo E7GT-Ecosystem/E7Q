@@ -21,6 +21,9 @@ _REQUIREMENTS: dict[str, tuple[str, ...]] = {
     "e7q.replication-report/v1": ("status", "target", "total_shots", "pooled_counts", "proof"),
     "e7q.drift-report/v1": ("status", "target", "proof"),
     "e7q.trend-report/v1": ("status", "target", "campaigns", "series", "proof"),
+    "e7q.external-evidence-receipt/v1alpha1": (
+        "status", "source", "circuits", "judgments", "proof",
+    ),
 }
 
 

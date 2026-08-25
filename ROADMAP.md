@@ -242,3 +242,19 @@
 - [x] dependency-free oracle and regression coverage;
 - [x] explicit restricted-X-error, hardware, decoder, threshold, and novelty boundaries;
 - [ ] independent external mathematical review before any stable API claim.
+
+## v1.0rc8 — External evidence importer
+
+- [x] safe ZIP and directory ingestion without archive extraction or execution;
+- [x] single-circuit and batched multi-circuit record discovery;
+- [x] manifest, count-total, OpenQASM, mapping, operation-count, active-qubit,
+  and calibration-coverage checks;
+- [x] deterministic `e7q.external-evidence-receipt/v1alpha1` with complete
+  received-file digests;
+- [x] separate archive-safety, integrity, internal-consistency, provenance,
+  reproducibility, and algorithmic-validation judgments;
+- [x] synthetic public fixture, CLI integration, artifact registration, and
+  adversarial regression coverage;
+- [ ] provider-authenticated job retrieval or attestation;
+- [ ] versioned Qiskit adapter for QPY decoding and independent depth recomputation;
+- [ ] separately versioned algorithm-specific hardware assessment profiles.

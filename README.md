@@ -73,6 +73,9 @@ when you also need to answer:
 - Estimates resources and selects targets from offline calibration snapshots.
 - Produces execution bundles for credentialed handoff.
 - Links returned counts to execution receipts.
+- Safely imports externally produced ZIP/directory evidence packages and
+  verifies their manifests, counts, QASM, mappings, calibration coverage, and
+  cross-file consistency without executing archive content.
 - Assesses distributions, replication, campaign drift, and longitudinal trends.
 - Records temporal carrier descriptions, TD order roles, ordering, projection
   loss, phase criteria, and
@@ -135,6 +138,19 @@ e7q assess execution-receipt.json \
   -o execution-assessment.json
 ```
 
+Inspect a supplied external execution package without authenticating or
+executing it:
+
+```bash
+e7q external-bundle verify external-package.zip \
+  -o external-evidence-receipt.json
+```
+
+The resulting `e7q.external-evidence-receipt/v1alpha1` keeps archive safety,
+artifact integrity, internal consistency, external provenance,
+reproducibility, and algorithmic claim validation separate. See the
+[external evidence importer](docs/EXTERNAL_EVIDENCE_IMPORTER.md).
+
 ### QEC syndrome-homomorphism pilot
 
 E7Q can now make the standard stabilizer-syndrome homomorphism auditable. For
@@ -191,7 +207,7 @@ evolution or identify evidential history narrowing with measurement collapse.
 
 ### E7G-T UC4 topology boundary
 
-E7Q v1.0.0rc7 pins E7G-T v0.11-UC4. UC4 adds an informative mathematical
+E7Q v1.0.0rc8 pins E7G-T v0.11-UC4. UC4 adds an informative mathematical
 topological-overlay pilot, but ordinary E7Q routing does not invoke it. The
 existing `--topology` option and `topology` artifact fields are retained for
 backward compatibility and mean a hardware **coupling graph** (`linear`,
@@ -231,6 +247,7 @@ only when the registered schema and required top-level evidence are present.
 - [UC2 observational-claim pilot](docs/OBSERVATIONAL_CLAIM_PILOT.md)
 - [UC3 temporal-orientation pilot](docs/TEMPORAL_ORIENTATION_PILOT.md)
 - [QEC syndrome-homomorphism pilot](docs/QEC_SYNDROME_PILOT.md)
+- [External evidence importer](docs/EXTERNAL_EVIDENCE_IMPORTER.md)
 - [Roadmap](ROADMAP.md)
 - [Offline completion boundary](docs/MILESTONE_18.md)
 - [E7G-T upstream relationship](references/E7GT_UPSTREAM.md)
@@ -242,7 +259,7 @@ and detailed usage of each capability.
 
 E7Q is a downstream implementation of E7G-T's invariant, transformation,
 projection, measurement-accountability, temporal-geometry, and Proof-of-Path
-principles. E7Q v1.0.0rc7 pins E7G-T v0.11-UC4, implements a bounded temporal-
+principles. E7Q v1.0.0rc8 pins E7G-T v0.11-UC4, implements a bounded temporal-
 evidence profile, and offers UC2's observation/interpretation and UC3's
 temporal-orientation modules as separate opt-in pilots for quantum workflows.
 UC4's mathematical topological-overlay pilot is not implicitly activated by

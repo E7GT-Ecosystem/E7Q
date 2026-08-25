@@ -13,6 +13,7 @@ from .artifacts import load_artifact, validate_artifact
 from .bundles import build_execution_bundle
 from .campaigns import assess_replication, load_replication_receipts
 from .drift import assess_drift, load_replication_report
+from .external_bundles import verify_external_bundle
 from .trends import assess_trend, load_trend_reports
 from .calibration import load_snapshot, select_target
 from .ingestion import load_vendor_export
@@ -108,6 +109,24 @@ def _parser() -> argparse.ArgumentParser:
     artifact = commands.add_parser("validate-artifact")
     artifact.add_argument("source", type=Path)
     artifact.add_argument("-o", "--output", type=Path)
+    external_bundle = commands.add_parser(
+        "external-bundle",
+        help="safely inspect a supplied external execution-evidence package",
+    )
+    external_actions = external_bundle.add_subparsers(
+        dest="external_bundle_action", required=True
+    )
+    external_verify = external_actions.add_parser(
+        "verify",
+        help="verify a ZIP or directory and emit a bounded E7Q receipt",
+    )
+    external_verify.add_argument("source", type=Path)
+    external_verify.add_argument(
+        "--include-counts",
+        action="store_true",
+        help="embed normalized raw counts in the receipt",
+    )
+    external_verify.add_argument("-o", "--output", type=Path)
     qec_syndrome = commands.add_parser(
         "qec-syndrome",
         help="analyze a phase-insensitive Pauli error against stabilizer generators",
@@ -155,6 +174,18 @@ def _parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     try:
+        if args.command == "external-bundle":
+            report = verify_external_bundle(
+                args.source,
+                include_counts=args.include_counts,
+            )
+            content = json.dumps(report, indent=2, sort_keys=True) + "\n"
+            if args.output:
+                args.output.write_text(content, encoding="utf-8")
+                print(f"External evidence receipt: {args.output}")
+            else:
+                print(content, end="")
+            return 0 if report["status"] == "PASS" else 1
         if args.command in {"qec-syndrome", "qec-homomorphism"}:
             code = StabilizerCode(args.name, tuple(args.generator))
             report = (
