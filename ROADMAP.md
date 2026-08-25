@@ -258,3 +258,20 @@
 - [ ] provider-authenticated job retrieval or attestation;
 - [ ] versioned Qiskit adapter for QPY decoding and independent depth recomputation;
 - [ ] separately versioned algorithm-specific hardware assessment profiles.
+
+## v1.0rc9 — OpenQASM 2 import and deterministic hardware assessment
+
+- [x] bounded OpenQASM 2.0 parser for qelib1 and the supplied native ISA gate surface;
+- [x] preservation of register widths, physical indices, gate parameters,
+  conditions, barriers, and measurement destinations;
+- [x] non-executable typed artifact for device-width circuits that cannot be
+  represented safely by the small reference simulator;
+- [x] explicit `clbit-ascending` and `clbit-descending` count-label semantics;
+- [x] deterministic-bit assessment using a declared success threshold and
+  Wilson confidence interval;
+- [x] QEC hardware-reference profile with syndrome-primary and full-outcome
+  evidence kept separate;
+- [x] aggregate modal XOR and equal-syndrome relation checks;
+- [x] explicit exploratory/prospective and provider/fidelity/fault-tolerance boundaries;
+- [ ] provider-authenticated execution evidence;
+- [ ] prospective replication under a profile frozen before execution.

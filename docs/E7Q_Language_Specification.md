@@ -1,6 +1,6 @@
 # E7Q Language Specification
 
-**Version:** 1.0.0-rc8
+**Version:** 1.0.0-rc9
 **Status:** experimental draft
 **Documentation licence:** CC-BY-SA-4.0
 
@@ -416,3 +416,25 @@ recompute every semantic claim, authenticate a provider, attest chronology or
 run independence, prove hardware execution, or establish physical fidelity.
 The v1.0 release boundary is the credential-free, provider-neutral toolchain;
 live vendor integrations remain optional external adapters.
+
+## 23. OpenQASM 2 import and deterministic-bit assessment
+
+The `e7q.openqasm2-circuit/v1alpha1` profile is a bounded, non-executable
+structural import of OpenQASM 2.0. It preserves supported operations,
+parameters, register indices, conditions and measurement destinations. It does
+not resolve includes, expand custom gates, simulate device-width circuits or
+authenticate submission.
+
+The `e7q.deterministic-assessment/v1alpha1` profile consumes an
+`e7q.external-evidence-receipt/v1alpha1` produced with embedded counts and a
+separate `e7q.deterministic-reference/v1alpha1`. The reference must declare a
+single-register observed-label order, canonical bit roles, primary indices,
+case expectations, minimum success probability, confidence level, threshold
+provenance and exploratory or prospective claim mode.
+
+The assessment normalizes labels to ascending classical-bit order, reports
+primary and descriptive full-outcome success, and applies a two-sided Wilson
+interval. `PASS` requires the lower bound for every primary case to clear the
+declared threshold and every declared aggregate modal relation to hold. It is
+not provider authentication, distributional fidelity, a fault-tolerance
+threshold or proof of an underlying theorem.

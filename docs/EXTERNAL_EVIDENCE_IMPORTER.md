@@ -2,7 +2,9 @@
 
 **Profile:** `e7q.external-evidence-receipt/v1alpha1`
 
-**Release:** E7Q 1.0.0-rc8
+**Introduced:** E7Q 1.0.0-rc8
+
+**Current integration:** E7Q 1.0.0-rc9
 
 **Status:** experimental, provider-neutral offline verifier
 
@@ -85,8 +87,8 @@ quality.
 
 ## OpenQASM boundary
 
-The dependency-free parser checks the OpenQASM 2 evidence surface used by the
-package profile:
+The verifier now invokes the shared dependency-free OpenQASM 2 importer for
+the evidence surface used by the package profile:
 
 - `qreg` and `creg` widths;
 - operation counts;
@@ -94,8 +96,11 @@ package profile:
 - two-qubit edges;
 - explicit measurement destinations.
 
-It does not claim to be a general OpenQASM implementation. Unsupported
-statements fail the QASM consistency check rather than being ignored.
+It is a bounded implementation rather than a complete language runtime.
+Unsupported statements and gates fail the QASM consistency check rather than
+being ignored. The normalized typed artifact can also be produced directly
+with `e7q import-openqasm2`; see
+[`OPENQASM2_AND_DETERMINISTIC_ASSESSMENT.md`](OPENQASM2_AND_DETERMINISTIC_ASSESSMENT.md).
 
 QPY artifacts are hashed but not decoded, and reported circuit depth is not
 independently recomputed. Those checks would require a separately versioned

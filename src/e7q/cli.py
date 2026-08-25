@@ -12,8 +12,14 @@ from .assessment import assess_receipt, load_reference, load_receipt
 from .artifacts import load_artifact, validate_artifact
 from .bundles import build_execution_bundle
 from .campaigns import assess_replication, load_replication_receipts
+from .deterministic import (
+    assess_deterministic_reference,
+    load_deterministic_reference,
+    load_external_receipt,
+)
 from .drift import assess_drift, load_replication_report
 from .external_bundles import verify_external_bundle
+from .openqasm2 import import_openqasm2
 from .trends import assess_trend, load_trend_reports
 from .calibration import load_snapshot, select_target
 from .ingestion import load_vendor_export
@@ -127,6 +133,20 @@ def _parser() -> argparse.ArgumentParser:
         help="embed normalized raw counts in the receipt",
     )
     external_verify.add_argument("-o", "--output", type=Path)
+    qasm2_import = commands.add_parser(
+        "import-openqasm2",
+        help="import a bounded OpenQASM 2.0 circuit as an auditable artifact",
+    )
+    qasm2_import.add_argument("source", type=Path)
+    qasm2_import.add_argument("--name", default="ImportedCircuit")
+    qasm2_import.add_argument("-o", "--output", type=Path)
+    deterministic = commands.add_parser(
+        "assess-deterministic",
+        help="assess embedded external counts against deterministic bit expectations",
+    )
+    deterministic.add_argument("receipt", type=Path)
+    deterministic.add_argument("--reference", required=True, type=Path)
+    deterministic.add_argument("-o", "--output", required=True, type=Path)
     qec_syndrome = commands.add_parser(
         "qec-syndrome",
         help="analyze a phase-insensitive Pauli error against stabilizer generators",
@@ -174,6 +194,30 @@ def _parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     try:
+        if args.command == "import-openqasm2":
+            try:
+                source = args.source.read_text(encoding="utf-8")
+            except (OSError, UnicodeDecodeError) as exc:
+                raise E7QError(f"invalid OpenQASM 2 source: {exc}") from exc
+            report = import_openqasm2(source, name=args.name)
+            content = json.dumps(report, indent=2, sort_keys=True) + "\n"
+            if args.output:
+                args.output.write_text(content, encoding="utf-8")
+                print(f"OpenQASM 2 import artifact: {args.output}")
+            else:
+                print(content, end="")
+            return 0
+        if args.command == "assess-deterministic":
+            report = assess_deterministic_reference(
+                load_external_receipt(args.receipt),
+                load_deterministic_reference(args.reference),
+            )
+            args.output.write_text(
+                json.dumps(report, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            print(f"Deterministic assessment: {args.output}")
+            return 0 if report["status"] == "PASS" else 1
         if args.command == "external-bundle":
             report = verify_external_bundle(
                 args.source,

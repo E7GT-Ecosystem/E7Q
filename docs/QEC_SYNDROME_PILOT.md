@@ -6,6 +6,10 @@
 
 **Status:** experimental, independently reviewable software pilot
 
+The later RC9 hardware-reference profile is documented separately in
+[`OPENQASM2_AND_DETERMINISTIC_ASSESSMENT.md`](OPENQASM2_AND_DETERMINISTIC_ASSESSMENT.md).
+It does not alter the mathematical oracle defined here.
+
 ## Result in one line
 
 For the three-qubit repetition code with ordered stabilizer generators
@@ -78,6 +82,19 @@ Run all reference circuits and regression tests:
 ```bash
 pytest -q tests/test_qec_syndrome_pilot.py
 ```
+
+For an external receipt containing the six corresponding hardware circuits and
+embedded counts, the separate RC9 assessment is:
+
+```bash
+e7q assess-deterministic external-evidence-with-counts.json \
+  --reference pilots/qec_syndrome/hardware_reference.json \
+  -o qec-hardware-assessment.json
+```
+
+The first supplied hardware bundle is assessed retrospectively and therefore
+labelled exploratory. The profile can support a prospective claim only when it
+is frozen before a later execution.
 
 The six files under [`examples/qec-syndrome/`](../examples/qec-syndrome/)
 insert explicit Pauli gates, extract the two syndrome bits with ancillas, and

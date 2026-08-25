@@ -76,6 +76,11 @@ when you also need to answer:
 - Safely imports externally produced ZIP/directory evidence packages and
   verifies their manifests, counts, QASM, mappings, calibration coverage, and
   cross-file consistency without executing archive content.
+- Imports the supported OpenQASM 2.0 circuit surface as a typed, non-executable
+  artifact while preserving physical indices, parameters, and measurement
+  destinations.
+- Assesses noisy counts against deterministic bit expectations only under an
+  explicit count-label order, threshold, confidence level, and claim mode.
 - Assesses distributions, replication, campaign drift, and longitudinal trends.
 - Records temporal carrier descriptions, TD order roles, ordering, projection
   loss, phase criteria, and
@@ -151,6 +156,29 @@ artifact integrity, internal consistency, external provenance,
 reproducibility, and algorithmic claim validation separate. See the
 [external evidence importer](docs/EXTERNAL_EVIDENCE_IMPORTER.md).
 
+Import a supplied OpenQASM 2.0 circuit without allocating a simulator state:
+
+```bash
+e7q import-openqasm2 final_circuit.qasm \
+  --name supplied-circuit \
+  -o openqasm2-import.json
+```
+
+For an external receipt generated with `--include-counts`, run a declared
+deterministic-bit assessment:
+
+```bash
+e7q assess-deterministic external-evidence-with-counts.json \
+  --reference pilots/qec_syndrome/hardware_reference.json \
+  -o deterministic-assessment.json
+```
+
+The reference must declare whether observed labels place classical bit zero on
+the left or right. The QEC pilot profile records Qiskit's single-register
+display convention as `clbit-descending` and normalizes it to E7Q's canonical
+`clbit-ascending` order. See the
+[OpenQASM 2 and deterministic assessment guide](docs/OPENQASM2_AND_DETERMINISTIC_ASSESSMENT.md).
+
 ### QEC syndrome-homomorphism pilot
 
 E7Q can now make the standard stabilizer-syndrome homomorphism auditable. For
@@ -207,7 +235,7 @@ evolution or identify evidential history narrowing with measurement collapse.
 
 ### E7G-T UC4 topology boundary
 
-E7Q v1.0.0rc8 pins E7G-T v0.11-UC4. UC4 adds an informative mathematical
+E7Q v1.0.0rc9 pins E7G-T v0.11-UC4. UC4 adds an informative mathematical
 topological-overlay pilot, but ordinary E7Q routing does not invoke it. The
 existing `--topology` option and `topology` artifact fields are retained for
 backward compatibility and mean a hardware **coupling graph** (`linear`,
@@ -248,6 +276,7 @@ only when the registered schema and required top-level evidence are present.
 - [UC3 temporal-orientation pilot](docs/TEMPORAL_ORIENTATION_PILOT.md)
 - [QEC syndrome-homomorphism pilot](docs/QEC_SYNDROME_PILOT.md)
 - [External evidence importer](docs/EXTERNAL_EVIDENCE_IMPORTER.md)
+- [OpenQASM 2 and deterministic assessment](docs/OPENQASM2_AND_DETERMINISTIC_ASSESSMENT.md)
 - [Roadmap](ROADMAP.md)
 - [Offline completion boundary](docs/MILESTONE_18.md)
 - [E7G-T upstream relationship](references/E7GT_UPSTREAM.md)
@@ -259,7 +288,7 @@ and detailed usage of each capability.
 
 E7Q is a downstream implementation of E7G-T's invariant, transformation,
 projection, measurement-accountability, temporal-geometry, and Proof-of-Path
-principles. E7Q v1.0.0rc8 pins E7G-T v0.11-UC4, implements a bounded temporal-
+principles. E7Q v1.0.0rc9 pins E7G-T v0.11-UC4, implements a bounded temporal-
 evidence profile, and offers UC2's observation/interpretation and UC3's
 temporal-orientation modules as separate opt-in pilots for quantum workflows.
 UC4's mathematical topological-overlay pilot is not implicitly activated by
