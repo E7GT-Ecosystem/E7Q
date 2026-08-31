@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: Apache-2.0
-"""Opt-in E7G-T temporal-orientation pilot records, retained in UC4."""
+"""Opt-in E7G-T temporal-orientation pilot records, retained in UC5."""
 from __future__ import annotations
 
 from typing import Any
 
 
 SCHEMA = "e7q.temporal-orientation-pilot/v1alpha1"
-UPSTREAM_MODULE = "E7G-T v0.11-UC4 sections 5.13.1-5.13.6, 13.8, and 19.8"
+UPSTREAM_MODULE = "E7G-T v0.11-UC5 sections 5.13.1-5.13.6, 13.8, and 19.8"
 
 RELATION_KINDS = {
     "clockPrecedence",

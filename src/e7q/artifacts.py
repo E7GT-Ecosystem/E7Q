@@ -9,6 +9,7 @@ from typing import Any
 from .language import E7QError
 from .observations import conformance_checks as observation_conformance_checks
 from .orientation import conformance_checks as orientation_conformance_checks
+from .support import conformance_checks as support_conformance_checks
 from .temporal import conformance_checks as temporal_conformance_checks
 
 
@@ -34,6 +35,10 @@ _REQUIREMENTS: dict[str, tuple[str, ...]] = {
     ),
     "e7q.deterministic-assessment/v1alpha1": (
         "status", "reference", "cases", "judgments", "proof",
+    ),
+    "e7q.comparative-experiment-report/v1alpha1": (
+        "status", "experiment_id", "manifest_digest", "cells", "comparisons",
+        "claim_assessment", "proof",
     ),
 }
 
@@ -75,6 +80,10 @@ def validate_artifact(value: dict[str, Any]) -> dict[str, object]:
     if "temporal_orientation_pilot" in value:
         checks.extend(
             orientation_conformance_checks(value["temporal_orientation_pilot"])
+        )
+    if "relative_support_pilot" in value:
+        checks.extend(
+            support_conformance_checks(value["relative_support_pilot"])
         )
     passed = all(bool(check["passed"]) for check in checks)
     status = "PASS" if passed else "FAIL"

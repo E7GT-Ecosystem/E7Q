@@ -1,0 +1,147 @@
+{
+  "schema": "e7q.comparative-experiment/v1alpha1",
+  "experiment_id": "synthetic-compiler-comparison",
+  "title": "Synthetic compiler-path comparison",
+  "inquiry": "Describe supplied success and runtime differences without claiming causation or quantum advantage.",
+  "predeclared": true,
+  "factors": [
+    {
+      "factor_id": "implementation",
+      "levels": [
+        "baseline",
+        "candidate"
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "metric_id": "success_probability",
+      "direction": "higher-is-better",
+      "role": "primary",
+      "minimum_effect": 0.01,
+      "unit": "probability"
+    },
+    {
+      "metric_id": "reported_runtime_seconds",
+      "direction": "lower-is-better",
+      "role": "secondary",
+      "minimum_effect": 1.0,
+      "unit": "seconds"
+    }
+  ],
+  "runs": [
+    {
+      "run_id": "baseline-1",
+      "cell": {
+        "implementation": "baseline"
+      },
+      "metrics": {
+        "success_probability": 0.72,
+        "reported_runtime_seconds": 104.0
+      },
+      "resource_budget": {
+        "shots": 8192
+      },
+      "independence_status": "not-established",
+      "evidence_refs": [
+        "synthetic:baseline-1"
+      ]
+    },
+    {
+      "run_id": "baseline-2",
+      "cell": {
+        "implementation": "baseline"
+      },
+      "metrics": {
+        "success_probability": 0.71,
+        "reported_runtime_seconds": 102.0
+      },
+      "resource_budget": {
+        "shots": 8192
+      },
+      "independence_status": "not-established",
+      "evidence_refs": [
+        "synthetic:baseline-2"
+      ]
+    },
+    {
+      "run_id": "candidate-1",
+      "cell": {
+        "implementation": "candidate"
+      },
+      "metrics": {
+        "success_probability": 0.76,
+        "reported_runtime_seconds": 97.0
+      },
+      "resource_budget": {
+        "shots": 8192
+      },
+      "independence_status": "not-established",
+      "evidence_refs": [
+        "synthetic:candidate-1"
+      ]
+    },
+    {
+      "run_id": "candidate-2",
+      "cell": {
+        "implementation": "candidate"
+      },
+      "metrics": {
+        "success_probability": 0.75,
+        "reported_runtime_seconds": 99.0
+      },
+      "resource_budget": {
+        "shots": 8192
+      },
+      "independence_status": "not-established",
+      "evidence_refs": [
+        "synthetic:candidate-2"
+      ]
+    }
+  ],
+  "relative_support": {
+    "carrier_ref": "synthetic-compiler-comparison:hypotheses",
+    "carrier_kind": "other",
+    "support_semantics": "ordinal",
+    "support_domain_ref": "higher, lower, and unranked ordinal labels",
+    "relation_or_scoring_rule_ref": "higher > lower; unranked remains incomparable",
+    "evidence_and_provenance_refs": [
+      "synthetic-compiler-comparison"
+    ],
+    "prior_or_initialisation_rule_ref": "all declared alternatives begin admitted and unranked",
+    "update_rule_ref": "revise ordinal labels only when supplied evidence or the declared frame changes",
+    "calibration_status": "notApplicable",
+    "normalisation_rule_ref": "notApplicable for ordinal support",
+    "independence_assumptions": [],
+    "known_dependencies": [
+      "all assignments use the same synthetic run family"
+    ],
+    "current_support_assignments": [
+      {
+        "alternative_ref": "hypothesis:implementation-effect",
+        "admissible": true,
+        "support_value": "higher",
+        "evidence_refs": [
+          "synthetic-compiler-comparison"
+        ]
+      },
+      {
+        "alternative_ref": "hypothesis:run-variation",
+        "admissible": true,
+        "support_value": "lower",
+        "evidence_refs": []
+      },
+      {
+        "alternative_ref": "hypothesis:unrecorded-backend-history",
+        "admissible": true,
+        "support_value": "unranked",
+        "evidence_refs": []
+      }
+    ],
+    "exclusion_rule_ref": "separate incompatibility evidence only; support alone cannot exclude",
+    "admissible_use": "select the next replication or provenance check",
+    "non_admissible_use": "truth, causation, provider authentication, or quantum-advantage claim",
+    "validity_window": "this supplied synthetic manifest only",
+    "stop_or_reopen_condition": "new evidence, retracted evidence, changed metric, model, boundary, or inquiry"
+  }
+}

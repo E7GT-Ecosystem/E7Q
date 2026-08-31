@@ -2,7 +2,7 @@
 
 E7Q v1.0.0rc6 implements the temporal-orientation, observer-locality, and
 history-relevance module introduced in E7G-T v0.11-UC3 and retained by the
-pinned v0.11-UC4 kernel. The module is informative pending E7G-T Pilot H and
+pinned v0.11-UC5 kernel. The module is informative pending E7G-T Pilot H and
 does not alter E7Q's quantum execution semantics.
 
 ## Invocation
@@ -75,7 +75,7 @@ chronology, or a unique physical device history.
 ## E7G-T Pilot H use
 
 The E7Q pilot cases compare ordinary temporal reporting, the existing UC2
-temporal/observational profile, and this UC3-origin record as retained in UC4. Promotion would require
+temporal/observational profile, and this UC3-origin record as retained in UC5. Promotion would require
 evidence that the additional fields prevent material orientation, causation,
 simultaneity, or relevance-collapse conflations without imposing unacceptable
 burden. E7Q therefore exposes the fields experimentally and does not make them

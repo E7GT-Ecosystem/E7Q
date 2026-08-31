@@ -34,6 +34,8 @@
 | Compatible-history relevance | Histories still consistent with supplied evidence under fixed conditions; epistemic and distinct from quantum state update |
 | E7Q `topology` (legacy interface term) | Undirected hardware coupling graph used for adjacency and SWAP routing; not automatically a mathematical topology |
 | UC4 topological overlay `(X, tau)` | Not invoked by ordinary E7Q routing; requires a separately declared carrier, topology construction, and inquiry-relevant topological claim |
+| UC5 relative-support overlay | Optional support ordering or assignment over still-admissible quantum experimental explanations; never truth, exclusion, phase determinacy, or decision by itself |
+| Comparative experiment | Declared factor-cell family with preserved metric vector, descriptive effects, interaction contrast, provenance, and bounded claim level |
 
 Structural order and temporal order are independent. For example, one D2
 document may be a TD0 snapshot, participate in a TD1 version history, or belong
