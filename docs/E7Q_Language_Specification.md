@@ -264,7 +264,7 @@ physical fidelity.
 ## 19. Bounded temporal-evidence profile
 
 E7Q implements a bounded quantum-workflow profile of the temporal subkernel
-retained in E7G-T v0.11-UC4. Time is treated as an admitted structure that may be
+retained in E7G-T v0.11-UC5. Time is treated as an admitted structure that may be
 extended, ordered, projected, summarized, phase-classified, and checked for
 declared boundary crossings. This profile governs evidence semantics only;
 established quantum mathematics remains normative for execution.
@@ -371,7 +371,7 @@ future stability, consensus as truth, or an observer-relative ontology.
 ## 21. Optional temporal-orientation pilot
 
 E7Q implements the informative temporal-orientation module introduced in
-E7G-T v0.11-UC3 and retained in the pinned v0.11-UC4 kernel as the separate
+E7G-T v0.11-UC3 and retained in the pinned v0.11-UC5 kernel as the separate
 opt-in schema `e7q.temporal-orientation-pilot/v1alpha1`. It is not
 emitted unless requested and is not required for ordinary artifact
 conformance.
@@ -438,3 +438,42 @@ interval. `PASS` requires the lower bound for every primary case to clear the
 declared threshold and every declared aggregate modal relation to hold. It is
 not provider authentication, distributional fidelity, a fault-tolerance
 threshold or proof of an underlying theorem.
+
+## 24. Optional relative-support pilot
+
+E7Q implements the informative E7G-T v0.11-UC5 relative-support overlay as
+`e7q.relative-support-pilot/v1alpha1`. It is emitted only when explicitly
+requested and when a complete support declaration is supplied.
+
+The declaration identifies the alternative carrier, support semantics and
+domain, relation or scoring rule, evidence and provenance, initialisation and
+update rules, calibration and normalisation posture, dependencies, current
+assignments, a separate exclusion rule, admitted and blocked uses, validity
+window, and reopen condition. An inadmissible assignment must name a separate
+exclusion basis. Support alone cannot exclude an alternative.
+
+The profile permits ordinal, score, probability, likelihood-like,
+confidence-like, and domain-specific semantics. A numerical value is not a
+probability or calibrated confidence unless the referenced formal and
+empirical conditions establish that meaning. Structural conformance does not
+validate those external conditions.
+
+## 25. Comparative-experiment profile
+
+The input schema `e7q.comparative-experiment/v1alpha1` supports one or two
+binary factors, one primary metric, secondary metrics, and at least two
+supplied runs. Each run declares its complete factor cell, finite metric
+values, resource budget, independence status, and evidence references.
+
+The output `e7q.comparative-experiment-report/v1alpha1` contains deterministic
+cell summaries, context-specific baseline-to-candidate effects, per-metric
+trade-offs, matrix completeness, resource and replication postures, and, for a
+complete two-factor design, a descriptive difference-of-differences contrast.
+No aggregate trade-off verdict is inferred without a separately supplied
+decision rule.
+
+The automatic claim ladder stops at `OBSERVED_DIFFERENCE`. The profile does
+not perform inferential replication testing or establish quality, practical,
+or computational quantum advantage. It may carry supplied annealing metrics,
+but it does not implement QUBO/Ising execution, embedding, chain, gauge,
+schedule, or temperature semantics.

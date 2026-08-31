@@ -275,3 +275,30 @@
 - [x] explicit exploratory/prospective and provider/fidelity/fault-tolerance boundaries;
 - [ ] provider-authenticated execution evidence;
 - [ ] prospective replication under a profile frozen before execution.
+
+## v1.0rc10 — E7G-T v0.11-UC5 relative-support alignment
+
+- [x] immutable upstream pin to E7G-T v0.11-UC5;
+- [x] opt-in `e7q.relative-support-pilot/v1alpha1` records;
+- [x] declared support carrier, semantics, provenance, update rule,
+  calibration posture, dependencies, validity window, and stop conditions;
+- [x] separate admissibility, support, exclusion, phase determinacy, and
+  decision-use boundaries;
+- [x] structural conformance and fail-closed exclusion-basis checks;
+- [ ] E7G-T Pilot J comparison across the required materially different
+  domains before any normative promotion claim.
+
+## v1.0rc11 — Comparative-experiment evidence
+
+- [x] bounded one- or two-factor binary experiment manifest;
+- [x] fail-closed metric, factor, run, resource, independence, and provenance
+  validation;
+- [x] deterministic cell aggregation and baseline-to-candidate effects;
+- [x] metric-vector trade-offs without an undeclared aggregate verdict;
+- [x] descriptive two-factor difference-of-differences interaction contrast;
+- [x] explicit feasibility-to-computational-advantage claim ladder;
+- [x] Proof-of-Path, CLI, example, artifact registration, and regression tests;
+- [ ] inferential replication profile using an independently reviewed
+  statistical method;
+- [ ] separate annealing-evidence adapter if real QUBO/Ising evidence becomes
+  available.

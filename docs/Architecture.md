@@ -28,6 +28,13 @@
     an explicit classical-bit order and compares declared primary bits with a
     threshold and Wilson confidence interval, separately from provenance and
     physical-fidelity judgments.
+13. **Relative-support pilot** optionally records inquiry-relative support over
+    still-admissible alternatives with declared semantics, provenance, update,
+    calibration and exclusion rules.
+14. **Comparative-experiment assessor** validates one- or two-factor supplied
+    designs, preserves metric trade-offs, computes descriptive effects and
+    interaction contrasts, and stops its automatic claim at observed
+    difference.
 
 ## Boundary
 
@@ -42,7 +49,7 @@ an observer's available records equivalent to reality, turn agreement into
 truth, or upgrade an offline verdict into provider or hardware validation.
 
 The temporal-orientation pilot is an informative E7G-T UC3 experiment retained
-by the pinned UC4 kernel. It does
+by the pinned UC5 kernel. It does
 not equate reverse audit traversal with reversed dynamics or causation, equate
 history-whole membership with simultaneity, or turn evidential relevance
 narrowing into quantum measurement collapse or an ontological claim.
@@ -52,6 +59,15 @@ artifact term `topology` names that graph structure only and does not invoke
 the E7G-T UC4 mathematical topological-overlay pilot. In particular, graph
 adjacency and routing paths are not silently treated as topological
 neighbourhoods or topological paths.
+
+The relative-support pilot is an informative E7G-T UC5 experiment. It does not
+turn higher support into truth or phase determinacy, lower support into
+exclusion, or any support assignment into a decision rule.
+
+The comparative-experiment assessor is descriptive. It does not authenticate
+runs, prove independence, perform inferential replication testing, establish
+causation, or demonstrate quality, practical, or computational quantum
+advantage. It does not add annealing semantics to the circuit engine.
 
 ## v0.1 implementation
 

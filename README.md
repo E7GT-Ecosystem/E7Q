@@ -81,7 +81,8 @@ when you also need to answer:
   destinations.
 - Assesses noisy counts against deterministic bit expectations only under an
   explicit count-label order, threshold, confidence level, and claim mode.
-- Assesses distributions, replication, campaign drift, and longitudinal trends.
+- Assesses distributions, replication, campaign drift, longitudinal trends,
+  and bounded one- or two-factor comparative experiments.
 - Records temporal carrier descriptions, TD order roles, ordering, projection
   loss, phase criteria, and
   boundary crossings in machine-readable evidence.
@@ -235,7 +236,7 @@ evolution or identify evidential history narrowing with measurement collapse.
 
 ### E7G-T UC4 topology boundary
 
-E7Q v1.0.0rc9 pins E7G-T v0.11-UC4. UC4 adds an informative mathematical
+E7Q retains UC4's topology boundary. UC4 adds an informative mathematical
 topological-overlay pilot, but ordinary E7Q routing does not invoke it. The
 existing `--topology` option and `topology` artifact fields are retained for
 backward compatibility and mean a hardware **coupling graph** (`linear`,
@@ -245,6 +246,36 @@ silently promoted to topological neighbourhoods or topological paths.
 UC4 also makes Candidate Law T0 explicit: temporal extension does not itself
 select temporal orientation. E7Q therefore continues to emit temporal evidence
 independently of the opt-in temporal-orientation pilot.
+
+### Optional E7G-T UC5 relative-support pilot
+
+E7Q v1.0.0rc11 pins E7G-T v0.11-UC5. Comparative-experiment manifests may
+declare an ordinal, scored, probabilistic, likelihood-like, confidence-like,
+or domain-specific support model and request an embedded
+`e7q.relative-support-pilot/v1alpha1` record:
+
+```bash
+e7q assess-experiment examples/comparative-experiment-synthetic.json \
+  --relative-support-pilot \
+  -o comparative-report.json
+```
+
+The pilot keeps candidate admissibility, support, exclusion, phase
+determinacy, and action separate. Low support does not remove an alternative,
+and numerical support is not treated as probability without a separately
+declared probability model.
+
+### Comparative-experiment evidence
+
+`assess-experiment` validates a supplied one- or two-factor manifest,
+aggregates declared cells, preserves every metric, reports baseline-to-candidate
+effects, and computes a descriptive interaction contrast for a complete 2x2
+design. It never collapses metric trade-offs into an undeclared score.
+
+Its claim ladder separates feasibility, observed difference, repeatable
+effect, quality advantage, practical advantage, and computational quantum
+advantage. The bounded command can automatically support only the first two;
+the stronger claims remain explicitly unestablished.
 
 ## Evidence and validation
 
@@ -274,6 +305,8 @@ only when the registered schema and required top-level evidence are present.
 - [Temporal-evidence profile](docs/TEMPORAL_EVIDENCE_PROFILE.md)
 - [UC2 observational-claim pilot](docs/OBSERVATIONAL_CLAIM_PILOT.md)
 - [UC3 temporal-orientation pilot](docs/TEMPORAL_ORIENTATION_PILOT.md)
+- [UC5 relative-support pilot](docs/RELATIVE_SUPPORT_PILOT.md)
+- [Comparative experiments](docs/COMPARATIVE_EXPERIMENTS.md)
 - [QEC syndrome-homomorphism pilot](docs/QEC_SYNDROME_PILOT.md)
 - [External evidence importer](docs/EXTERNAL_EVIDENCE_IMPORTER.md)
 - [OpenQASM 2 and deterministic assessment](docs/OPENQASM2_AND_DETERMINISTIC_ASSESSMENT.md)
@@ -288,9 +321,10 @@ and detailed usage of each capability.
 
 E7Q is a downstream implementation of E7G-T's invariant, transformation,
 projection, measurement-accountability, temporal-geometry, and Proof-of-Path
-principles. E7Q v1.0.0rc9 pins E7G-T v0.11-UC4, implements a bounded temporal-
+principles. E7Q v1.0.0rc11 pins E7G-T v0.11-UC5, implements a bounded temporal-
 evidence profile, and offers UC2's observation/interpretation and UC3's
-temporal-orientation modules as separate opt-in pilots for quantum workflows.
+temporal-orientation modules plus UC5's relative-support overlay as separate
+opt-in pilots for quantum workflows.
 UC4's mathematical topological-overlay pilot is not implicitly activated by
 E7Q's legacy coupling-graph `topology` terminology. The canonical E7G-T kernel
 remains a separate upstream project and is not silently modified by E7Q.

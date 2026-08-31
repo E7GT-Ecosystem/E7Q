@@ -8,11 +8,11 @@ operational equivalence, Proof-of-Path, and temporal geometry.
 
 E7Q pins the following upstream reference for this release candidate:
 
-- **Version:** E7G-T v0.11-UC4
+- **Version:** E7G-T v0.11-UC5
 - **Title:** *E7G-T Unified Geometry-Thinking Kernel — Extensional–Projective–Phase Geometry of Configurations and Time*
-- **Immutable source:** [kernel at commit `1ff8fb95958b3ada1b25b380ecf5f6cd7b59fad4`](https://github.com/wingate-ag/E7G-T/blob/1ff8fb95958b3ada1b25b380ecf5f6cd7b59fad4/E7G-T_Kernel_v0.11_UC4_Unified_Public_Reference_Specification.md)
-- **Git blob:** `d97225feb8a79b6a90cdf073ec215cdd07992ef7`
-- **Compatibility review:** 2026-08-05
+- **Immutable source:** [kernel at commit `4eb9c49082ab89a423de66f17229c2feeb7b3f0e`](https://github.com/wingate-ag/E7G-T/blob/4eb9c49082ab89a423de66f17229c2feeb7b3f0e/E7G-T_Kernel_v0.11_UC5_Unified_Public_Reference_Specification.md)
+- **Git blob:** `a248133be280b3f3415f8dd8f5342833195f08df`
+- **Compatibility review:** 2026-08-31
 
 E7Q operationalizes a bounded subset of the upstream temporal architecture:
 temporal carriers, declared order, temporal projection, preservation and loss,
@@ -54,6 +54,19 @@ routing paths, and routing boundaries are not asserted to be topological
 neighbourhoods, topological paths, or topological boundaries. A future E7Q use
 of the UC4 overlay would require an explicit carrier, topology, construction,
 and inquiry-relevant topological claim.
+
+UC5 retains the preceding core and pilots and adds the informative
+relative-support overlay. E7Q exposes it only through the opt-in
+`e7q.relative-support-pilot/v1alpha1` profile. The profile declares the
+alternative carrier, support semantics, provenance, update rule, calibration
+posture, dependencies, separate exclusion rule, validity window, and reopen
+condition. It preserves low-support alternatives until separately excluded
+and does not treat stronger support as truth, probability, phase determinacy,
+causation, or an action rule.
+
+The comparative-experiment profile supplies one quantum-domain case relevant
+to UC5 Pilot J. This does not satisfy Pilot J's cross-domain promotion gate or
+promote the upstream module into E7G-T's normative core.
 
 E7Q does not infer quantum physics from that vocabulary. Executable meaning
 comes from established quantum theory: Hilbert spaces, tensor products,

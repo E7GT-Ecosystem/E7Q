@@ -19,6 +19,7 @@ from .deterministic import (
 )
 from .drift import assess_drift, load_replication_report
 from .external_bundles import verify_external_bundle
+from .experiments import assess_comparative_experiment, load_comparative_experiment
 from .openqasm2 import import_openqasm2
 from .trends import assess_trend, load_trend_reports
 from .calibration import load_snapshot, select_target
@@ -112,6 +113,13 @@ def _parser() -> argparse.ArgumentParser:
     trend.add_argument("--observation-pilot", action="store_true")
     trend.add_argument("--temporal-orientation-pilot", action="store_true")
     trend.add_argument("-o", "--output", required=True, type=Path)
+    experiment = commands.add_parser(
+        "assess-experiment",
+        help="assess a bounded one- or two-factor comparative experiment",
+    )
+    experiment.add_argument("source", type=Path)
+    experiment.add_argument("--relative-support-pilot", action="store_true")
+    experiment.add_argument("-o", "--output", required=True, type=Path)
     artifact = commands.add_parser("validate-artifact")
     artifact.add_argument("source", type=Path)
     artifact.add_argument("-o", "--output", type=Path)
@@ -335,6 +343,17 @@ def main(argv: list[str] | None = None) -> int:
             )
             print(f"Trend report: {args.output}")
             return 0 if report["status"] == "NO_TREND_DETECTED" else 1
+        if args.command == "assess-experiment":
+            report = assess_comparative_experiment(
+                load_comparative_experiment(args.source),
+                include_relative_support_pilot=args.relative_support_pilot,
+            )
+            args.output.write_text(
+                json.dumps(report, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            print(f"Comparative experiment report: {args.output}")
+            return 0 if report["status"] == "ASSESSED" else 1
         if args.command == "validate-artifact":
             report = validate_artifact(load_artifact(args.source))
             content = json.dumps(report, indent=2, sort_keys=True) + "\n"
