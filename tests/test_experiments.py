@@ -120,11 +120,29 @@ def test_report_never_promotes_descriptive_difference_to_advantage():
         entry["level"]: entry["status"]
         for entry in report["claim_assessment"]["ladder"]
     }
+    assert statuses["MANIFEST_ASSESSABLE"] == "SUPPORTED"
+    assert statuses["FEASIBILITY"] == "NOT_ESTABLISHED"
     assert statuses["OBSERVED_DIFFERENCE"] == "SUPPORTED"
     assert statuses["REPEATABLE_EFFECT"] == "NOT_ESTABLISHED"
     assert statuses["QUALITY_ADVANTAGE"] == "NOT_ESTABLISHED"
     assert statuses["PRACTICAL_ADVANTAGE"] == "NOT_ESTABLISHED"
     assert statuses["COMPUTATIONAL_QUANTUM_ADVANTAGE"] == "NOT_ESTABLISHED"
+
+
+def test_no_material_difference_supports_only_manifest_assessability():
+    value = manifest()
+    for run in value["runs"]:
+        run["metrics"] = {"validity": 50.0, "uniqueness": 50.0}
+    report = assess_comparative_experiment(value)
+    assert (
+        report["claim_assessment"]["highest_supported_level"]
+        == "MANIFEST_ASSESSABLE"
+    )
+    statuses = {
+        entry["level"]: entry["status"]
+        for entry in report["claim_assessment"]["ladder"]
+    }
+    assert statuses["FEASIBILITY"] == "NOT_ESTABLISHED"
 
 
 def test_relative_support_is_opt_in_and_structurally_valid():

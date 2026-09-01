@@ -2,6 +2,7 @@
 """Opt-in E7G-T UC5 relative-support pilot records."""
 from __future__ import annotations
 
+import math
 from typing import Any
 
 
@@ -32,6 +33,31 @@ CARRIER_KINDS = {
     "jointCandidates",
     "other",
 }
+
+
+def _finite_number(value: object) -> bool:
+    return (
+        isinstance(value, (int, float))
+        and not isinstance(value, bool)
+        and math.isfinite(float(value))
+    )
+
+
+def _support_value_valid(semantics: object, value: object) -> bool:
+    """Apply the minimum type/domain contract implied by each semantics."""
+    if semantics == "probability":
+        return _finite_number(value) and 0.0 <= float(value) <= 1.0
+    if semantics == "score":
+        return _finite_number(value)
+    if semantics == "likelihoodLike":
+        return _finite_number(value) and float(value) >= 0.0
+    if semantics == "confidenceLike":
+        return _finite_number(value)
+    if semantics in {"ordinal", "domainSpecific"}:
+        return _finite_number(value) or (
+            isinstance(value, str) and bool(value.strip())
+        )
+    return False
 
 
 def relative_support_pilot(
@@ -224,7 +250,11 @@ def conformance_checks(value: Any) -> list[dict[str, object]]:
         checks.append(
             check(
                 f"assignment-{index}-support-value",
-                "support_value" in assignment,
+                "support_value" in assignment
+                and _support_value_valid(
+                    value.get("support_semantics"),
+                    assignment.get("support_value"),
+                ),
             )
         )
         checks.append(

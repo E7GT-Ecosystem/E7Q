@@ -296,9 +296,23 @@
 - [x] deterministic cell aggregation and baseline-to-candidate effects;
 - [x] metric-vector trade-offs without an undeclared aggregate verdict;
 - [x] descriptive two-factor difference-of-differences interaction contrast;
-- [x] explicit feasibility-to-computational-advantage claim ladder;
+- [x] explicit manifest-assessability-to-computational-advantage claim ladder;
 - [x] Proof-of-Path, CLI, example, artifact registration, and regression tests;
 - [ ] inferential replication profile using an independently reviewed
   statistical method;
 - [ ] separate annealing-evidence adapter if real QUBO/Ising evidence becomes
   available.
+
+## v1.0rc12 — Evidence-contract hardening
+
+- [x] distinguish structural `MANIFEST_ASSESSABLE` from experimental
+  `FEASIBILITY`;
+- [x] require verified execution evidence before feasibility can be
+  established;
+- [x] enforce finite numeric and semantics-specific domains for relative
+  support values;
+- [x] align package, citation, README, and Language Specification versions;
+- [x] add formal release notes and regression tests for the corrected
+  contracts;
+- [ ] add an evidence-linked execution verifier capable of establishing
+  feasibility under a declared profile.

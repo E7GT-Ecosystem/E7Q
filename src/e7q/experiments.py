@@ -19,6 +19,7 @@ INPUT_SCHEMA = "e7q.comparative-experiment/v1alpha1"
 REPORT_SCHEMA = "e7q.comparative-experiment-report/v1alpha1"
 
 CLAIM_LEVELS = (
+    "MANIFEST_ASSESSABLE",
     "FEASIBILITY",
     "OBSERVED_DIFFERENCE",
     "REPEATABLE_EFFECT",
@@ -382,13 +383,23 @@ def assess_comparative_experiment(
         if result["effect_status"] != "no-material-difference"
     ]
     highest_supported = (
-        "OBSERVED_DIFFERENCE" if material_differences else "FEASIBILITY"
+        "OBSERVED_DIFFERENCE"
+        if material_differences
+        else "MANIFEST_ASSESSABLE"
     )
     ladder = [
         {
-            "level": "FEASIBILITY",
+            "level": "MANIFEST_ASSESSABLE",
             "status": "SUPPORTED",
             "basis": "The supplied manifest passed bounded structural validation.",
+        },
+        {
+            "level": "FEASIBILITY",
+            "status": "NOT_ESTABLISHED",
+            "basis": (
+                "Supplied run records and evidence references are not, by themselves, "
+                "verified evidence that the declared workflow executed successfully."
+            ),
         },
         {
             "level": "OBSERVED_DIFFERENCE",
@@ -502,7 +513,11 @@ def assess_comparative_experiment(
                 "step": 3,
                 "kind": "claim-boundary",
                 "highest_supported_level": highest_supported,
-                "blocked_levels": list(CLAIM_LEVELS[2:]),
+                "blocked_levels": [
+                    entry["level"]
+                    for entry in ladder
+                    if entry["status"] == "NOT_ESTABLISHED"
+                ],
             },
             {
                 "step": 4,
