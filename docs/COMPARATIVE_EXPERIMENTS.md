@@ -1,6 +1,6 @@
 # Comparative quantum experiments
 
-E7Q v1.0.0rc11 adds a bounded descriptive profile for supplied one- or
+E7Q v1.0.0rc12 includes a bounded descriptive profile for supplied one- or
 two-factor experiments. It is intended for comparisons such as compiler path,
 backend, mitigation method, model architecture, sampler, or other declared
 experimental factors.
@@ -48,17 +48,23 @@ significance, mechanism, or causation.
 
 ## Claim ladder
 
-The report keeps six claim levels separate:
+The report keeps seven claim levels separate:
 
-1. `FEASIBILITY`;
-2. `OBSERVED_DIFFERENCE`;
-3. `REPEATABLE_EFFECT`;
-4. `QUALITY_ADVANTAGE`;
-5. `PRACTICAL_ADVANTAGE`;
-6. `COMPUTATIONAL_QUANTUM_ADVANTAGE`.
+1. `MANIFEST_ASSESSABLE`;
+2. `FEASIBILITY`;
+3. `OBSERVED_DIFFERENCE`;
+4. `REPEATABLE_EFFECT`;
+5. `QUALITY_ADVANTAGE`;
+6. `PRACTICAL_ADVANTAGE`;
+7. `COMPUTATIONAL_QUANTUM_ADVANTAGE`.
 
-This bounded command can automatically support only the first two. Even when
-the manifest contains repeated runs, it does not perform the inferential test
+Passing structural validation supports `MANIFEST_ASSESSABLE`, not experimental
+feasibility. `FEASIBILITY` requires evidence linked to an actual execution and
+is not established by supplied run records or references alone. The command
+may support `OBSERVED_DIFFERENCE` when a descriptive cell-mean difference
+exceeds the declared minimum effect. This does not authenticate the run or
+establish feasibility, causation, or repeatability. Even when the manifest
+contains repeated runs, the command does not perform the inferential test
 needed to establish repeatability. Domain relevance, matched cost/time/energy
 budgets, adequate classical competitors, and a computational resource boundary
 remain responsibilities of stronger domain methods.

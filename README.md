@@ -249,7 +249,7 @@ independently of the opt-in temporal-orientation pilot.
 
 ### Optional E7G-T UC5 relative-support pilot
 
-E7Q v1.0.0rc11 pins E7G-T v0.11-UC5. Comparative-experiment manifests may
+E7Q v1.0.0rc12 pins E7G-T v0.11-UC5. Comparative-experiment manifests may
 declare an ordinal, scored, probabilistic, likelihood-like, confidence-like,
 or domain-specific support model and request an embedded
 `e7q.relative-support-pilot/v1alpha1` record:
@@ -261,9 +261,11 @@ e7q assess-experiment examples/comparative-experiment-synthetic.json \
 ```
 
 The pilot keeps candidate admissibility, support, exclusion, phase
-determinacy, and action separate. Low support does not remove an alternative,
-and numerical support is not treated as probability without a separately
-declared probability model.
+determinacy, and action separate. Low support does not remove an alternative.
+It also enforces minimum semantics-specific value domains: probabilities are
+finite numbers in `[0,1]`, likelihood-like values are finite and non-negative,
+and scores and confidence-like values are finite numbers. A conforming
+probability value still requires a separately declared probability model.
 
 ### Comparative-experiment evidence
 
@@ -272,10 +274,12 @@ aggregates declared cells, preserves every metric, reports baseline-to-candidate
 effects, and computes a descriptive interaction contrast for a complete 2x2
 design. It never collapses metric trade-offs into an undeclared score.
 
-Its claim ladder separates feasibility, observed difference, repeatable
-effect, quality advantage, practical advantage, and computational quantum
-advantage. The bounded command can automatically support only the first two;
-the stronger claims remain explicitly unestablished.
+Its claim ladder separates manifest assessability, experimental feasibility,
+observed difference, repeatable effect, quality advantage, practical
+advantage, and computational quantum advantage. Structural validation supports
+only `MANIFEST_ASSESSABLE`; `FEASIBILITY` requires verified execution evidence.
+The command can also report a descriptive `OBSERVED_DIFFERENCE` from supplied
+values, while the stronger claims remain explicitly unestablished.
 
 ## Evidence and validation
 
@@ -307,6 +311,7 @@ only when the registered schema and required top-level evidence are present.
 - [UC3 temporal-orientation pilot](docs/TEMPORAL_ORIENTATION_PILOT.md)
 - [UC5 relative-support pilot](docs/RELATIVE_SUPPORT_PILOT.md)
 - [Comparative experiments](docs/COMPARATIVE_EXPERIMENTS.md)
+- [rc12 release notes](docs/RELEASE_NOTES_1.0.0rc12.md)
 - [QEC syndrome-homomorphism pilot](docs/QEC_SYNDROME_PILOT.md)
 - [External evidence importer](docs/EXTERNAL_EVIDENCE_IMPORTER.md)
 - [OpenQASM 2 and deterministic assessment](docs/OPENQASM2_AND_DETERMINISTIC_ASSESSMENT.md)
@@ -321,7 +326,7 @@ and detailed usage of each capability.
 
 E7Q is a downstream implementation of E7G-T's invariant, transformation,
 projection, measurement-accountability, temporal-geometry, and Proof-of-Path
-principles. E7Q v1.0.0rc11 pins E7G-T v0.11-UC5, implements a bounded temporal-
+principles. E7Q v1.0.0rc12 pins E7G-T v0.11-UC5, implements a bounded temporal-
 evidence profile, and offers UC2's observation/interpretation and UC3's
 temporal-orientation modules plus UC5's relative-support overlay as separate
 opt-in pilots for quantum workflows.

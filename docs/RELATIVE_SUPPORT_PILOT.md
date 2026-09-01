@@ -1,6 +1,6 @@
 # E7Q relative-support pilot
 
-E7Q v1.0.0rc10 aligns with E7G-T v0.11-UC5 and implements its informative
+E7Q v1.0.0rc12 aligns with E7G-T v0.11-UC5 and implements its informative
 relative-support overlay as the opt-in schema
 `e7q.relative-support-pilot/v1alpha1`.
 
@@ -43,10 +43,18 @@ Every assignment has an `alternative_ref`, an explicit `admissible` value, a
 must also supply an `exclusion_basis_ref`. A low support value alone is not an
 exclusion basis.
 
+The declared semantics impose a minimum value contract:
+
+- `probability`: finite numeric value in `[0,1]`;
+- `confidenceLike`: finite numeric value on the separately declared domain;
+- `likelihoodLike`: finite non-negative numeric value;
+- `score`: finite numeric value;
+- `ordinal` and `domainSpecific`: a finite numeric value or non-empty label.
+
 Numerical values are not treated as probabilities unless the declaration uses
 `probability` semantics and supplies the probability model through its
-referenced rules. Structural conformance does not validate that model,
-calibration, evidence, or empirical adequacy.
+referenced rules. These type and domain checks do not validate that model,
+calibration, evidence, ordering relation, or empirical adequacy.
 
 ## Pilot boundary
 

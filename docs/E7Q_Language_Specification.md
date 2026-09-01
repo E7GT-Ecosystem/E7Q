@@ -1,6 +1,6 @@
 # E7Q Language Specification
 
-**Version:** 1.0.0-rc9
+**Version:** 1.0.0-rc12
 **Status:** experimental draft
 **Documentation licence:** CC-BY-SA-4.0
 
