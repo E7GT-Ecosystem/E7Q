@@ -16,6 +16,18 @@ Every profile declares:
 Profile validators must fail closed when a required capability is absent. They
 must keep `not assessed`, `unsupported`, and `failed` distinct.
 
+Profiles declare a validator identifier separately from their capabilities.
+An installed validator implements deterministic per-artifact and per-relation
+methods and returns typed semantic results. It must not return a result for a
+foreign subject or cite evidence absent from the graph. A validator returning
+no results yields `NOT_ASSESSED`; an unknown profile or missing validator yields
+`BLOCKED`; unsupported syntax or scale yields `UNSUPPORTED`; and a violated
+semantic rule yields `FAIL`.
+
+Phase 1A registers `e7q.ir.validator.circuit-basic/0alpha1` as
+`framework-only`. Its results remain `NOT_ASSESSED`; profile-specific QASM,
+count, distribution, and transformation checks belong to Phases 1B and 1C.
+
 The initial `e7q.ir.circuit-basic/0alpha1` profile admits OpenQASM source
 identity, aggregate count observations, and descriptive total-variation
 assessment. It does not establish general circuit equivalence, provider
@@ -24,3 +36,9 @@ authenticity, or physical fidelity.
 Future QIR, QEC, hybrid, annealing, analog, photonic, and measurement-based
 profiles should be independently testable. They may share the core protocol but
 must not borrow each other's semantics without an explicit bridge and criterion.
+# Phase 1B implementation update
+
+The bounded Phase 1B payload validator now supersedes the framework-only
+implementation notes below. See [Phase 1B scope and limits](PHASE_1B.md).
+Digest-only graphs remain inspectable but block byte-dependent semantic checks;
+transformation equivalence and execution semantics remain unassessed.

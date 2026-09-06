@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e7q.dev/schemas/ir/conformance-report-v0alpha1.schema.json",
+  "title": "E7Q-IR Conformance Report v0alpha1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "status", "requested_level", "highest_level_passed", "level_results", "semantic_readiness", "capability_negotiation", "checks", "proof"],
+  "properties": {
+    "schema": {"const": "e7q.ir.conformance-report/v0alpha1"},
+    "status": {"enum": ["PASS", "FAIL", "BLOCKED", "UNSUPPORTED", "NOT_ASSESSED"]},
+    "requested_level": {"enum": ["F0", "F1", "F2"]},
+    "highest_level_passed": {"enum": ["F0", "F1", "F2", null]},
+    "level_results": {
+      "type": "object",
+      "required": ["F0", "F1", "F2", "F3", "F4"],
+      "properties": {
+        "F0": {"type": "string"},
+        "F1": {"type": "string"},
+        "F2": {"type": "string"},
+        "F3": {"type": "string"},
+        "F4": {"type": "string"}
+      }
+    },
+    "semantic_readiness": {"type": "string"},
+    "capability_negotiation": {"type": "array"},
+    "checks": {"type": "array"},
+    "semantic_results": {
+      "type": "array",
+      "items": {"$ref": "semantic-result-v0alpha1.schema.json"}
+    },
+    "proof": {"type": "array", "minItems": 1}
+  }
+}

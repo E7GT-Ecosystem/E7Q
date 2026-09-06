@@ -1,0 +1,75 @@
+{
+  "schema": "e7q.ir.graph/v0alpha1",
+  "name": "bounded UTF-8 identity",
+  "artifacts": [
+    {
+      "schema": "e7q.ir.artifact/v0alpha1",
+      "kind": "source",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1",
+        "capabilities_required": []
+      },
+      "provenance": {
+        "created_at": "2026-09-06T00:00:00Z",
+        "actor": "unspecified",
+        "source_refs": []
+      },
+      "payload": {
+        "format": "openqasm-2",
+        "content": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[1];\ncreg c[1];\nh q[0];\nmeasure q[0] -> c[0];\n",
+        "byte_length": 88,
+        "content_digest": "sha256:d8b1ddfdd7ef3f53f221fe5c6849a59e82a633a871a0cf5d439a8b72d9b24ffa"
+      },
+      "limitations": [],
+      "artifact_id": "sha256:d9a5178678aca937e01e8ce8b8e9b39bd6194492380abbef4bfc174fd0b8127e"
+    },
+    {
+      "schema": "e7q.ir.artifact/v0alpha1",
+      "kind": "representation",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1",
+        "capabilities_required": []
+      },
+      "provenance": {
+        "created_at": "2026-09-06T00:00:00Z",
+        "actor": "unspecified",
+        "source_refs": []
+      },
+      "payload": {
+        "format": "openqasm-2",
+        "content": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[1];\ncreg c[1];\nh q[0];\nmeasure q[0] -> c[0];\n// alternate source spelling\n",
+        "byte_length": 117,
+        "content_digest": "sha256:942c962c4464a794c16bf4e26850ddbcb0f8d0b5e1db91c5a48653857a476553"
+      },
+      "limitations": [],
+      "artifact_id": "sha256:5a16c789042aedbb34bdd0ee7d05a94eae95a1efa62f0c8cd4df2922bed87e80"
+    }
+  ],
+  "relations": [
+    {
+      "kind": "transforms",
+      "source": "sha256:d9a5178678aca937e01e8ce8b8e9b39bd6194492380abbef4bfc174fd0b8127e",
+      "target": "sha256:5a16c789042aedbb34bdd0ee7d05a94eae95a1efa62f0c8cd4df2922bed87e80",
+      "validation_status": "validated",
+      "criterion": {
+        "id": "e7q.ir.openqasm2-structural-identity",
+        "version": "1"
+      },
+      "preserves": [
+        "parsed-circuit-structure"
+      ],
+      "loses": [
+        "source-text-and-comments",
+        "gate-name-case",
+        "register-expansion-spelling",
+        "numeric-index-spelling",
+        "declaration-interleaving"
+      ],
+      "assumptions": [],
+      "relation_id": "sha256:a73845c9179e1beb7ca9394ea98c9939e97d98617188aa89263a7637ca66b63e"
+    }
+  ],
+  "graph_id": "sha256:2a81ab42853758ca85e3742c7ed84c64aed19e3c8a0e1b51eb221d6e092b7447"
+}

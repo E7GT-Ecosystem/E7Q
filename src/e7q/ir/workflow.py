@@ -110,6 +110,8 @@ def _strings(value: Any, label: str, *, nonempty: bool = False) -> list[str]:
 def build_external_circuit_graph(
     manifest: dict[str, Any],
     base: str | Path = ".",
+    *,
+    include_circuit_content: bool = False,
 ) -> dict[str, Any]:
     """Build a bounded graph without importing or executing the supplied circuit."""
     if manifest.get("schema") != MANIFEST_SCHEMA:
@@ -297,6 +299,36 @@ def build_external_circuit_graph(
         limitations=boundaries,
         **common,
     )
+
+    # Rebuild with content before returning so all references remain bound to
+    # their final identities. Keep the legacy graph byte-for-byte unchanged
+    # unless the caller explicitly requests this evidence disclosure.
+    if include_circuit_content:
+        from .canonical import identified_digest
+        from .circuit import MAX_SOURCE_BYTES
+        if max(len(source_bytes), len(executable_bytes)) > MAX_SOURCE_BYTES:
+            raise E7QError('embedded circuit exceeds Phase 1B byte budget')
+        changes = {}
+        for artifact, raw in ((source, source_bytes), (representation, executable_bytes)):
+            try:
+                artifact['payload']['content'] = raw.decode('utf-8')
+            except UnicodeDecodeError as exc:
+                raise E7QError('embedded circuits must be UTF-8') from exc
+        assessment['payload']['expected_label_order'] = assessment_spec.get('expected_label_order')
+        def remap(value):
+            if isinstance(value, str):
+                return changes.get(value, value)
+            if isinstance(value, list):
+                return [remap(item) for item in value]
+            if isinstance(value, dict):
+                return {key: remap(item) for key, item in value.items()}
+            return value
+        for artifact in (source, representation, transformation, execution, observation, assessment, claim):
+            old_id = artifact['artifact_id']
+            updated = remap(artifact)
+            artifact.update(updated)
+            artifact['artifact_id'] = identified_digest(artifact, 'artifact_id')
+            changes[old_id] = artifact['artifact_id']
 
     relation_values = [
         build_relation(

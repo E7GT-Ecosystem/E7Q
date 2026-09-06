@@ -133,11 +133,18 @@ e7q ir validate ir-graph.json --level F1 \
 e7q ir inspect ir-graph.json
 ```
 
+Phase 1A also accepts `--level F2` and emits deterministic per-artifact and
+per-relation semantic results. Phase 1B now checks embedded QASM, counts, TVD
+and claim support. Digest-only graphs block byte-dependent checks; equivalence
+remains unassessed. See [Phase 1B scope](docs/e7q-ir/PHASE_1B.md).
+
 The demonstrator hashes supplied OpenQASM files, records declared transformation
 preservation and loss, validates supplied aggregate counts, performs a bounded
 total-variation comparison, and links the result to an explicit claim boundary.
 It does not execute the circuit or authenticate a provider. See the
 [E7Q-IR architecture](docs/e7q-ir/ARCHITECTURE.md).
+The authoritative implementation sequence and AI handoff instructions are in
+the [E7Q-IR build plan](docs/e7q-ir/BUILD_PLAN.md).
 
 The verifier checks every declared invariant. The generated JSON records the
 initialization, transformations, measurements, probabilities, counts, and
