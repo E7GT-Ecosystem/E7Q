@@ -138,6 +138,8 @@ preservation and loss, validates supplied aggregate counts, performs a bounded
 total-variation comparison, and links the result to an explicit claim boundary.
 It does not execute the circuit or authenticate a provider. See the
 [E7Q-IR architecture](docs/e7q-ir/ARCHITECTURE.md).
+The authoritative implementation sequence and AI handoff instructions are in
+the [E7Q-IR build plan](docs/e7q-ir/BUILD_PLAN.md).
 
 The verifier checks every declared invariant. The generated JSON records the
 initialization, transformations, measurements, probabilities, counts, and

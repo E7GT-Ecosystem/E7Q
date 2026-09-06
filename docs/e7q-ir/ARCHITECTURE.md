@@ -32,6 +32,9 @@ is outside this repository and outside E7Q-IR's current implementation scope.
 See [ADR-0001](ADR-0001-E7Q-IR-CONSOLIDATION.md) for the binding consolidation
 decision and namespace policy.
 
+The dependency-ordered implementation programme and AI engineering handoff are
+defined in [BUILD_PLAN.md](BUILD_PLAN.md).
+
 ## Layer model
 
 1. **Evidence Core** — content-addressed artifacts, provenance, typed relations,
