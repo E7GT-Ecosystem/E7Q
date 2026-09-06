@@ -2,7 +2,7 @@
 
 ## E7Q-IR v0.1 — Evidence-native IR foundation
 
-The authoritative [build plan](docs/e7q-ir/BUILD_PLAN.md) v0.2 includes
+The authoritative [build plan](docs/e7q-ir/BUILD_PLAN.md) v0.3 includes
 [research-backed extensions](docs/e7q-ir/RESEARCH_FOUNDATIONS.md) under the
 E7G-T extension/projection contract. Added packages are planned, not completed.
 
@@ -29,6 +29,21 @@ E7G-T extension/projection contract. Added packages are planned, not completed.
 - [ ] separate QEC, hybrid, annealing, measurement-based, analog/pulse and
   photonic profiles, following Phase 7's dependencies and research gates;
 - [ ] proof-artifact evaluation and independent extension conformance.
+
+## Review-driven hardening — planned
+
+See [H1–H10 acceptance gates](docs/e7q-ir/REVIEW_HARDENING.md).
+
+- [ ] H1 reproducible external-review package;
+- [ ] H2 adversarial E7Q-IR semantic campaign;
+- [ ] H3 external-bundle security and interpretation checks;
+- [ ] H4 capability-to-evidence matrix and maintained current status;
+- [ ] H5 native/legacy evidence continuity adapters;
+- [ ] H6 optional Aer reference workflow;
+- [ ] H7 end-to-end supporting-module campaigns;
+- [ ] H8 independent mathematical cross-checks;
+- [ ] H9 bounded dynamic noisy execution contract and implementation;
+- [ ] H10 resource budgets, compatibility and release gates.
 
 ## v0.1 — Minimum Executable Language
 

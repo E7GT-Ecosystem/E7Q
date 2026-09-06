@@ -1,69 +1,37 @@
 # E7Q-IR Build Plan and AI Engineering Handoff
 
-**Plan version:** 0.2
+**Plan version:** 0.3
 
-**Research integration (2026-09-06):** incorporates the open-source research
-register in [RESEARCH_FOUNDATIONS.md](RESEARCH_FOUNDATIONS.md). Added work is
-planned, not implemented. The phase dependency order and F0-F4 meanings remain
-unchanged. This revision extends the verified local Phase 1A/1B lineage; it does
-not assert that those local changes have been merged into `main`.
+**Status:** authoritative implementation plan for the experimental E7Q-IR line.
 
-**Status:** authoritative implementation plan for the experimental E7Q-IR line
+**Current inspected baseline (2026-09-06):** `main` at
+`c1608b11464b5a5b0a45f221907a8c27b1bb51ff` (PR #41).
+The last implementation milestone passed 306 tests and GitHub CI.
+This documentation revision changes no executable capability or conformance meaning.
 
-**Baseline:** repository `E7GT-Ecosystem/E7Q`, `main` at commit `b7dc357`
+**Revision 0.3:** integrates the agreed review-driven hardening packages in
+[REVIEW_HARDENING.md](REVIEW_HARDENING.md). All H1–H10 packages remain planned;
+existing tests are inputs to their gap analysis, not evidence of completing them.
+Research packages R1–R6 and their [source register](RESEARCH_FOUNDATIONS.md)
+remain in force. Phase dependencies and F0–F4 meanings are unchanged.
 
-**Baseline verification:** 181 tests passing; E7Q-IR F0 and F1 implemented
+**Completed bounded increments:** F2 framework; embedded OpenQASM 2/counts/TVD
+and claim-support checks; byte and parsed structural identity; exact and
+global-phase signed-permutation criteria; all-basis measurement comparison;
+noiseless unitary-channel comparison; exact real H/u2(0,pi) criterion.
+Each retains its own domain and limits. General angles, complex-gate IR criteria,
+noisy-channel IR criteria and general Phase 1C coverage remain incomplete.
 
-**Implementation progress (2026-09-06):** Phase 1A is completed on local
-branch `e7q-ir-f2-framework`; the full suite passes with 190 tests. The Phase
-1A assignment in §10 is retained as its acceptance record. A bounded Phase 1B
-increment is implemented on `e7q-ir-circuit-basic-validators`: optional embedded
-UTF-8 circuit bytes, single-classical-register counts, TVD recomputation, claim
-support and assessment/support relation consistency. Phase 1C UTF-8 byte identity and parsed structural identity are implemented locally;
-see [PHASE_1C.md](PHASE_1C.md). Broader criteria remain pending.
+**Next package:** H1/H4 review evidence and capability reconciliation, then H2/H3
+IR and bundle hardening before extending Phase 2 native/legacy adapters and the
+optional external Aer demonstration (H5/H6). The initial reconciliation in this
+revision does not complete the executable review harness or capability matrix.
 
-The next local Phase 1C increment adds an exact signed-permutation unitary-prefix
-criterion, restricted to a pinned gate table, eight qubits and terminal
-measurement maps; see [EXACT_UNITARY.md](EXACT_UNITARY.md). This does not complete
-general exact/global-phase or channel equivalence.
-
-**Publication checkpoint:** the framework, bounded payload/identity checks and
-exact signed-permutation criterion above are merged into `main` at
-`83b273a4f268a7260534f0590640db1edd4b62bb` (PRs #35–#37). Their local suite
-passed 249 tests; GitHub CI was still queued at that checkpoint.
-
-**Current Phase 1C increment:** separately scoped signed-permutation global-phase
-equivalence, with explicit phase loss, an exact global-sign witness and the same
-resource/domain bounds. See [GLOBAL_PHASE.md](GLOBAL_PHASE.md). This increment
-is pending publication/CI; broader gate sets, measurement and channel criteria
-remain incomplete. Next planned criterion is bounded computational-basis
-measurement equivalence with its own preservation/loss contract.
-
-**Latest checkpoint:** global-phase criterion PR #38 passed GitHub CI and
-merged into main at `328b00ff202865ce83e016a8d0dcf27b72b1232a`.
-The current increment adds [basis-measurement equivalence](BASIS_MEASUREMENT.md)
-for all computational-basis inputs in the same pinned gate fragment, with
-explicit global/relative phase loss. Publication and CI are separate gates.
-Next: assess bounded channel criteria against the native engine; do not infer
-channel equality from this measurement-only result. Broader gates and the
-H/u2 acceptance example remain incomplete.
-
-**Channel checkpoint:** basis-measurement PR #39 passed CI and merged at
-`676d34fadc1081fca251cdfb1eba5d3b7d08ee0c`. The next increment provides exact
-[noiseless unitary-channel comparison](UNITARY_CHANNEL.md) on every matrix unit
-in the signed-permutation fragment, cross-checked against the native engine.
-This does not complete noisy channels or full Phase 1C. Next work should expand
-the bounded gate semantics to address the H/u2 acceptance case; noisy-channel
-support requires explicit source and numerical-error contracts.
-
-**H/u2 checkpoint:** noiseless channel PR #40 merged after CI at
-`1226a1a9d0c8d57e0bc74799b2a4620f8d9c3e6b`. The new
-[exact real H-unitary criterion](REAL_H_UNITARY.md) closes the original H versus
-u2(0,pi) acceptance gap with unchanged source files and a separately scoped F2
-relation. Its limits are four qubits and 64 gates; previous criteria do not gain
-H support implicitly. General angles, complex gates and noisy channels remain
-pending. Next implementation package: Phase 2 native E7Q/legacy evidence adapters
-using the existing bounded F2 gates, without promoting unsupported claims.
+**Historical baseline:** `b7dc357` had 181 passing tests and F0/F1 only.
+PRs #35–#37 merged framework/identity/exact signed-permutation work at `83b273a4`;
+#38 global phase at `328b00ff`; #39 basis measurement at `676d34fa`;
+#40 noiseless channel at `1226a1a9`; #41 exact real H/u2 at `c1608b11`.
+Earlier local/queued checkpoints are historical and do not override current status.
 
 ## 1. Purpose
 
@@ -137,7 +105,7 @@ Every increment must preserve these rules:
 14. No test, digest, signature, simulation, or formal-looking report may be
     described as more than it establishes.
 
-## 4. Current verified baseline
+## 4. Current implementation boundary
 
 ### 4.1 Implemented
 
@@ -155,12 +123,17 @@ Every increment must preserve these rules:
 - schemas, examples, documentation, and adversarial tests;
 - existing E7Q language, simulators, equivalence machinery, compiler traces,
   external evidence importer, receipts, replication, drift, trend, QEC, and
-  comparative-experiment components outside the new IR package.
+  comparative-experiment components outside the new IR package;
+- F2 semantic framework and bounded circuit payload checks;
+- separately versioned transformation criteria: [identity](PHASE_1C.md),
+  [exact signed permutation](EXACT_UNITARY.md), [global phase](GLOBAL_PHASE.md),
+  [basis measurement](BASIS_MEASUREMENT.md), [noiseless channel](UNITARY_CHANNEL.md)
+  and [exact real H/u2](REAL_H_UNITARY.md).
 
 ### 4.2 Not implemented
 
-- F2 profile-semantic conformance;
-- verified transformation equivalence in the E7Q-IR graph;
+- general circuit semantics beyond the implemented bounded F2 criteria;
+- Phase 2 native/legacy-to-IR adapters and the proposed Aer adapter;
 - a production OpenQASM 3 bridge;
 - a QIR bridge;
 - authenticated provider execution evidence;
@@ -172,18 +145,20 @@ Every increment must preserve these rules:
 
 ### 4.3 Important boundary in the present demonstrator
 
-The current workflow hashes supplied circuit files and parses supplied counts.
-It does not execute the circuits, authenticate the provider, prove that the
-declared transpiler produced the executable file, or verify that source and
-executable circuits are semantically equivalent. The current graph therefore
-must not be retrospectively labelled F2-conformant.
+The external builder preserves supplied circuit identities and counts. Applicable
+F2 validators can inspect embedded bytes and establish separately named bounded
+transformation criteria. Hashing or parsing alone establishes no equivalence.
+The original H/u2 pair now has an applicable exact-real criterion; earlier graph
+artifacts must not be retrospectively upgraded without validation under that
+criterion. No such check executes hardware, authenticates a provider or proves
+that a declared transpiler produced a supplied file.
 
 ## 5. Repository map
 
 | Area | Current responsibility |
 | --- | --- |
 | `src/e7q/ir/` | E7Q-IR Evidence Core and workflow demonstrator |
-| `src/e7q/ir/conformance.py` | F0/F1 validation and conformance report |
+| `src/e7q/ir/conformance.py` | conformance orchestration and per-level report |
 | `src/e7q/ir/profiles.py` | built-in profile declarations and negotiation |
 | `src/e7q/ir/workflow.py` | external circuit evidence-graph builder |
 | `schemas/e7q-ir/` | public experimental JSON schemas |
@@ -602,6 +577,13 @@ profile families are not registered capability promises until implemented.
 Acceptance: no proof claim exceeds the checked theorem/domain; an unimplemented
 or unreviewed extension cannot advertise F2 support; independent conformance
 results identify exact profile and tool versions.
+
+### Review-driven hardening packages
+
+[REVIEW_HARDENING.md](REVIEW_HARDENING.md) defines H1–H10, priorities,
+phase placement, dependencies and acceptance evidence. These refine the existing
+programme; they do not register new capabilities or bypass later phase gates.
+Start conformance work now and maintain it through Phase 8.
 
 ## 8. Cross-cutting implementation requirements
 
