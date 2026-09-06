@@ -61,3 +61,7 @@ not cover execution, provider identity or broader quantum-equivalence criteria.
 The optional [global-phase criterion](GLOBAL_PHASE.md) admits one overall sign
 within the signed-permutation fragment and declares phase loss explicitly.
 It cannot confer exact equality or authorize controlled-subcircuit replacement.
+
+The optional [basis-measurement criterion](BASIS_MEASUREMENT.md) checks all basis
+inputs in the signed-permutation fragment and explicitly loses phase. Its PASS
+does not establish unitary or quantum-channel equivalence.

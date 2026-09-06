@@ -348,3 +348,5 @@ E7G-T extension/projection contract. Added packages are planned, not completed.
   feasibility under a declared profile.
 
 - [x] Bounded signed-permutation global-phase criterion (separate from exact equality; broader Phase 1C remains pending).
+
+- [x] Bounded signed-permutation computational-basis measurement equivalence for all basis inputs, with explicit phase loss.

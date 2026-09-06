@@ -15,7 +15,8 @@
     "circuit.identity.utf8-bytes",
     "circuit.identity.parsed-structure",
     "circuit.unitary.signed-permutation",
-    "circuit.unitary.signed-permutation-global-phase"
+    "circuit.unitary.signed-permutation-global-phase",
+    "circuit.measurement.signed-permutation-basis"
   ],
   "semantic_validators": [
     {
@@ -27,5 +28,5 @@
       "implementation_status": "bounded-payload-identity-and-signed-permutation-checks"
     }
   ],
-  "semantic_boundary": "Bounded payload checks, UTF-8 byte identity and parsed structural identity are implemented. Structural identity compares a declared importer projection, not general quantum semantics. Execution and other criteria remain unassessed. Exact unitary-prefix equality is supported only under signed-permutation-unitary/v1; A separate signed-permutation-global-phase/v1 criterion admits one overall sign with explicit phase loss. No arbitrary gate set, controlled embedding or hardware execution is established."
+  "semantic_boundary": "Bounded payload checks, UTF-8 byte identity and parsed structural identity are implemented. Structural identity compares a declared importer projection, not general quantum semantics. Execution and other criteria remain unassessed. Exact unitary-prefix equality is supported only under signed-permutation-unitary/v1; A separate signed-permutation-global-phase/v1 criterion admits one overall sign with explicit phase loss. No arbitrary gate set, controlled embedding or hardware execution is established. A separate signed-permutation-basis-measurement/v1 criterion compares terminal outcomes for all basis inputs with explicit phase loss; it establishes no unitary or channel equality."
 }

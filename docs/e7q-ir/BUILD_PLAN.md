@@ -39,6 +39,15 @@ is pending publication/CI; broader gate sets, measurement and channel criteria
 remain incomplete. Next planned criterion is bounded computational-basis
 measurement equivalence with its own preservation/loss contract.
 
+**Latest checkpoint:** global-phase criterion PR #38 passed GitHub CI and
+merged into main at `328b00ff202865ce83e016a8d0dcf27b72b1232a`.
+The current increment adds [basis-measurement equivalence](BASIS_MEASUREMENT.md)
+for all computational-basis inputs in the same pinned gate fragment, with
+explicit global/relative phase loss. Publication and CI are separate gates.
+Next: assess bounded channel criteria against the native engine; do not infer
+channel equality from this measurement-only result. Broader gates and the
+H/u2 acceptance example remain incomplete.
+
 ## 1. Purpose
 
 This document allows a new engineer or AI coding agent to continue E7Q-IR
