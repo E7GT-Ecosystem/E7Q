@@ -1,0 +1,717 @@
+{
+  "id": "e7q-local-review-v1",
+  "baseline": "f26941ae337ae79ba71eeabe78a49ac2a67cfc56",
+  "capabilities": [
+    {
+      "id": "artifacts",
+      "scope": "artifacts \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_artifacts.py",
+      "implementation": [
+        "src/e7q/artifacts.py",
+        "src/e7q/cli.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "assessment",
+      "scope": "assessment \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_assessment.py",
+      "implementation": [
+        "src/e7q/assessment.py",
+        "src/e7q/cli.py",
+        "src/e7q/language.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "bell",
+      "scope": "bell \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_bell.py",
+      "implementation": [
+        "src/e7q/reference.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "calibration_ingestion",
+      "scope": "calibration ingestion \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_calibration_ingestion.py",
+      "implementation": [
+        "src/e7q/cli.py",
+        "src/e7q/ingestion.py",
+        "src/e7q/language.py",
+        "src/e7q/observations.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "calibration_selection",
+      "scope": "calibration selection \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_calibration_selection.py",
+      "implementation": [
+        "src/e7q/calibration.py",
+        "src/e7q/cli.py",
+        "src/e7q/language.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "campaigns",
+      "scope": "campaigns \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_campaigns.py",
+      "implementation": [
+        "src/e7q/campaigns.py",
+        "src/e7q/cli.py",
+        "src/e7q/language.py",
+        "src/e7q/observations.py",
+        "src/e7q/orientation.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "channel_equivalence",
+      "scope": "channel equivalence \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_channel_equivalence.py",
+      "implementation": [
+        "src/e7q/cli.py",
+        "src/e7q/language.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "composition_diagnostics",
+      "scope": "composition diagnostics \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_composition_diagnostics.py",
+      "implementation": [
+        "src/e7q/language.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "deterministic_assessment",
+      "scope": "deterministic assessment \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_deterministic_assessment.py",
+      "implementation": [
+        "src/e7q/artifacts.py",
+        "src/e7q/cli.py",
+        "src/e7q/deterministic.py",
+        "src/e7q/language.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "drift",
+      "scope": "drift \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_drift.py",
+      "implementation": [
+        "src/e7q/cli.py",
+        "src/e7q/drift.py",
+        "src/e7q/language.py",
+        "src/e7q/observations.py",
+        "src/e7q/orientation.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "dynamic",
+      "scope": "dynamic \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_dynamic.py",
+      "implementation": [
+        "src/e7q/language.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "e7q_ir",
+      "scope": "e7q ir \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_e7q_ir.py",
+      "implementation": [
+        "src/e7q/cli.py",
+        "src/e7q/ir/canonical.py",
+        "src/e7q/ir/conformance.py",
+        "src/e7q/ir/envelope.py",
+        "src/e7q/ir/graph.py",
+        "src/e7q/ir/semantic.py",
+        "src/e7q/ir/workflow.py",
+        "src/e7q/language.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H2/H3 adversarial gap analysis",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "e7q_ir_channel",
+      "scope": "e7q ir channel \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_e7q_ir_channel.py",
+      "implementation": [
+        "src/e7q/ir/channel.py",
+        "src/e7q/ir/conformance.py",
+        "src/e7q/ir/unitary.py",
+        "src/e7q/language.py",
+        "src/e7q/openqasm2.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H2/H3 adversarial gap analysis",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "e7q_ir_global_phase",
+      "scope": "e7q ir global phase \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_e7q_ir_global_phase.py",
+      "implementation": [
+        "src/e7q/ir/conformance.py",
+        "src/e7q/ir/unitary.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H2/H3 adversarial gap analysis",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "e7q_ir_identity",
+      "scope": "e7q ir identity \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_e7q_ir_identity.py",
+      "implementation": [
+        "src/e7q/ir/canonical.py",
+        "src/e7q/ir/circuit.py",
+        "src/e7q/ir/conformance.py",
+        "src/e7q/ir/envelope.py",
+        "src/e7q/ir/graph.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H2/H3 adversarial gap analysis",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "e7q_ir_measurement",
+      "scope": "e7q ir measurement \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_e7q_ir_measurement.py",
+      "implementation": [
+        "src/e7q/ir/conformance.py",
+        "src/e7q/ir/measurement.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H2/H3 adversarial gap analysis",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "e7q_ir_real_unitary",
+      "scope": "e7q ir real unitary \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_e7q_ir_real_unitary.py",
+      "implementation": [
+        "src/e7q/ir/conformance.py",
+        "src/e7q/ir/envelope.py",
+        "src/e7q/ir/graph.py",
+        "src/e7q/ir/real_unitary.py",
+        "src/e7q/ir/unitary.py",
+        "src/e7q/openqasm2.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H2/H3 adversarial gap analysis",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "e7q_ir_unitary",
+      "scope": "e7q ir unitary \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_e7q_ir_unitary.py",
+      "implementation": [
+        "src/e7q/ir/conformance.py",
+        "src/e7q/ir/envelope.py",
+        "src/e7q/ir/graph.py",
+        "src/e7q/ir/unitary.py",
+        "src/e7q/openqasm2.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H2/H3 adversarial gap analysis",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "equivalence",
+      "scope": "equivalence \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_equivalence.py",
+      "implementation": [
+        "src/e7q/cli.py",
+        "src/e7q/language.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "execution_bundles",
+      "scope": "execution bundles \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_execution_bundles.py",
+      "implementation": [
+        "src/e7q/bundles.py",
+        "src/e7q/cli.py",
+        "src/e7q/language.py",
+        "src/e7q/orientation.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "execution_results",
+      "scope": "execution results \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_execution_results.py",
+      "implementation": [
+        "src/e7q/cli.py",
+        "src/e7q/language.py",
+        "src/e7q/observations.py",
+        "src/e7q/orientation.py",
+        "src/e7q/results.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "experiments",
+      "scope": "experiments \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_experiments.py",
+      "implementation": [
+        "src/e7q/artifacts.py",
+        "src/e7q/cli.py",
+        "src/e7q/experiments.py",
+        "src/e7q/language.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "external_bundles",
+      "scope": "external bundles \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_external_bundles.py",
+      "implementation": [
+        "src/e7q/artifacts.py",
+        "src/e7q/cli.py",
+        "src/e7q/external_bundles.py",
+        "src/e7q/language.py",
+        "src/e7q/temporal.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H2/H3 adversarial gap analysis",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "ir_circuit",
+      "scope": "ir circuit \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_ir_circuit.py",
+      "implementation": [
+        "src/e7q/ir/canonical.py",
+        "src/e7q/ir/conformance.py",
+        "src/e7q/ir/workflow.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H2/H3 adversarial gap analysis",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "language",
+      "scope": "language \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_language.py",
+      "implementation": [
+        "src/e7q/language.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "noise_backend",
+      "scope": "noise backend \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_noise_backend.py",
+      "implementation": [
+        "src/e7q/language.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "observations",
+      "scope": "observations \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_observations.py",
+      "implementation": [
+        "src/e7q/observations.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "openqasm2",
+      "scope": "openqasm2 \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_openqasm2.py",
+      "implementation": [
+        "src/e7q/artifacts.py",
+        "src/e7q/cli.py",
+        "src/e7q/language.py",
+        "src/e7q/openqasm2.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "orientation",
+      "scope": "orientation \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_orientation.py",
+      "implementation": [
+        "src/e7q/orientation.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "qec_syndrome_pilot",
+      "scope": "qec syndrome pilot \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_qec_syndrome_pilot.py",
+      "implementation": [
+        "src/e7q/cli.py",
+        "src/e7q/language.py",
+        "src/e7q/qec.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "resource_planning",
+      "scope": "resource planning \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_resource_planning.py",
+      "implementation": [
+        "src/e7q/cli.py",
+        "src/e7q/language.py",
+        "src/e7q/planning.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "review_campaign",
+      "scope": "review campaign \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_review_campaign.py",
+      "implementation": [
+        "scripts/review_campaign.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "support",
+      "scope": "support \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_support.py",
+      "implementation": [
+        "src/e7q/support.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "temporal",
+      "scope": "temporal \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_temporal.py",
+      "implementation": [
+        "src/e7q/temporal.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "topology_compilation",
+      "scope": "topology compilation \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_topology_compilation.py",
+      "implementation": [
+        "src/e7q/cli.py",
+        "src/e7q/language.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "trends",
+      "scope": "trends \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_trends.py",
+      "implementation": [
+        "src/e7q/cli.py",
+        "src/e7q/language.py",
+        "src/e7q/observations.py",
+        "src/e7q/orientation.py",
+        "src/e7q/trends.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "vendor_adapters",
+      "scope": "vendor adapters \u2014 only the behaviours asserted in the linked test cases",
+      "test_file": "tests/test_vendor_adapters.py",
+      "implementation": [
+        "src/e7q/adapters.py",
+        "src/e7q/cli.py",
+        "src/e7q/language.py"
+      ],
+      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
+      "next_gate": "H4/H7/H8 domain and independent-coverage review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    }
+  ],
+  "external_report_groups": [
+    {
+      "id": "WB-01",
+      "reported_group": "unitarity X / Y / Z / H / S / T",
+      "related_local_tests": [
+        "tests/test_noise_backend.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-02",
+      "reported_group": "Bell via _apply_one/_apply_two",
+      "related_local_tests": [
+        "tests/test_bell.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-03",
+      "reported_group": "_is_dynamic detection",
+      "related_local_tests": [
+        "tests/test_dynamic.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-04",
+      "reported_group": "dynamic execution completes",
+      "related_local_tests": [
+        "tests/test_dynamic.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-05",
+      "reported_group": "bit_flip / phase_flip / depolarizing TP",
+      "related_local_tests": [
+        "tests/test_noise_backend.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-06",
+      "reported_group": "noisy-Bell run+verify (trace=1.0, purity=0.82)",
+      "related_local_tests": [
+        "tests/test_noise_backend.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-07",
+      "reported_group": "proof contains channel step",
+      "related_local_tests": [
+        "tests/test_noise_backend.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-08",
+      "reported_group": "exact rejects global phase",
+      "related_local_tests": [
+        "tests/test_equivalence.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-09",
+      "reported_group": "global-phase accepts -I",
+      "related_local_tests": [
+        "tests/test_equivalence.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-10",
+      "reported_group": "measurement accepts -I",
+      "related_local_tests": [
+        "tests/test_equivalence.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-11",
+      "reported_group": "exact accepts XX=I",
+      "related_local_tests": [
+        "tests/test_equivalence.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-12",
+      "reported_group": "fixture syndromes+classifications (6 cases)",
+      "related_local_tests": [
+        "tests/test_qec_syndrome_pilot.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-13",
+      "reported_group": "homomorphism XII*IXI=XXI",
+      "related_local_tests": [
+        "tests/test_qec_syndrome_pilot.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-14",
+      "reported_group": "generator validation rejects bad sets",
+      "related_local_tests": [
+        "tests/test_qec_syndrome_pilot.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-15",
+      "reported_group": "Bell parses to expected Program",
+      "related_local_tests": [
+        "tests/test_language.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-16",
+      "reported_group": "OpenQASM 3 export",
+      "related_local_tests": [
+        "tests/test_language.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-17",
+      "reported_group": "selected rejection paths",
+      "related_local_tests": [
+        "tests/test_language.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-18",
+      "reported_group": "noisy program declares density_matrix requirement",
+      "related_local_tests": [
+        "tests/test_noise_backend.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-19",
+      "reported_group": "drift.assess_drift present",
+      "related_local_tests": [
+        "tests/test_drift.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-20",
+      "reported_group": "temporal.temporal_evidence present",
+      "related_local_tests": [
+        "tests/test_temporal.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-21",
+      "reported_group": "temporal.conformance_checks present",
+      "related_local_tests": [
+        "tests/test_temporal.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-22",
+      "reported_group": "assessment module importable",
+      "related_local_tests": [
+        "tests/test_assessment.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-23",
+      "reported_group": "seeded counts identical",
+      "related_local_tests": [
+        "tests/test_language.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-24",
+      "reported_group": "Bell proof kinds",
+      "related_local_tests": [
+        "tests/test_language.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    },
+    {
+      "id": "WB-25",
+      "reported_group": "verify PASS with invariants",
+      "related_local_tests": [
+        "tests/test_language.py"
+      ],
+      "status": "UNRESOLVED_ORIGINAL_HARNESS",
+      "limits": "Related coverage only; not a one-to-one assertion reproduction."
+    }
+  ]
+}
