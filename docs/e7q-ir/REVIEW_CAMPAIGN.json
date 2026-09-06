@@ -303,7 +303,7 @@
     },
     {
       "id": "external_bundles",
-      "scope": "external bundles \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "Bounded external bundle ingestion: strict JSON, ZIP input/member budgets, canonical paths, duplicate entries, symlink rejection and integrity versus consistency",
       "test_file": "tests/test_external_bundles.py",
       "implementation": [
         "src/e7q/artifacts.py",
@@ -312,8 +312,8 @@
         "src/e7q/language.py",
         "src/e7q/temporal.py"
       ],
-      "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
-      "next_gate": "H2/H3 adversarial gap analysis",
+      "limits": "Offline supplied evidence only; hashes do not authenticate provenance. Full H3 semantic/type and directory-race audit remains pending.",
+      "next_gate": "H2 IR adversarial campaign and remaining H3 shape/ordering checks",
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {

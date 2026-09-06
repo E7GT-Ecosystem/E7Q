@@ -6,6 +6,8 @@ from dataclasses import dataclass
 from datetime import datetime
 from hashlib import sha256
 import json
+import io
+import math
 from pathlib import Path, PurePosixPath
 import re
 import stat
@@ -19,6 +21,7 @@ from .temporal import temporal_evidence
 
 SCHEMA = "e7q.external-evidence-receipt/v1alpha1"
 
+_MAX_ARCHIVE_BYTES = 128 * 1024 * 1024
 _MAX_FILES = 512
 _MAX_FILE_BYTES = 32 * 1024 * 1024
 _MAX_TOTAL_BYTES = 128 * 1024 * 1024
@@ -51,7 +54,7 @@ def _member_name(value: str) -> str:
     if not value or "\x00" in value or "\\" in value:
         raise E7QError("external bundle contains an unsafe member name")
     path = PurePosixPath(value)
-    if path.is_absolute() or any(part in {"", ".", ".."} for part in path.parts):
+    if path.is_absolute() or any(part in {"", ".", ".."} for part in value.split("/")):
         raise E7QError(f"external bundle contains an unsafe member: {value}")
     if path.parts and path.parts[0].endswith(":"):
         raise E7QError(f"external bundle contains an unsafe member: {value}")
@@ -70,22 +73,31 @@ def _load_zip(path: Path) -> _Source:
     members: dict[str, bytes] = {}
     total = 0
     try:
-        archive_bytes = path.read_bytes()
-        with ZipFile(path) as archive:
+        if path.stat().st_size > _MAX_ARCHIVE_BYTES:
+            raise E7QError("external bundle archive exceeds the size limit")
+        with path.open("rb") as stream:
+            archive_bytes = stream.read(_MAX_ARCHIVE_BYTES + 1)
+        if len(archive_bytes) > _MAX_ARCHIVE_BYTES:
+            raise E7QError("external bundle archive exceeds the size limit")
+        # Digest and inspect the same bounded snapshot, not two file reads.
+        with ZipFile(io.BytesIO(archive_bytes)) as archive:
             infos = archive.infolist()
             if len(infos) > _MAX_FILES:
                 raise E7QError(f"external bundle exceeds {_MAX_FILES} members")
+            seen: set[str] = set()
             for info in infos:
-                name = _member_name(info.filename.rstrip("/"))
-                if info.is_dir():
-                    continue
+                original = info.orig_filename
+                name = _member_name(original[:-1] if original.endswith("/") else original)
+                if name in seen:
+                    raise E7QError(f"external bundle contains a duplicate member: {name}")
+                seen.add(name)
                 mode = (info.external_attr >> 16) & 0xFFFF
                 if stat.S_ISLNK(mode):
                     raise E7QError(f"external bundle contains a symlink: {name}")
                 if info.flag_bits & 0x1:
                     raise E7QError(f"external bundle contains an encrypted member: {name}")
-                if name in members:
-                    raise E7QError(f"external bundle contains a duplicate member: {name}")
+                if info.is_dir():
+                    continue
                 if info.file_size > _MAX_FILE_BYTES:
                     raise E7QError(f"external bundle member is too large: {name}")
                 total += info.file_size
@@ -100,7 +112,7 @@ def _load_zip(path: Path) -> _Source:
                         f"external bundle member has an unsafe compression ratio: {name}"
                     )
                 members[name] = archive.read(info)
-    except (BadZipFile, OSError) as exc:
+    except (BadZipFile, OSError, RuntimeError, NotImplementedError) as exc:
         raise E7QError(f"invalid external bundle ZIP: {exc}") from exc
     return _Source("zip", _digest(archive_bytes), members, total)
 
@@ -168,6 +180,26 @@ def _record_member(prefix: str, filename: str) -> str:
     return f"{prefix}/{filename}" if prefix else filename
 
 
+def _unique_json_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON object key: {key}")
+        result[key] = value
+    return result
+
+
+def _finite_json_float(text):
+    value = float(text)
+    if not math.isfinite(value):
+        raise ValueError("non-finite JSON number")
+    return value
+
+
+def _reject_json_constant(text):
+    raise ValueError(f"invalid JSON constant: {text}")
+
+
 def _json_object(
     members: dict[str, bytes],
     prefix: str,
@@ -179,8 +211,10 @@ def _json_object(
     if raw is None:
         return None
     try:
-        value = json.loads(raw)
-    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        value = json.loads(raw, object_pairs_hook=_unique_json_object,
+                           parse_float=_finite_json_float,
+                           parse_constant=_reject_json_constant)
+    except (ValueError, UnicodeDecodeError, RecursionError) as exc:
         _check(checks, f"json:{filename}", False, detail=str(exc))
         return None
     if not isinstance(value, dict):
