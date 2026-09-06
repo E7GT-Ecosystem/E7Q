@@ -129,6 +129,9 @@ def validate_payload(artifact, graph):
 def validate_relation_payload(relation, graph):
     by_id = {a['artifact_id']: a for a in graph['artifacts']}
     kind = relation['kind']
+    if kind == 'transforms' and relation.get('criterion', {}).get('id') == 'e7q.ir.signed-permutation-unitary':
+        from .unitary import validate
+        return validate(relation, graph)
     if kind == 'transforms' and relation.get('criterion', {}).get('id') == BYTE_IDENTITY_CRITERION['id']:
         return validate_byte_identity(relation, by_id)
     if kind == 'transforms' and relation.get('criterion', {}).get('id') == STRUCTURAL_IDENTITY_CRITERION['id']:

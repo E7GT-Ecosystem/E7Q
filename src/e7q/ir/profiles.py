@@ -35,6 +35,7 @@ CIRCUIT_BASIC = Profile(
         "circuit.distribution.tvd",
         "circuit.identity.utf8-bytes",
         "circuit.identity.parsed-structure",
+        "circuit.unitary.signed-permutation",
     }),
     "e7q.ir.validator.circuit-basic/0alpha1",
 )

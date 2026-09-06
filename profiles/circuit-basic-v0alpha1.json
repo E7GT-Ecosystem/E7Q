@@ -13,7 +13,8 @@
     "circuit.counts.observation",
     "circuit.distribution.tvd",
     "circuit.identity.utf8-bytes",
-    "circuit.identity.parsed-structure"
+    "circuit.identity.parsed-structure",
+    "circuit.unitary.signed-permutation"
   ],
   "semantic_validators": [
     {
@@ -22,8 +23,8 @@
         "artifact",
         "relation"
       ],
-      "implementation_status": "bounded-phase-1b-and-phase-1c-identity-criteria"
+      "implementation_status": "bounded-payload-identity-and-signed-permutation-checks"
     }
   ],
-  "semantic_boundary": "Bounded payload checks, UTF-8 byte identity and parsed structural identity are implemented. Structural identity compares a declared importer projection, not general quantum semantics. Execution and other criteria remain unassessed."
+  "semantic_boundary": "Bounded payload checks, UTF-8 byte identity and parsed structural identity are implemented. Structural identity compares a declared importer projection, not general quantum semantics. Execution and other criteria remain unassessed. Exact unitary-prefix equality is supported only under signed-permutation-unitary/v1; no global-phase quotient, arbitrary gate set or hardware execution is established."
 }

@@ -49,6 +49,10 @@ Digest-only graphs remain inspectable but block byte-dependent semantic checks;
 transformation equivalence and execution semantics remain unassessed.
 # Bounded Phase 1C implementation note
 
+The optional [signed-permutation criterion](EXACT_UNITARY.md) additionally
+establishes exact unitary-prefix equality under its explicitly restricted gate
+table. It does not imply general unitary, global-phase or channel support.
+
 The built-in circuit profile now implements versioned UTF-8 byte-identity and parsed structural-identity
 criteria described in [PHASE_1C.md](PHASE_1C.md). A graph containing only admitted
 source/representation endpoints and an admitted identity relation can pass F2. That result does
