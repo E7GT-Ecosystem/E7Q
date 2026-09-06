@@ -103,3 +103,85 @@ def test_cli_and_registered_artifact_schema(tmp_path):
     report = validate_artifact(receipt)
     assert report["status"] == "PASS"
     assert report["artifact_schema"] == SCHEMA
+
+
+@pytest.mark.parametrize('payload', [
+    b'{"counts":{"00":1,"00":2}}',
+    b'{"value":NaN}', b'{"value":Infinity}', b'{"value":-Infinity}',
+    b'{"value":1e999}', b'{"nested":{"key":1,"key":2}}',
+])
+def test_ambiguous_or_nonfinite_json_is_rejected(payload):
+    from e7q.external_bundles import _json_object
+    checks = []
+    assert _json_object({'raw_counts.json': payload}, '', 'raw_counts.json', checks) is None
+    assert checks[-1]['passed'] is False
+
+
+def test_archive_input_budget_precedes_read(tmp_path, monkeypatch):
+    import e7q.external_bundles as bundles
+    archive = tmp_path / 'large.zip'
+    with ZipFile(archive, 'w') as output:
+        output.writestr('job_metadata.json', '{}')
+    monkeypatch.setattr(bundles, '_MAX_ARCHIVE_BYTES', 10, raising=False)
+    with pytest.raises(E7QError, match='archive.*size limit'):
+        verify_external_bundle(archive)
+
+
+@pytest.mark.parametrize('name', ['/absolute.json', 'a/../b.json', 'a/./b.json', 'a//b.json', 'C:/file.json', 'a\\b.json'])
+def test_noncanonical_member_paths_rejected(tmp_path, name):
+    archive = tmp_path / 'unsafe.zip'
+    with ZipFile(archive, 'w') as output:
+        output.writestr(name, '{}')
+    with pytest.raises(E7QError, match='unsafe member'):
+        verify_external_bundle(archive)
+
+
+def test_duplicate_directory_entries_are_rejected(tmp_path):
+    archive = tmp_path / 'duplicate.zip'
+    with ZipFile(archive, 'w') as output:
+        output.writestr('record/', '')
+        with pytest.warns(UserWarning):
+            output.writestr('record/', '')
+    with pytest.raises(E7QError, match='duplicate member'):
+        verify_external_bundle(archive)
+
+
+def test_zip_symlink_is_rejected(tmp_path):
+    from zipfile import ZipInfo
+    import stat
+    archive = tmp_path / 'symlink.zip'
+    entry = ZipInfo('link')
+    entry.create_system = 3
+    entry.external_attr = (stat.S_IFLNK | 0o777) << 16
+    with ZipFile(archive, 'w') as output:
+        output.writestr(entry, '../outside')
+    with pytest.raises(E7QError, match='symlink'):
+        verify_external_bundle(archive)
+
+
+@pytest.mark.parametrize('payload', [b'{"counts":{"00":510,"00":510,"11":490},"total_shots":1000,"num_unique_bitstrings":2}', b'{"value":NaN}'])
+def test_rehashed_manifest_does_not_hide_invalid_json(tmp_path, payload):
+    from hashlib import sha256
+    package = tmp_path / 'fixture'
+    shutil.copytree(EXAMPLE, package)
+    target = package / 'synthetic_bell/raw_counts.json'
+    original = sha256(target.read_bytes()).hexdigest()
+    target.write_bytes(payload)
+    manifest = package / 'synthetic_bell/MANIFEST.md'
+    manifest.write_text(manifest.read_text().replace(original, sha256(payload).hexdigest()))
+    result = verify_external_bundle(package)
+    assert result['judgments']['artifact_integrity']['status'] == 'PASS'
+    assert result['judgments']['internal_consistency']['status'] == 'FAIL'
+    assert result['status'] == 'FAIL'
+
+
+@pytest.mark.parametrize('limit,value,message', [('_MAX_FILES', 1, 'members'), ('_MAX_FILE_BYTES', 1, 'too large'), ('_MAX_TOTAL_BYTES', 3, 'expands')])
+def test_zip_resource_limits(tmp_path, monkeypatch, limit, value, message):
+    import e7q.external_bundles as bundles
+    archive = tmp_path / 'budget.zip'
+    with ZipFile(archive, 'w') as output:
+        output.writestr('one', '{}')
+        output.writestr('two', '{}')
+    monkeypatch.setattr(bundles, limit, value)
+    with pytest.raises(E7QError, match=message):
+        verify_external_bundle(archive)

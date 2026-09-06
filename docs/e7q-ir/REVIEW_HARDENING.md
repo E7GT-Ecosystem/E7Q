@@ -168,3 +168,22 @@ This is an internal reproduction facility and initial inventory, not completion
 of H1/H4 or independent reproduction of the external report. Remaining gates
 include assertion-level observations, detailed public-claim coverage and external
 reproduction. Next: H2/H3 adversarial gap analysis.
+
+## H3 bounded ingestion hardening increment
+
+Baseline: `5bb11722f7f5fc0ef8abaa8f5c1af6963d0c815a`.
+External bundle JSON now rejects duplicate keys at any nesting level, non-finite
+constants and floating-point overflow. Invalid/deep JSON produces a failed JSON
+check. ZIP input is capped at 128 MiB before bounded reading; digest and inspection
+use the same snapshot. Noncanonical dot/empty path segments and duplicate directory
+entries are rejected; existing member, expanded-size and symlink limits remain.
+
+Regression fixtures distinguish valid manifest digests from failed JSON semantics,
+and exercise input/member/total/count budgets. Valid synthetic directory and ZIP
+workflows retain their prior receipt schema and bounded judgments. No member is
+extracted or executed. Previously tolerated ambiguous inputs are intentionally
+rejected; no schema or identity algorithm is migrated.
+
+This is a partial H3 gate, not a complete security review. Remaining work includes
+broader field-type/ordering validation, directory race/resource analysis and H2 IR
+adversarial gap analysis. Existing limits do not certify provider authenticity.
