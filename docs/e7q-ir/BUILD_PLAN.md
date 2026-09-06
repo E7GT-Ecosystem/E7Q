@@ -27,6 +27,18 @@ criterion, restricted to a pinned gate table, eight qubits and terminal
 measurement maps; see [EXACT_UNITARY.md](EXACT_UNITARY.md). This does not complete
 general exact/global-phase or channel equivalence.
 
+**Publication checkpoint:** the framework, bounded payload/identity checks and
+exact signed-permutation criterion above are merged into `main` at
+`83b273a4f268a7260534f0590640db1edd4b62bb` (PRs #35–#37). Their local suite
+passed 249 tests; GitHub CI was still queued at that checkpoint.
+
+**Current Phase 1C increment:** separately scoped signed-permutation global-phase
+equivalence, with explicit phase loss, an exact global-sign witness and the same
+resource/domain bounds. See [GLOBAL_PHASE.md](GLOBAL_PHASE.md). This increment
+is pending publication/CI; broader gate sets, measurement and channel criteria
+remain incomplete. Next planned criterion is bounded computational-basis
+measurement equivalence with its own preservation/loss contract.
+
 ## 1. Purpose
 
 This document allows a new engineer or AI coding agent to continue E7Q-IR
