@@ -1,0 +1,954 @@
+{
+  "capability_negotiation": [
+    {
+      "artifact_id": "sha256:0e89d57bdd8d8d8266394fd6d4e605986b40a35fda93187e7c0a6a0a13f7c096",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:483d8062315806664363d6d23710165d63919daebd9e6658c392da2593517bc6",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:4ecc8398f9c7ca59facb8b6f246c30c25865e5439a4f08da1503f636b9eda2ab",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:ac783a6eef3ffd6dcb5a37ee6e538419dd5c195230d3ed9cb8704a7e8464d299",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:62ac3a19c84c3d5d98ce04315b0726ae087291b2c18df036f616caeafb43f0dc",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:32d3c3aa4d709cd2328233bd144d4f2b22275a26421b67a16a09b45c2c9bc667",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:3712f6bb221e1c07f73d21b1748e5add1bb81ef3a0a03119fd4198d1f96aebf7",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    }
+  ],
+  "checks": [
+    {
+      "name": "graph:object",
+      "passed": true
+    },
+    {
+      "name": "graph:fields",
+      "passed": true
+    },
+    {
+      "name": "graph:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "graph:schema",
+      "passed": true
+    },
+    {
+      "name": "graph:name",
+      "passed": true
+    },
+    {
+      "name": "graph:artifacts",
+      "passed": true
+    },
+    {
+      "name": "graph:relations",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:transformation-contract",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:claim-contract",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:transformation-contract",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "graph:graph-id",
+      "passed": true
+    },
+    {
+      "name": "graph:unique-artifact-ids",
+      "passed": true
+    },
+    {
+      "name": "graph:unique-relation-ids",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[1]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[2]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[3]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[4]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[5]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[6]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[0]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[1]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[2]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[3]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[4]:references",
+      "passed": true,
+      "unresolved": []
+    }
+  ],
+  "highest_level_passed": "F1",
+  "level_results": {
+    "F0": "PASS",
+    "F1": "PASS",
+    "F2": "NOT_ASSESSED",
+    "F3": "NOT_IMPLEMENTED",
+    "F4": "NOT_IMPLEMENTED"
+  },
+  "proof": [
+    {
+      "kind": "structural-conformance",
+      "status": "PASS",
+      "step": 0
+    },
+    {
+      "kind": "referential-conformance",
+      "status": "PASS",
+      "step": 1
+    },
+    {
+      "kind": "profile-semantic-conformance",
+      "semantic_results": 12,
+      "status": "NOT_ASSESSED",
+      "step": 2
+    },
+    {
+      "boundary": "F0/F1 validation establishes structure, content identity, and graph reference integrity. F2 establishes only named installed profile checks that report PASS. It does not establish provider authenticity, physical fidelity, causation, or truth.",
+      "kind": "evidence-boundary",
+      "step": 3
+    }
+  ],
+  "requested_level": "F2",
+  "schema": "e7q.ir.conformance-report/v0alpha1",
+  "semantic_readiness": "NOT_ASSESSED",
+  "semantic_results": [
+    {
+      "boundaries": [
+        "No quantum-semantic conclusion is established."
+      ],
+      "check_id": "circuit-basic.artifact.source.phase-1b",
+      "criterion": {
+        "edition": "1b",
+        "id": "e7q.ir.circuit-basic-payload"
+      },
+      "evidence_refs": [
+        "sha256:0e89d57bdd8d8d8266394fd6d4e605986b40a35fda93187e7c0a6a0a13f7c096",
+        "sha256:32d3c3aa4d709cd2328233bd144d4f2b22275a26421b67a16a09b45c2c9bc667",
+        "sha256:3712f6bb221e1c07f73d21b1748e5add1bb81ef3a0a03119fd4198d1f96aebf7",
+        "sha256:483d8062315806664363d6d23710165d63919daebd9e6658c392da2593517bc6",
+        "sha256:4ecc8398f9c7ca59facb8b6f246c30c25865e5439a4f08da1503f636b9eda2ab",
+        "sha256:62ac3a19c84c3d5d98ce04315b0726ae087291b2c18df036f616caeafb43f0dc",
+        "sha256:ac783a6eef3ffd6dcb5a37ee6e538419dd5c195230d3ed9cb8704a7e8464d299"
+      ],
+      "message": "Pinned circuit-basic payload checks passed; not equivalence, execution authentication, or truth.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:2578d1b38c61db8b763168624e3dbea616c93c95a6416fa92409f98afff91c02",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:0e89d57bdd8d8d8266394fd6d4e605986b40a35fda93187e7c0a6a0a13f7c096",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "No quantum-semantic conclusion is established."
+      ],
+      "check_id": "circuit-basic.artifact.assessment.phase-1b",
+      "criterion": {
+        "edition": "1b",
+        "id": "e7q.ir.circuit-basic-payload"
+      },
+      "evidence_refs": [
+        "sha256:0e89d57bdd8d8d8266394fd6d4e605986b40a35fda93187e7c0a6a0a13f7c096",
+        "sha256:32d3c3aa4d709cd2328233bd144d4f2b22275a26421b67a16a09b45c2c9bc667",
+        "sha256:3712f6bb221e1c07f73d21b1748e5add1bb81ef3a0a03119fd4198d1f96aebf7",
+        "sha256:483d8062315806664363d6d23710165d63919daebd9e6658c392da2593517bc6",
+        "sha256:4ecc8398f9c7ca59facb8b6f246c30c25865e5439a4f08da1503f636b9eda2ab",
+        "sha256:62ac3a19c84c3d5d98ce04315b0726ae087291b2c18df036f616caeafb43f0dc",
+        "sha256:ac783a6eef3ffd6dcb5a37ee6e538419dd5c195230d3ed9cb8704a7e8464d299"
+      ],
+      "message": "Pinned circuit-basic payload checks passed; not equivalence, execution authentication, or truth.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:85dd453bbc01816abcedb2b5c9c88508df52d2be43448b6d8653a3cafa3ae46d",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:32d3c3aa4d709cd2328233bd144d4f2b22275a26421b67a16a09b45c2c9bc667",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "No quantum-semantic conclusion is established."
+      ],
+      "check_id": "circuit-basic.artifact.claim.phase-1b",
+      "criterion": {
+        "edition": "1b",
+        "id": "e7q.ir.circuit-basic-payload"
+      },
+      "evidence_refs": [
+        "sha256:0e89d57bdd8d8d8266394fd6d4e605986b40a35fda93187e7c0a6a0a13f7c096",
+        "sha256:32d3c3aa4d709cd2328233bd144d4f2b22275a26421b67a16a09b45c2c9bc667",
+        "sha256:3712f6bb221e1c07f73d21b1748e5add1bb81ef3a0a03119fd4198d1f96aebf7",
+        "sha256:483d8062315806664363d6d23710165d63919daebd9e6658c392da2593517bc6",
+        "sha256:4ecc8398f9c7ca59facb8b6f246c30c25865e5439a4f08da1503f636b9eda2ab",
+        "sha256:62ac3a19c84c3d5d98ce04315b0726ae087291b2c18df036f616caeafb43f0dc",
+        "sha256:ac783a6eef3ffd6dcb5a37ee6e538419dd5c195230d3ed9cb8704a7e8464d299"
+      ],
+      "message": "Pinned circuit-basic payload checks passed; not equivalence, execution authentication, or truth.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:0fb31c3c2b32179f2ef062c71331b3a18f472da50355fcbf8a5de6ac786a8c4d",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:3712f6bb221e1c07f73d21b1748e5add1bb81ef3a0a03119fd4198d1f96aebf7",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "No quantum-semantic conclusion is established."
+      ],
+      "check_id": "circuit-basic.artifact.representation.phase-1b",
+      "criterion": {
+        "edition": "1b",
+        "id": "e7q.ir.circuit-basic-payload"
+      },
+      "evidence_refs": [
+        "sha256:0e89d57bdd8d8d8266394fd6d4e605986b40a35fda93187e7c0a6a0a13f7c096",
+        "sha256:32d3c3aa4d709cd2328233bd144d4f2b22275a26421b67a16a09b45c2c9bc667",
+        "sha256:3712f6bb221e1c07f73d21b1748e5add1bb81ef3a0a03119fd4198d1f96aebf7",
+        "sha256:483d8062315806664363d6d23710165d63919daebd9e6658c392da2593517bc6",
+        "sha256:4ecc8398f9c7ca59facb8b6f246c30c25865e5439a4f08da1503f636b9eda2ab",
+        "sha256:62ac3a19c84c3d5d98ce04315b0726ae087291b2c18df036f616caeafb43f0dc",
+        "sha256:ac783a6eef3ffd6dcb5a37ee6e538419dd5c195230d3ed9cb8704a7e8464d299"
+      ],
+      "message": "Pinned circuit-basic payload checks passed; not equivalence, execution authentication, or truth.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:1c02c72a8acf528cd8049ea6df85aca75d8b7e97d76dfbd9fc9c57637ad1e376",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:483d8062315806664363d6d23710165d63919daebd9e6658c392da2593517bc6",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "No quantum-semantic conclusion is established."
+      ],
+      "check_id": "circuit-basic.artifact.transformation.phase-1b",
+      "criterion": {
+        "edition": "1b",
+        "id": "e7q.ir.circuit-basic-payload"
+      },
+      "evidence_refs": [
+        "sha256:0e89d57bdd8d8d8266394fd6d4e605986b40a35fda93187e7c0a6a0a13f7c096",
+        "sha256:32d3c3aa4d709cd2328233bd144d4f2b22275a26421b67a16a09b45c2c9bc667",
+        "sha256:3712f6bb221e1c07f73d21b1748e5add1bb81ef3a0a03119fd4198d1f96aebf7",
+        "sha256:483d8062315806664363d6d23710165d63919daebd9e6658c392da2593517bc6",
+        "sha256:4ecc8398f9c7ca59facb8b6f246c30c25865e5439a4f08da1503f636b9eda2ab",
+        "sha256:62ac3a19c84c3d5d98ce04315b0726ae087291b2c18df036f616caeafb43f0dc",
+        "sha256:ac783a6eef3ffd6dcb5a37ee6e538419dd5c195230d3ed9cb8704a7e8464d299"
+      ],
+      "message": "Execution and transformation semantics remain outside Phase 1B.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:58ce45fd24255a5af644478a136de47884d2a4e9ff4545ba930db2627bb5a7c0",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:4ecc8398f9c7ca59facb8b6f246c30c25865e5439a4f08da1503f636b9eda2ab",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "No quantum-semantic conclusion is established."
+      ],
+      "check_id": "circuit-basic.artifact.observation.phase-1b",
+      "criterion": {
+        "edition": "1b",
+        "id": "e7q.ir.circuit-basic-payload"
+      },
+      "evidence_refs": [
+        "sha256:0e89d57bdd8d8d8266394fd6d4e605986b40a35fda93187e7c0a6a0a13f7c096",
+        "sha256:32d3c3aa4d709cd2328233bd144d4f2b22275a26421b67a16a09b45c2c9bc667",
+        "sha256:3712f6bb221e1c07f73d21b1748e5add1bb81ef3a0a03119fd4198d1f96aebf7",
+        "sha256:483d8062315806664363d6d23710165d63919daebd9e6658c392da2593517bc6",
+        "sha256:4ecc8398f9c7ca59facb8b6f246c30c25865e5439a4f08da1503f636b9eda2ab",
+        "sha256:62ac3a19c84c3d5d98ce04315b0726ae087291b2c18df036f616caeafb43f0dc",
+        "sha256:ac783a6eef3ffd6dcb5a37ee6e538419dd5c195230d3ed9cb8704a7e8464d299"
+      ],
+      "message": "Pinned circuit-basic payload checks passed; not equivalence, execution authentication, or truth.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:79646c9557be189c8e37baf00d3b2eecc2ae8e8ca1e1cdab9c59883f818d3b30",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:62ac3a19c84c3d5d98ce04315b0726ae087291b2c18df036f616caeafb43f0dc",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "No quantum-semantic conclusion is established."
+      ],
+      "check_id": "circuit-basic.artifact.execution.phase-1b",
+      "criterion": {
+        "edition": "1b",
+        "id": "e7q.ir.circuit-basic-payload"
+      },
+      "evidence_refs": [
+        "sha256:0e89d57bdd8d8d8266394fd6d4e605986b40a35fda93187e7c0a6a0a13f7c096",
+        "sha256:32d3c3aa4d709cd2328233bd144d4f2b22275a26421b67a16a09b45c2c9bc667",
+        "sha256:3712f6bb221e1c07f73d21b1748e5add1bb81ef3a0a03119fd4198d1f96aebf7",
+        "sha256:483d8062315806664363d6d23710165d63919daebd9e6658c392da2593517bc6",
+        "sha256:4ecc8398f9c7ca59facb8b6f246c30c25865e5439a4f08da1503f636b9eda2ab",
+        "sha256:62ac3a19c84c3d5d98ce04315b0726ae087291b2c18df036f616caeafb43f0dc",
+        "sha256:ac783a6eef3ffd6dcb5a37ee6e538419dd5c195230d3ed9cb8704a7e8464d299"
+      ],
+      "message": "Execution and transformation semantics remain outside Phase 1B.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:93e017136b43b3f0b15da2e78ac36cce813b5b20f42ba2e7e81d8de12008860b",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:ac783a6eef3ffd6dcb5a37ee6e538419dd5c195230d3ed9cb8704a7e8464d299",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "A transformation declaration is not semantic validation.",
+        "No provider-authenticity or physical-fidelity conclusion is established."
+      ],
+      "check_id": "circuit-basic.relation.transforms.phase-1a",
+      "criterion": {
+        "edition": "0alpha1",
+        "id": "declared-computational-basis-behaviour"
+      },
+      "evidence_refs": [
+        "sha256:0e89d57bdd8d8d8266394fd6d4e605986b40a35fda93187e7c0a6a0a13f7c096",
+        "sha256:32d3c3aa4d709cd2328233bd144d4f2b22275a26421b67a16a09b45c2c9bc667",
+        "sha256:3712f6bb221e1c07f73d21b1748e5add1bb81ef3a0a03119fd4198d1f96aebf7",
+        "sha256:483d8062315806664363d6d23710165d63919daebd9e6658c392da2593517bc6",
+        "sha256:4ecc8398f9c7ca59facb8b6f246c30c25865e5439a4f08da1503f636b9eda2ab",
+        "sha256:62ac3a19c84c3d5d98ce04315b0726ae087291b2c18df036f616caeafb43f0dc",
+        "sha256:ac783a6eef3ffd6dcb5a37ee6e538419dd5c195230d3ed9cb8704a7e8464d299"
+      ],
+      "message": "The declared transformation criterion has no Phase 1A implementation.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:bbf6a53394142d77081f62bbe40e2060870993f70ba35de243e8ac990a12ee95",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:63aa91ead2d0e5b5cc1268e2f93de316c2de21688b98da91200e6c8456f352a6",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "A transformation declaration is not semantic validation.",
+        "No provider-authenticity or physical-fidelity conclusion is established."
+      ],
+      "check_id": "circuit-basic.relation.observes.phase-1a",
+      "evidence_refs": [
+        "sha256:0e89d57bdd8d8d8266394fd6d4e605986b40a35fda93187e7c0a6a0a13f7c096",
+        "sha256:32d3c3aa4d709cd2328233bd144d4f2b22275a26421b67a16a09b45c2c9bc667",
+        "sha256:3712f6bb221e1c07f73d21b1748e5add1bb81ef3a0a03119fd4198d1f96aebf7",
+        "sha256:483d8062315806664363d6d23710165d63919daebd9e6658c392da2593517bc6",
+        "sha256:4ecc8398f9c7ca59facb8b6f246c30c25865e5439a4f08da1503f636b9eda2ab",
+        "sha256:62ac3a19c84c3d5d98ce04315b0726ae087291b2c18df036f616caeafb43f0dc",
+        "sha256:ac783a6eef3ffd6dcb5a37ee6e538419dd5c195230d3ed9cb8704a7e8464d299"
+      ],
+      "message": "Phase 1A does not yet assess this circuit-profile relation.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:96868c47b222da3267f9ab8f0c78023ce2bdfeb933cc267f781f41e71813d7ce",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:6413776d66bcd3d3803875a0672cbe9debeadeaad3734b8867d46606af4de7c3",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "A transformation declaration is not semantic validation.",
+        "No provider-authenticity or physical-fidelity conclusion is established."
+      ],
+      "check_id": "circuit-basic.relation.assesses.phase-1a",
+      "evidence_refs": [
+        "sha256:0e89d57bdd8d8d8266394fd6d4e605986b40a35fda93187e7c0a6a0a13f7c096",
+        "sha256:32d3c3aa4d709cd2328233bd144d4f2b22275a26421b67a16a09b45c2c9bc667",
+        "sha256:3712f6bb221e1c07f73d21b1748e5add1bb81ef3a0a03119fd4198d1f96aebf7",
+        "sha256:483d8062315806664363d6d23710165d63919daebd9e6658c392da2593517bc6",
+        "sha256:4ecc8398f9c7ca59facb8b6f246c30c25865e5439a4f08da1503f636b9eda2ab",
+        "sha256:62ac3a19c84c3d5d98ce04315b0726ae087291b2c18df036f616caeafb43f0dc",
+        "sha256:ac783a6eef3ffd6dcb5a37ee6e538419dd5c195230d3ed9cb8704a7e8464d299"
+      ],
+      "message": "Relation matches its recomputed payload evidence; no broader claim established.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:287dae54982cc553203c8316d6f3e5c15492607cb6301d8c0981330b0547ba51",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:71187c428d05e5bf818513e36ccb21daf2fa879368d2f58f84b45b62db1b5350",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "A transformation declaration is not semantic validation.",
+        "No provider-authenticity or physical-fidelity conclusion is established."
+      ],
+      "check_id": "circuit-basic.relation.produces.phase-1a",
+      "evidence_refs": [
+        "sha256:0e89d57bdd8d8d8266394fd6d4e605986b40a35fda93187e7c0a6a0a13f7c096",
+        "sha256:32d3c3aa4d709cd2328233bd144d4f2b22275a26421b67a16a09b45c2c9bc667",
+        "sha256:3712f6bb221e1c07f73d21b1748e5add1bb81ef3a0a03119fd4198d1f96aebf7",
+        "sha256:483d8062315806664363d6d23710165d63919daebd9e6658c392da2593517bc6",
+        "sha256:4ecc8398f9c7ca59facb8b6f246c30c25865e5439a4f08da1503f636b9eda2ab",
+        "sha256:62ac3a19c84c3d5d98ce04315b0726ae087291b2c18df036f616caeafb43f0dc",
+        "sha256:ac783a6eef3ffd6dcb5a37ee6e538419dd5c195230d3ed9cb8704a7e8464d299"
+      ],
+      "message": "Phase 1A does not yet assess this circuit-profile relation.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:807e1493c8f4acc67e3b67b66e3a7dfac3b26701f0495632596896f0f180a02c",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:9d5782b34cfd9ca767883e527ad2bc3785259344ff8914c8e99549c84b4793e6",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "A transformation declaration is not semantic validation.",
+        "No provider-authenticity or physical-fidelity conclusion is established."
+      ],
+      "check_id": "circuit-basic.relation.supports.phase-1a",
+      "evidence_refs": [
+        "sha256:0e89d57bdd8d8d8266394fd6d4e605986b40a35fda93187e7c0a6a0a13f7c096",
+        "sha256:32d3c3aa4d709cd2328233bd144d4f2b22275a26421b67a16a09b45c2c9bc667",
+        "sha256:3712f6bb221e1c07f73d21b1748e5add1bb81ef3a0a03119fd4198d1f96aebf7",
+        "sha256:483d8062315806664363d6d23710165d63919daebd9e6658c392da2593517bc6",
+        "sha256:4ecc8398f9c7ca59facb8b6f246c30c25865e5439a4f08da1503f636b9eda2ab",
+        "sha256:62ac3a19c84c3d5d98ce04315b0726ae087291b2c18df036f616caeafb43f0dc",
+        "sha256:ac783a6eef3ffd6dcb5a37ee6e538419dd5c195230d3ed9cb8704a7e8464d299"
+      ],
+      "message": "Relation matches its recomputed payload evidence; no broader claim established.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:033a52486db39b35063b98dc66dc2b53517b24cf99247a238643f538c388e23d",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:c885bb031a8b06193f3be9108c7cda0070afc312844aaeaaa8fd534847fa6776",
+        "kind": "relation"
+      }
+    }
+  ],
+  "status": "NOT_ASSESSED"
+}

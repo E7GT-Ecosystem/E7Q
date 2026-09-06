@@ -2,6 +2,10 @@
 
 ## E7Q-IR v0.1 — Evidence-native IR foundation
 
+The authoritative [build plan](docs/e7q-ir/BUILD_PLAN.md) v0.2 includes
+[research-backed extensions](docs/e7q-ir/RESEARCH_FOUNDATIONS.md) under the
+E7G-T extension/projection contract. Added packages are planned, not completed.
+
 - [x] content-addressed universal artifact envelope;
 - [x] typed evidence graph and transformation contract;
 - [x] bounded claim contract;
@@ -9,11 +13,21 @@
 - [x] F0 structural and F1 referential conformance;
 - [x] external OpenQASM/counts workflow demonstrator independent of the E7Q language;
 - [x] consolidate the experimental quantum Fabric namespace into E7Q-IR;
-- [ ] F2 circuit-profile semantic validation;
+- [x] F2 semantic-validation framework, registry, status model, and CLI;
+- [ ] F2 `circuit-basic` profile semantic validators;
+- [x] bounded Phase 1B embedded OpenQASM 2, single-register counts, TVD,
+  claim-support and assessment/support relation checks;
 - [ ] OpenQASM 3 production bridge and cross-SDK round trips;
 - [ ] QIR bridge;
 - [ ] F3 provider authentication and signed attestations;
 - [ ] F4 declared replication conformance.
+- [ ] bounded QCEC/PyZX criteria and pinned external conformance corpus;
+- [x] Phase 1C UTF-8 byte identity and parsed structural identity with F2 fixtures;
+- [ ] typed result adapters, PROV mapping and hybrid trace capture;
+- [ ] benchmark and pyGSTi characterization evidence adapters;
+- [ ] separate QEC, hybrid, annealing, measurement-based, analog/pulse and
+  photonic profiles, following Phase 7's dependencies and research gates;
+- [ ] proof-artifact evaluation and independent extension conformance.
 
 ## v0.1 — Minimum Executable Language
 

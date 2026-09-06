@@ -11,6 +11,7 @@ class Profile:
     profile_id: str
     version: str
     capabilities: frozenset[str]
+    semantic_validator_id: str | None = None
 
 
 CORE = Profile(
@@ -22,6 +23,7 @@ CORE = Profile(
         "observation.record",
         "transformation.accounting",
     }),
+    None,
 )
 
 CIRCUIT_BASIC = Profile(
@@ -31,13 +33,26 @@ CIRCUIT_BASIC = Profile(
         "circuit.openqasm.source",
         "circuit.counts.observation",
         "circuit.distribution.tvd",
+        "circuit.identity.utf8-bytes",
+        "circuit.identity.parsed-structure",
     }),
+    "e7q.ir.validator.circuit-basic/0alpha1",
 )
 
 BUILTIN_PROFILES = {
     (profile.profile_id, profile.version): profile
     for profile in (CORE, CIRCUIT_BASIC)
 }
+
+
+def semantic_validator_id(profile_value: Any) -> str | None:
+    """Return declared validator metadata without performing negotiation."""
+    if not isinstance(profile_value, dict):
+        return None
+    profile = BUILTIN_PROFILES.get(
+        (profile_value.get("id"), profile_value.get("version"))
+    )
+    return profile.semantic_validator_id if profile is not None else None
 
 
 def negotiate(profile_value: Any) -> dict[str, Any]:

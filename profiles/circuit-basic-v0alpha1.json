@@ -11,7 +11,19 @@
     "transformation.accounting",
     "circuit.openqasm.source",
     "circuit.counts.observation",
-    "circuit.distribution.tvd"
+    "circuit.distribution.tvd",
+    "circuit.identity.utf8-bytes",
+    "circuit.identity.parsed-structure"
   ],
-  "semantic_boundary": "This profile validates a bounded circuit evidence contract. It does not authenticate a provider, prove general circuit equivalence, or establish physical fidelity."
+  "semantic_validators": [
+    {
+      "id": "e7q.ir.validator.circuit-basic/0alpha1",
+      "subject_kinds": [
+        "artifact",
+        "relation"
+      ],
+      "implementation_status": "bounded-phase-1b-and-phase-1c-identity-criteria"
+    }
+  ],
+  "semantic_boundary": "Bounded payload checks, UTF-8 byte identity and parsed structural identity are implemented. Structural identity compares a declared importer projection, not general quantum semantics. Execution and other criteria remain unassessed."
 }

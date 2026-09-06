@@ -139,13 +139,14 @@ def _parser() -> argparse.ArgumentParser:
         help="build an external circuit workflow graph without executing it",
     )
     ir_build.add_argument("manifest", type=Path)
+    ir_build.add_argument('--include-circuit-content', action='store_true', help='embed supplied circuit text for offline semantic inspection')
     ir_build.add_argument("-o", "--output", required=True, type=Path)
     ir_validate = ir_actions.add_parser(
         "validate",
-        help="validate F0 structural or F1 referential conformance",
+        help="validate F0 structural, F1 referential, or F2 semantic conformance",
     )
     ir_validate.add_argument("source", type=Path)
-    ir_validate.add_argument("--level", choices=["F0", "F1"], default="F1")
+    ir_validate.add_argument("--level", choices=["F0", "F1", "F2"], default="F1")
     ir_validate.add_argument("-o", "--output", type=Path)
     ir_inspect = ir_actions.add_parser(
         "inspect",
@@ -235,7 +236,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "ir":
             if args.ir_action == "build":
                 manifest, base = load_external_circuit_manifest(args.manifest)
-                graph = build_external_circuit_graph(manifest, base)
+                graph = build_external_circuit_graph(manifest, base, include_circuit_content=args.include_circuit_content)
                 args.output.write_text(
                     json.dumps(graph, indent=2, sort_keys=True) + "\n",
                     encoding="utf-8",

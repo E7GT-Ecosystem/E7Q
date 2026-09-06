@@ -11,6 +11,7 @@ from e7q.ir.canonical import identified_digest
 from e7q.ir.conformance import validate_graph
 from e7q.ir.envelope import build_artifact
 from e7q.ir.graph import build_graph, graph_summary
+from e7q.ir.semantic import SemanticRegistry, SemanticResult
 from e7q.ir.workflow import (
     build_external_circuit_graph,
     load_external_circuit_manifest,
@@ -23,11 +24,95 @@ EXAMPLE = (
     / "e7q-ir"
     / "external-circuit-workflow.json"
 )
+F2_GOLDEN = (
+    Path(__file__).parents[1]
+    / "examples"
+    / "e7q-ir"
+    / "f2-framework-not-assessed.json"
+)
 
 
 def graph():
     manifest, base = load_external_circuit_manifest(EXAMPLE)
     return build_external_circuit_graph(manifest, base)
+
+
+class PassValidator:
+    profile_id = "e7q.ir.circuit-basic"
+    profile_version = "0alpha1"
+    validator_id = "e7q.ir.validator.circuit-basic/0alpha1"
+
+    def validate_artifact(self, artifact, graph_value):
+        del graph_value
+        return [
+            SemanticResult(
+                check_id=f"test.artifact.{artifact['kind']}",
+                status="PASS",
+                subject_kind="artifact",
+                subject_id=artifact["artifact_id"],
+                profile_id=self.profile_id,
+                profile_version=self.profile_version,
+                evidence_refs=(artifact["artifact_id"],),
+                message="Test validator passed the declared fixture rule.",
+            )
+        ]
+
+    def validate_relation(self, relation, graph_value):
+        del graph_value
+        return [
+            SemanticResult(
+                check_id=f"test.relation.{relation['kind']}",
+                status="PASS",
+                subject_kind="relation",
+                subject_id=relation["relation_id"],
+                profile_id=self.profile_id,
+                profile_version=self.profile_version,
+                evidence_refs=(relation["source"], relation["target"]),
+                message="Test validator passed the declared fixture rule.",
+            )
+        ]
+
+
+class UnsupportedValidator(PassValidator):
+    def validate_relation(self, relation, graph_value):
+        results = list(super().validate_relation(relation, graph_value))
+        if relation["kind"] == "transforms":
+            result = results[0]
+            return [
+                SemanticResult(
+                    check_id="test.transformation.unsupported",
+                    status="UNSUPPORTED",
+                    subject_kind=result.subject_kind,
+                    subject_id=result.subject_id,
+                    profile_id=result.profile_id,
+                    profile_version=result.profile_version,
+                    evidence_refs=result.evidence_refs,
+                    message="The test criterion is outside this validator domain.",
+                )
+            ]
+        return results
+
+
+class MalformedValidator(PassValidator):
+    def validate_artifact(self, artifact, graph_value):
+        del artifact, graph_value
+        return [{"status": "PASS"}]
+
+
+class ExcessiveValidator(PassValidator):
+    def validate_artifact(self, artifact, graph_value):
+        del graph_value
+        for index in range(129):
+            yield SemanticResult(
+                check_id=f"test.excessive.{index}",
+                status="PASS",
+                subject_kind="artifact",
+                subject_id=artifact["artifact_id"],
+                profile_id=self.profile_id,
+                profile_version=self.profile_version,
+                evidence_refs=(artifact["artifact_id"],),
+                message="Synthetic result used to exercise the framework limit.",
+            )
 
 
 def test_external_workflow_builds_language_independent_evidence_graph():
@@ -98,6 +183,123 @@ def test_unknown_profile_is_inspectable_but_semantically_blocked():
     assert report["capability_negotiation"][0]["status"] == "BLOCKED"
 
 
+def test_unknown_profile_is_f2_blocked_after_f0_f1_inspection():
+    artifact = build_artifact(
+        "source",
+        {"name": "opaque input"},
+        profile_id="example.not-installed",
+        profile_version="9",
+        capabilities_required=["example.unknown-semantics"],
+        created_at="2026-09-05T12:00:00Z",
+        limitations=["No installed semantic profile."],
+    )
+    report = validate_graph(
+        build_graph([artifact], [], name="unknown profile"), level="F2"
+    )
+    assert report["status"] == "BLOCKED"
+    assert report["highest_level_passed"] == "F1"
+    assert report["level_results"]["F2"] == "BLOCKED"
+    assert report["semantic_results"][0]["status"] == "BLOCKED"
+
+
+def test_unsupported_required_capability_blocks_f2_before_validator():
+    artifact = build_artifact(
+        "source",
+        {"name": "future circuit input"},
+        profile_id="e7q.ir.circuit-basic",
+        profile_version="0alpha1",
+        capabilities_required=["circuit.future-semantics"],
+        created_at="2026-09-05T12:00:00Z",
+        limitations=["Required capability is not installed."],
+    )
+    report = validate_graph(
+        build_graph([artifact], [], name="unsupported capability"), level="F2"
+    )
+    assert report["status"] == "BLOCKED"
+    assert report["level_results"]["F2"] == "BLOCKED"
+    assert report["semantic_results"][0]["check_id"] == (
+        "e7q.ir.framework.capability-negotiation-blocked"
+    )
+
+
+def test_phase_1a_keeps_current_circuit_semantics_not_assessed():
+    report = validate_graph(graph(), level="F2")
+    assert report["status"] == "BLOCKED"
+    assert report["highest_level_passed"] == "F1"
+    assert report["level_results"]["F2"] == "BLOCKED"
+    assert len(report["semantic_results"]) == 12
+    transformation = next(
+        item
+        for item in report["semantic_results"]
+        if item["subject"]["kind"] == "relation" and "criterion" in item
+    )
+    assert transformation["status"] == "NOT_ASSESSED"
+    assert transformation["criterion"]["id"] == "declared-computational-basis-behaviour"
+    assert json.loads(F2_GOLDEN.read_text(encoding='utf-8'))['status'] == 'NOT_ASSESSED'  # historical Phase 1A fixture
+
+
+def test_f2_pass_requires_every_registered_semantic_check_to_pass():
+    registry = SemanticRegistry()
+    registry.register(PassValidator())
+    report = validate_graph(graph(), level="F2", semantic_registry=registry)
+    assert report["status"] == "PASS"
+    assert report["highest_level_passed"] == "F2"
+    assert report["level_results"]["F2"] == "PASS"
+    assert all(item["status"] == "PASS" for item in report["semantic_results"])
+    assert all(item["result_id"].startswith("sha256:") for item in report["semantic_results"])
+
+
+def test_unsupported_semantic_domain_is_not_reported_as_failure_or_pass():
+    registry = SemanticRegistry()
+    registry.register(UnsupportedValidator())
+    report = validate_graph(graph(), level="F2", semantic_registry=registry)
+    assert report["status"] == "UNSUPPORTED"
+    assert report["level_results"]["F2"] == "UNSUPPORTED"
+    assert any(item["status"] == "UNSUPPORTED" for item in report["semantic_results"])
+
+
+def test_malformed_validator_result_fails_deterministically():
+    registry = SemanticRegistry()
+    registry.register(MalformedValidator())
+    first = validate_graph(graph(), level="F2", semantic_registry=registry)
+    second = validate_graph(graph(), level="F2", semantic_registry=registry)
+    assert first == second
+    assert first["status"] == "FAIL"
+    assert any(
+        item["check_id"] == "e7q.ir.framework.validator-result-contract"
+        for item in first["semantic_results"]
+    )
+
+
+def test_validator_result_limit_blocks_semantic_promotion():
+    registry = SemanticRegistry()
+    registry.register(ExcessiveValidator())
+    report = validate_graph(graph(), level="F2", semantic_registry=registry)
+    assert report["status"] == "BLOCKED"
+    assert any(
+        item["check_id"] == "e7q.ir.framework.validator-result-limit"
+        for item in report["semantic_results"]
+    )
+
+
+def test_malformed_profile_payload_prevents_f2_assessment():
+    artifact = build_artifact(
+        "source",
+        {"name": "malformed profile"},
+        created_at="2026-09-05T12:00:00Z",
+        limitations=["Invalid fixture."],
+    )
+    artifact["profile"]["capabilities_required"] = "not-a-list"
+    artifact["artifact_id"] = identified_digest(artifact, "artifact_id")
+    report = validate_graph(
+        build_graph([artifact], [], name="malformed profile"), level="F2"
+    )
+    assert report["status"] == "FAIL"
+    assert report["level_results"]["F0"] == "FAIL"
+    assert report["level_results"]["F2"] == "NOT_ASSESSED"
+    assert report["semantic_results"] == []
+
+
 def test_missing_transformation_contract_fails_closed():
     value = graph()
     transformation = next(
@@ -162,6 +364,19 @@ def test_e7q_ir_cli_build_validate_and_inspect(tmp_path):
     assert report["highest_level_passed"] == "F1"
     assert report["level_results"]["F2"] == "NOT_IMPLEMENTED"
     assert summary["artifact_kinds"]["claim"] == 1
+
+
+def test_e7q_ir_cli_f2_preserves_not_assessed_exit_and_report(tmp_path):
+    graph_path = tmp_path / "graph.json"
+    report_path = tmp_path / "f2.json"
+    graph_path.write_text(json.dumps(graph()), encoding="utf-8")
+    assert main([
+        "ir", "validate", str(graph_path), "--level", "F2",
+        "-o", str(report_path),
+    ]) == 1
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    assert report["status"] == "BLOCKED"
+    assert report["level_results"]["F2"] == "BLOCKED"
 
 
 def test_manifest_file_paths_cannot_escape_manifest_directory(tmp_path):

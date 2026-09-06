@@ -50,9 +50,29 @@ The evidence path remains inspectable through both the claim references and
 typed graph relations. E7Q-IR does not infer a broader claim from a narrower
 assessment.
 
+## Semantic-result contract
+
+F2 validators emit deterministic `semantic-result-v0alpha1` objects. Each
+result contains a content identity, stable check identifier, one status from
+`PASS`, `FAIL`, `BLOCKED`, `UNSUPPORTED`, or `NOT_ASSESSED`, the artifact or
+relation subject, the exact profile/version, evidence references, an
+explanation, retained boundaries, and an optional criterion.
+
+The validator registry is separate from capability negotiation. A supported
+capability declaration does not imply that an F2 validator is installed or
+that a semantic check passed. F2 passes only when every required result passes.
+Validator exceptions, malformed results, duplicate check identifiers, foreign
+subjects or evidence, and excessive result counts fail or block explicitly.
+
 ## Versioning
 
 `v0alpha1` is intentionally unstable. A future breaking schema uses a new
 schema identifier. Implementations must reject unknown required capabilities
 for semantic processing, while remaining able to report structural facts about
 an otherwise valid envelope.
+# Phase 1B implementation update
+
+The bounded Phase 1B payload validator now supersedes the framework-only
+implementation notes below. See [Phase 1B scope and limits](PHASE_1B.md).
+Digest-only graphs remain inspectable but block byte-dependent semantic checks;
+transformation equivalence and execution semantics remain unassessed.

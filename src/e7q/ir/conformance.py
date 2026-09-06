@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
-"""F0 structural and F1 referential conformance for E7Q-IR graphs."""
+"""F0 structural, F1 referential, and F2 semantic conformance orchestration."""
 from __future__ import annotations
 
 import re
@@ -9,10 +9,11 @@ from .canonical import identified_digest
 from .envelope import KINDS, SCHEMA as ARTIFACT_SCHEMA
 from .graph import RELATION_KINDS, SCHEMA as GRAPH_SCHEMA
 from .profiles import negotiate
+from .semantic import DEFAULT_REGISTRY, SemanticRegistry, validate_semantics
 
 
 _DIGEST = re.compile(r"^sha256:[0-9a-f]{64}$")
-_LEVELS = {"F0": 0, "F1": 1}
+_LEVELS = {"F0": 0, "F1": 1, "F2": 2}
 _SUPPORT_STATUSES = {
     "supported-within-declared-scope",
     "unsupported",
@@ -139,13 +140,18 @@ def _artifact_checks(value: Any, index: int) -> list[dict[str, Any]]:
     return checks
 
 
-def validate_graph(graph: Any, *, level: str = "F1") -> dict[str, Any]:
+def validate_graph(
+    graph: Any,
+    *,
+    level: str = "F1",
+    semantic_registry: SemanticRegistry = DEFAULT_REGISTRY,
+) -> dict[str, Any]:
     if level not in _LEVELS:
         raise ValueError(f"unsupported E7Q-IR conformance level: {level}")
     f0: list[dict[str, Any]] = []
     _check(f0, "graph:object", isinstance(graph, dict))
     if not isinstance(graph, dict):
-        return _report(level, f0, [], [])
+        return _report(level, f0, [], [], "NOT_ASSESSED", [])
     allowed = {"schema", "graph_id", "name", "artifacts", "relations", "extensions"}
     required = allowed - {"extensions"}
     _check(f0, "graph:fields", required <= graph.keys())
@@ -233,7 +239,24 @@ def validate_graph(graph: Any, *, level: str = "F1") -> dict[str, Any]:
                 all(ref in id_set for ref in endpoints),
                 unresolved=sorted(ref for ref in endpoints if ref not in id_set),
             )
-    return _report(level, f0, f1, negotiations)
+    f0_pass = bool(f0) and all(item["passed"] for item in f0)
+    f1_pass = f0_pass and bool(f1) and all(item["passed"] for item in f1)
+    semantic_status = "NOT_IMPLEMENTED"
+    semantic_results: list[dict[str, Any]] = []
+    if level == "F2":
+        semantic_status = "NOT_ASSESSED"
+        if f1_pass:
+            semantic_status, semantic_results = validate_semantics(
+                graph, registry=semantic_registry
+            )
+    return _report(
+        level,
+        f0,
+        f1,
+        negotiations,
+        semantic_status,
+        semantic_results,
+    )
 
 
 def _report(
@@ -241,44 +264,95 @@ def _report(
     f0: list[dict[str, Any]],
     f1: list[dict[str, Any]],
     negotiations: list[dict[str, Any]],
+    semantic_status: str,
+    semantic_results: list[dict[str, Any]],
 ) -> dict[str, Any]:
     f0_pass = bool(f0) and all(item["passed"] for item in f0)
     f1_assessed = _LEVELS[level] >= 1 and f0_pass
     f1_pass = f1_assessed and bool(f1) and all(item["passed"] for item in f1)
-    passed = f0_pass if level == "F0" else f1_pass
+    passed = (
+        f0_pass
+        if level == "F0"
+        else f1_pass
+        if level == "F1"
+        else f1_pass and semantic_status == "PASS"
+    )
     capabilities_supported = bool(negotiations) and all(
         item["status"] == "SUPPORTED" for item in negotiations
     )
-    return {
-        "schema": "e7q.ir.conformance-report/v0alpha1",
-        "status": "PASS" if passed else "FAIL",
-        "requested_level": level,
-        "highest_level_passed": "F1" if f1_pass else ("F0" if f0_pass else None),
-        "level_results": {
-            "F0": "PASS" if f0_pass else "FAIL",
-            "F1": "PASS" if f1_pass else ("NOT_ASSESSED" if not f1_assessed else "FAIL"),
-            "F2": "NOT_IMPLEMENTED",
-            "F3": "NOT_IMPLEMENTED",
-            "F4": "NOT_IMPLEMENTED",
+    highest = (
+        "F2"
+        if f1_pass and semantic_status == "PASS"
+        else "F1"
+        if f1_pass
+        else "F0"
+        if f0_pass
+        else None
+    )
+    level_results = {
+        "F0": "PASS" if f0_pass else "FAIL",
+        "F1": "PASS" if f1_pass else ("NOT_ASSESSED" if not f1_assessed else "FAIL"),
+        "F2": semantic_status if level == "F2" else "NOT_IMPLEMENTED",
+        "F3": "NOT_IMPLEMENTED",
+        "F4": "NOT_IMPLEMENTED",
+    }
+    overall_status = (
+        "PASS" if passed else "FAIL"
+        if level != "F2" or not f1_pass
+        else semantic_status
+    )
+    proof = [
+        {"step": 0, "kind": "structural-conformance", "status": "PASS" if f0_pass else "FAIL"},
+        {
+            "step": 1,
+            "kind": "referential-conformance",
+            "status": "PASS" if f1_pass else "NOT-PASSED",
         },
-        "semantic_readiness": "READY_FOR_F2" if capabilities_supported else "BLOCKED",
-        "capability_negotiation": negotiations,
-        "checks": f0 + f1,
-        "proof": [
-            {"step": 0, "kind": "structural-conformance", "status": "PASS" if f0_pass else "FAIL"},
-            {
-                "step": 1,
-                "kind": "referential-conformance",
-                "status": "PASS" if f1_pass else "NOT-PASSED",
-            },
+    ]
+    if level == "F2":
+        proof.append(
             {
                 "step": 2,
-                "kind": "evidence-boundary",
-                "boundary": (
+                "kind": "profile-semantic-conformance",
+                "status": semantic_status,
+                "semantic_results": len(semantic_results),
+            }
+        )
+    proof.append(
+        {
+            "step": len(proof),
+            "kind": "evidence-boundary",
+            "boundary": (
+                (
                     "F0/F1 validation establishes structure, content identity, and graph "
                     "reference integrity only. It does not establish semantic correctness, "
                     "provider authenticity, physical fidelity, causation, or truth."
-                ),
-            },
-        ],
+                )
+                if level != "F2"
+                else (
+                    "F0/F1 validation establishes structure, content identity, and graph "
+                    "reference integrity. F2 establishes only named installed profile "
+                    "checks that report PASS. It does not establish provider authenticity, "
+                    "physical fidelity, causation, or truth."
+                )
+            ),
+        }
+    )
+    report = {
+        "schema": "e7q.ir.conformance-report/v0alpha1",
+        "status": overall_status,
+        "requested_level": level,
+        "highest_level_passed": highest,
+        "level_results": level_results,
+        "semantic_readiness": (
+            semantic_status
+            if level == "F2" and f1_pass
+            else "READY_FOR_F2" if capabilities_supported else "BLOCKED"
+        ),
+        "capability_negotiation": negotiations,
+        "checks": f0 + f1,
+        "proof": proof,
     }
+    if level == "F2":
+        report["semantic_results"] = semantic_results
+    return report

@@ -32,6 +32,9 @@ is outside this repository and outside E7Q-IR's current implementation scope.
 See [ADR-0001](ADR-0001-E7Q-IR-CONSOLIDATION.md) for the binding consolidation
 decision and namespace policy.
 
+The dependency-ordered implementation programme and AI engineering handoff are
+defined in [BUILD_PLAN.md](BUILD_PLAN.md).
+
 ## Layer model
 
 1. **Evidence Core** — content-addressed artifacts, provenance, typed relations,
@@ -45,9 +48,11 @@ decision and namespace policy.
 5. **Interoperability Layer** — adapters for the native E7Q language, OpenQASM,
    QIR, SDKs, providers, and future quantum modalities.
 
-Only the Evidence Core and a bounded circuit workflow demonstrator are
-implemented in `v0alpha1`; the other layers describe the controlled direction
-of extension and must not be represented as complete.
+The Evidence Core, a bounded circuit workflow demonstrator, and the Phase 1A
+F2 validator framework are implemented in `v0alpha1`. Profile-specific circuit
+semantics are not: current `circuit-basic` F2 results remain `NOT_ASSESSED`.
+The other layers describe the controlled direction of extension and must not be
+represented as complete.
 
 Its Evidence Core answers seven questions:
 
@@ -90,5 +95,12 @@ external-circuit demonstrator hashes supplied OpenQASM files, validates supplied
 aggregate counts, computes total-variation distance against a declared reference,
 and emits a bounded claim artifact. It does not parse or execute the circuit.
 
-F2 semantic verification, F3 authenticated evidence, and F4 replication remain
-future milestones and are reported as such.
+The F2 validator interface, registry, status model, and aggregation exist, but
+no built-in graph yet passes F2. Circuit semantic rules, F3 authenticated
+evidence, and F4 replication remain future milestones and are reported as such.
+# Phase 1B implementation update
+
+The bounded Phase 1B payload validator now supersedes the framework-only
+implementation notes below. See [Phase 1B scope and limits](PHASE_1B.md).
+Digest-only graphs remain inspectable but block byte-dependent semantic checks;
+transformation equivalence and execution semantics remain unassessed.

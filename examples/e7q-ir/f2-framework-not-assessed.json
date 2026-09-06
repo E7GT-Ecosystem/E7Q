@@ -1,0 +1,859 @@
+{
+  "capability_negotiation": [
+    {
+      "artifact_id": "sha256:06fa5c16ceacc4cf493d6e391fe05b2dd9f2ebaeed1cad59f0f678df031602ed",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:7f66dc7c552b744a745188c52b1a17a1dc312ed46ab7c2e19b83e9f939819ed5",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:719018cd5cae87275134c7e8b62ef170fb04af755730b8c551e619c92836baf6",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:6f890bcc58b5d5b714a18b10214d7c5ef6a5043b38eba92e991c76741d2acb36",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:14b087dd24a97a86daf66d3861ec67ac88a936d6029f08e91aae7ea95d0876f7",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:cfc24e1e045cb7cf3c9cb683a5bab235984b8555df735ce1829166ae9b2fa749",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:6b438ca6cac027793c578c20ff90cf907ecf153600090c377ef76ebbf6c510e0",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    }
+  ],
+  "checks": [
+    {
+      "name": "graph:object",
+      "passed": true
+    },
+    {
+      "name": "graph:fields",
+      "passed": true
+    },
+    {
+      "name": "graph:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "graph:schema",
+      "passed": true
+    },
+    {
+      "name": "graph:name",
+      "passed": true
+    },
+    {
+      "name": "graph:artifacts",
+      "passed": true
+    },
+    {
+      "name": "graph:relations",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:transformation-contract",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[6]:claim-contract",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:transformation-contract",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "graph:graph-id",
+      "passed": true
+    },
+    {
+      "name": "graph:unique-artifact-ids",
+      "passed": true
+    },
+    {
+      "name": "graph:unique-relation-ids",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[1]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[2]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[3]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[4]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[5]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[6]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[0]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[1]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[2]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[3]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[4]:references",
+      "passed": true,
+      "unresolved": []
+    }
+  ],
+  "highest_level_passed": "F1",
+  "level_results": {
+    "F0": "PASS",
+    "F1": "PASS",
+    "F2": "NOT_ASSESSED",
+    "F3": "NOT_IMPLEMENTED",
+    "F4": "NOT_IMPLEMENTED"
+  },
+  "proof": [
+    {
+      "kind": "structural-conformance",
+      "status": "PASS",
+      "step": 0
+    },
+    {
+      "kind": "referential-conformance",
+      "status": "PASS",
+      "step": 1
+    },
+    {
+      "kind": "profile-semantic-conformance",
+      "semantic_results": 12,
+      "status": "NOT_ASSESSED",
+      "step": 2
+    },
+    {
+      "boundary": "F0/F1 validation establishes structure, content identity, and graph reference integrity. F2 establishes only named installed profile checks that report PASS. It does not establish provider authenticity, physical fidelity, causation, or truth.",
+      "kind": "evidence-boundary",
+      "step": 3
+    }
+  ],
+  "requested_level": "F2",
+  "schema": "e7q.ir.conformance-report/v0alpha1",
+  "semantic_readiness": "NOT_ASSESSED",
+  "semantic_results": [
+    {
+      "boundaries": [
+        "No quantum-semantic conclusion is established."
+      ],
+      "check_id": "circuit-basic.artifact.source.phase-1a",
+      "evidence_refs": [
+        "sha256:06fa5c16ceacc4cf493d6e391fe05b2dd9f2ebaeed1cad59f0f678df031602ed"
+      ],
+      "message": "Phase 1A defines the validator contract but does not yet assess circuit payload semantics.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:3527b9df52c432c3d75e5eccd4f12fc89a3b94d83dc4720feef84a039631f165",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:06fa5c16ceacc4cf493d6e391fe05b2dd9f2ebaeed1cad59f0f678df031602ed",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "No quantum-semantic conclusion is established."
+      ],
+      "check_id": "circuit-basic.artifact.observation.phase-1a",
+      "evidence_refs": [
+        "sha256:14b087dd24a97a86daf66d3861ec67ac88a936d6029f08e91aae7ea95d0876f7"
+      ],
+      "message": "Phase 1A defines the validator contract but does not yet assess circuit payload semantics.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:6d55f1e0862f941bc64aed55c834c37b1552f627e4b7228ff16fe1975bbf082d",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:14b087dd24a97a86daf66d3861ec67ac88a936d6029f08e91aae7ea95d0876f7",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "No quantum-semantic conclusion is established."
+      ],
+      "check_id": "circuit-basic.artifact.claim.phase-1a",
+      "evidence_refs": [
+        "sha256:6b438ca6cac027793c578c20ff90cf907ecf153600090c377ef76ebbf6c510e0"
+      ],
+      "message": "Phase 1A defines the validator contract but does not yet assess circuit payload semantics.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:267f80dc9471d397a803aa72115044787d2f437ff5c031b8cd949aa6cb2f3280",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:6b438ca6cac027793c578c20ff90cf907ecf153600090c377ef76ebbf6c510e0",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "No quantum-semantic conclusion is established."
+      ],
+      "check_id": "circuit-basic.artifact.execution.phase-1a",
+      "evidence_refs": [
+        "sha256:6f890bcc58b5d5b714a18b10214d7c5ef6a5043b38eba92e991c76741d2acb36"
+      ],
+      "message": "Phase 1A defines the validator contract but does not yet assess circuit payload semantics.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:1be22f33746a8082d1f659f4eca8cc0b0d7c04f195d440da94368cfc96da848f",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:6f890bcc58b5d5b714a18b10214d7c5ef6a5043b38eba92e991c76741d2acb36",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "No quantum-semantic conclusion is established."
+      ],
+      "check_id": "circuit-basic.artifact.transformation.phase-1a",
+      "evidence_refs": [
+        "sha256:719018cd5cae87275134c7e8b62ef170fb04af755730b8c551e619c92836baf6"
+      ],
+      "message": "Phase 1A defines the validator contract but does not yet assess circuit payload semantics.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:2124f2b1f8e54498d00eea7e4ca7f11e13b26de32615443543604068de1b7f82",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:719018cd5cae87275134c7e8b62ef170fb04af755730b8c551e619c92836baf6",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "No quantum-semantic conclusion is established."
+      ],
+      "check_id": "circuit-basic.artifact.representation.phase-1a",
+      "evidence_refs": [
+        "sha256:7f66dc7c552b744a745188c52b1a17a1dc312ed46ab7c2e19b83e9f939819ed5"
+      ],
+      "message": "Phase 1A defines the validator contract but does not yet assess circuit payload semantics.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:62fb90c37ad9c139e64157c032e712523a29d69a0411f182bb9edf959f2bdd1c",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:7f66dc7c552b744a745188c52b1a17a1dc312ed46ab7c2e19b83e9f939819ed5",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "No quantum-semantic conclusion is established."
+      ],
+      "check_id": "circuit-basic.artifact.assessment.phase-1a",
+      "evidence_refs": [
+        "sha256:cfc24e1e045cb7cf3c9cb683a5bab235984b8555df735ce1829166ae9b2fa749"
+      ],
+      "message": "Phase 1A defines the validator contract but does not yet assess circuit payload semantics.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:aa738400bae99b379dd258957784326a20a41b71f1ef7a789b3767995cf90369",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:cfc24e1e045cb7cf3c9cb683a5bab235984b8555df735ce1829166ae9b2fa749",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "A transformation declaration is not semantic validation.",
+        "No provider-authenticity or physical-fidelity conclusion is established."
+      ],
+      "check_id": "circuit-basic.relation.observes.phase-1a",
+      "evidence_refs": [
+        "sha256:14b087dd24a97a86daf66d3861ec67ac88a936d6029f08e91aae7ea95d0876f7",
+        "sha256:6f890bcc58b5d5b714a18b10214d7c5ef6a5043b38eba92e991c76741d2acb36"
+      ],
+      "message": "Phase 1A does not yet assess this circuit-profile relation.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:f4d7800c62eaf8dc6abec5063cfb397fce206e26d7bf90bbc6151257c28ace46",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:0a64dc1b0e0af7bbcecda39b9278e536f965d6e7966e6e53c580f2e0035b597c",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "A transformation declaration is not semantic validation.",
+        "No provider-authenticity or physical-fidelity conclusion is established."
+      ],
+      "check_id": "circuit-basic.relation.transforms.phase-1a",
+      "criterion": {
+        "edition": "0alpha1",
+        "id": "declared-computational-basis-behaviour"
+      },
+      "evidence_refs": [
+        "sha256:06fa5c16ceacc4cf493d6e391fe05b2dd9f2ebaeed1cad59f0f678df031602ed",
+        "sha256:7f66dc7c552b744a745188c52b1a17a1dc312ed46ab7c2e19b83e9f939819ed5"
+      ],
+      "message": "The declared transformation criterion has no Phase 1A implementation.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:feacaff7ec8e9a20df4d585c75857ec3055627192e68376f38bc4ef2b46aaf45",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:3d1273dd847d407e74700153062936e50d229a877205b81e1faffe0b150db50e",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "A transformation declaration is not semantic validation.",
+        "No provider-authenticity or physical-fidelity conclusion is established."
+      ],
+      "check_id": "circuit-basic.relation.assesses.phase-1a",
+      "evidence_refs": [
+        "sha256:14b087dd24a97a86daf66d3861ec67ac88a936d6029f08e91aae7ea95d0876f7",
+        "sha256:cfc24e1e045cb7cf3c9cb683a5bab235984b8555df735ce1829166ae9b2fa749"
+      ],
+      "message": "Phase 1A does not yet assess this circuit-profile relation.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:506a2606488cf551dd0badfbf8536fdcefedcb4f7fee1daaace1cb1fdb750f4c",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:67ab9247173e5ea2277104808afc852df0fe8ea01bee88c492392d29d49d2890",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "A transformation declaration is not semantic validation.",
+        "No provider-authenticity or physical-fidelity conclusion is established."
+      ],
+      "check_id": "circuit-basic.relation.produces.phase-1a",
+      "evidence_refs": [
+        "sha256:6f890bcc58b5d5b714a18b10214d7c5ef6a5043b38eba92e991c76741d2acb36",
+        "sha256:7f66dc7c552b744a745188c52b1a17a1dc312ed46ab7c2e19b83e9f939819ed5"
+      ],
+      "message": "Phase 1A does not yet assess this circuit-profile relation.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:eda7cfa253b31ae2ef2bedff4c2b55dba0669ddbb9f229e0d60e1b533742b86a",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:aca48f81de49b8e8ebddd1b49c34c813a3ee13d67c769a8fee0a1b17c925f129",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "A transformation declaration is not semantic validation.",
+        "No provider-authenticity or physical-fidelity conclusion is established."
+      ],
+      "check_id": "circuit-basic.relation.supports.phase-1a",
+      "evidence_refs": [
+        "sha256:6b438ca6cac027793c578c20ff90cf907ecf153600090c377ef76ebbf6c510e0",
+        "sha256:cfc24e1e045cb7cf3c9cb683a5bab235984b8555df735ce1829166ae9b2fa749"
+      ],
+      "message": "Phase 1A does not yet assess this circuit-profile relation.",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:ed194b6e28b07e4f5ea2ebedbe155c21e9163fca521cb43ef9d7c48e0d1a1a6a",
+      "status": "NOT_ASSESSED",
+      "subject": {
+        "id": "sha256:b563a1faab8a9a0eced9abcd3b966d91c91d856c6d2a539c1cf89b4987c6fa15",
+        "kind": "relation"
+      }
+    }
+  ],
+  "status": "NOT_ASSESSED"
+}
