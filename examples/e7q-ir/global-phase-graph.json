@@ -1,0 +1,75 @@
+{
+  "schema": "e7q.ir.graph/v0alpha1",
+  "name": "exact signed permutation",
+  "artifacts": [
+    {
+      "schema": "e7q.ir.artifact/v0alpha1",
+      "kind": "source",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1",
+        "capabilities_required": []
+      },
+      "provenance": {
+        "created_at": "2026-09-06T00:00:00Z",
+        "actor": "unspecified",
+        "source_refs": []
+      },
+      "payload": {
+        "format": "openqasm-2",
+        "content": "OPENQASM 2.0; include \"qelib1.inc\"; qreg q[2]; creg c[2]; x q[0]; z q[0]; measure q -> c;",
+        "byte_length": 89,
+        "content_digest": "sha256:8ef7c7fc2192f67cafa75cc77969d0dad58b29d68606d2c1b3268cb476671835"
+      },
+      "limitations": [],
+      "artifact_id": "sha256:03c0cc48155f98579a1243bc7bf8d3f3a69f8dac6325f35d92d79b86656618c2"
+    },
+    {
+      "schema": "e7q.ir.artifact/v0alpha1",
+      "kind": "representation",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1",
+        "capabilities_required": []
+      },
+      "provenance": {
+        "created_at": "2026-09-06T00:00:00Z",
+        "actor": "unspecified",
+        "source_refs": []
+      },
+      "payload": {
+        "format": "openqasm-2",
+        "content": "OPENQASM 2.0; include \"qelib1.inc\"; qreg q[2]; creg c[2]; z q[0]; x q[0]; measure q -> c;",
+        "byte_length": 89,
+        "content_digest": "sha256:42d15c6b137da697ea090abf933228a5bad3293909078140eb0a7db0df57a012"
+      },
+      "limitations": [],
+      "artifact_id": "sha256:8906626b5ddbc87754271400982d3de7b2bb342018dc7344a06aa14e2f035bea"
+    }
+  ],
+  "relations": [
+    {
+      "kind": "transforms",
+      "source": "sha256:03c0cc48155f98579a1243bc7bf8d3f3a69f8dac6325f35d92d79b86656618c2",
+      "target": "sha256:8906626b5ddbc87754271400982d3de7b2bb342018dc7344a06aa14e2f035bea",
+      "validation_status": "validated",
+      "criterion": {
+        "id": "e7q.ir.signed-permutation-global-phase",
+        "version": "1"
+      },
+      "preserves": [
+        "unitary-prefix-up-to-global-phase",
+        "terminal-measurement-map"
+      ],
+      "loses": [
+        "source-spelling-and-gate-decomposition",
+        "global-phase"
+      ],
+      "assumptions": [
+        "signed-permutation-gate-table-v1"
+      ],
+      "relation_id": "sha256:e0701654ebdfc3df8a1f8de5d65e14788ef30d919e488b40d8fae5d6f415c280"
+    }
+  ],
+  "graph_id": "sha256:37691e15f0a34861e3876e10859fceb04103838f62f77fd4de918f2f5a60b9ac"
+}

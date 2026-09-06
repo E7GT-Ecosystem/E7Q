@@ -3,6 +3,9 @@
 from .circuit import CheckError, parse_source, require
 
 CRITERION = {'id': 'e7q.ir.signed-permutation-unitary', 'version': '1'}
+GLOBAL_PHASE_CRITERION = {'id': 'e7q.ir.signed-permutation-global-phase', 'version': '1'}
+GLOBAL_PHASE_PRESERVES = ['unitary-prefix-up-to-global-phase', 'terminal-measurement-map']
+GLOBAL_PHASE_LOSSES = ['source-spelling-and-gate-decomposition', 'global-phase']
 PRESERVES = ['unitary-prefix', 'terminal-measurement-map']
 LOSSES = ['source-spelling-and-gate-decomposition']
 ASSUMPTIONS = ['signed-permutation-gate-table-v1']
@@ -62,12 +65,17 @@ def action(parsed):
 
 def validate(relation, graph):
     by_id = {a['artifact_id']: a for a in graph['artifacts']}
+    quotient = relation['criterion'].get('id') == GLOBAL_PHASE_CRITERION['id']
+    criterion = GLOBAL_PHASE_CRITERION if quotient else CRITERION
+    preserves = GLOBAL_PHASE_PRESERVES if quotient else PRESERVES
+    losses = GLOBAL_PHASE_LOSSES if quotient else LOSSES
+    phase = 1
     try:
-        require(relation['criterion'] == CRITERION,
-                'Unsupported exact unitary criterion version or options.', 'UNSUPPORTED')
-        require(relation['preserves'] == PRESERVES and relation['loses'] == LOSSES
+        require(relation['criterion'] == criterion,
+                'Unsupported unitary criterion version or options.', 'UNSUPPORTED')
+        require(relation['preserves'] == preserves and relation['loses'] == losses
                 and relation['assumptions'] == ASSUMPTIONS,
-                'Exact unitary preservation/loss/assumption contract is required.', 'UNSUPPORTED')
+                'The selected unitary preservation/loss/assumption contract is required.', 'UNSUPPORTED')
         left, right = by_id[relation['source']], by_id[relation['target']]
         require(left['kind'] in {'source', 'representation'} and right['kind'] in {'source', 'representation'},
                 'Unitary comparison needs circuit endpoints.')
@@ -76,9 +84,17 @@ def validate(relation, graph):
         qa, qm = action(q)
         require(p['registers'] == q['registers'] and pm == qm,
                 'Register identity or ordered measurement mapping differs.', 'UNSUPPORTED')
-        require(pa == qa, 'Exact unitary prefixes differ, including phase; no hardware claim is assessed.')
+        if quotient:
+            phase = pa[0][1] * qa[0][1]
+            require(all(a == b and sa == phase * sb
+                        for (a, sa), (b, sb) in zip(pa, qa)),
+                    'Unitary prefixes differ beyond one global sign; no hardware claim is assessed.')
+        else:
+            require(pa == qa, 'Exact unitary prefixes differ, including phase; no hardware claim is assessed.')
         require(relation['validation_status'] == 'validated',
-                'Relation status contradicts established exact unitary equality.')
+                'Relation status contradicts equality under the selected unitary criterion.')
     except CheckError as exc:
         return exc.status, exc.message
+    if quotient:
+        return 'PASS', f'Every column satisfies U_source = ({phase:+d}) U_target exactly; terminal measurement maps match. No controlled embedding is assessed.'
     return 'PASS', 'All signed-permutation columns agree exactly under the declared gate table; terminal measurement maps match.'

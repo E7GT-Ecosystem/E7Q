@@ -151,6 +151,7 @@ class PendingCircuitBasicValidator:
         byte_identity = criterion is not None and criterion.get('id') == BYTE_IDENTITY_CRITERION['id']
         structural_identity = criterion is not None and criterion.get('id') == STRUCTURAL_IDENTITY_CRITERION['id']
         exact_unitary = criterion is not None and criterion.get('id') == 'e7q.ir.signed-permutation-unitary'
+        global_phase = criterion is not None and criterion.get('id') == 'e7q.ir.signed-permutation-global-phase'
         message = message if status != 'NOT_ASSESSED' else (
             "The declared transformation criterion has no Phase 1A implementation."
             if criterion is not None
@@ -160,13 +161,14 @@ class PendingCircuitBasicValidator:
             check_id=("circuit-basic.relation.transforms.utf8-byte-identity-v1" if byte_identity
                       else "circuit-basic.relation.transforms.openqasm2-structural-identity-v1" if structural_identity
                       else "circuit-basic.relation.transforms.signed-permutation-unitary-v1" if exact_unitary
+                      else "circuit-basic.relation.transforms.signed-permutation-global-phase-v1" if global_phase
                       else f"circuit-basic.relation.{relation['kind']}.phase-1a"),
             status=status,
             subject_kind="relation",
             subject_id=relation["relation_id"],
             profile_id=self.profile_id,
             profile_version=self.profile_version,
-            evidence_refs=((relation['source'], relation['target']) if byte_identity or structural_identity or exact_unitary
+            evidence_refs=((relation['source'], relation['target']) if byte_identity or structural_identity or exact_unitary or global_phase
                            else tuple(a['artifact_id'] for a in graph['artifacts'])),
             message=message,
             boundaries=(

@@ -57,3 +57,7 @@ The built-in circuit profile now implements versioned UTF-8 byte-identity and pa
 criteria described in [PHASE_1C.md](PHASE_1C.md). A graph containing only admitted
 source/representation endpoints and an admitted identity relation can pass F2. That result does
 not cover execution, provider identity or broader quantum-equivalence criteria.
+
+The optional [global-phase criterion](GLOBAL_PHASE.md) admits one overall sign
+within the signed-permutation fragment and declares phase loss explicitly.
+It cannot confer exact equality or authorize controlled-subcircuit replacement.

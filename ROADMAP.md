@@ -346,3 +346,5 @@ E7G-T extension/projection contract. Added packages are planned, not completed.
   contracts;
 - [ ] add an evidence-linked execution verifier capable of establishing
   feasibility under a declared profile.
+
+- [x] Bounded signed-permutation global-phase criterion (separate from exact equality; broader Phase 1C remains pending).
