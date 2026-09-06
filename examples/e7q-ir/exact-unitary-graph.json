@@ -1,0 +1,74 @@
+{
+  "schema": "e7q.ir.graph/v0alpha1",
+  "name": "exact signed permutation",
+  "artifacts": [
+    {
+      "schema": "e7q.ir.artifact/v0alpha1",
+      "kind": "source",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1",
+        "capabilities_required": []
+      },
+      "provenance": {
+        "created_at": "2026-09-06T00:00:00Z",
+        "actor": "unspecified",
+        "source_refs": []
+      },
+      "payload": {
+        "format": "openqasm-2",
+        "content": "OPENQASM 2.0; include \"qelib1.inc\"; qreg q[2]; creg c[2]; swap q[0],q[1]; measure q -> c;",
+        "byte_length": 89,
+        "content_digest": "sha256:3d9f2b533dc76ff4280fda5f780227ad2b8bffdfb70de76e83f9fc7e2ec7d77a"
+      },
+      "limitations": [],
+      "artifact_id": "sha256:523bff219380f836c3620264be49c23884fc260fa85b5d3d53a14c1306e1f3e5"
+    },
+    {
+      "schema": "e7q.ir.artifact/v0alpha1",
+      "kind": "representation",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1",
+        "capabilities_required": []
+      },
+      "provenance": {
+        "created_at": "2026-09-06T00:00:00Z",
+        "actor": "unspecified",
+        "source_refs": []
+      },
+      "payload": {
+        "format": "openqasm-2",
+        "content": "OPENQASM 2.0; include \"qelib1.inc\"; qreg q[2]; creg c[2]; cx q[0],q[1]; cx q[1],q[0]; cx q[0],q[1]; measure q -> c;",
+        "byte_length": 115,
+        "content_digest": "sha256:95e29a05c8bd68e6c1b94d6613d2229a19cb5a2a17fba16076cfd592d28aa2fa"
+      },
+      "limitations": [],
+      "artifact_id": "sha256:41e4b4fa9ff7c5c5307e4150f89a8a62d8bb61bda998a9fb7323220c57f8446a"
+    }
+  ],
+  "relations": [
+    {
+      "kind": "transforms",
+      "source": "sha256:523bff219380f836c3620264be49c23884fc260fa85b5d3d53a14c1306e1f3e5",
+      "target": "sha256:41e4b4fa9ff7c5c5307e4150f89a8a62d8bb61bda998a9fb7323220c57f8446a",
+      "validation_status": "validated",
+      "criterion": {
+        "id": "e7q.ir.signed-permutation-unitary",
+        "version": "1"
+      },
+      "preserves": [
+        "unitary-prefix",
+        "terminal-measurement-map"
+      ],
+      "loses": [
+        "source-spelling-and-gate-decomposition"
+      ],
+      "assumptions": [
+        "signed-permutation-gate-table-v1"
+      ],
+      "relation_id": "sha256:7fef1f399942b28ae59609fc22072e82dc6e98d66b63664c70b611367184715a"
+    }
+  ],
+  "graph_id": "sha256:7062ab2aeaa44e7a215207d77b381850ad1a914f45485282fc91ff808ff4dabd"
+}

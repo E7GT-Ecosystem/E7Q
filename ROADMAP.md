@@ -21,6 +21,7 @@ E7G-T extension/projection contract. Added packages are planned, not completed.
 - [ ] QIR bridge;
 - [ ] F3 provider authentication and signed attestations;
 - [ ] F4 declared replication conformance.
+- [x] bounded exact signed-permutation unitary-prefix criterion;
 - [ ] bounded QCEC/PyZX criteria and pinned external conformance corpus;
 - [x] Phase 1C UTF-8 byte identity and parsed structural identity with F2 fixtures;
 - [ ] typed result adapters, PROV mapping and hybrid trace capture;
