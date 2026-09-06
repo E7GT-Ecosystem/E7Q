@@ -1,0 +1,17 @@
+{
+  "schema": "e7q.ir.profile/v0alpha1",
+  "id": "e7q.ir.circuit-basic",
+  "version": "0alpha1",
+  "status": "experimental",
+  "extends": "e7q.ir.core/0alpha1",
+  "capabilities": [
+    "artifact.identity",
+    "claim.boundary",
+    "observation.record",
+    "transformation.accounting",
+    "circuit.openqasm.source",
+    "circuit.counts.observation",
+    "circuit.distribution.tvd"
+  ],
+  "semantic_boundary": "This profile validates a bounded circuit evidence contract. It does not authenticate a provider, prove general circuit equivalence, or establish physical fidelity."
+}

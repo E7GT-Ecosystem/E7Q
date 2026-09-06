@@ -20,6 +20,12 @@ from .deterministic import (
 from .drift import assess_drift, load_replication_report
 from .external_bundles import verify_external_bundle
 from .experiments import assess_comparative_experiment, load_comparative_experiment
+from .ir import (
+    build_external_circuit_graph,
+    load_external_circuit_manifest,
+    validate_graph,
+)
+from .ir.graph import graph_summary
 from .openqasm2 import import_openqasm2
 from .trends import assess_trend, load_trend_reports
 from .calibration import load_snapshot, select_target
@@ -123,6 +129,30 @@ def _parser() -> argparse.ArgumentParser:
     artifact = commands.add_parser("validate-artifact")
     artifact.add_argument("source", type=Path)
     artifact.add_argument("-o", "--output", type=Path)
+    ir = commands.add_parser(
+        "ir",
+        help="build, validate, and inspect E7Q-IR evidence graphs",
+    )
+    ir_actions = ir.add_subparsers(dest="ir_action", required=True)
+    ir_build = ir_actions.add_parser(
+        "build",
+        help="build an external circuit workflow graph without executing it",
+    )
+    ir_build.add_argument("manifest", type=Path)
+    ir_build.add_argument("-o", "--output", required=True, type=Path)
+    ir_validate = ir_actions.add_parser(
+        "validate",
+        help="validate F0 structural or F1 referential conformance",
+    )
+    ir_validate.add_argument("source", type=Path)
+    ir_validate.add_argument("--level", choices=["F0", "F1"], default="F1")
+    ir_validate.add_argument("-o", "--output", type=Path)
+    ir_inspect = ir_actions.add_parser(
+        "inspect",
+        help="print a bounded graph inventory without semantic claims",
+    )
+    ir_inspect.add_argument("source", type=Path)
+    ir_inspect.add_argument("-o", "--output", type=Path)
     external_bundle = commands.add_parser(
         "external-bundle",
         help="safely inspect a supplied external execution-evidence package",
@@ -202,6 +232,34 @@ def _parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     try:
+        if args.command == "ir":
+            if args.ir_action == "build":
+                manifest, base = load_external_circuit_manifest(args.manifest)
+                graph = build_external_circuit_graph(manifest, base)
+                args.output.write_text(
+                    json.dumps(graph, indent=2, sort_keys=True) + "\n",
+                    encoding="utf-8",
+                )
+                print(f"E7Q-IR evidence graph: {args.output}")
+                return 0
+            graph = load_artifact(args.source)
+            report = (
+                validate_graph(graph, level=args.level)
+                if args.ir_action == "validate"
+                else graph_summary(graph)
+            )
+            content = json.dumps(report, indent=2, sort_keys=True) + "\n"
+            if args.output:
+                args.output.write_text(content, encoding="utf-8")
+                label = (
+                    "conformance report"
+                    if args.ir_action == "validate"
+                    else "graph summary"
+                )
+                print(f"E7Q-IR {label}: {args.output}")
+            else:
+                print(content, end="")
+            return 0 if args.ir_action == "inspect" or report["status"] == "PASS" else 1
         if args.command == "import-openqasm2":
             try:
                 source = args.source.read_text(encoding="utf-8")

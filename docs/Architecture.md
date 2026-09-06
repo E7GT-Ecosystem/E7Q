@@ -1,7 +1,15 @@
 # Architecture
 
+> E7Q-IR v0alpha1 now provides an additive vendor-neutral artifact envelope,
+> evidence graph, profile capability model, and F0/F1 conformance layer. See
+> [E7Q-IR Architecture](e7q-ir/ARCHITECTURE.md). The architecture below remains
+> the executable-language and offline-assurance implementation retained for
+> compatibility.
+
 1. **E7Q source** declares context, registers, invariants, paths, views, and criteria.
-2. **Parser and typed IR** resolve syntax, resources, types, and source locations.
+2. **Parser and native executable model** resolve syntax, resources, types, and
+   source locations. This is one front end into E7Q-IR, not the complete
+   interoperability protocol.
 3. **Quantum semantics engine** uses standard linear algebra for evolution and measurement.
 4. **Verification engine** checks invariants and equivalence profiles at declared stages.
 5. **Adapters** lower verified IR to simulators, OpenQASM, and later hardware-oriented IRs.

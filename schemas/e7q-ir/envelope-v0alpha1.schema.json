@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e7q.dev/schemas/ir/envelope-v0alpha1.schema.json",
+  "title": "E7Q-IR Artifact Envelope v0alpha1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "artifact_id", "kind", "profile", "provenance", "payload", "limitations"],
+  "properties": {
+    "schema": {"const": "e7q.ir.artifact/v0alpha1"},
+    "artifact_id": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "kind": {
+      "enum": ["intent", "source", "representation", "transformation", "execution", "observation", "assessment", "claim"]
+    },
+    "profile": {"$ref": "profile-v0alpha1.schema.json"},
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["created_at", "actor", "source_refs"],
+      "properties": {
+        "created_at": {"type": "string", "minLength": 1},
+        "actor": {"type": "string", "minLength": 1},
+        "source_refs": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "payload": {"type": "object"},
+    "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "extensions": {"type": "object"}
+  }
+}

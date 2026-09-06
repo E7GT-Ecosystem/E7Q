@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e7q.dev/schemas/ir/profile-v0alpha1.schema.json",
+  "title": "E7Q-IR Profile Reference v0alpha1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "version", "capabilities_required"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "minLength": 1},
+    "capabilities_required": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}

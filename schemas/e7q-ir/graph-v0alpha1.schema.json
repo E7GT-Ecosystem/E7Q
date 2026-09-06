@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e7q.dev/schemas/ir/graph-v0alpha1.schema.json",
+  "title": "E7Q-IR Evidence Graph v0alpha1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "graph_id", "name", "artifacts", "relations"],
+  "properties": {
+    "schema": {"const": "e7q.ir.graph/v0alpha1"},
+    "graph_id": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "name": {"type": "string", "minLength": 1},
+    "artifacts": {"type": "array", "minItems": 1, "items": {"$ref": "envelope-v0alpha1.schema.json"}},
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["relation_id", "kind", "source", "target", "validation_status"],
+        "properties": {
+          "relation_id": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+          "kind": {"enum": ["represents", "transforms", "produces", "observes", "assesses", "supports", "constrains", "derived-from"]},
+          "source": {"type": "string"},
+          "target": {"type": "string"},
+          "validation_status": {"type": "string"}
+        }
+      }
+    },
+    "extensions": {"type": "object"}
+  }
+}

@@ -1,5 +1,20 @@
 # Roadmap
 
+## E7Q-IR v0.1 — Evidence-native IR foundation
+
+- [x] content-addressed universal artifact envelope;
+- [x] typed evidence graph and transformation contract;
+- [x] bounded claim contract;
+- [x] versioned profile and capability negotiation model;
+- [x] F0 structural and F1 referential conformance;
+- [x] external OpenQASM/counts workflow demonstrator independent of the E7Q language;
+- [x] consolidate the experimental quantum Fabric namespace into E7Q-IR;
+- [ ] F2 circuit-profile semantic validation;
+- [ ] OpenQASM 3 production bridge and cross-SDK round trips;
+- [ ] QIR bridge;
+- [ ] F3 provider authentication and signed attestations;
+- [ ] F4 declared replication conformance.
+
 ## v0.1 — Minimum Executable Language
 
 - [x] parser, state-vector simulator, verifier, CLI, and CI;

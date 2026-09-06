@@ -8,6 +8,12 @@ what it does not.
 
 It complements quantum SDKs rather than replacing them.
 
+**E7Q-IR is the core architecture of E7Q:** an evidence-native quantum
+intermediate representation and execution-assurance protocol connecting source
+intent, transformations, execution context, observations, assessments, and
+bounded claims. The native E7Q language is one supported front end into that
+protocol.
+
 ## See the difference
 
 Suppose two sets of quantum runs look similar. Did the observed distribution
@@ -113,6 +119,25 @@ python -m pip install -e ".[test]"
 
 e7q verify examples/bell.e7q --proof bell.proof.json
 ```
+
+### E7Q-IR v0alpha1
+
+Build and validate a vendor-neutral evidence graph around an externally produced
+circuit workflow without adopting the E7Q language:
+
+```bash
+e7q ir build examples/e7q-ir/external-circuit-workflow.json \
+  -o ir-graph.json
+e7q ir validate ir-graph.json --level F1 \
+  -o ir-conformance.json
+e7q ir inspect ir-graph.json
+```
+
+The demonstrator hashes supplied OpenQASM files, records declared transformation
+preservation and loss, validates supplied aggregate counts, performs a bounded
+total-variation comparison, and links the result to an explicit claim boundary.
+It does not execute the circuit or authenticate a provider. See the
+[E7Q-IR architecture](docs/e7q-ir/ARCHITECTURE.md).
 
 The verifier checks every declared invariant. The generated JSON records the
 initialization, transformations, measurements, probabilities, counts, and

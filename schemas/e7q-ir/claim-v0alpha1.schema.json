@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e7q.dev/schemas/ir/claim-v0alpha1.schema.json",
+  "title": "E7Q-IR Claim Payload v0alpha1",
+  "type": "object",
+  "required": ["statement", "claim_type", "evidence_refs", "support_status", "boundaries", "prohibited_inferences"],
+  "properties": {
+    "statement": {"type": "string", "minLength": 1},
+    "claim_type": {"type": "string", "minLength": 1},
+    "evidence_refs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "support_status": {"enum": ["supported-within-declared-scope", "unsupported", "conflicting", "insufficient-evidence"]},
+    "boundaries": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "prohibited_inferences": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  }
+}

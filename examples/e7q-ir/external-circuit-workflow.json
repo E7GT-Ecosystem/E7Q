@@ -1,0 +1,53 @@
+{
+  "schema": "e7q.ir.external-circuit-workflow/v0alpha1",
+  "name": "External Bell circuit evidence path",
+  "created_at": "2026-09-05T12:00:00Z",
+  "actor": "example-workflow",
+  "source": {
+    "path": "source.qasm",
+    "format": "openqasm-2"
+  },
+  "executable": {
+    "path": "transpiled.qasm",
+    "format": "openqasm-2"
+  },
+  "transformation": {
+    "tool": "external-transpiler",
+    "tool_version": "supplied-unspecified",
+    "criterion": {
+      "id": "declared-computational-basis-behaviour",
+      "edition": "0alpha1"
+    },
+    "preserves": ["declared computational-basis measurement behaviour"],
+    "loses": ["source gate vocabulary", "unrecorded transpiler alternatives"],
+    "assumptions": ["the supplied transformed file is the output of the declared transformation"]
+  },
+  "observation": {
+    "counts_path": "counts.json",
+    "provider": "example-provider",
+    "job_id": "example-job-not-authenticated",
+    "target": "example-target",
+    "completed_at": "2026-09-05T12:01:00Z",
+    "label_order": "clbit-descending"
+  },
+  "assessment": {
+    "expected_distribution": {
+      "00": 0.5,
+      "11": 0.5
+    },
+    "max_total_variation": 0.05
+  },
+  "claim": {
+    "statement": "The supplied aggregate counts match the declared Bell-state reference distribution within total-variation tolerance.",
+    "claim_type": "statistical",
+    "boundaries": [
+      "The result is a descriptive comparison of supplied aggregate counts.",
+      "Provider identity, job chronology, and hardware execution are not authenticated."
+    ],
+    "prohibited_inferences": [
+      "The provider genuinely executed the declared job.",
+      "The hardware faithfully implemented the source circuit.",
+      "The declared transformation is semantically equivalent under every criterion."
+    ]
+  }
+}
