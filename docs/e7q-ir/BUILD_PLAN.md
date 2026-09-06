@@ -22,6 +22,11 @@ UTF-8 circuit bytes, single-classical-register counts, TVD recomputation, claim
 support and assessment/support relation consistency. Phase 1C UTF-8 byte identity and parsed structural identity are implemented locally;
 see [PHASE_1C.md](PHASE_1C.md). Broader criteria remain pending.
 
+The next local Phase 1C increment adds an exact signed-permutation unitary-prefix
+criterion, restricted to a pinned gate table, eight qubits and terminal
+measurement maps; see [EXACT_UNITARY.md](EXACT_UNITARY.md). This does not complete
+general exact/global-phase or channel equivalence.
+
 ## 1. Purpose
 
 This document allows a new engineer or AI coding agent to continue E7Q-IR
