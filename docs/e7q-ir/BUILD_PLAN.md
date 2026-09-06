@@ -780,3 +780,12 @@ public protocol release requires all of the following:
 Commercialisation, hosted services, certification programmes, and an ecosystem
 registry are later product decisions. They must be supported by technical and
 buyer evidence rather than inferred from implementation progress.
+
+## H1/H4 first executable increment
+
+The [local review runner](REVIEW_RUNNER.md) and versioned manifest connect all
+current repository test files to per-case outcomes and input/environment identity.
+This is an internal reproduction facility and initial inventory, not completion
+of H1/H4 or independent reproduction of the external report. Remaining gates
+include assertion-level observations, detailed public-claim coverage and external
+reproduction. Next: H2/H3 adversarial gap analysis.

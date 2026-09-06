@@ -34,7 +34,7 @@ E7G-T extension/projection contract. Added packages are planned, not completed.
 
 See [H1–H10 acceptance gates](docs/e7q-ir/REVIEW_HARDENING.md).
 
-- [ ] H1 reproducible external-review package;
+- [ ] H1 reproducible external-review package (local runner implemented; original reproduction pending);
 - [ ] H2 adversarial E7Q-IR semantic campaign;
 - [ ] H3 external-bundle security and interpretation checks;
 - [ ] H4 capability-to-evidence matrix and maintained current status;
