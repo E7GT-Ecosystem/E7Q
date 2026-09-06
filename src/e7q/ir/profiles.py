@@ -37,6 +37,7 @@ CIRCUIT_BASIC = Profile(
         "circuit.identity.parsed-structure",
         "circuit.unitary.signed-permutation",
         "circuit.unitary.signed-permutation-global-phase",
+        "circuit.measurement.signed-permutation-basis",
     }),
     "e7q.ir.validator.circuit-basic/0alpha1",
 )

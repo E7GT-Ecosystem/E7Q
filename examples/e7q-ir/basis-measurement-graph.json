@@ -1,0 +1,75 @@
+{
+  "schema": "e7q.ir.graph/v0alpha1",
+  "name": "exact signed permutation",
+  "artifacts": [
+    {
+      "schema": "e7q.ir.artifact/v0alpha1",
+      "kind": "source",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1",
+        "capabilities_required": []
+      },
+      "provenance": {
+        "created_at": "2026-09-06T00:00:00Z",
+        "actor": "unspecified",
+        "source_refs": []
+      },
+      "payload": {
+        "format": "openqasm-2",
+        "content": "OPENQASM 2.0; include \"qelib1.inc\"; qreg q[2]; creg c[2]; z q[0]; measure q -> c;",
+        "byte_length": 81,
+        "content_digest": "sha256:cb04a5a3b96f911750c84ca0258923f17cb78679572765fc157ffaed6365e7f3"
+      },
+      "limitations": [],
+      "artifact_id": "sha256:584ff01111ed0eadd686b07fdf83925da89cf1a818d67bbe2d58f5d282bfbe1f"
+    },
+    {
+      "schema": "e7q.ir.artifact/v0alpha1",
+      "kind": "representation",
+      "profile": {
+        "id": "e7q.ir.circuit-basic",
+        "version": "0alpha1",
+        "capabilities_required": []
+      },
+      "provenance": {
+        "created_at": "2026-09-06T00:00:00Z",
+        "actor": "unspecified",
+        "source_refs": []
+      },
+      "payload": {
+        "format": "openqasm-2",
+        "content": "OPENQASM 2.0; include \"qelib1.inc\"; qreg q[2]; creg c[2];  measure q -> c;",
+        "byte_length": 74,
+        "content_digest": "sha256:3036bcd1fca398b2b592705072cbc681dc3c689c328672dbe12984f4da1d48b1"
+      },
+      "limitations": [],
+      "artifact_id": "sha256:a52d58e1218c741a58458ec2e6ea178d92b5c4957e3374c5e1fff8593f9b6673"
+    }
+  ],
+  "relations": [
+    {
+      "kind": "transforms",
+      "source": "sha256:584ff01111ed0eadd686b07fdf83925da89cf1a818d67bbe2d58f5d282bfbe1f",
+      "target": "sha256:a52d58e1218c741a58458ec2e6ea178d92b5c4957e3374c5e1fff8593f9b6673",
+      "validation_status": "validated",
+      "criterion": {
+        "id": "e7q.ir.signed-permutation-basis-measurement",
+        "version": "1"
+      },
+      "preserves": [
+        "terminal-outcome-for-every-computational-basis-input",
+        "terminal-measurement-map"
+      ],
+      "loses": [
+        "source-spelling-and-gate-decomposition",
+        "global-and-relative-phase"
+      ],
+      "assumptions": [
+        "signed-permutation-gate-table-v1"
+      ],
+      "relation_id": "sha256:15e04b592a9c53fadbc3d4cc9dd70bb26ff43323f58880ad3816bbd412e7303d"
+    }
+  ],
+  "graph_id": "sha256:bffe34aad809eceee81152e65021ad23542d53376d6f4d311ee9b74c87ff467d"
+}
