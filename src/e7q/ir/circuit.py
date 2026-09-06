@@ -129,6 +129,9 @@ def validate_payload(artifact, graph):
 def validate_relation_payload(relation, graph):
     by_id = {a['artifact_id']: a for a in graph['artifacts']}
     kind = relation['kind']
+    if kind == 'transforms' and relation.get('criterion', {}).get('id') == 'e7q.ir.real-h-unitary':
+        from .real_unitary import validate
+        return validate(relation, graph)
     if kind == 'transforms' and relation.get('criterion', {}).get('id') == 'e7q.ir.signed-permutation-unitary-channel':
         from .channel import validate
         return validate(relation, graph)

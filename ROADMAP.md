@@ -352,3 +352,5 @@ E7G-T extension/projection contract. Added packages are planned, not completed.
 - [x] Bounded signed-permutation computational-basis measurement equivalence for all basis inputs, with explicit phase loss.
 
 - [x] Exact noiseless signed-permutation unitary-channel comparison, including off-diagonal coherence; noisy channels remain pending.
+
+- [x] Exact real H-unitary criterion and original H/u2(0,pi) F2 acceptance fixture (four-qubit, 64-gate bounds).
