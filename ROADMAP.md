@@ -350,3 +350,5 @@ E7G-T extension/projection contract. Added packages are planned, not completed.
 - [x] Bounded signed-permutation global-phase criterion (separate from exact equality; broader Phase 1C remains pending).
 
 - [x] Bounded signed-permutation computational-basis measurement equivalence for all basis inputs, with explicit phase loss.
+
+- [x] Exact noiseless signed-permutation unitary-channel comparison, including off-diagonal coherence; noisy channels remain pending.

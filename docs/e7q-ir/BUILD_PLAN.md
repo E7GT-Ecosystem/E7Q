@@ -48,6 +48,14 @@ Next: assess bounded channel criteria against the native engine; do not infer
 channel equality from this measurement-only result. Broader gates and the
 H/u2 acceptance example remain incomplete.
 
+**Channel checkpoint:** basis-measurement PR #39 passed CI and merged at
+`676d34fadc1081fca251cdfb1eba5d3b7d08ee0c`. The next increment provides exact
+[noiseless unitary-channel comparison](UNITARY_CHANNEL.md) on every matrix unit
+in the signed-permutation fragment, cross-checked against the native engine.
+This does not complete noisy channels or full Phase 1C. Next work should expand
+the bounded gate semantics to address the H/u2 acceptance case; noisy-channel
+support requires explicit source and numerical-error contracts.
+
 ## 1. Purpose
 
 This document allows a new engineer or AI coding agent to continue E7Q-IR

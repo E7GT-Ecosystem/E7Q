@@ -65,3 +65,7 @@ It cannot confer exact equality or authorize controlled-subcircuit replacement.
 The optional [basis-measurement criterion](BASIS_MEASUREMENT.md) checks all basis
 inputs in the signed-permutation fragment and explicitly loses phase. Its PASS
 does not establish unitary or quantum-channel equivalence.
+
+[Unitary-channel comparison](UNITARY_CHANNEL.md) is available only for the
+noiseless signed-permutation fragment and checks off-diagonal matrix units.
+No noisy-channel support follows from a PASS.
