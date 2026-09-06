@@ -69,3 +69,7 @@ does not establish unitary or quantum-channel equivalence.
 [Unitary-channel comparison](UNITARY_CHANNEL.md) is available only for the
 noiseless signed-permutation fragment and checks off-diagonal matrix units.
 No noisy-channel support follows from a PASS.
+
+The optional [real H-unitary criterion](REAL_H_UNITARY.md) establishes the
+bounded H/u2 acceptance pair with exact rational/sqrt(2) arithmetic. Existing
+signed-permutation criteria retain their narrower gate domains.

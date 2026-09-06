@@ -56,6 +56,15 @@ This does not complete noisy channels or full Phase 1C. Next work should expand
 the bounded gate semantics to address the H/u2 acceptance case; noisy-channel
 support requires explicit source and numerical-error contracts.
 
+**H/u2 checkpoint:** noiseless channel PR #40 merged after CI at
+`1226a1a9d0c8d57e0bc74799b2a4620f8d9c3e6b`. The new
+[exact real H-unitary criterion](REAL_H_UNITARY.md) closes the original H versus
+u2(0,pi) acceptance gap with unchanged source files and a separately scoped F2
+relation. Its limits are four qubits and 64 gates; previous criteria do not gain
+H support implicitly. General angles, complex gates and noisy channels remain
+pending. Next implementation package: Phase 2 native E7Q/legacy evidence adapters
+using the existing bounded F2 gates, without promoting unsupported claims.
+
 ## 1. Purpose
 
 This document allows a new engineer or AI coding agent to continue E7Q-IR

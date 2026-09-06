@@ -154,6 +154,7 @@ class PendingCircuitBasicValidator:
         global_phase = criterion is not None and criterion.get('id') == 'e7q.ir.signed-permutation-global-phase'
         basis_measurement = criterion is not None and criterion.get('id') == 'e7q.ir.signed-permutation-basis-measurement'
         unitary_channel = criterion is not None and criterion.get('id') == 'e7q.ir.signed-permutation-unitary-channel'
+        real_unitary = criterion is not None and criterion.get('id') == 'e7q.ir.real-h-unitary'
         message = message if status != 'NOT_ASSESSED' else (
             "The declared transformation criterion has no Phase 1A implementation."
             if criterion is not None
@@ -166,13 +167,14 @@ class PendingCircuitBasicValidator:
                       else "circuit-basic.relation.transforms.signed-permutation-global-phase-v1" if global_phase
                       else "circuit-basic.relation.transforms.signed-permutation-basis-measurement-v1" if basis_measurement
                       else "circuit-basic.relation.transforms.signed-permutation-unitary-channel-v1" if unitary_channel
+                      else "circuit-basic.relation.transforms.real-h-unitary-v1" if real_unitary
                       else f"circuit-basic.relation.{relation['kind']}.phase-1a"),
             status=status,
             subject_kind="relation",
             subject_id=relation["relation_id"],
             profile_id=self.profile_id,
             profile_version=self.profile_version,
-            evidence_refs=((relation['source'], relation['target']) if byte_identity or structural_identity or exact_unitary or global_phase or basis_measurement or unitary_channel
+            evidence_refs=((relation['source'], relation['target']) if byte_identity or structural_identity or exact_unitary or global_phase or basis_measurement or unitary_channel or real_unitary
                            else tuple(a['artifact_id'] for a in graph['artifacts'])),
             message=message,
             boundaries=(

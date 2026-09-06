@@ -17,7 +17,8 @@
     "circuit.unitary.signed-permutation",
     "circuit.unitary.signed-permutation-global-phase",
     "circuit.measurement.signed-permutation-basis",
-    "circuit.channel.signed-permutation-unitary"
+    "circuit.channel.signed-permutation-unitary",
+    "circuit.unitary.real-h-exact"
   ],
   "semantic_validators": [
     {
@@ -29,5 +30,5 @@
       "implementation_status": "bounded-payload-identity-and-signed-permutation-checks"
     }
   ],
-  "semantic_boundary": "Bounded payload checks, UTF-8 byte identity and parsed structural identity are implemented. Structural identity compares a declared importer projection, not general quantum semantics. Execution and other criteria remain unassessed. Exact unitary-prefix equality is supported only under signed-permutation-unitary/v1; A separate signed-permutation-global-phase/v1 criterion admits one overall sign with explicit phase loss. No arbitrary gate set, controlled embedding or hardware execution is established. A separate signed-permutation-basis-measurement/v1 criterion compares terminal outcomes for all basis inputs with explicit phase loss; it establishes no unitary or channel equality. Exact noiseless premeasurement channel equality is available only through signed-permutation-unitary-channel/v1; noisy channels remain unsupported."
+  "semantic_boundary": "Bounded payload checks, UTF-8 byte identity and parsed structural identity are implemented. Structural identity compares a declared importer projection, not general quantum semantics. Execution and other criteria remain unassessed. Exact unitary-prefix equality is supported only under signed-permutation-unitary/v1; A separate signed-permutation-global-phase/v1 criterion admits one overall sign with explicit phase loss. No arbitrary gate set, controlled embedding or hardware execution is established. A separate signed-permutation-basis-measurement/v1 criterion compares terminal outcomes for all basis inputs with explicit phase loss; it establishes no unitary or channel equality. Exact noiseless premeasurement channel equality is available only through signed-permutation-unitary-channel/v1; noisy channels remain unsupported. A separate real-h-unitary/v1 criterion adds H and literal u2(0,pi) with exact real arithmetic and stricter size limits; existing signed-permutation criteria are unchanged."
 }
