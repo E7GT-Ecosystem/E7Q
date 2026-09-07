@@ -823,3 +823,20 @@ The initial regression cases reproduced seven failures before the fix. This is
 a bounded H2 increment; it does not complete general IR adversarial coverage or
 H3's remaining field-shape/directory analysis. Existing golden F2 fixtures remain
 the valid-path gate. Next: remaining graph/criterion and bundle field-shape gaps.
+
+## H3 field-type consistency increment (2026-09-07)
+
+Baseline: `29105bd4353e8d795dec6ae2f02962742c8df437`.
+Malformed metadata status containers now produce a failed type check instead of
+raising TypeError. Declared shot/outcome/gate counts and register widths require
+integers, excluding booleans and floating-point lookalikes. Gate-count keys that
+collide under case normalization are rejected rather than overwritten. This also
+covers the optional legacy IR gate-count field.
+
+Rehashed-manifest tests preserve integrity PASS while requiring consistency FAIL;
+valid synthetic ZIP/directory fixtures remain compatible. The receipt schema and
+identity rules are unchanged; an additional status-type check is emitted. Missing
+or non-string status is now an error; unrecognized strings retain their prior
+terminal-status warning. This intentionally tightens malformed-input admission.
+Remaining H3 work includes ordering semantics, directory races and resource bounds;
+this increment does not establish complete schema validation or authentication.

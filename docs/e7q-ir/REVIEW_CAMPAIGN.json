@@ -303,7 +303,7 @@
     },
     {
       "id": "external_bundles",
-      "scope": "Bounded external bundle ingestion: strict JSON, ZIP input/member budgets, canonical paths, duplicate entries, symlink rejection and integrity versus consistency",
+      "scope": "Bounded external bundle ingestion: strict JSON, ZIP input/member budgets, canonical paths, duplicate entries, symlink rejection and integrity versus consistency; strict declared integer fields, status types and normalization-collision rejection",
       "test_file": "tests/test_external_bundles.py",
       "implementation": [
         "src/e7q/artifacts.py",

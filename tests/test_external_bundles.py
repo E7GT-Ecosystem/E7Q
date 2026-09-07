@@ -185,3 +185,34 @@ def test_zip_resource_limits(tmp_path, monkeypatch, limit, value, message):
     monkeypatch.setattr(bundles, limit, value)
     with pytest.raises(E7QError, match=message):
         verify_external_bundle(archive)
+
+
+@pytest.mark.parametrize('filename,field,value', [
+    ('job_metadata.json', 'status', []),
+    ('job_metadata.json', 'status', {}),
+    ('job_metadata.json', 'num_qubits_device', 2.0),
+    ('job_metadata.json', 'op_counts', {'h': True, 'cx': 1, 'measure': 2}),
+    ('job_metadata.json', 'op_counts', {'h': 1.0, 'cx': 1, 'measure': 2}),
+    ('job_metadata.json', 'op_counts', {'h': 99, 'H': 1, 'cx': 1, 'measure': 2}),
+    ('raw_counts.json', 'total_shots', 1000.0),
+    ('raw_counts.json', 'num_unique_bitstrings', 2.0),
+    ('mapping.json', 'num_clbits', 2.0),
+    ('mapping.json', 'num_active_qubits', 2.0),
+    ('hieroglyphs_ir.json', 'num_gates', float(len(json.loads((RECORD / 'hieroglyphs_ir.json').read_text())['gates']))),
+])
+def test_rehashed_malformed_fields_fail_consistency(tmp_path, filename, field, value):
+    from hashlib import sha256
+    package = tmp_path / 'fixture'
+    shutil.copytree(EXAMPLE, package)
+    target = package / 'synthetic_bell' / filename
+    original = sha256(target.read_bytes()).hexdigest()
+    payload = json.loads(target.read_bytes())
+    payload[field] = value
+    target.write_text(json.dumps(payload))
+    manifest = package / 'synthetic_bell/MANIFEST.md'
+    manifest.write_text(manifest.read_text().replace(original, sha256(target.read_bytes()).hexdigest()))
+    result = verify_external_bundle(package)
+    assert result['judgments']['artifact_integrity']['status'] == 'PASS'
+    assert result['judgments']['internal_consistency']['status'] == 'FAIL'
+    assert result['status'] == 'FAIL'
+    assert result == verify_external_bundle(package)
