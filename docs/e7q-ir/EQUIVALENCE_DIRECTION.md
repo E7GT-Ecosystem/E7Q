@@ -28,10 +28,11 @@ The minimum decision table is:
 
 | Exact criterion | Global-phase criterion | Admissible conclusion |
 | --- | --- | --- |
-| `PASS` | `PASS` | Exact equality is established in the common admitted domain. |
+| `PASS` | any retained status | Exact equality is established only in the exact criterion's admitted domain. |
 | `FAIL` | `PASS` | Equality only up to global phase is established; exact replacement is not supported. |
-| `FAIL` | `FAIL` | The tested relation is unequal in the admitted domain. |
-| non-PASS | non-PASS | Preserve `BLOCKED`, `UNSUPPORTED`, or `NOT_ASSESSED`; do not infer inequality. |
+| non-PASS other than `FAIL` | `PASS` | Global-phase equality is established; exact equality remains unresolved. |
+| `FAIL` | `FAIL` | Both tested relations are unequal in their common admitted domain. |
+| non-PASS other than the rows above | non-PASS | Preserve `BLOCKED`, `UNSUPPORTED`, or `NOT_ASSESSED`; do not infer inequality. |
 
 An exact result may support a global-phase conclusion only through an explicit,
 named derivation rule or a separately executed applicable criterion. A
