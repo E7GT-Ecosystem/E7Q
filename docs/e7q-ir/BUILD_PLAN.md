@@ -1,13 +1,20 @@
 # E7Q-IR Build Plan and AI Engineering Handoff
 
-**Plan version:** 0.3
+**Plan version:** 0.4
 
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.
 
-**Current inspected baseline (2026-09-06):** `main` at
-`c1608b11464b5a5b0a45f221907a8c27b1bb51ff` (PR #41).
-The last implementation milestone passed 306 tests and GitHub CI.
-This documentation revision changes no executable capability or conformance meaning.
+**Current inspected baseline (2026-09-07):** `main` at
+`ea0eeec3e379888bb383ebd4afd72887f5efbcf6` (PR #50).
+That merge added the bounded native-execution adapter. This documentation
+revision changes no executable capability or conformance meaning.
+
+**Revision 0.4:** adds the
+[dual-relation and scalable circuit-equivalence track](EQUIVALENCE_DIRECTION.md).
+It makes caller-selected exact/global-phase semantics, the bounded reference
+oracle, optional structure-aware backends, compositional evidence, and a 25+
+qubit structured benchmark gate explicit. These are planned work packages, not
+current capability or an arbitrary-circuit scalability claim.
 
 **Revision 0.3:** integrates the agreed review-driven hardening packages in
 [REVIEW_HARDENING.md](REVIEW_HARDENING.md). All H1–H10 packages remain planned;
@@ -22,10 +29,11 @@ noiseless unitary-channel comparison; exact real H/u2(0,pi) criterion.
 Each retains its own domain and limits. General angles, complex-gate IR criteria,
 noisy-channel IR criteria and general Phase 1C coverage remain incomplete.
 
-**Next package:** H1/H4 review evidence and capability reconciliation, then H2/H3
-IR and bundle hardening before extending Phase 2 native/legacy adapters and the
-optional external Aer demonstration (H5/H6). The initial reconciliation in this
-revision does not complete the executable review harness or capability matrix.
+**Next package:** complete the open H2/H3 hardening and Phase 2 typed
+compiler/execution mapping. The equivalence track begins with E1/E2 as bounded
+criterion-contract work alongside criterion-bound native/external comparison.
+Optional backends and scalability claims remain gated by E3-E5 and may not
+bypass the existing hardening, compatibility, or conformance requirements.
 
 **Historical baseline:** `b7dc357` had 181 passing tests and F0/F1 only.
 PRs #35–#37 merged framework/identity/exact signed-permutation work at `83b273a4`;
@@ -911,3 +919,41 @@ and verifier result, including FAIL, with explicit count ordering and projection
 loss. Native APIs and formats are unchanged. F0/F1 structural checks do not confer
 F2 semantics. Phase 2/H5 remain open pending compilation/typed legacy mapping and
 criterion-bound native/external comparison.
+
+## Equivalence direction checkpoint (2026-09-07)
+
+Baseline: `ea0eeec3e379888bb383ebd4afd72887f5efbcf6`.
+The [equivalence direction](EQUIVALENCE_DIRECTION.md) sharpens R1 in response to
+external technical questions about relation choice and scale. The discussion is
+design input, not acceptance evidence.
+
+Planned dependency order:
+
+1. **E1 — dual-relation contract:** the caller declares exact or global-phase
+   equivalence as the required relation; reports retain separate criterion
+   outcomes and every non-PASS state.
+2. **E2 — bounded phase oracle:** add global-phase checking to the existing
+   real-H/u2 exact-arithmetic domain without increasing its four-qubit/64-gate
+   bounds.
+3. **E3 — structure-aware adapters:** evaluate optional pinned MQT QCEC and PyZX
+   adapters with raw verdicts, phase/permutation conventions, time/memory limits,
+   and fail-closed inconclusive mappings.
+4. **E4 — compositional evidence:** retain compiler steps and optional
+   certificates; whole-circuit support requires an applicable named composition
+   rule.
+5. **E5 — benchmark ladder:** publish reproducible 4, 8, 12, 16, 20 and 25+
+   qubit structured cases, including negative, unsupported and exhausted cases.
+   The 25+ rung is an evidence gate, not a general tractability promise.
+
+E1/E2 may proceed as bounded subpackages while Phase 2 reaches
+criterion-bound native/external comparison. E3 introduces no mandatory Evidence
+Core dependency. E4/E5 cannot upgrade a claim beyond their named criteria,
+corpus, versions and observed resource envelope. Existing criterion identifiers,
+F0/F1 meanings, reports and native APIs remain compatible; no earlier PASS is
+reinterpreted.
+
+Public progress for this track must identify the accountable project
+contributor, disclose current limits, and cite exact commits, tests, skipped or
+unsupported cases, and the next acceptance gate. AI-assisted drafting and public
+discussion are not implementation or validation evidence.
+
