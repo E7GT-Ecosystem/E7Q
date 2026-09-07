@@ -19,6 +19,7 @@ e7q = "e7q.cli:main"
 
 [project.optional-dependencies]
 test = ["pytest>=8"]
+qcec = ["mqt.qcec==3.9.0"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

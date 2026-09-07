@@ -290,3 +290,24 @@ and verifier result, including FAIL, with explicit count ordering and projection
 loss. Native APIs and formats are unchanged. F0/F1 structural checks do not confer
 F2 semantics. Phase 2/H5 remain open pending compilation/typed legacy mapping and
 criterion-bound native/external comparison.
+
+## Optional QCEC evaluation inventory (2026-09-07)
+
+Baseline: `4210bd595566af0f6458cac2c4870a6d98a3410e`.
+The first optional-backend inventory pins MIT-licensed MQT QCEC 3.9.0 and records
+its raw `equivalent`, `equivalent_up_to_global_phase`, `not_equivalent`,
+probabilistic and `no_information` meanings without making it default F2 truth.
+Callers select the E7Q-IR exact or global-phase criterion explicitly; backend
+selection cannot weaken that criterion. Unsupported input, backend errors,
+probabilistic outcomes and timeout remain distinct from inequality.
+
+The seven-case 26/32-qubit corpus records gate set, depth, gate count, backend and
+dependency versions, configuration, numerical tolerances, runtime, process-peak
+RSS and every non-PASS outcome. It produced six PASS, six FAIL and two
+BLOCKED/INCONCLUSIVE criterion runs. This process-peak metric is cumulative and
+the declared memory limit is not enforced, so stronger resource-isolation claims
+remain prohibited. The full E5 ladder and PyZX comparison remain pending.
+
+This checkpoint does not complete H2/H3, E3, E5, Phase 2 or H5. Proof-of-Path
+conversion, typed legacy receipt mapping and criterion-bound native/external
+workflow comparison remain required.
