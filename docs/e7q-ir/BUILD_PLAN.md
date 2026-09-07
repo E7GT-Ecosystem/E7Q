@@ -1,12 +1,19 @@
 # E7Q-IR Build Plan and AI Engineering Handoff
 
-**Plan version:** 0.5
+**Plan version:** 0.6
 
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.
 
 **Current inspected baseline (2026-09-07):** `main` at
-`4210bd595566af0f6458cac2c4870a6d98a3410e` (PR #51).
-That merge added the dual-relation and scalable-equivalence direction.
+`ee3b1041b36af8f30fdfb2a7fcf9b5fa2dc7159d` (PR #53).
+That merge separated QCEC numerical criteria from exact-algebraic criteria.
+
+**Revision 0.6:** hardens the optional QCEC increment with one spawned process
+per assessment, a parent-owned wall-clock deadline, bounded terminate/kill/join
+cleanup, POSIX `RLIMIT_AS` memory enforcement where successfully applied, and
+explicit enforcement and worker-exit evidence. Timeout, resource exhaustion,
+signal termination, nonzero exit, startup and protocol failures remain distinct
+non-PASS outcomes.
 
 **Revision 0.5:** records the first bounded E1/E3/E5 evaluation increment:
 separate exact/global-phase relation results for one pair, a pinned optional
@@ -38,9 +45,9 @@ noisy-channel IR criteria and general Phase 1C coverage remain incomplete.
 **Next package:** complete the open H2/H3 hardening and Phase 2 typed
 compiler/execution mapping, including Proof-of-Path conversion, typed legacy
 receipt mapping and criterion-bound native/external comparison. Extend the
-benchmark ladder below 25 qubits, evaluate PyZX separately, and harden optional
-backend isolation. Phase 2, E3 and E5 remain open; this bounded QCEC evaluation
-must not bypass compatibility or conformance requirements.
+benchmark ladder below 25 qubits, evaluate PyZX separately, and repeat resource
+measurements across the supported corpus. Phase 2, E3 and E5 remain open; this
+bounded QCEC evaluation must not bypass compatibility or conformance requirements.
 
 **Historical baseline:** `b7dc357` had 181 passing tests and F0/F1 only.
 PRs #35–#37 merged framework/identity/exact signed-permutation work at `83b273a4`;
@@ -977,16 +984,25 @@ used exact-algebraic criterion identifiers for numerical results. It is invalid
 as evidence for those exact-algebraic claims, but its complete history is retained
 at `benchmarks/e7q-ir/history/qcec-3.9.0-results-a19e9108-invalid-exact-criteria.json`.
 
-The replacement structured corpus at
+The process-isolated rerun corpus at
 `benchmarks/e7q-ir/qcec-3.9.0-results.json` has report ID
-`sha256:814c7d874c2b8856c6d28f392afb57ef6c8ff8b4e8b8b5755f40b32232de3b82`
+`sha256:36b852c1e7cc9dc2479b63c9174e4add963d2731a4844b0d4fe5b3c3db154516`
 and contains seven 26/32-qubit cases and 14 criterion runs: six PASS, six FAIL
-and two BLOCKED. It covers exact-equivalent
-SWAP rewrites, global-phase-only Pauli pairs, intentional gate errors and a
-forced timeout. The timeout remains BLOCKED/INCONCLUSIVE; probabilistic,
-per-state-phase, unknown and no-information verdicts map to non-PASS inconclusive
-outcomes. Process-peak RSS is a whole-process metric,
-not a per-check allocation, and the recorded memory limit is not yet enforced.
+and two BLOCKED. It covers exact-equivalent SWAP rewrites, global-phase-only
+Pauli pairs, intentional gate errors and a forced timeout. Each assessment uses
+one spawned worker. The parent owns the monotonic wall-clock deadline and records
+terminate/kill cleanup, exit code or signal, and successful reaping. Both forced
+controls remain `BLOCKED/INCONCLUSIVE` with reason `wall_clock_timeout`.
+Probabilistic, per-state-phase, unknown and no-information verdicts remain
+non-PASS inconclusive outcomes.
+
+Worker-local peak RSS replaces the earlier whole-adapter-process metric. A
+requested memory limit is enforced with POSIX `RLIMIT_AS` when that mechanism is
+available and successfully applied; the report records the requested/effective
+limit, mechanism and actual enforcement state. Explicit `MemoryError` is
+`resource_exhaustion`; native signals and nonzero exits remain distinct worker
+failures rather than guessed out-of-memory events. Regression coverage also
+keeps startup and malformed/missing worker responses non-PASS.
 
 This is evidence for supported structured instances above 25 qubits, not general
 25-qubit tractability. E3 remains open pending broader backend/domain isolation

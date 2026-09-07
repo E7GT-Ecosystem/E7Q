@@ -311,12 +311,18 @@ preserved in the history record, while replacement report
 `sha256:814c7d874c2b8856c6d28f392afb57ef6c8ff8b4e8b8b5755f40b32232de3b82`
 uses only the numerical criterion identifiers.
 
-The seven-case 26/32-qubit replacement corpus records gate set, depth, gate count, backend and
-dependency versions, configuration, numerical tolerances, runtime, process-peak
-RSS and every non-PASS outcome. It produced six PASS, six FAIL and two
-BLOCKED/INCONCLUSIVE criterion runs. This process-peak metric is cumulative and
-the declared memory limit is not enforced, so stronger resource-isolation claims
-remain prohibited. The full E5 ladder and PyZX comparison remain pending.
+The rerun seven-case 26/32-qubit corpus has report ID
+`sha256:36b852c1e7cc9dc2479b63c9174e4add963d2731a4844b0d4fe5b3c3db154516`.
+It records gate set, depth, gate count, backend and dependency versions,
+configuration, numerical tolerances, isolated-worker wall time and peak RSS,
+parent deadline enforcement, memory-limit enforcement state, worker exit/signal
+and reaping evidence, and every non-PASS outcome. It produced six PASS, six FAIL
+and two BLOCKED/INCONCLUSIVE criterion runs. Both forced controls were terminated
+and reaped by the parent deadline and report `wall_clock_timeout`; they are not
+backend inequality. POSIX `RLIMIT_AS` is applied when requested and supported,
+with actual success/effective limit recorded. Native termination without an
+explicit `MemoryError` remains a signal/crash rather than guessed exhaustion.
+The full E5 ladder, repeated measurements and PyZX comparison remain pending.
 
 This checkpoint does not complete H2/H3, E3, E5, Phase 2 or H5. Proof-of-Path
 conversion, typed legacy receipt mapping and criterion-bound native/external
