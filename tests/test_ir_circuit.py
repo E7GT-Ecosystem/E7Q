@@ -78,3 +78,64 @@ def test_digest_only_legacy_graph_is_inspectable():
     graph = build_external_circuit_graph(manifest, base)
     assert validate_graph(graph)['status']=='PASS'
     assert validate_graph(graph, level='F2')['status']=='BLOCKED'
+
+
+@pytest.mark.parametrize('observed', [{'00': True, '11': False}, {'00': 1, '11': False}])
+def test_boolean_observed_probabilities_cannot_pass_after_rehash(observed):
+    graph = fixture()
+    observation = next(a for a in graph['artifacts'] if a['kind'] == 'observation')
+    assessment = next(a for a in graph['artifacts'] if a['kind'] == 'assessment')
+    observation['payload']['counts'] = {'00': 1000, '11': 0}
+    assessment['payload'].update(expected_distribution={'00': 1.0, '11': 0.0},
+                                 observed_distribution=observed, total_variation_distance=0.0,
+                                 status='PASS')
+    rehash(graph)
+    report = validate_graph(graph, level='F2')
+    assert report['level_results']['F1'] == 'PASS'
+    result = next(r for r in report['semantic_results'] if r['subject']['id'] == assessment['artifact_id'])
+    assert result['status'] == 'FAIL'
+    assert result['check_id'] != 'e7q.ir.framework.validator-exception'
+    claim = next(a for a in graph['artifacts'] if a['kind'] == 'claim')
+    claim_result = next(r for r in report['semantic_results'] if r['subject']['id'] == claim['artifact_id'])
+    assert claim_result['status'] == 'FAIL'
+    assert report == validate_graph(graph, level='F2')
+
+
+@pytest.mark.parametrize('order', [[], {}, ['clbit-descending'], None])
+def test_malformed_label_order_has_scoped_blocked_result(order):
+    graph = fixture()
+    observation = next(a for a in graph['artifacts'] if a['kind'] == 'observation')
+    observation['payload']['label_order'] = order
+    rehash(graph)
+    report = validate_graph(graph, level='F2')
+    assert report['level_results']['F1'] == 'PASS'
+    result = next(r for r in report['semantic_results'] if r['subject']['id'] == observation['artifact_id'])
+    assert result['status'] == 'BLOCKED'
+    assert result['check_id'] != 'e7q.ir.framework.validator-exception'
+
+
+@pytest.mark.parametrize('field', ['total_variation_distance', 'maximum_total_variation'])
+def test_extreme_finite_integer_is_rejected_without_validator_exception(field):
+    graph = fixture()
+    assessment = next(a for a in graph['artifacts'] if a['kind'] == 'assessment')
+    assessment['payload'][field] = 10 ** 400
+    rehash(graph)
+    report = validate_graph(graph, level='F2')
+    assert report['level_results']['F1'] == 'PASS'
+    result = next(r for r in report['semantic_results'] if r['subject']['id'] == assessment['artifact_id'])
+    assert result['status'] == 'FAIL'
+    assert result['check_id'] != 'e7q.ir.framework.validator-exception'
+
+
+def test_numeric_zero_one_probabilities_remain_valid():
+    graph = fixture()
+    observation = next(a for a in graph['artifacts'] if a['kind'] == 'observation')
+    assessment = next(a for a in graph['artifacts'] if a['kind'] == 'assessment')
+    observation['payload']['counts'] = {'00': 1000, '11': 0}
+    assessment['payload'].update(expected_distribution={'00': 1, '11': 0},
+                                 observed_distribution={'00': 1, '11': 0},
+                                 total_variation_distance=0, status='PASS')
+    rehash(graph)
+    report = validate_graph(graph, level='F2')
+    result = next(r for r in report['semantic_results'] if r['subject']['id'] == assessment['artifact_id'])
+    assert result['status'] == 'PASS'

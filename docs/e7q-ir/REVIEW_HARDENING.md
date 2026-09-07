@@ -187,3 +187,18 @@ rejected; no schema or identity algorithm is migrated.
 This is a partial H3 gate, not a complete security review. Remaining work includes
 broader field-type/ordering validation, directory race/resource analysis and H2 IR
 adversarial gap analysis. Existing limits do not certify provider authenticity.
+
+## H2 assessment type-safety increment (2026-09-07)
+
+Baseline: `7f6fa0f4ab931f06b483afd336d5be26b06736c9`.
+Adversarial rehashed graphs exposed an assessment-level false PASS: boolean
+observed probabilities compared equal to numeric zero/one. Explicit finite-number
+validation now rejects them and propagates failure to dependent claims. Genuine
+numeric zero/one probabilities remain valid. Malformed ordering containers return
+BLOCKED, and out-of-range integers return scoped FAIL rather than a framework
+exception. Artifact identities, profile criteria and F0/F1 semantics are unchanged.
+
+The initial regression cases reproduced seven failures before the fix. This is
+a bounded H2 increment; it does not complete general IR adversarial coverage or
+H3's remaining field-shape/directory analysis. Existing golden F2 fixtures remain
+the valid-path gate. Next: remaining graph/criterion and bundle field-shape gaps.

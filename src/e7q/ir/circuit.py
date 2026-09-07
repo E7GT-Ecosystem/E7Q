@@ -27,7 +27,12 @@ def require(condition, message, status="FAIL"):
 
 
 def number(value):
-    return type(value) in (int, float) and math.isfinite(value)
+    if type(value) not in (int, float):
+        return False
+    try:
+        return math.isfinite(value)
+    except OverflowError:
+        return False
 
 
 def parse_source(artifact):
@@ -70,7 +75,7 @@ def counts(artifact, by_id):
     require(type(shots) is int and shots > 0, 'Shots must be positive integers.')
     require(all(isinstance(k, str) and k and not set(k)-{'0','1'} and type(v) is int and v >= 0 for k,v in values.items()), 'Invalid binary counts.')
     require(sum(values.values()) == shots, 'Count total differs from shots.')
-    require(p.get('label_order') in {'clbit-ascending','clbit-descending'}, 'Explicit label order is required.', 'BLOCKED')
+    require(isinstance(p.get('label_order'), str) and p['label_order'] in {'clbit-ascending','clbit-descending'}, 'Explicit label order is required.', 'BLOCKED')
     execution = parent(artifact, by_id, 'execution')
     representation = parent(execution, by_id, 'representation')
     parsed = parse_source(representation)
@@ -93,7 +98,11 @@ def assessment(artifact, by_id):
     require(all(isinstance(k,str) and len(k)==width and not set(k)-{'0','1'} and number(v) and 0 <= v <= 1 for k,v in expected.items()), 'Invalid reference distribution.')
     require(abs(math.fsum(expected.values())-1) <= 1e-9, 'Reference probabilities must sum to one.')
     require(p.get('expected_label_order') == observation['payload']['label_order'], 'Reference and observed label orders must be explicitly identical.', 'BLOCKED')
-    require(p.get('observed_distribution') == observed, 'Observed distribution was not correctly recomputed.')
+    reported = p.get('observed_distribution')
+    require(isinstance(reported, dict) and len(reported) <= MAX_OUTCOMES and
+            all(number(v) and 0 <= v <= 1 for v in reported.values()),
+            'Observed probabilities must be finite numbers, not booleans.')
+    require(reported == observed, 'Observed distribution was not correctly recomputed.')
     tvd = 0.5 * math.fsum(abs(observed.get(k,0)-expected.get(k,0)) for k in sorted(set(observed)|set(expected)))
     require(number(p.get('total_variation_distance')) and abs(p['total_variation_distance']-tvd) <= 1e-12, 'TVD mismatch.')
     threshold = p.get('maximum_total_variation')
