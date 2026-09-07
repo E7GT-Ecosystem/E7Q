@@ -219,3 +219,25 @@ or non-string status is now an error; unrecognized strings retain their prior
 terminal-status warning. This intentionally tightens malformed-input admission.
 Remaining H3 work includes ordering semantics, directory races and resource bounds;
 this increment does not establish complete schema validation or authentication.
+
+## H3 bounded directory inspection (2026-09-07)
+
+Baseline: `3fc7188160903c95d9802b639653733c561acdb7`.
+Directory inspection now traverses incrementally with a 1,024-entry budget
+(including empty directories) and maximum directory depth 32. Existing 512-file,
+32 MiB per-file and 128 MiB aggregate limits remain. Reads are bounded by the
+remaining byte budget plus one detection byte; actual received bytes determine
+the total and digests. Special files are rejected rather than silently ignored.
+
+The reader checks opened file identity/type, observed size and modification time;
+platform-supported no-follow/nonblocking flags reduce leaf replacement risks.
+These checks do not create an atomic directory snapshot or protect every ancestor
+replacement race. Use an immutable trusted-local snapshot when concurrent mutation
+is in the threat model; full race-resistant traversal remains pending.
+
+Tests cover empty-directory/depth budgets, FIFO rejection where available,
+file/count/aggregate limits and growth between inspection and bounded read.
+Canonical member digest ordering is unchanged and valid fixtures retain their
+receipt meanings. Traversal beyond the new limits intentionally fails admission.
+Next: explicit ordering semantics and remaining IR coverage; no complete security
+or provider-authentication claim is added.
