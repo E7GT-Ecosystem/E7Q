@@ -16,7 +16,7 @@ from typing import Any
 from zipfile import BadZipFile, ZipFile, is_zipfile
 
 from .language import E7QError
-from .openqasm2 import import_openqasm2
+from .openqasm2 import COUNT_ORDERS, import_openqasm2
 from .temporal import temporal_evidence
 
 
@@ -461,10 +461,19 @@ def _validate_record(
             detail="provider-reported and not authenticated",
         )
 
+    label_order = None
     normalized_counts: dict[str, int] = {}
     outcome_width: int | None = None
     count_total: int | None = None
     if counts_value is not None:
+        declared_order = counts_value.get("label_order")
+        valid_order = isinstance(declared_order, str) and declared_order in COUNT_ORDERS
+        _check(checks, "counts:label-order-declared", "label_order" in counts_value,
+               severity="warning", detail="Missing ordering remains unknown; no convention is inferred.")
+        if "label_order" in counts_value:
+            _check(checks, "counts:label-order-supported", valid_order)
+        if valid_order:
+            label_order = declared_order
         raw_counts = counts_value.get("counts")
         valid_counts = isinstance(raw_counts, dict) and bool(raw_counts)
         if valid_counts:
@@ -726,6 +735,7 @@ def _validate_record(
         if not check["passed"] and check["severity"] == "warning"
     ]
     counts_summary: dict[str, object] = {
+        "label_order": label_order,
         "digest": (
             _digest(members[_record_member(prefix, "raw_counts.json")])
             if _record_member(prefix, "raw_counts.json") in members
@@ -922,6 +932,7 @@ def verify_external_bundle(
                 "by the dependency-free verifier."
             ),
             "Reported circuit depth is not independently recomputed.",
+            "Count labels are retained unchanged; absent ordering is unknown, and supplied ordering is not independently authenticated.",
             "Algorithmic correctness and physical fidelity are outside this verification scope.",
         ],
         "proof": [

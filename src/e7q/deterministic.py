@@ -91,7 +91,7 @@ def assess_deterministic_reference(
         raise E7QError("canonical_bit_order must contain unique bit names")
     width = len(bit_names)
     observed_order = reference.get("observed_label_order")
-    if observed_order not in COUNT_ORDERS:
+    if not isinstance(observed_order, str) or observed_order not in COUNT_ORDERS:
         raise E7QError("deterministic reference has invalid observed_label_order")
     primary_indices = reference.get("primary_bit_indices")
     if (
@@ -159,6 +159,13 @@ def assess_deterministic_reference(
             raise E7QError(
                 "external receipt must embed counts; rerun verification with --include-counts"
             )
+        receipt_order = count_summary.get("label_order")
+        if receipt_order is not None:
+            if not isinstance(receipt_order, str) or receipt_order not in COUNT_ORDERS:
+                raise E7QError(f"invalid receipt label order for {name}")
+            if receipt_order != observed_order:
+                raise E7QError(f"receipt label order conflicts with reference for {name}")
+        # Missing/unknown legacy ordering remains an explicit reference assumption.
         normalized: dict[str, int] = {}
         for raw_outcome, raw_count in values.items():
             if (
