@@ -372,3 +372,5 @@ See [H1–H10 acceptance gates](docs/e7q-ir/REVIEW_HARDENING.md).
 
 - [x] Phase 2 first preservation adapter: original native/legacy source recovery and explicit assurance limits. See [contract](docs/e7q-ir/LEGACY_PRESERVATION.md).
 - [ ] Phase 2 typed native intent/compiler/execution adapters and criterion-bound native/external comparison.
+
+- [x] Bounded native source/intent/execution/observation/assessment path with preserved Proof-of-Path and verdicts; [scope and limits](docs/e7q-ir/NATIVE_EXECUTION.md). Compiler conversion and native F2 remain pending.
