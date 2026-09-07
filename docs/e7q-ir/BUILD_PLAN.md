@@ -962,19 +962,30 @@ reinterpreted.
 ### Bounded QCEC evaluation increment (2026-09-07)
 
 Baseline: `4210bd595566af0f6458cac2c4870a6d98a3410e`.
-The optional adapter pins `mqt.qcec==3.9.0` (MIT) and keeps backend choice
-separate from the exact and global-phase criterion objects. Assessment artifacts
-retain backend/dependency versions, configuration, numerical tolerances, raw
+The optional adapter pins `mqt.qcec==3.9.0` (MIT) and uses separate,
+tolerance-bearing criteria: `e7q.ir.qcec-numerical-unitary` and
+`e7q.ir.qcec-numerical-global-phase`, both version 1. It rejects the
+exact-algebraic signed-permutation criteria rather than satisfying them with a
+numerical result. Assessment artifacts retain backend/dependency versions,
+configuration, numerical tolerances, raw
 verdict/checker data, assumptions, runtime, process-peak RSS, declared memory
 limit and outcome. The method is explicitly tolerance-based numerical, never
 reported as exact algebraic verification.
 
-The published structured corpus at
-`benchmarks/e7q-ir/qcec-3.9.0-results.json` contains seven 26/32-qubit cases and
-14 criterion runs: six PASS, six FAIL and two BLOCKED. It covers exact-equivalent
+The original report `sha256:a19e91087e60359a57257e20ba0b171c70d74a40126a58bbb78eb9dd5218fece`
+used exact-algebraic criterion identifiers for numerical results. It is invalid
+as evidence for those exact-algebraic claims, but its complete history is retained
+at `benchmarks/e7q-ir/history/qcec-3.9.0-results-a19e9108-invalid-exact-criteria.json`.
+
+The replacement structured corpus at
+`benchmarks/e7q-ir/qcec-3.9.0-results.json` has report ID
+`sha256:814c7d874c2b8856c6d28f392afb57ef6c8ff8b4e8b8b5755f40b32232de3b82`
+and contains seven 26/32-qubit cases and 14 criterion runs: six PASS, six FAIL
+and two BLOCKED. It covers exact-equivalent
 SWAP rewrites, global-phase-only Pauli pairs, intentional gate errors and a
-forced timeout. The timeout remains BLOCKED/INCONCLUSIVE; probabilistic verdicts
-map to NOT_ASSESSED/INCONCLUSIVE. Process-peak RSS is a whole-process metric,
+forced timeout. The timeout remains BLOCKED/INCONCLUSIVE; probabilistic,
+per-state-phase, unknown and no-information verdicts map to non-PASS inconclusive
+outcomes. Process-peak RSS is a whole-process metric,
 not a per-check allocation, and the recorded memory limit is not yet enforced.
 
 This is evidence for supported structured instances above 25 qubits, not general

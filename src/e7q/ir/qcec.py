@@ -14,17 +14,36 @@ from typing import Any, Callable
 
 from .canonical import digest
 from .envelope import build_artifact
-from .unitary import CRITERION, GLOBAL_PHASE_CRITERION
 
 BACKEND_ID = "mqt.qcec"
 SUPPORTED_BACKEND_VERSION = "3.9.0"
+NUMERICAL_TOLERANCE = 2.2737367544323206e-13
+FIDELITY_THRESHOLD = 1e-8
+NUMERICAL_EXACT_CRITERION = {
+    "id": "e7q.ir.qcec-numerical-unitary",
+    "version": "1",
+    "options": {
+        "numerical_tolerance": NUMERICAL_TOLERANCE,
+        "fidelity_threshold": FIDELITY_THRESHOLD,
+        "global_phase": False,
+    },
+}
+NUMERICAL_GLOBAL_PHASE_CRITERION = {
+    "id": "e7q.ir.qcec-numerical-global-phase",
+    "version": "1",
+    "options": {
+        "numerical_tolerance": NUMERICAL_TOLERANCE,
+        "fidelity_threshold": FIDELITY_THRESHOLD,
+        "global_phase": True,
+    },
+}
 SUPPORTED_CRITERIA = {
-    CRITERION["id"]: CRITERION,
-    GLOBAL_PHASE_CRITERION["id"]: GLOBAL_PHASE_CRITERION,
+    NUMERICAL_EXACT_CRITERION["id"]: NUMERICAL_EXACT_CRITERION,
+    NUMERICAL_GLOBAL_PHASE_CRITERION["id"]: NUMERICAL_GLOBAL_PHASE_CRITERION,
 }
 LIMITATIONS = (
     "The optional backend is not default E7Q-IR conformance truth.",
-    "MQT QCEC 3.9.0 uses configurable numerical tolerances; this is not an exact algebraic check.",
+    "MQT QCEC 3.9.0 uses recorded numerical tolerances; its criteria are separate from exact algebraic E7Q-IR criteria.",
     "A probabilistic passing result is inconclusive for universal circuit equivalence.",
     "Timeout, no-information, backend error and unsupported input are not non-equivalence.",
     "No provider authenticity, hardware execution or physical fidelity is established.",
@@ -40,7 +59,7 @@ def map_verdict(raw_verdict: str, criterion_id: str, *, timed_out: bool = False)
     if raw_verdict == "equivalent_up_to_global_phase":
         return (
             ("PASS", "ESTABLISHED")
-            if criterion_id == GLOBAL_PHASE_CRITERION["id"]
+            if criterion_id == NUMERICAL_GLOBAL_PHASE_CRITERION["id"]
             else ("FAIL", "REFUTED")
         )
     if raw_verdict == "not_equivalent":
@@ -125,8 +144,8 @@ def evaluate(
         "max_simulations": max_simulations,
         "seed": seed,
         "memory_limit_bytes": memory_limit_bytes,
-        "numerical_tolerance": 2.2737367544323206e-13,
-        "fidelity_threshold": 1e-8,
+        "numerical_tolerance": NUMERICAL_TOLERANCE,
+        "fidelity_threshold": FIDELITY_THRESHOLD,
     }
     backend = {
         "id": BACKEND_ID,
@@ -148,6 +167,8 @@ def evaluate(
             parallel=False,
             max_sims=max_simulations,
             seed=seed,
+            numerical_tolerance=NUMERICAL_TOLERANCE,
+            fidelity_threshold=FIDELITY_THRESHOLD,
         )
         raw_result = dict(result.json())
         raw_verdict = str(raw_result.get("equivalence", "no_information"))

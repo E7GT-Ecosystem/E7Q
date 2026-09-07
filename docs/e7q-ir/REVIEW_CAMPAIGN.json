@@ -353,14 +353,15 @@
     },
     {
       "id": "ir_qcec",
-      "scope": "optional MQT QCEC adapter \u2014 explicit exact/global-phase criteria, conservative verdict mapping, resource metadata and bounded 25+ qubit corpus",
+      "scope": "optional MQT QCEC adapter \u2014 explicit tolerance-bearing numerical exact/global-phase criteria, conservative verdict mapping, resource metadata and bounded 25+ qubit corpus",
       "test_file": "tests/test_ir_qcec.py",
       "implementation": [
         "src/e7q/ir/qcec.py",
         "scripts/benchmark_qcec.py",
-        "benchmarks/e7q-ir/qcec-3.9.0-results.json"
+        "benchmarks/e7q-ir/qcec-3.9.0-results.json",
+        "benchmarks/e7q-ir/history/qcec-3.9.0-results-a19e9108-invalid-exact-criteria.json"
       ],
-      "limits": "Optional tolerance-based backend evaluation only; not default F2 truth, exact algebraic proof, arbitrary-circuit scalability, hardware authentication or Phase 2 completion.",
+      "limits": "Optional tolerance-based backend evaluation only. Historical report a19e9108 is retained but invalid for exact-algebraic claims; replacement evidence uses dedicated numerical criteria. No default F2, arbitrary-circuit scalability, hardware authentication or Phase 2 completion claim.",
       "next_gate": "E3 backend isolation/PyZX comparison and complete E5 4/8/12/16/20/25+ reproducibility ladder",
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },

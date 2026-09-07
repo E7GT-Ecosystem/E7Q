@@ -10,8 +10,11 @@ from pathlib import Path
 import tempfile
 
 from e7q.ir.canonical import canonical_bytes, digest
-from e7q.ir.qcec import evaluate
-from e7q.ir.unitary import CRITERION, GLOBAL_PHASE_CRITERION
+from e7q.ir.qcec import (
+    NUMERICAL_EXACT_CRITERION,
+    NUMERICAL_GLOBAL_PHASE_CRITERION,
+    evaluate,
+)
 
 
 def qasm(n: int, gates: list[str]) -> str:
@@ -73,7 +76,7 @@ def run(created_at: str) -> dict:
             left.write_text(left_text)
             right.write_text(right_text)
             assessments = []
-            for criterion in (CRITERION, GLOBAL_PHASE_CRITERION):
+            for criterion in (NUMERICAL_EXACT_CRITERION, NUMERICAL_GLOBAL_PHASE_CRITERION):
                 assessments.append(evaluate(
                     left, right, criterion=criterion,
                     source_refs=(source_ref(left_text), source_ref(right_text)),
