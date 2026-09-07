@@ -297,11 +297,21 @@ Baseline: `4210bd595566af0f6458cac2c4870a6d98a3410e`.
 The first optional-backend inventory pins MIT-licensed MQT QCEC 3.9.0 and records
 its raw `equivalent`, `equivalent_up_to_global_phase`, `not_equivalent`,
 probabilistic and `no_information` meanings without making it default F2 truth.
-Callers select the E7Q-IR exact or global-phase criterion explicitly; backend
-selection cannot weaken that criterion. Unsupported input, backend errors,
-probabilistic outcomes and timeout remain distinct from inequality.
+Callers select `e7q.ir.qcec-numerical-unitary` or
+`e7q.ir.qcec-numerical-global-phase` version 1 explicitly. Both criteria retain
+the configured numerical and fidelity tolerances. The adapter rejects E7Q-IR's exact-algebraic
+signed-permutation criteria, so backend selection cannot weaken them.
+Unsupported input, backend errors, probabilistic/per-state-phase/unknown outcomes
+and timeout remain distinct from inequality and cannot become PASS.
 
-The seven-case 26/32-qubit corpus records gate set, depth, gate count, backend and
+Historical report `sha256:a19e91087e60359a57257e20ba0b171c70d74a40126a58bbb78eb9dd5218fece`
+is explicitly invalid for its exact-algebraic claims because it labelled numerical
+results with signed-permutation criterion identifiers. Its observations remain
+preserved in the history record, while replacement report
+`sha256:814c7d874c2b8856c6d28f392afb57ef6c8ff8b4e8b8b5755f40b32232de3b82`
+uses only the numerical criterion identifiers.
+
+The seven-case 26/32-qubit replacement corpus records gate set, depth, gate count, backend and
 dependency versions, configuration, numerical tolerances, runtime, process-peak
 RSS and every non-PASS outcome. It produced six PASS, six FAIL and two
 BLOCKED/INCONCLUSIVE criterion runs. This process-peak metric is cumulative and
