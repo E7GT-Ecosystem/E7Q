@@ -216,3 +216,67 @@ def test_rehashed_malformed_fields_fail_consistency(tmp_path, filename, field, v
     assert result['judgments']['internal_consistency']['status'] == 'FAIL'
     assert result['status'] == 'FAIL'
     assert result == verify_external_bundle(package)
+
+
+def test_directory_entry_budget_counts_empty_directories(tmp_path, monkeypatch):
+    import e7q.external_bundles as bundles
+    for name in ('a', 'b', 'c'):
+        (tmp_path / name).mkdir()
+    monkeypatch.setattr(bundles, '_MAX_DIRECTORY_ENTRIES', 2, raising=False)
+    with pytest.raises(E7QError, match='directory entry limit'):
+        verify_external_bundle(tmp_path)
+
+
+def test_directory_depth_is_bounded(tmp_path, monkeypatch):
+    import e7q.external_bundles as bundles
+    (tmp_path / 'a/b/c').mkdir(parents=True)
+    monkeypatch.setattr(bundles, '_MAX_DIRECTORY_DEPTH', 2, raising=False)
+    with pytest.raises(E7QError, match='directory depth limit'):
+        verify_external_bundle(tmp_path)
+
+
+def test_special_directory_member_rejected_without_opening(tmp_path):
+    import os
+    if not hasattr(os, 'mkfifo'):
+        pytest.skip('FIFO creation unavailable')
+    os.mkfifo(tmp_path / 'pipe')
+    with pytest.raises(E7QError, match='non-regular'):
+        verify_external_bundle(tmp_path)
+
+
+@pytest.mark.parametrize('limit,value', [('_MAX_FILE_BYTES', 1), ('_MAX_TOTAL_BYTES', 3), ('_MAX_FILES', 1)])
+def test_directory_member_budgets(tmp_path, monkeypatch, limit, value):
+    import e7q.external_bundles as bundles
+    (tmp_path / 'a').write_bytes(b'{}')
+    (tmp_path / 'b').write_bytes(b'{}')
+    monkeypatch.setattr(bundles, limit, value)
+    with pytest.raises(E7QError, match='large|safety limits'):
+        verify_external_bundle(tmp_path)
+
+
+def test_directory_growth_cannot_bypass_read_budget(tmp_path, monkeypatch):
+    import e7q.external_bundles as bundles
+    target = tmp_path / 'growing'
+    target.write_bytes(b'x')
+    real_fdopen = bundles.os.fdopen
+    reads = []
+
+    class GrowingStream:
+        def __init__(self, stream):
+            self.stream = stream
+        def __enter__(self):
+            return self
+        def __exit__(self, *args):
+            self.stream.close()
+        def fileno(self):
+            return self.stream.fileno()
+        def read(self, size):
+            reads.append(size)
+            target.write_bytes(b'x' * 20)
+            return self.stream.read(size)
+
+    monkeypatch.setattr(bundles, '_MAX_FILE_BYTES', 4)
+    monkeypatch.setattr(bundles.os, 'fdopen', lambda *args: GrowingStream(real_fdopen(*args)))
+    with pytest.raises(E7QError, match='too large'):
+        bundles._load_directory(tmp_path)
+    assert reads == [5]

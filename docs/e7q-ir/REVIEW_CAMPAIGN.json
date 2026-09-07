@@ -303,7 +303,7 @@
     },
     {
       "id": "external_bundles",
-      "scope": "Bounded external bundle ingestion: strict JSON, ZIP input/member budgets, canonical paths, duplicate entries, symlink rejection and integrity versus consistency; strict declared integer fields, status types and normalization-collision rejection",
+      "scope": "Bounded external bundle ingestion: strict JSON, ZIP input/member budgets, canonical paths, duplicate entries, symlink rejection and integrity versus consistency; strict declared integer fields, status types and normalization-collision rejection; bounded directory entries/depth/reads and special-file rejection",
       "test_file": "tests/test_external_bundles.py",
       "implementation": [
         "src/e7q/artifacts.py",
@@ -313,7 +313,7 @@
         "src/e7q/temporal.py"
       ],
       "limits": "Offline supplied evidence only; hashes do not authenticate provenance. Full H3 semantic/type and directory-race audit remains pending.",
-      "next_gate": "H2 IR adversarial campaign and remaining H3 shape/ordering checks",
+      "next_gate": "Ordering semantics and remaining ancestor-race analysis",
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {

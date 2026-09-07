@@ -8,6 +8,7 @@ from hashlib import sha256
 import json
 import io
 import math
+import os
 from pathlib import Path, PurePosixPath
 import re
 import stat
@@ -22,6 +23,8 @@ from .temporal import temporal_evidence
 SCHEMA = "e7q.external-evidence-receipt/v1alpha1"
 
 _MAX_ARCHIVE_BYTES = 128 * 1024 * 1024
+_MAX_DIRECTORY_ENTRIES = 1024
+_MAX_DIRECTORY_DEPTH = 32
 _MAX_FILES = 512
 _MAX_FILE_BYTES = 32 * 1024 * 1024
 _MAX_TOTAL_BYTES = 128 * 1024 * 1024
@@ -123,19 +126,50 @@ def _load_directory(path: Path) -> _Source:
         raise E7QError("external bundle directory must not be a symlink")
     members: dict[str, bytes] = {}
     total = 0
-    for candidate in sorted(root.rglob("*")):
-        if candidate.is_symlink():
-            raise E7QError(f"external bundle contains a symlink: {candidate}")
-        if not candidate.is_file():
-            continue
-        name = _member_name(candidate.relative_to(root).as_posix())
-        size = candidate.stat().st_size
-        if size > _MAX_FILE_BYTES:
-            raise E7QError(f"external bundle member is too large: {name}")
-        total += size
-        if len(members) >= _MAX_FILES or total > _MAX_TOTAL_BYTES:
-            raise E7QError("external bundle directory exceeds the safety limits")
-        members[name] = candidate.read_bytes()
+    pending = [(root, 0)]
+    entries = 0
+    try:
+        while pending:
+            directory, depth = pending.pop()
+            with os.scandir(directory) as children:
+                for entry in children:
+                    entries += 1
+                    if entries > _MAX_DIRECTORY_ENTRIES:
+                        raise E7QError("external bundle exceeds the directory entry limit")
+                    candidate = Path(entry.path)
+                    name = _member_name(candidate.relative_to(root).as_posix())
+                    info = entry.stat(follow_symlinks=False)
+                    if stat.S_ISLNK(info.st_mode):
+                        raise E7QError(f"external bundle contains a symlink: {name}")
+                    if stat.S_ISDIR(info.st_mode):
+                        if depth + 1 > _MAX_DIRECTORY_DEPTH:
+                            raise E7QError("external bundle exceeds the directory depth limit")
+                        pending.append((candidate, depth + 1))
+                        continue
+                    if not stat.S_ISREG(info.st_mode):
+                        raise E7QError(f"external bundle contains a non-regular member: {name}")
+                    if len(members) >= _MAX_FILES:
+                        raise E7QError("external bundle directory exceeds the safety limits")
+                    budget = min(_MAX_FILE_BYTES, _MAX_TOTAL_BYTES - total)
+                    if info.st_size > budget:
+                        raise E7QError(f"external bundle member is too large for safety limits: {name}")
+                    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_NONBLOCK", 0)
+                    with os.fdopen(os.open(candidate, flags), "rb") as stream:
+                        opened = os.fstat(stream.fileno())
+                        if not stat.S_ISREG(opened.st_mode) or (
+                            opened.st_dev, opened.st_ino
+                        ) != (info.st_dev, info.st_ino):
+                            raise E7QError(f"external bundle member changed during inspection: {name}")
+                        content = stream.read(budget + 1)
+                        after = os.fstat(stream.fileno())
+                    if len(content) > budget:
+                        raise E7QError(f"external bundle member is too large for safety limits: {name}")
+                    if (opened.st_size, opened.st_mtime_ns) != (after.st_size, after.st_mtime_ns) or len(content) != after.st_size:
+                        raise E7QError(f"external bundle member changed during inspection: {name}")
+                    members[name] = content
+                    total += len(content)
+    except OSError as exc:
+        raise E7QError(f"cannot inspect external bundle directory: {exc}") from exc
     canonical = sha256()
     for name, content in sorted(members.items()):
         canonical.update(name.encode("utf-8"))
