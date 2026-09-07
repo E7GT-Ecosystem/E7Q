@@ -496,6 +496,17 @@
       "limits": "No native parsing/execution or legacy semantic validation; F2 remains unassessed.",
       "next_gate": "Phase 2 typed native/compiler/execution adapters",
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "ir_native",
+      "scope": "Bounded static native execution into linked evidence artifacts",
+      "test_file": "tests/test_ir_native.py",
+      "implementation": [
+        "src/e7q/ir/native.py"
+      ],
+      "limits": "Local reference simulation; no native F2 semantic validator, compilation or hardware assurance.",
+      "next_gate": "Phase 2 compiler and external/native criterion comparison",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     }
   ],
   "external_report_groups": [

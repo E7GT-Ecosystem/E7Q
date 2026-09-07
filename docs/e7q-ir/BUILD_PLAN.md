@@ -899,3 +899,15 @@ This increment establishes structural preservation, not semantic validation:
 F2 and typed native/compiler/execution mapping remain pending. H5 and Phase 2
 are still open. Focused acceptance covers recovery, malformed/bounded input,
 deterministic graphs, failed verdict retention and refusal to upgrade assurance.
+
+
+## Phase 2 native execution checkpoint (2026-09-07)
+
+Baseline: `e223603a634762c429dcc962f47e33fa26fa4a95`.
+The [native execution adapter](NATIVE_EXECUTION.md) now constructs source, intent,
+representation, execution, observation and assessment artifacts for a bounded
+static statevector program. It retains original source, complete native proof
+and verifier result, including FAIL, with explicit count ordering and projection
+loss. Native APIs and formats are unchanged. F0/F1 structural checks do not confer
+F2 semantics. Phase 2/H5 remain open pending compilation/typed legacy mapping and
+criterion-bound native/external comparison.
