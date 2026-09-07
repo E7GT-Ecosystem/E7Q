@@ -1,13 +1,19 @@
 # E7Q-IR Build Plan and AI Engineering Handoff
 
-**Plan version:** 0.4
+**Plan version:** 0.5
 
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.
 
 **Current inspected baseline (2026-09-07):** `main` at
-`ea0eeec3e379888bb383ebd4afd72887f5efbcf6` (PR #50).
-That merge added the bounded native-execution adapter. This documentation
-revision changes no executable capability or conformance meaning.
+`4210bd595566af0f6458cac2c4870a6d98a3410e` (PR #51).
+That merge added the dual-relation and scalable-equivalence direction.
+
+**Revision 0.5:** records the first bounded E1/E3/E5 evaluation increment:
+separate exact/global-phase relation results for one pair, a pinned optional
+MQT QCEC 3.9.0 assessment adapter, and a seven-case 26/32-qubit structured
+corpus. The adapter records raw verdicts, criterion, configuration, numerical
+method, runtime, process-peak memory and resource outcomes. It is not default
+F2 conformance truth, and the full E5 ladder remains incomplete.
 
 **Revision 0.4:** adds the
 [dual-relation and scalable circuit-equivalence track](EQUIVALENCE_DIRECTION.md).
@@ -30,10 +36,11 @@ Each retains its own domain and limits. General angles, complex-gate IR criteria
 noisy-channel IR criteria and general Phase 1C coverage remain incomplete.
 
 **Next package:** complete the open H2/H3 hardening and Phase 2 typed
-compiler/execution mapping. The equivalence track begins with E1/E2 as bounded
-criterion-contract work alongside criterion-bound native/external comparison.
-Optional backends and scalability claims remain gated by E3-E5 and may not
-bypass the existing hardening, compatibility, or conformance requirements.
+compiler/execution mapping, including Proof-of-Path conversion, typed legacy
+receipt mapping and criterion-bound native/external comparison. Extend the
+benchmark ladder below 25 qubits, evaluate PyZX separately, and harden optional
+backend isolation. Phase 2, E3 and E5 remain open; this bounded QCEC evaluation
+must not bypass compatibility or conformance requirements.
 
 **Historical baseline:** `b7dc357` had 181 passing tests and F0/F1 only.
 PRs #35–#37 merged framework/identity/exact signed-permutation work at `83b273a4`;
@@ -951,6 +958,31 @@ Core dependency. E4/E5 cannot upgrade a claim beyond their named criteria,
 corpus, versions and observed resource envelope. Existing criterion identifiers,
 F0/F1 meanings, reports and native APIs remain compatible; no earlier PASS is
 reinterpreted.
+
+### Bounded QCEC evaluation increment (2026-09-07)
+
+Baseline: `4210bd595566af0f6458cac2c4870a6d98a3410e`.
+The optional adapter pins `mqt.qcec==3.9.0` (MIT) and keeps backend choice
+separate from the exact and global-phase criterion objects. Assessment artifacts
+retain backend/dependency versions, configuration, numerical tolerances, raw
+verdict/checker data, assumptions, runtime, process-peak RSS, declared memory
+limit and outcome. The method is explicitly tolerance-based numerical, never
+reported as exact algebraic verification.
+
+The published structured corpus at
+`benchmarks/e7q-ir/qcec-3.9.0-results.json` contains seven 26/32-qubit cases and
+14 criterion runs: six PASS, six FAIL and two BLOCKED. It covers exact-equivalent
+SWAP rewrites, global-phase-only Pauli pairs, intentional gate errors and a
+forced timeout. The timeout remains BLOCKED/INCONCLUSIVE; probabilistic verdicts
+map to NOT_ASSESSED/INCONCLUSIVE. Process-peak RSS is a whole-process metric,
+not a per-check allocation, and the recorded memory limit is not yet enforced.
+
+This is evidence for supported structured instances above 25 qubits, not general
+25-qubit tractability. E3 remains open pending broader backend/domain isolation
+and PyZX evaluation. E5 remains open pending the 4/8/12/16/20 rungs, unsupported
+and dynamic/noisy fixtures, repeated resource measurements and reproducibility
+review. Phase 2/H5 remain open pending Proof-of-Path conversion, typed legacy
+receipt mapping and criterion-bound native/external workflow comparison.
 
 Public progress for this track must identify the accountable project
 contributor, disclose current limits, and cite exact commits, tests, skipped or

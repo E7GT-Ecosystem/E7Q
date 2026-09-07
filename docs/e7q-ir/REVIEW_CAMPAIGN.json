@@ -1,6 +1,6 @@
 {
   "id": "e7q-local-review-v1",
-  "baseline": "f26941ae337ae79ba71eeabe78a49ac2a67cfc56",
+  "baseline": "4210bd595566af0f6458cac2c4870a6d98a3410e",
   "capabilities": [
     {
       "id": "artifacts",
@@ -330,6 +330,41 @@
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {
+      "id": "ir_legacy",
+      "scope": "Opaque native source and legacy JSON preservation with byte recovery; no semantic upgrade",
+      "test_file": "tests/test_ir_legacy.py",
+      "implementation": [
+        "src/e7q/ir/legacy.py"
+      ],
+      "limits": "No native parsing/execution or legacy semantic validation; F2 remains unassessed.",
+      "next_gate": "Phase 2 typed native/compiler/execution adapters",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "ir_native",
+      "scope": "Bounded static native execution into linked evidence artifacts",
+      "test_file": "tests/test_ir_native.py",
+      "implementation": [
+        "src/e7q/ir/native.py"
+      ],
+      "limits": "Local reference simulation; no native F2 semantic validator, compilation or hardware assurance.",
+      "next_gate": "Phase 2 compiler and external/native criterion comparison",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "ir_qcec",
+      "scope": "optional MQT QCEC adapter \u2014 explicit exact/global-phase criteria, conservative verdict mapping, resource metadata and bounded 25+ qubit corpus",
+      "test_file": "tests/test_ir_qcec.py",
+      "implementation": [
+        "src/e7q/ir/qcec.py",
+        "scripts/benchmark_qcec.py",
+        "benchmarks/e7q-ir/qcec-3.9.0-results.json"
+      ],
+      "limits": "Optional tolerance-based backend evaluation only; not default F2 truth, exact algebraic proof, arbitrary-circuit scalability, hardware authentication or Phase 2 completion.",
+      "next_gate": "E3 backend isolation/PyZX comparison and complete E5 4/8/12/16/20/25+ reproducibility ladder",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
       "id": "language",
       "scope": "language \u2014 only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_language.py",
@@ -484,28 +519,6 @@
       ],
       "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
       "next_gate": "H4/H7/H8 domain and independent-coverage review",
-      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
-    },
-    {
-      "id": "ir_legacy",
-      "scope": "Opaque native source and legacy JSON preservation with byte recovery; no semantic upgrade",
-      "test_file": "tests/test_ir_legacy.py",
-      "implementation": [
-        "src/e7q/ir/legacy.py"
-      ],
-      "limits": "No native parsing/execution or legacy semantic validation; F2 remains unassessed.",
-      "next_gate": "Phase 2 typed native/compiler/execution adapters",
-      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
-    },
-    {
-      "id": "ir_native",
-      "scope": "Bounded static native execution into linked evidence artifacts",
-      "test_file": "tests/test_ir_native.py",
-      "implementation": [
-        "src/e7q/ir/native.py"
-      ],
-      "limits": "Local reference simulation; no native F2 semantic validator, compilation or hardware assurance.",
-      "next_gate": "Phase 2 compiler and external/native criterion comparison",
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     }
   ],

@@ -7,7 +7,11 @@ import numpy as np
 from e7q.ir.envelope import build_artifact
 from e7q.ir.graph import build_graph, build_relation
 from e7q.ir.conformance import validate_graph
-from e7q.ir.unitary import CRITERION, PRESERVES, LOSSES, ASSUMPTIONS, action
+from e7q.ir.unitary import (
+    CRITERION, PRESERVES, LOSSES,
+    GLOBAL_PHASE_CRITERION, GLOBAL_PHASE_PRESERVES, GLOBAL_PHASE_LOSSES,
+    ASSUMPTIONS, action,
+)
 from e7q.openqasm2 import import_openqasm2
 
 
@@ -85,3 +89,49 @@ def test_against_independent_dense_gate_matrices():
         for col, (row, sign) in enumerate(columns):
             actual[row, col] = sign
         assert np.array_equal(actual, expected)
+
+
+def test_dual_criterion_reporting_preserves_exact_and_global_phase_outcomes():
+    base = graph('x q[0]; z q[0];', 'z q[0]; x q[0];')
+    exact_relation = build_relation(
+        'transforms',
+        base['artifacts'][0]['artifact_id'],
+        base['artifacts'][1]['artifact_id'],
+        criterion=dict(CRITERION),
+        preserves=list(PRESERVES),
+        loses=list(LOSSES),
+        assumptions=list(ASSUMPTIONS),
+        validation_status='validated',
+    )
+    global_phase_relation = build_relation(
+        'transforms',
+        base['artifacts'][0]['artifact_id'],
+        base['artifacts'][1]['artifact_id'],
+        criterion=dict(GLOBAL_PHASE_CRITERION),
+        preserves=list(GLOBAL_PHASE_PRESERVES),
+        loses=list(GLOBAL_PHASE_LOSSES),
+        assumptions=list(ASSUMPTIONS),
+        validation_status='validated',
+    )
+    graph_value = build_graph(
+        base['artifacts'],
+        [exact_relation, global_phase_relation],
+        name='dual exact/global-phase criterion reporting',
+    )
+    report = validate_graph(graph_value, level='F2')
+    relation_results = [
+        item
+        for item in report['semantic_results']
+        if item['subject']['kind'] == 'relation' and item['subject']['id'] in {
+            exact_relation['relation_id'], global_phase_relation['relation_id']
+        }
+    ]
+    statuses = {
+        item['criterion']['id']: item['status']
+        for item in relation_results
+        if item.get('criterion')
+    }
+    assert statuses == {
+        CRITERION['id']: 'FAIL',
+        GLOBAL_PHASE_CRITERION['id']: 'PASS',
+    }
