@@ -105,7 +105,7 @@
     },
     {
       "id": "deterministic_assessment",
-      "scope": "deterministic assessment \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "deterministic assessment \u2014 only the behaviours asserted in the linked test cases; receipt/reference ordering conflict rejection and non-palindromic normalization",
       "test_file": "tests/test_deterministic_assessment.py",
       "implementation": [
         "src/e7q/artifacts.py",
@@ -303,7 +303,7 @@
     },
     {
       "id": "external_bundles",
-      "scope": "Bounded external bundle ingestion: strict JSON, ZIP input/member budgets, canonical paths, duplicate entries, symlink rejection and integrity versus consistency; strict declared integer fields, status types and normalization-collision rejection; bounded directory entries/depth/reads and special-file rejection",
+      "scope": "Bounded external bundle ingestion: strict JSON, ZIP input/member budgets, canonical paths, duplicate entries, symlink rejection and integrity versus consistency; strict declared integer fields, status types and normalization-collision rejection; bounded directory entries/depth/reads and special-file rejection; explicit count-order retention with unknown legacy ordering",
       "test_file": "tests/test_external_bundles.py",
       "implementation": [
         "src/e7q/artifacts.py",

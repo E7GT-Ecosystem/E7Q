@@ -94,3 +94,28 @@ def test_deterministic_assessment_cli(tmp_path):
     report = json.loads(output.read_text())
     assert status == 0
     assert report["schema"] == "e7q.deterministic-assessment/v1alpha1"
+
+
+def test_receipt_order_conflict_cannot_be_overridden_by_reference():
+    receipt, reference = _fixture()
+    receipt['circuits'][0]['counts']['label_order'] = 'clbit-ascending'
+    with pytest.raises(E7QError, match='label order conflicts'):
+        assess_deterministic_reference(receipt, reference)
+
+
+def test_explicit_matching_order_preserves_nonpalindromic_results():
+    receipt, reference = _fixture()
+    before = assess_deterministic_reference(receipt, reference)
+    for circuit in receipt['circuits']:
+        circuit['counts']['label_order'] = 'clbit-descending'
+    after = assess_deterministic_reference(receipt, reference)
+    assert after['cases'] == before['cases']
+    assert after['status'] == 'PASS'
+
+
+@pytest.mark.parametrize('order', [[], {}, 'qiskit-default'])
+def test_malformed_receipt_order_rejected(order):
+    receipt, reference = _fixture()
+    receipt['circuits'][0]['counts']['label_order'] = order
+    with pytest.raises(E7QError, match='label order'):
+        assess_deterministic_reference(receipt, reference)

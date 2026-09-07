@@ -862,3 +862,28 @@ Canonical member digest ordering is unchanged and valid fixtures retain their
 receipt meanings. Traversal beyond the new limits intentionally fails admission.
 Next: explicit ordering semantics and remaining IR coverage; no complete security
 or provider-authentication claim is added.
+
+## H3 count-order preservation and consumer check (2026-09-07)
+
+Baseline: `fce025491e685914958520b8c88bb2510be308df`.
+The external-bundle producer accepts optional `raw_counts.json.label_order` with
+`clbit-ascending` or `clbit-descending`. These describe left-to-right classical
+bit index order in the admitted single-register profile. Values are retained
+unchanged; the receipt adds `circuits[].counts.label_order`. Missing input is
+recorded as null/unknown with a warning. Explicit invalid/null input fails.
+A supplied declaration is not independent authentication of its convention.
+
+Affected consumer: deterministic-reference assessment now rejects a receipt order
+that conflicts with the reference, or an invalid non-null receipt order. Old
+receipts lacking the field, and new receipts marked unknown, still require the
+reference's explicit convention; this is a user-supplied assumption, not an
+inferred or verified fact. Matching declarations use the existing canonicalization.
+Future native/IR adapters must preserve this distinction and must not promote an
+unknown order into F2-validated ordering without separate support.
+
+This additive experimental receipt field preserves source digests, raw labels,
+existing required fields and legacy readability. Rehashed manifests, unsupported
+orders, unknown legacy order, conflict rejection and non-palindromic downstream
+fixtures cover the compatibility gate. Ten new cases failed before implementation.
+Next: Phase 2 native/legacy adapter contract, with remaining H2/H3 gaps tracked;
+no full hardening completion or hardware provenance claim is made.

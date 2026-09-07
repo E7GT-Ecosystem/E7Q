@@ -280,3 +280,30 @@ def test_directory_growth_cannot_bypass_read_budget(tmp_path, monkeypatch):
     with pytest.raises(E7QError, match='too large'):
         bundles._load_directory(tmp_path)
     assert reads == [5]
+
+
+@pytest.mark.parametrize('order', ['clbit-ascending', 'clbit-descending', 'unknown', [], None])
+def test_bundle_preserves_or_rejects_declared_count_order(tmp_path, order):
+    from hashlib import sha256
+    package = tmp_path / 'fixture'
+    shutil.copytree(EXAMPLE, package)
+    target = package / 'synthetic_bell/raw_counts.json'
+    original = sha256(target.read_bytes()).hexdigest()
+    payload = json.loads(target.read_bytes())
+    payload['label_order'] = order
+    target.write_text(json.dumps(payload))
+    manifest = package / 'synthetic_bell/MANIFEST.md'
+    manifest.write_text(manifest.read_text().replace(original, sha256(target.read_bytes()).hexdigest()))
+    receipt = verify_external_bundle(package, include_counts=True)
+    valid = isinstance(order, str) and order in {'clbit-ascending', 'clbit-descending'}
+    assert receipt['status'] == ('PASS' if valid else 'FAIL')
+    if valid:
+        assert receipt['circuits'][0]['counts']['label_order'] == order
+        assert receipt['circuits'][0]['counts']['values'] == payload['counts']
+
+
+def test_missing_count_order_is_explicitly_unknown():
+    receipt = verify_external_bundle(EXAMPLE)
+    assert receipt['status'] == 'PASS'
+    assert receipt['circuits'][0]['counts']['label_order'] is None
+    assert 'counts:label-order-declared' in receipt['circuits'][0]['warnings']
