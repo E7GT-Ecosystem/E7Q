@@ -485,6 +485,17 @@
       "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
       "next_gate": "H4/H7/H8 domain and independent-coverage review",
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "ir_legacy",
+      "scope": "Opaque native source and legacy JSON preservation with byte recovery; no semantic upgrade",
+      "test_file": "tests/test_ir_legacy.py",
+      "implementation": [
+        "src/e7q/ir/legacy.py"
+      ],
+      "limits": "No native parsing/execution or legacy semantic validation; F2 remains unassessed.",
+      "next_gate": "Phase 2 typed native/compiler/execution adapters",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     }
   ],
   "external_report_groups": [

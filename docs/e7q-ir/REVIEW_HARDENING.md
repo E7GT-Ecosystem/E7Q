@@ -266,3 +266,15 @@ orders, unknown legacy order, conflict rejection and non-palindromic downstream
 fixtures cover the compatibility gate. Ten new cases failed before implementation.
 Next: Phase 2 native/legacy adapter contract, with remaining H2/H3 gaps tracked;
 no full hardening completion or hardware provenance claim is made.
+
+
+## Phase 2 preservation checkpoint (2026-09-07)
+
+Baseline: `5c163aa3d72d0efc2724252b19696c8080aad79f`.
+The [native/legacy preservation adapter](LEGACY_PRESERVATION.md) retains original
+UTF-8 source bytes and exposes supported legacy JSON in a linked representation.
+Original verdicts, IDs, proof, count order and limits remain supplied data.
+This increment establishes structural preservation, not semantic validation:
+F2 and typed native/compiler/execution mapping remain pending. H5 and Phase 2
+are still open. Focused acceptance covers recovery, malformed/bounded input,
+deterministic graphs, failed verdict retention and refusal to upgrade assurance.

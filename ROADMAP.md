@@ -369,3 +369,6 @@ See [H1–H10 acceptance gates](docs/e7q-ir/REVIEW_HARDENING.md).
 - [x] Exact noiseless signed-permutation unitary-channel comparison, including off-diagonal coherence; noisy channels remain pending.
 
 - [x] Exact real H-unitary criterion and original H/u2(0,pi) F2 acceptance fixture (four-qubit, 64-gate bounds).
+
+- [x] Phase 2 first preservation adapter: original native/legacy source recovery and explicit assurance limits. See [contract](docs/e7q-ir/LEGACY_PRESERVATION.md).
+- [ ] Phase 2 typed native intent/compiler/execution adapters and criterion-bound native/external comparison.
