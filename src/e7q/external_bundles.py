@@ -407,10 +407,11 @@ def _validate_record(
         _check(checks, "metadata:backend", bool(backend))
         _check(checks, "metadata:shots", shots is not None and shots > 0)
         status = metadata.get("status")
+        _check(checks, "metadata:status-type", isinstance(status, str))
         _check(
             checks,
             "metadata:terminal-status",
-            status in {"DONE", "COMPLETED", "SUCCESS"},
+            isinstance(status, str) and status in {"DONE", "COMPLETED", "SUCCESS"},
             severity="warning",
             detail=f"reported status: {status!r}",
         )
@@ -457,12 +458,12 @@ def _validate_record(
             _check(
                 checks,
                 "counts:declared-total",
-                counts_value.get("total_shots") == count_total,
+                type(counts_value.get("total_shots")) is int and counts_value["total_shots"] == count_total,
             )
             _check(
                 checks,
                 "counts:declared-unique",
-                counts_value.get("num_unique_bitstrings") == len(normalized_counts),
+                type(counts_value.get("num_unique_bitstrings")) is int and counts_value["num_unique_bitstrings"] == len(normalized_counts),
             )
 
     qasm: dict[str, object] | None = None
@@ -493,7 +494,8 @@ def _validate_record(
         _check(
             checks,
             "qasm:device-width",
-            qasm["qreg_width"] == metadata.get("num_qubits_device"),
+            type(metadata.get("num_qubits_device")) is int
+            and qasm["qreg_width"] == metadata["num_qubits_device"],
         )
         _check(
             checks,
@@ -504,6 +506,9 @@ def _validate_record(
         normalized_ops = (
             {str(name).lower(): value for name, value in declared_ops.items()}
             if isinstance(declared_ops, dict)
+            and all(isinstance(name, str) and type(value) is int and value >= 0
+                    for name, value in declared_ops.items())
+            and len({name.lower() for name in declared_ops}) == len(declared_ops)
             else None
         )
         _check(checks, "qasm:operation-counts", qasm["operations"] == normalized_ops)
@@ -546,7 +551,8 @@ def _validate_record(
                 checks,
                 "mapping:outcome-width",
                 outcome_width is not None
-                and mapping.get("num_clbits") == outcome_width == len(normalized_map),
+                and type(mapping.get("num_clbits")) is int
+                and mapping["num_clbits"] == outcome_width == len(normalized_map),
             )
             if qasm is not None:
                 _check(checks, "mapping:qasm-measurements", qasm["measurements"] == normalized_map)
@@ -569,7 +575,8 @@ def _validate_record(
         _check(
             checks,
             "mapping:declared-active-count",
-            valid_active and mapping.get("num_active_qubits") == len(active),
+            valid_active and type(mapping.get("num_active_qubits")) is int
+            and mapping["num_active_qubits"] == len(active),
         )
         if valid_active and qasm is not None:
             _check(checks, "mapping:qasm-active-qubits", sorted(active) == qasm["active_qubits"])
@@ -614,7 +621,7 @@ def _validate_record(
 
     if ir is not None:
         gates = ir.get("gates")
-        valid_ir = isinstance(gates, list) and ir.get("num_gates") == len(gates)
+        valid_ir = isinstance(gates, list) and type(ir.get("num_gates")) is int and ir["num_gates"] == len(gates)
         _check(checks, "ir:declared-gate-count", valid_ir)
         explicit_destinations = False
         if isinstance(gates, list):
