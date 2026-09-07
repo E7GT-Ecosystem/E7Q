@@ -2,7 +2,7 @@
 
 ## E7Q-IR v0.1 — Evidence-native IR foundation
 
-The authoritative [build plan](docs/e7q-ir/BUILD_PLAN.md) v0.3 includes
+The authoritative [build plan](docs/e7q-ir/BUILD_PLAN.md) v0.4 includes
 [research-backed extensions](docs/e7q-ir/RESEARCH_FOUNDATIONS.md) under the
 E7G-T extension/projection contract. Added packages are planned, not completed.
 
@@ -22,7 +22,17 @@ E7G-T extension/projection contract. Added packages are planned, not completed.
 - [ ] F3 provider authentication and signed attestations;
 - [ ] F4 declared replication conformance.
 - [x] bounded exact signed-permutation unitary-prefix criterion;
-- [ ] bounded QCEC/PyZX criteria and pinned external conformance corpus;
+- [ ] [dual-relation request/report contract](docs/e7q-ir/EQUIVALENCE_DIRECTION.md)
+  with exact and global-phase outcomes kept separate and the required relation
+  selected by the caller;
+- [ ] bounded real-H global-phase criterion with paired exact/phase fixtures
+  under the existing four-qubit and 64-gate reference-oracle limits;
+- [ ] optional pinned QCEC/PyZX backends and an external conformance corpus,
+  preserving inconclusive, unsupported, blocked, and resource-limit outcomes;
+- [ ] structured equivalence benchmark ladder through 25+ qubits with published
+  runtime/resource evidence and no arbitrary-circuit scalability claim;
+- [ ] compositional compiler-transformation evidence with named rules and
+  inspectable preservation/loss;
 - [x] Phase 1C UTF-8 byte identity and parsed structural identity with F2 fixtures;
 - [ ] typed result adapters, PROV mapping and hybrid trace capture;
 - [ ] benchmark and pyGSTi characterization evidence adapters;
