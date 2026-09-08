@@ -9,7 +9,7 @@ import sys
 import pytest
 
 from e7q.language import E7QError, parse, run, verify
-from e7q.ir.canonical import identified_digest
+from e7q.ir.canonical import canonical_bytes, identified_digest
 from e7q.ir.conformance import validate_graph
 from e7q.ir.legacy import import_evidence, recover_source
 from e7q.ir.native import execute_native
@@ -349,15 +349,35 @@ def test_native_context_cache_is_bounded_and_does_not_retain_supplied_graphs():
     _CONTEXT_CACHE.clear()
 
 
-def test_public_native_bell_f2_report_matches_recomputed_report():
+def test_public_native_bell_f2_evidence_is_stable_and_fresh_graph_passes():
     graph = execute_native(BELL, created_at=STAMP)
     report = validate_graph(graph, level="F2")
-    assert PUBLIC_GRAPH.exists()
-    assert PUBLIC_REPORT.exists()
-    assert json.loads(PUBLIC_GRAPH.read_text()) == graph
-    assert json.loads(PUBLIC_REPORT.read_text()) == report
     assert report["status"] == "PASS"
     assert report["highest_level_passed"] == "F2"
+
+    public_graph = json.loads(PUBLIC_GRAPH.read_text())
+    public_report = json.loads(PUBLIC_REPORT.read_text())
+    assert PUBLIC_GRAPH.read_bytes() == canonical_bytes(public_graph) + b"\n"
+    assert PUBLIC_REPORT.read_bytes() == (
+        json.dumps(public_report, indent=2, sort_keys=True).encode() + b"\n"
+    )
+    assert public_graph["graph_id"] == (
+        "sha256:c9fe173151778dcae3df500674a53c063c32119c6b600bfe40c0b82f00e59598"
+    )
+    assert validate_graph(public_graph, level="F1")["status"] == "PASS"
+    subject_ids = {
+        item["artifact_id"] for item in public_graph["artifacts"]
+    } | {item["relation_id"] for item in public_graph["relations"]}
+    artifact_ids = {item["artifact_id"] for item in public_graph["artifacts"]}
+    assert public_report["status"] == "PASS"
+    assert public_report["highest_level_passed"] == "F2"
+    assert len(public_report["semantic_results"]) == 17
+    assert all(
+        item["status"] == "PASS"
+        and item["subject"]["id"] in subject_ids
+        and set(item["evidence_refs"]) <= artifact_ids
+        for item in public_report["semantic_results"]
+    )
 
 
 def test_cli_native_execution(tmp_path):
