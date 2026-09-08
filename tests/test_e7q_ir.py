@@ -316,6 +316,40 @@ def test_missing_transformation_contract_fails_closed():
     )
 
 
+@pytest.mark.parametrize("subject_kind", ["artifact", "relation"])
+def test_contradictory_transformation_declarations_fail_f0(subject_kind):
+    value = graph()
+    if subject_kind == "artifact":
+        subject = next(
+            item for item in value["artifacts"] if item["kind"] == "transformation"
+        )
+        declarations = subject["payload"]
+        id_field = "artifact_id"
+    else:
+        subject = next(item for item in value["relations"] if item["kind"] == "transforms")
+        declarations = subject
+        id_field = "relation_id"
+    declarations["loses"] = list(declarations["preserves"])
+    subject[id_field] = identified_digest(subject, id_field)
+    value["graph_id"] = identified_digest(value, "graph_id")
+    report = validate_graph(value, level="F0")
+    assert report["status"] == "FAIL"
+    assert any(
+        item["name"].endswith(":transformation-contract") and not item["passed"]
+        for item in report["checks"]
+    )
+
+
+def test_duplicate_transformation_declarations_fail_f0():
+    value = graph()
+    relation = next(item for item in value["relations"] if item["kind"] == "transforms")
+    relation["assumptions"] = relation["assumptions"] * 2
+    relation["relation_id"] = identified_digest(relation, "relation_id")
+    value["graph_id"] = identified_digest(value, "graph_id")
+    report = validate_graph(value, level="F0")
+    assert report["status"] == "FAIL"
+
+
 def test_malformed_claim_contract_fails_f0():
     value = graph()
     claim = next(item for item in value["artifacts"] if item["kind"] == "claim")

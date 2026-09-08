@@ -258,14 +258,18 @@ def _json_object(
     return value
 
 
-def _timestamp_is_valid(value: object) -> bool:
+def _parse_timestamp(value: object) -> datetime | None:
     if not isinstance(value, str) or not value:
-        return False
+        return None
     try:
         parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
     except ValueError:
-        return False
-    return parsed.tzinfo is not None
+        return None
+    return parsed if parsed.tzinfo is not None else None
+
+
+def _timestamp_is_valid(value: object) -> bool:
+    return _parse_timestamp(value) is not None
 
 
 def _parse_qasm(raw: bytes) -> dict[str, object]:
@@ -428,7 +432,14 @@ def _validate_record(
     shots: int | None = None
     completion: str | None = None
     if metadata is not None:
-        circuit_name = str(metadata.get("circuit_name") or record_name)
+        raw_circuit_name = metadata.get("circuit_name")
+        valid_circuit_name = (
+            raw_circuit_name is None
+            or isinstance(raw_circuit_name, str) and bool(raw_circuit_name)
+        )
+        _check(checks, "metadata:circuit-name", valid_circuit_name)
+        if isinstance(raw_circuit_name, str) and raw_circuit_name:
+            circuit_name = raw_circuit_name
         job_id = metadata.get("job_id") if isinstance(metadata.get("job_id"), str) else None
         backend = metadata.get("backend") if isinstance(metadata.get("backend"), str) else None
         raw_shots = metadata.get("shots")
@@ -440,6 +451,19 @@ def _validate_record(
         _check(checks, "metadata:job-id", bool(job_id))
         _check(checks, "metadata:backend", bool(backend))
         _check(checks, "metadata:shots", shots is not None and shots > 0)
+        if "circuit_depth" in metadata:
+            _check(
+                checks,
+                "metadata:circuit-depth",
+                type(metadata["circuit_depth"]) is int
+                and metadata["circuit_depth"] >= 0,
+            )
+        if "creation_date" in metadata:
+            _check(
+                checks,
+                "metadata:creation-time",
+                _timestamp_is_valid(metadata["creation_date"]),
+            )
         status = metadata.get("status")
         _check(checks, "metadata:status-type", isinstance(status, str))
         _check(
@@ -449,14 +473,26 @@ def _validate_record(
             severity="warning",
             detail=f"reported status: {status!r}",
         )
+        completion_values: list[tuple[str, str, datetime]] = []
         for field in ("completion_time_utc", "completed_at", "completion_date"):
             if field in metadata:
-                completion = str(metadata[field])
-                break
+                candidate = metadata[field]
+                parsed = _parse_timestamp(candidate)
+                _check(checks, f"metadata:{field}-type", parsed is not None)
+                if parsed is not None:
+                    completion_values.append((field, candidate, parsed))
+        if completion_values:
+            completion = completion_values[0][1]
+        if len(completion_values) > 1:
+            _check(
+                checks,
+                "metadata:completion-times-consistent",
+                len({parsed for _, _, parsed in completion_values}) == 1,
+            )
         _check(
             checks,
             "metadata:completion-time",
-            completion is not None and _timestamp_is_valid(completion),
+            completion is not None,
             severity="warning",
             detail="provider-reported and not authenticated",
         )
@@ -621,6 +657,19 @@ def _validate_record(
             valid_active and type(mapping.get("num_active_qubits")) is int
             and mapping["num_active_qubits"] == len(active),
         )
+        for field in ("initial_index_layout", "final_index_layout"):
+            if field in mapping:
+                layout = mapping[field]
+                valid_layout = (
+                    isinstance(layout, list)
+                    and bool(layout)
+                    and all(type(item) is int for item in layout)
+                    and len(layout) == len(set(layout))
+                    and isinstance(device_width, int)
+                    and not isinstance(device_width, bool)
+                    and all(0 <= item < device_width for item in layout)
+                )
+                _check(checks, f"mapping:{field.replace('_', '-')}", valid_layout)
         if valid_active and qasm is not None:
             _check(checks, "mapping:qasm-active-qubits", sorted(active) == qasm["active_qubits"])
             _check(

@@ -47,6 +47,15 @@ def _reference_list(value: Any, *, nonempty: bool = False) -> bool:
     )
 
 
+def _transformation_declarations_are_consistent(value: dict[str, Any]) -> bool:
+    fields = ("preserves", "loses", "assumptions")
+    declarations = [value.get(field) for field in fields]
+    return (
+        all(_string_list(items) and len(items) == len(set(items)) for items in declarations)
+        and not (set(declarations[0]) & set(declarations[1]))
+    )
+
+
 def _artifact_checks(value: Any, index: int) -> list[dict[str, Any]]:
     checks: list[dict[str, Any]] = []
     prefix = f"artifact[{index}]"
@@ -113,9 +122,7 @@ def _artifact_checks(value: Any, index: int) -> list[dict[str, Any]]:
             and _reference_list(payload.get("output_refs"), nonempty=True)
             and isinstance(payload.get("criterion"), dict)
             and bool(payload.get("criterion"))
-            and _string_list(payload.get("preserves"))
-            and _string_list(payload.get("loses"))
-            and _string_list(payload.get("assumptions"))
+            and _transformation_declarations_are_consistent(payload)
             and payload.get("validation_status") in _VALIDATION_STATUSES
         )
         _check(checks, f"{prefix}:transformation-contract", transformation_ok)
@@ -197,9 +204,7 @@ def validate_graph(
                     contract <= relation.keys()
                     and isinstance(relation.get("criterion"), dict)
                     and bool(relation.get("criterion"))
-                    and _string_list(relation.get("preserves"))
-                    and _string_list(relation.get("loses"))
-                    and _string_list(relation.get("assumptions"))
+                    and _transformation_declarations_are_consistent(relation)
                 )
                 _check(f0, f"{prefix}:transformation-contract", transformation_relation_ok)
 

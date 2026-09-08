@@ -937,6 +937,31 @@ Next: Phase 2 native/legacy adapter contract, with remaining H2/H3 gaps tracked;
 no full hardening completion or hardware provenance claim is made.
 
 
+## H2/H3 declaration and field-shape increment (2026-09-08)
+
+Baseline: `9365105a4490ce5e52b879ef708d15f2f6ce9bde`.
+Rehashed transformation artifacts and relations can no longer declare the same
+property as both preserved and lost, or repeat preservation, loss or assumption
+entries. These contradictions now fail F0 before an installed validator can lend
+them semantic credibility; existing F0/F1/F2 meanings and artifact identities are
+unchanged for valid graphs.
+
+External bundle ingestion now type-checks circuit names, circuit depths, creation
+and completion timestamps, and initial/final index layouts. Every supplied
+completion alias is validated and mutually consistent; malformed or conflicting
+aliases cannot be hidden behind one valid field. Index layouts require unique,
+non-negative in-range integer indices. Rehashed manifests therefore preserve
+content-integrity PASS while malformed interpretation fields force consistency
+FAIL. Valid synthetic directory and ZIP fixtures remain compatible.
+
+Focused H2/H3 verification passes 82 tests; the full suite and repository campaign
+pass 577 cases with zero skips or collection errors. This is another bounded
+increment, not completion of either package. Remaining work includes assertion-
+level adversarial coverage, broader calibration/IR field semantics, ancestor
+directory races,
+provider authentication and independent external reproduction.
+
+
 ## Phase 2 preservation checkpoint (2026-09-07)
 
 Baseline: `5c163aa3d72d0efc2724252b19696c8080aad79f`.
