@@ -1,0 +1,21 @@
+# Public synthetic legacy receipt mapping source.
+
+context LegacyReceiptExample {
+  shots: 8
+  backend: statevector
+  seed: 7
+}
+
+qubits q[2]
+bits c[2]
+
+invariant normalized
+invariant outcomes in {00, 11}
+
+path Prepare {
+  H q[0]
+  CX q[0], q[1]
+  measure q -> c
+}
+
+verify Prepare

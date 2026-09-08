@@ -337,7 +337,7 @@
         "src/e7q/ir/legacy.py"
       ],
       "limits": "No native parsing/execution or legacy semantic validation; F2 remains unassessed.",
-      "next_gate": "Phase 2 typed native/compiler/execution adapters",
+      "next_gate": "Native/default F2 semantic validation without trusting imported verdicts",
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {
@@ -348,7 +348,7 @@
         "src/e7q/ir/native.py"
       ],
       "limits": "Local reference simulation; no native F2 semantic validator, compilation or hardware assurance.",
-      "next_gate": "Typed legacy execution/receipt mapping and native/default F2 semantic validation",
+      "next_gate": "Native/default F2 semantic validation",
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {
@@ -407,7 +407,28 @@
         "benchmarks/e7q-ir/compiler-proof-nonlocal-cx-results.json"
       ],
       "limits": "Adapts only the existing deterministic compile_topology() implementation and PR #57 static noiseless unitary-prefix subset (at most 8 qubits and 256 gates). Compiler trace consistency is local evidence, not semantic equivalence or default F2 truth. No hardware feasibility, topology quality, physical fidelity, provider authentication, execution success, exact-algebraic equivalence, arbitrary scalability or Phase 2/H5 completion claim.",
-      "next_gate": "Typed legacy execution/receipt mapping, native/default F2 semantic validation, independent review, PyZX evaluation and the repeated benchmark ladder",
+      "next_gate": "Native/default F2 semantic validation, independent review, PyZX evaluation and the repeated benchmark ladder",
+      "review_status": "LOCAL_REVIEW_COMPLETED"
+    },
+    {
+      "id": "ir_legacy_receipt_workflow",
+      "scope": "typed offline mapping of existing execution-bundle, supplied execution-result and supplied execution-receipt files \u2014 independent byte preservation, intent/event/observation separation, explicit count ordering, existing build_execution_receipt recomputation, field-by-field proof comparison and bounded consistency claim",
+      "test_file": "tests/test_ir_legacy_receipt_workflow.py",
+      "implementation": [
+        "src/e7q/ir/legacy_receipt_workflow.py",
+        "src/e7q/results.py",
+        "src/e7q/artifacts.py",
+        "src/e7q/ir/legacy.py",
+        "examples/e7q-ir/legacy-receipt/README.md",
+        "examples/e7q-ir/legacy-receipt/program.e7q",
+        "examples/e7q-ir/legacy-receipt/calibration.json",
+        "examples/e7q-ir/legacy-receipt/bundle.json",
+        "examples/e7q-ir/legacy-receipt/result.json",
+        "examples/e7q-ir/legacy-receipt/receipt.json",
+        "benchmarks/e7q-ir/legacy-receipt-results.json"
+      ],
+      "limits": "Offline internal consistency only. Provider/job/completion fields remain unauthenticated declarations; counts and probabilities do not prove submission, execution authenticity, hardware fidelity or circuit correctness. No default F2 semantic validator, F3 authentication, arbitrary scalability, provider integration, K12/CFS implementation or Phase 2/H5 completion claim.",
+      "next_gate": "Native/default F2 semantic validation, independent review, PyZX evaluation and the repeated benchmark ladder",
       "review_status": "LOCAL_REVIEW_COMPLETED"
     },
     {

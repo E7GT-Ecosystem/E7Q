@@ -1,0 +1,272 @@
+{
+  "bundle_digest": "sha256:61766d2bcad1202a2498bb2b343ab0d0fdcbc01c10e99fc31fac11909d40e6f1",
+  "completed_at": "2026-09-08T00:01:00Z",
+  "counts": {
+    "00": 4,
+    "01": 0,
+    "11": 4
+  },
+  "job_id": "synthetic-job-declaration",
+  "observational_claim_pilot": {
+    "interpretations": [
+      {
+        "added_limitations": [
+          "PASS is bounded to offline structural and arithmetic checks"
+        ],
+        "admissible_use": "review bundle linkage and normalized finite-sample counts",
+        "assumption_refs": [
+          "supplied bundle and result bytes are the review inputs"
+        ],
+        "bridge_refs": [
+          "bundle digest linkage"
+        ],
+        "claim_type": "interpretation",
+        "conclusion": "PASS: the supplied result is internally count-consistent and links to the supplied bundle under the declared checks.",
+        "criterion_refs": [
+          "e7q.receipt-consistency@1"
+        ],
+        "external_model_refs": [],
+        "inference_rule_refs": [
+          "e7q.receipt-normalization/v1"
+        ],
+        "inherited_limitations": [
+          "provider identity and chronology were not authenticated",
+          "aggregate counts omit shot order and intermediate states",
+          "the supplied result does not establish physical fidelity"
+        ],
+        "interpretation_id": "interpretation:receipt-pass",
+        "non_admissible_use": "provider authentication, hardware certification, model truth, or physical-fidelity claims",
+        "stop_or_reopen_condition": "reopen if either artifact, digest, schema, or count total changes",
+        "support_basis": "mixed",
+        "support_status": "operationally-validated-offline",
+        "supporting_observation_claim_refs": [
+          "claim:provider-reported-counts"
+        ],
+        "validity_window": "the supplied bundle/result pair"
+      }
+    ],
+    "invoked": true,
+    "observation_records": [
+      {
+        "evidence_refs": [
+          "sha256:61766d2bcad1202a2498bb2b343ab0d0fdcbc01c10e99fc31fac11909d40e6f1",
+          "sha256:0f1f0acf47427c9555104c21ea272f97468aada9cc6423938a911f1448e37c3f"
+        ],
+        "inquiry_profile_ref": "e7q.execution-receipt-consistency",
+        "known_limitations": [
+          "provider identity and chronology were not authenticated",
+          "aggregate counts omit shot order and intermediate states",
+          "the supplied result does not establish physical fidelity"
+        ],
+        "modelled_entity_ref": "job:synthetic-job-declaration",
+        "observation_id": "observation:execution-result",
+        "observation_protocol_ref": "e7q.receipt-normalization/v1",
+        "observed_at_or_during": "2026-09-08T00:01:00Z",
+        "observer_ref": "reported-provider:synthetic-provider-declaration",
+        "provenance_refs": [
+          "sha256:0f1f0acf47427c9555104c21ea272f97468aada9cc6423938a911f1448e37c3f"
+        ],
+        "recorded_content": {
+          "counts": {
+            "00": 4,
+            "01": 0,
+            "11": 4
+          },
+          "job_id": "synthetic-job-declaration",
+          "provider": "synthetic-provider-declaration"
+        },
+        "resolution": "aggregate binary-outcome counts",
+        "semantic_context_ref": "e7q.execution-result/v1",
+        "spatial_or_population_support": {
+          "job_id": "synthetic-job-declaration",
+          "shots": 8,
+          "target": "synthetic-offline-target"
+        },
+        "temporal_support": {
+          "reported_completion": "2026-09-08T00:01:00Z",
+          "status": "provider-reported-not-authenticated"
+        },
+        "unknown_positions": [
+          "shot-level order and timing",
+          "intermediate quantum and device states",
+          "events outside the supplied result artifact"
+        ],
+        "viewing_or_measurement_ref": "supplied aggregate outcome counts"
+      }
+    ],
+    "observational_claims": [
+      {
+        "asserted_content": "The supplied execution-result artifact reports the recorded aggregate counts for the identified provider job.",
+        "blocked_overread": [
+          "the provider or completion time was independently authenticated",
+          "the hardware executed the intended circuit faithfully",
+          "the counts establish a true underlying device history"
+        ],
+        "claim_id": "claim:provider-reported-counts",
+        "claim_type": "observational-claim",
+        "evidence_path": [
+          "supplied execution result",
+          "schema and count validation",
+          "normalized execution receipt"
+        ],
+        "known_limitations": [
+          "provider identity and chronology were not authenticated",
+          "aggregate counts omit shot order and intermediate states",
+          "the supplied result does not establish physical fidelity"
+        ],
+        "observation_record_refs": [
+          "observation:execution-result"
+        ],
+        "resolution": "aggregate binary-outcome counts",
+        "temporal_support": {
+          "authenticated": false,
+          "reported_completion": "2026-09-08T00:01:00Z"
+        },
+        "unknown_positions": [
+          "shot-level order and timing",
+          "intermediate quantum and device states",
+          "events outside the supplied result artifact"
+        ]
+      }
+    ],
+    "pilot_id": "e7q.execution-receipt",
+    "schema": "e7q.observational-claim-pilot/v1alpha1",
+    "shared_field": null,
+    "status": "informative-pilot",
+    "temporal_extension_bridges": [],
+    "upstream_module": "E7G-T v0.11-UC2 sections 3.9, 16.6, and 19.7"
+  },
+  "probabilities": {
+    "00": 0.5,
+    "01": 0.0,
+    "11": 0.5
+  },
+  "proof": [
+    {
+      "bundle_digest": "sha256:61766d2bcad1202a2498bb2b343ab0d0fdcbc01c10e99fc31fac11909d40e6f1",
+      "kind": "bundle-linkage",
+      "openqasm_digest": "sha256:184dd326ce8be48a625a92bf6d0d37f9847801cdf6f1530f69b3ff7db76908cb",
+      "source_digest": "sha256:6ba3816eb4b592ea11e1e90ac593a0d468f3bba21753d5425d05ff3152948a10",
+      "step": 0
+    },
+    {
+      "completed_at": "2026-09-08T00:01:00Z",
+      "job_id": "synthetic-job-declaration",
+      "kind": "supplied-result",
+      "provider": "synthetic-provider-declaration",
+      "result_digest": "sha256:0f1f0acf47427c9555104c21ea272f97468aada9cc6423938a911f1448e37c3f",
+      "step": 1
+    },
+    {
+      "count_total": 8,
+      "kind": "result-validation",
+      "shots": 8,
+      "status": "PASS",
+      "step": 2,
+      "target": "synthetic-offline-target"
+    },
+    {
+      "boundary": "Receipt validates internal consistency and bundle linkage of user-supplied data. E7Q did not authenticate the provider, submit or witness the job, or establish physical fidelity.",
+      "kind": "evidence-boundary",
+      "step": 3
+    }
+  ],
+  "provider": "synthetic-provider-declaration",
+  "result_digest": "sha256:0f1f0acf47427c9555104c21ea272f97468aada9cc6423938a911f1448e37c3f",
+  "schema": "e7q.execution-receipt/v1",
+  "shots": 8,
+  "status": "PASS",
+  "target": "synthetic-offline-target",
+  "temporal_evidence": {
+    "boundary_crossing": {
+      "detected": false
+    },
+    "carrier_description": "one provider-reported execution-result event",
+    "carrier_ref": "sha256:61766d2bcad1202a2498bb2b343ab0d0fdcbc01c10e99fc31fac11909d40e6f1",
+    "chronology_status": "provider-reported-not-authenticated",
+    "clock": {
+      "field": "completed_at",
+      "status": "provider-reported-not-authenticated",
+      "value": "2026-09-08T00:01:00Z"
+    },
+    "order_relation": "single reported completion point",
+    "projection": {
+      "from": "user-supplied provider result",
+      "loses": [
+        "shot-level ordering and timing",
+        "intermediate quantum states",
+        "provider-authenticated chronology"
+      ],
+      "preserves": [
+        "reported completion time",
+        "bundle and result linkage",
+        "counts and empirical probabilities"
+      ],
+      "to": "normalized E7Q execution receipt"
+    },
+    "reconstruction": {
+      "limit": "Multiple shot sequences and device histories can produce the same aggregate counts.",
+      "status": "non-unique"
+    },
+    "schema": "e7q.temporal-evidence/v2",
+    "temporal_order_roles": [
+      "TD0"
+    ],
+    "temporal_phase": {
+      "criterion_edition": "1",
+      "criterion_id": "e7q.receipt-consistency",
+      "description": "bundle linkage and count consistency",
+      "parameters": {},
+      "status": "PASS"
+    }
+  },
+  "temporal_orientation_pilot": {
+    "accumulated_valid_record_ref": "sha256:0f1f0acf47427c9555104c21ea272f97468aada9cc6423938a911f1448e37c3f",
+    "causal_reversal_status": "unsupported",
+    "clock_or_synchronisation_model_ref": "provider-reported completed_at field; not authenticated",
+    "compatible_history_family_ref": "temporal_evidence.reconstruction",
+    "correction_or_retraction_refs": [],
+    "decision_effect": "bounds PASS to the supplied bundle/result pair and prevents reverse audit reconstruction from being read as reversed physical execution",
+    "directional_relation_kinds": [
+      "observationalPrecedence",
+      "reconstructivePrecedence",
+      "dependency",
+      "globalConsistency"
+    ],
+    "excluded_history_refs": [],
+    "exclusion_meaning": "a history inconsistent with the supplied artifacts is irrelevant to this reconstruction, not established as unrealised or nonexistent",
+    "final_constraint_refs": [
+      "receipt consistency criterion"
+    ],
+    "fixed_condition_refs": [
+      "sha256:61766d2bcad1202a2498bb2b343ab0d0fdcbc01c10e99fc31fac11909d40e6f1",
+      "sha256:0f1f0acf47427c9555104c21ea272f97468aada9cc6423938a911f1448e37c3f",
+      "e7q.receipt-consistency@1"
+    ],
+    "global_consistency_refs": [
+      "bundle digest and count-total linkage"
+    ],
+    "history_whole_ref": "provider-reported job:synthetic-job-declaration",
+    "interaction_rule_refs": [],
+    "invoked": true,
+    "narrowing_status": "not-claimed",
+    "observer_temporal_locality_ref": "offline review after receipt normalization",
+    "orientation_ref": "reported result to compatible execution-history reconstruction",
+    "pilot_id": "e7q.execution-receipt",
+    "preserved_under_reversal": [
+      "proof-step membership",
+      "bundle and result identity",
+      "aggregate counts"
+    ],
+    "reverse_representation_ref": "reverse traversal of the receipt proof",
+    "reversed_hidden_or_unsupported": [
+      "proof-step order",
+      "shot order and timing",
+      "physical causation"
+    ],
+    "schema": "e7q.temporal-orientation-pilot/v1alpha1",
+    "status": "informative-pilot",
+    "time_reversal_symmetry_status": "not-assessed",
+    "upstream_module": "E7G-T v0.11-UC5 sections 5.13.1-5.13.6, 13.8, and 19.8"
+  }
+}

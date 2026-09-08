@@ -1,0 +1,17 @@
+{
+  "schema": "e7q.calibration/v1",
+  "captured_at": "2026-09-08T00:00:00Z",
+  "targets": [
+    {
+      "name": "synthetic-offline-target",
+      "qubits": 2,
+      "topology": "linear",
+      "native_gates": ["H", "CX", "SWAP"],
+      "available": true,
+      "queue_depth": 0,
+      "single_qubit_error": 0.001,
+      "two_qubit_error": 0.01,
+      "readout_error": 0.02
+    }
+  ]
+}

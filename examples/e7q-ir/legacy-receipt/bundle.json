@@ -1,0 +1,166 @@
+{
+  "captured_at": "2026-09-08T00:00:00Z",
+  "openqasm": "OPENQASM 3.0;\ninclude \"stdgates.inc\";\nqubit[2] q;\nbit[2] c;\nh q[0];\ncx q[0], q[1];\nc = measure q;\n",
+  "openqasm_digest": "sha256:184dd326ce8be48a625a92bf6d0d37f9847801cdf6f1530f69b3ff7db76908cb",
+  "planning": {
+    "compiled": {
+      "depth": 3,
+      "gate_counts": {
+        "CX": 1,
+        "H": 1,
+        "MEASURE": 1
+      },
+      "operations": 3,
+      "two_qubit_depth": 1,
+      "two_qubit_gates": 1
+    },
+    "overhead": {
+      "depth": 0,
+      "inserted_swaps": 0,
+      "operations": 0,
+      "two_qubit_gates": 0
+    }
+  },
+  "proof": [
+    {
+      "captured_at": "2026-09-08T00:00:00Z",
+      "kind": "input-identity",
+      "snapshot_digest": "sha256:066de94cd9e2c4dfe59b93fc5ce73dcb09d2f71bee433db11e4ffe3dc9476780",
+      "source_digest": "sha256:6ba3816eb4b592ea11e1e90ac593a0d468f3bba21753d5425d05ff3152948a10",
+      "step": 0
+    },
+    {
+      "criterion": "calibration snapshot selection policy",
+      "kind": "target-selection",
+      "score": 0.9498452039999998,
+      "selected": "synthetic-offline-target",
+      "step": 1
+    },
+    {
+      "compiled": {
+        "depth": 3,
+        "gate_counts": {
+          "CX": 1,
+          "H": 1,
+          "MEASURE": 1
+        },
+        "operations": 3,
+        "two_qubit_depth": 1,
+        "two_qubit_gates": 1
+      },
+      "kind": "compile",
+      "openqasm_digest": "sha256:184dd326ce8be48a625a92bf6d0d37f9847801cdf6f1530f69b3ff7db76908cb",
+      "overhead": {
+        "depth": 0,
+        "inserted_swaps": 0,
+        "operations": 0,
+        "two_qubit_gates": 0
+      },
+      "step": 2,
+      "target": "synthetic-offline-target"
+    },
+    {
+      "boundary": "Offline execution bundle only; no credentials were used, no job was submitted, and no execution, cost, or fidelity result is claimed.",
+      "kind": "handoff-boundary",
+      "status": "READY",
+      "step": 3,
+      "submitted": false
+    }
+  ],
+  "schema": "e7q.execution-bundle/v1",
+  "selection": {
+    "ranking": [
+      {
+        "compatible": true,
+        "compiled": {
+          "depth": 3,
+          "gate_counts": {
+            "CX": 1,
+            "H": 1,
+            "MEASURE": 1
+          },
+          "operations": 3,
+          "two_qubit_depth": 1,
+          "two_qubit_gates": 1
+        },
+        "estimated": {
+          "measured_qubits": 2,
+          "single_qubit_gates": 1,
+          "success_proxy": 0.9498452039999998,
+          "two_qubit_gates": 1
+        },
+        "name": "synthetic-offline-target",
+        "observed": {
+          "captured_qubits": 2,
+          "native_gates": [
+            "CX",
+            "H",
+            "SWAP"
+          ],
+          "readout_error": 0.02,
+          "single_qubit_error": 0.001,
+          "topology": "linear",
+          "two_qubit_error": 0.01
+        },
+        "overhead": {
+          "depth": 0,
+          "inserted_swaps": 0,
+          "operations": 0,
+          "two_qubit_gates": 0
+        },
+        "queue_depth": 0,
+        "score": 0.9498452039999998
+      }
+    ],
+    "rejected": [],
+    "score": 0.9498452039999998
+  },
+  "shots": 8,
+  "snapshot_digest": "sha256:066de94cd9e2c4dfe59b93fc5ce73dcb09d2f71bee433db11e4ffe3dc9476780",
+  "source_digest": "sha256:6ba3816eb4b592ea11e1e90ac593a0d468f3bba21753d5425d05ff3152948a10",
+  "status": "READY",
+  "submitted": false,
+  "target": "synthetic-offline-target",
+  "temporal_evidence": {
+    "boundary_crossing": {
+      "detected": false
+    },
+    "carrier_description": "ordered preparation and offline handoff path",
+    "chronology_status": "proof-order-only",
+    "clock": {
+      "field": "captured_at",
+      "status": "declared-not-authenticated",
+      "value": "2026-09-08T00:00:00Z"
+    },
+    "order_relation": "Proof-of-Path step order",
+    "projection": {
+      "from": "program plus supplied calibration snapshot",
+      "loses": [
+        "runtime queue history",
+        "submission and execution events",
+        "physical-device state evolution"
+      ],
+      "preserves": [
+        "program and snapshot digests",
+        "target-selection decision",
+        "compilation and handoff order"
+      ],
+      "to": "routed offline execution bundle"
+    },
+    "reconstruction": {
+      "limit": "The bundle identifies inputs by digest but does not contain submission or physical execution history.",
+      "status": "partial"
+    },
+    "schema": "e7q.temporal-evidence/v2",
+    "temporal_order_roles": [
+      "TD1"
+    ],
+    "temporal_phase": {
+      "criterion_edition": "1",
+      "criterion_id": "e7q.offline-handoff-readiness",
+      "description": "offline handoff readiness",
+      "parameters": {},
+      "status": "READY"
+    }
+  }
+}
