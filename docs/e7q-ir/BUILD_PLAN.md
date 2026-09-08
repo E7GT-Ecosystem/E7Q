@@ -1,12 +1,14 @@
 # E7Q-IR Build Plan and AI Engineering Handoff
 
-**Plan version:** 0.7
+**Plan version:** 0.8
 
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.
 
 **Current inspected baseline (2026-09-08):** `main` at
-`6454a26326ecfa1a654548e131910be2a1ef5be2` (PR #54).
-That merge isolated every QCEC assessment and added enforceable resource limits.
+`363c58c9855c45626d143bb66b320e2790c01588` (PR #55).
+That merge added the bounded external circuit-pair QCEC evidence workflow on top of the isolated, resource-limited assessment path.
+
+**Revision 0.8:** adopts ecosystem direction `E7-ECO-DIR-2026-09-08.1` and pins E7G-T v0.12 experimental canonical revision CFS1 at commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca`. It adds an optional, additive family-state planning lane after the applicable H2/H3 and Phase 2 gates. EEC coefficients remain formal construction coefficients, never quantum amplitudes, probabilities or evidence weights. Existing artifacts, IDs, APIs and F0-F2 meanings are not migrated.
 
 **Revision 0.7:** adds a bounded external circuit-pair workflow that captures two
 supplied files byte-for-byte, records separate bounded OpenQASM 2 projections,
@@ -1062,3 +1064,33 @@ authentication, hardware fidelity or arbitrary-circuit scalability. Historical
 QCEC evidence remains unchanged. The next gate is criterion-bound native/external
 comparison plus the missing benchmark rungs and independent backend evaluation.
 
+
+
+## 12. E7G-T v0.12 optional family-state planning lane
+
+**Disposition:** EEC-Q/0.1, SF/0.1 and CFS/0.1 are `experimental` for E7Q-IR planning. E7Q verification uses only the resulting explicit records and does not adopt EEC-Q as quantum state semantics.
+
+**Dependency rule:** this lane does not displace current H2/H3 hardening, criterion-bound Phase 2 native/external comparison, the missing benchmark rungs or independent backend evaluation. Begin it only as an additive package whose inputs and outputs preserve all current Evidence Core identities.
+
+| Package | Deliverable | Acceptance gate |
+|---|---|---|
+| K12-A — source and profile pin | Record exact kernel commit, EEC/SF/CFS model editions, limits and non-claims in schemas and receipts | Unknown or mismatched editions fail closed; legacy artifacts remain byte- and meaning-compatible |
+| K12-B — candidate-family contract | Typed configurations for source circuit, candidate representation, layout, target snapshot, calibration reference and constraints | Canonical round trip plus invalid-domain, empty, ambiguous and resource-limit fixtures |
+| K12-C — transformation and realisation trace | Additive records for lowering/routing/scheduling steps, residual candidates, ordered objectives and selected mapping | Every step names preservation/loss; a selected state is proven to belong to the residual family; ties remain explicit |
+| K12-D — external compiler/topology pilot | Public-safe supplied circuit pair or compiler output linked through planning and the existing evidence workflow | Pre-registered comparison separates topology, depth, gate count, calibration timing and selection effects; positive, negative and null results retained |
+| K12-E — reuse decision | Compare the local adapter with an ordinary candidate table and with any second ecosystem consumer | Extract shared runtime contracts only if two consumers pass the same compatibility vectors without semantic distortion |
+
+The initial objective order is proposed, not universal: admission and declared semantic preservation precede topology/signal proxies, routing cost and depth. Each pilot must publish the actual order, tie policy and unsupported cases.
+
+### Protected boundaries
+
+- CFS is a planning representation, not a physical superposition or measurement model.
+- Realisation is a declared optimisation/selection result, not wave-function collapse.
+- EEC rational coefficients are neither amplitudes nor probabilities.
+- Calibration and backend descriptions are time-bounded supplied evidence unless separately authenticated.
+- A better observed signal on selected hardware does not establish that topology is generally more important than gates or depth.
+- No private collaborator identity, unpublished implementation or confidential artifact enters the public repository.
+
+### AI handoff
+
+At the start of any K12 package, report the exact E7Q main baseline, active branch, kernel pin, profile disposition, files/interfaces, preservation/loss, migration effect, focused tests and next gate. If current hardening changes the required interface, reconcile it rather than creating a parallel planner.

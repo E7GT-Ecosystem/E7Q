@@ -2,9 +2,19 @@
 
 ## E7Q-IR v0.1 — Evidence-native IR foundation
 
-The authoritative [build plan](docs/e7q-ir/BUILD_PLAN.md) v0.4 includes
+The authoritative [build plan](docs/e7q-ir/BUILD_PLAN.md) v0.8 includes
 [research-backed extensions](docs/e7q-ir/RESEARCH_FOUNDATIONS.md) under the
 E7G-T extension/projection contract. Added packages are planned, not completed.
+
+### Optional v0.12 family-state planning lane
+
+- [ ] K12-A pin E7G-T v0.12/CFS1 profiles, models, limits and non-claims;
+- [ ] K12-B define additive candidate-family contracts for circuits, layouts, targets and calibration contexts;
+- [ ] K12-C preserve transformation, residual-family, objective order, ties and selected-mapping membership;
+- [ ] K12-D run a public-safe external-compiler/topology pilot through the existing evidence workflow;
+- [ ] K12-E decide from two-consumer evidence whether any shared runtime contract should be extracted.
+
+This lane follows the applicable H2/H3 and Phase 2 gates. It does not change quantum semantics, reinterpret EEC coefficients as amplitudes/probabilities, or recreate a separate quantum Fabric.
 
 - [x] content-addressed universal artifact envelope;
 - [x] typed evidence graph and transformation contract;
