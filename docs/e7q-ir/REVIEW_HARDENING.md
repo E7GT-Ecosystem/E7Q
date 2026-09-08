@@ -164,6 +164,16 @@ checks. Experimental, internally tested and independently exercised are distinct
 statuses; no performance comparison or production-readiness claim without its
 own measurements and criteria.
 
+Native F2 bounded increment (2026-09-08): parser expansion is now stopped before
+operation/path/statement lists exceed the installed policy, including compact
+acyclic fan-out and use-only/deep nesting cases. Validator replay is isolated in
+a spawned worker with a parent deadline, bounded terminate/kill/reap cleanup and
+POSIX `RLIMIT_AS`; unsupported enforcement, exhaustion, timeout, signal, crash and
+protocol outcomes remain distinct and non-PASS. Runtime enforcement evidence is
+attached to semantic results, and cache keys include policy/implementation identity.
+This closes the audited native-replay gap only; representative-family measurement,
+clean-install/release compatibility and the complete H10 gate remain open.
+
 ## Extension contract and sequence
 
 Every package that changes behaviour declares source/carrier, context/inquiry,

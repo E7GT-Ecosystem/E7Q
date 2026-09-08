@@ -15,6 +15,25 @@ class E7QError(ValueError):
     """Raised when an E7Q program is invalid."""
 
 
+class E7QResourceLimitError(E7QError):
+    """Raised before parser expansion exceeds a caller-owned resource budget."""
+
+
+@dataclass(frozen=True)
+class ParseLimits:
+    """Optional expansion limits; ordinary parser callers remain unbounded."""
+
+    max_operations: int
+    max_path_invocations: int
+    max_statement_visits: int
+    max_nesting_depth: int
+
+    def __post_init__(self) -> None:
+        for name, value in vars(self).items():
+            if type(value) is not int or value < 1:
+                raise ValueError(f"{name} must be a positive integer")
+
+
 @dataclass(frozen=True)
 class Operation:
     gate: str
@@ -182,7 +201,7 @@ def _parse_settings(source: str) -> dict[str, str]:
     return settings
 
 
-def parse(source: str) -> Program:
+def parse(source: str, *, limits: ParseLimits | None = None) -> Program:
     """Parse E7Q source, including partial measurement and classical control."""
     text = _strip_comments(source)
     _validate_complete_source(text)
@@ -252,13 +271,42 @@ def parse(source: str) -> Program:
     operations: list[Operation] = []
     used: list[str] = []
     full_measured = False
+    path_invocations = 0
+    statement_visits = 0
+
+    def consume(counter: str, value: int, maximum: int | None) -> int:
+        value += 1
+        if maximum is not None and value > maximum:
+            label = counter.replace("_", "-")
+            raise E7QResourceLimitError(
+                f"parser expansion exceeds the {maximum}-{label} budget"
+            )
+        return value
+
+    def append_operation(operation: Operation) -> None:
+        if limits is not None and len(operations) >= limits.max_operations:
+            raise E7QResourceLimitError(
+                "parser expansion exceeds the "
+                f"{limits.max_operations}-expanded-operation budget"
+            )
+        operations.append(operation)
 
     def append_body(body: str, stack: tuple[str, ...]) -> None:
-        nonlocal full_measured
+        nonlocal full_measured, path_invocations, statement_visits
+        if limits is not None and len(stack) > limits.max_nesting_depth:
+            raise E7QResourceLimitError(
+                "parser expansion exceeds the "
+                f"{limits.max_nesting_depth}-nesting-depth budget"
+            )
         for raw_statement in body.splitlines():
             statement = raw_statement.strip()
             if not statement:
                 continue
+            statement_visits = consume(
+                "expanded_statement_visits",
+                statement_visits,
+                limits.max_statement_visits if limits is not None else None,
+            )
             match = use_pattern.fullmatch(statement)
             if match:
                 target = match.group(1)
@@ -266,6 +314,11 @@ def parse(source: str) -> Program:
                     raise E7QError(f"unknown reusable path: {target}")
                 if target in stack:
                     raise E7QError(f"recursive reusable path: {target}")
+                path_invocations = consume(
+                    "path_invocations",
+                    path_invocations,
+                    limits.max_path_invocations if limits is not None else None,
+                )
                 used.append(target)
                 append_body(path_blocks[target], stack + (target,))
                 continue
@@ -276,7 +329,7 @@ def parse(source: str) -> Program:
                 bindex, value = map(int, match.groups())
                 if bindex >= bits:
                     raise E7QError("assertion bit index out of range")
-                operations.append(
+                append_operation(
                     Operation("ASSERT", bits=(bindex,), condition=(bindex, value),
                               label=statement)
                 )
@@ -289,7 +342,7 @@ def parse(source: str) -> Program:
                     raise E7QError("noise probability must be between zero and one")
                 if qindex >= qubits:
                     raise E7QError("noise qubit index out of range")
-                operations.append(
+                append_operation(
                     Operation("NOISE", (qindex,), label=channel,
                               probability=probability)
                 )
@@ -298,21 +351,21 @@ def parse(source: str) -> Program:
             if match:
                 if bits < qubits:
                     raise E7QError("full-register measurement requires bits >= qubits")
-                operations.append(Operation("MEASURE", full_register=True))
+                append_operation(Operation("MEASURE", full_register=True))
                 full_measured = True
                 continue
             match = partial_pattern.fullmatch(statement)
             if match:
                 qindex, bindex = map(int, match.groups())
                 _validate_indices(qindex, bindex, qubits, bits, "measurement")
-                operations.append(Operation("MEASURE", (qindex,), (bindex,)))
+                append_operation(Operation("MEASURE", (qindex,), (bindex,)))
                 continue
             match = condition_pattern.fullmatch(statement)
             if match:
                 bindex, value, gate, qindex = match.groups()
                 bindex, value, qindex = int(bindex), int(value), int(qindex)
                 _validate_indices(qindex, bindex, qubits, bits, "condition")
-                operations.append(Operation(gate, (qindex,), condition=(bindex, value)))
+                append_operation(Operation(gate, (qindex,), condition=(bindex, value)))
                 continue
             match = two_pattern.fullmatch(statement) or one_pattern.fullmatch(statement)
             if not match:
@@ -323,7 +376,7 @@ def parse(source: str) -> Program:
                 raise E7QError(f"{gate} qubit index out of range")
             if len(indices) == 2 and indices[0] == indices[1]:
                 raise E7QError(f"{gate} requires distinct qubits")
-            operations.append(Operation(gate, indices))
+            append_operation(Operation(gate, indices))
     append_body(path_blocks[path], (path,))
     if not any(operation.gate == "MEASURE" for operation in operations):
         raise E7QError("path must contain measurement")

@@ -7,9 +7,27 @@ from dataclasses import asdict
 from hashlib import sha256
 from importlib.metadata import version
 import json
+import multiprocessing
+from multiprocessing.connection import Connection
+import signal
+import sys
+import time
 from typing import Any, Iterable
 
-from ..language import E7QError, backend_profile, parse, run, verify
+try:
+    import resource
+except ImportError:  # pragma: no cover - unavailable on Windows
+    resource = None  # type: ignore[assignment]
+
+from ..language import (
+    E7QError,
+    E7QResourceLimitError,
+    ParseLimits,
+    backend_profile,
+    parse,
+    run,
+    verify,
+)
 from .graph import build_relation
 from .semantic import SemanticResult
 
@@ -63,6 +81,30 @@ PARSER_LOSES = [
     "subpath-call-boundaries-in-expanded-operations",
 ]
 PARSER_ASSUMPTIONS = ["native-parser-implementation"]
+
+NATIVE_PARSE_LIMITS = ParseLimits(
+    max_operations=1024,
+    max_path_invocations=1024,
+    max_statement_visits=2048,
+    max_nesting_depth=64,
+)
+NATIVE_REPLAY_TIMEOUT_SECONDS = 5.0
+NATIVE_REPLAY_MEMORY_LIMIT_BYTES = 8 * 1024**3
+NATIVE_REPLAY_IMPLEMENTATION_REVISION = "native-f2-resource-safe-v1"
+_WORKER_STOP_GRACE_SECONDS = 1.0
+_WORKER_POLL_SECONDS = 0.02
+
+
+def native_resource_policy() -> dict[str, Any]:
+    """Return the installed, graph-independent native replay policy."""
+    return {
+        "parser": asdict(NATIVE_PARSE_LIMITS),
+        "wall_clock_limit_seconds": NATIVE_REPLAY_TIMEOUT_SECONDS,
+        "memory_limit_requested_bytes": NATIVE_REPLAY_MEMORY_LIMIT_BYTES,
+        "memory_limit_mechanism": "posix-rlimit-as",
+        "worker_start_method": "spawn",
+        "implementation_revision": NATIVE_REPLAY_IMPLEMENTATION_REVISION,
+    }
 
 
 def program_payload(program: Any) -> dict[str, Any]:
@@ -123,13 +165,324 @@ def _expected_source_payload(raw: bytes) -> dict[str, Any]:
     }
 
 
-def _failure(status: str, message: str) -> dict[str, Any]:
+def _peak_rss_bytes() -> int | None:
+    if resource is None:
+        return None
+    peak = int(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
+    return peak * 1024 if sys.platform.startswith("linux") else peak
+
+
+def _memory_enforcement(requested_bytes: int) -> dict[str, Any]:
+    metadata: dict[str, Any] = {
+        "requested_bytes": requested_bytes,
+        "enforced": False,
+        "mechanism": "unsupported",
+        "effective_bytes": None,
+    }
+    if resource is None or not hasattr(resource, "RLIMIT_AS"):
+        metadata["detail"] = "RLIMIT_AS is unavailable on this platform"
+        return metadata
+    try:
+        old_soft, hard = resource.getrlimit(resource.RLIMIT_AS)
+        infinity = resource.RLIM_INFINITY
+        candidates = [requested_bytes]
+        if old_soft != infinity:
+            candidates.append(int(old_soft))
+        if hard != infinity:
+            candidates.append(int(hard))
+        effective = min(candidates)
+        resource.setrlimit(resource.RLIMIT_AS, (effective, effective))
+        new_soft, new_hard = resource.getrlimit(resource.RLIMIT_AS)
+    except (OSError, ValueError) as exc:
+        metadata["detail"] = f"{type(exc).__name__}: {exc}"
+        return metadata
+    metadata.update({
+        "enforced": True,
+        "mechanism": "posix-rlimit-as",
+        "effective_bytes": effective if new_soft == infinity else int(new_soft),
+        "soft_limit_bytes": effective if new_soft == infinity else int(new_soft),
+        "hard_limit_bytes": effective if new_hard == infinity else int(new_hard),
+    })
+    return metadata
+
+
+def _worker_send(connection: Connection, message: dict[str, Any]) -> None:
+    try:
+        connection.send(message)
+    except (BrokenPipeError, EOFError, OSError):
+        pass
+
+
+def _native_replay_worker(connection: Connection, content: str) -> None:
+    memory = _memory_enforcement(NATIVE_REPLAY_MEMORY_LIMIT_BYTES)
+    _worker_send(connection, {
+        "kind": "worker_started",
+        "memory_limit": memory,
+        "worker_peak_rss_bytes": _peak_rss_bytes(),
+    })
+    if not memory["enforced"]:
+        response: dict[str, Any] = {
+            "kind": "unsupported_platform",
+            "status": "UNSUPPORTED",
+            "message": "native replay requires enforceable POSIX RLIMIT_AS memory isolation",
+        }
+    else:
+        try:
+            program = parse(content, limits=NATIVE_PARSE_LIMITS)
+            admission_status, admission_message = native_admission_status(program)
+            if admission_status != "PASS":
+                response = {
+                    "kind": "admission",
+                    "status": admission_status,
+                    "message": admission_message or "native source was not admitted",
+                }
+            else:
+                native_result = verify(run(program))
+                response = {
+                    "kind": "result",
+                    "status": "PASS",
+                    "program": program_payload(program),
+                    "backend_profile": backend_profile(program),
+                    "native_result": native_result,
+                }
+        except E7QResourceLimitError as exc:
+            response = {
+                "kind": "expansion_limit",
+                "status": "BLOCKED",
+                "message": str(exc),
+            }
+        except MemoryError as exc:
+            response = {
+                "kind": "memory_exhaustion",
+                "status": "BLOCKED",
+                "message": str(exc) or "native replay exhausted its memory budget",
+            }
+        except E7QError as exc:
+            status = (
+                "UNSUPPORTED"
+                if str(exc) == "noise channels require the densitymatrix backend"
+                else "FAIL"
+            )
+            response = {
+                "kind": "parse_or_admission_error",
+                "status": status,
+                "message": f"native source could not be admitted by the parser: {exc}",
+            }
+        except (UnicodeError, ValueError, TypeError) as exc:
+            response = {
+                "kind": "parse_error",
+                "status": "FAIL",
+                "message": f"native source could not be parsed: {exc}",
+            }
+        except Exception as exc:
+            response = {
+                "kind": "worker_error",
+                "status": "FAIL",
+                "message": f"native reference execution failed: {type(exc).__name__}",
+            }
+    response["memory_limit"] = memory
+    response["worker_peak_rss_bytes"] = _peak_rss_bytes()
+    _worker_send(connection, response)
+    connection.close()
+
+
+def _signal_metadata(exit_code: int | None) -> tuple[int | None, str | None]:
+    if exit_code is None or exit_code >= 0:
+        return None, None
+    number = -exit_code
+    try:
+        name = signal.Signals(number).name
+    except ValueError:
+        name = None
+    return number, name
+
+
+def _terminate_and_reap(process: multiprocessing.Process) -> tuple[str | None, bool]:
+    mechanism: str | None = None
+    if process.is_alive():
+        mechanism = "terminate"
+        process.terminate()
+        process.join(_WORKER_STOP_GRACE_SECONDS)
+    if process.is_alive():
+        mechanism = "kill"
+        process.kill()
+        process.join(_WORKER_STOP_GRACE_SECONDS)
+    return mechanism, not process.is_alive()
+
+
+def _runtime_evidence(result: dict[str, Any]) -> dict[str, Any]:
+    worker = result["worker"]
+    return {
+        "policy": native_resource_policy(),
+        "outcome_reason": result["reason"],
+        "memory": result["memory_limit"],
+        "worker": {
+            "start_method": worker["start_method"],
+            "started": worker["started"],
+            "exit_code": worker["exit_code"],
+            "signal": worker["signal"],
+            "signal_name": worker["signal_name"],
+            "termination_mechanism": worker["termination_mechanism"],
+            "reaped": worker["reaped"],
+        },
+    }
+
+
+def _run_native_replay_isolated(
+    content: str,
+    *,
+    worker_target: Any = _native_replay_worker,
+) -> dict[str, Any]:
+    context = multiprocessing.get_context("spawn")
+    receiving, sending = context.Pipe(duplex=False)
+    process = context.Process(
+        target=worker_target,
+        args=(sending, content),
+        name="e7q-native-f2-worker",
+    )
+    started = time.monotonic()
+    try:
+        process.start()
+    except Exception as exc:
+        receiving.close()
+        sending.close()
+        return {
+            "reason": "worker_start_error",
+            "status": "NOT_ASSESSED",
+            "message": f"native replay worker could not start: {type(exc).__name__}",
+            "memory_limit": {
+                "requested_bytes": NATIVE_REPLAY_MEMORY_LIMIT_BYTES,
+                "enforced": False,
+                "mechanism": "worker-not-started",
+                "effective_bytes": None,
+            },
+            "worker": {
+                "start_method": "spawn", "started": False, "pid": None,
+                "exit_code": None, "signal": None, "signal_name": None,
+                "termination_mechanism": None, "reaped": True,
+            },
+        }
+    sending.close()
+    deadline = started + NATIVE_REPLAY_TIMEOUT_SECONDS
+    startup: dict[str, Any] | None = None
+    response: dict[str, Any] | None = None
+    timed_out = False
+
+    def record_message(message: Any) -> None:
+        nonlocal startup, response
+        if isinstance(message, dict) and message.get("kind") == "worker_started":
+            startup = message
+        elif isinstance(message, dict):
+            response = message
+        else:
+            response = {
+                "kind": "worker_protocol_error",
+                "status": "NOT_ASSESSED",
+                "message": "native replay worker response is not an object",
+            }
+
+    try:
+        while True:
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                timed_out = process.is_alive()
+                break
+            if receiving.poll(min(_WORKER_POLL_SECONDS, remaining)):
+                try:
+                    message = receiving.recv()
+                except EOFError:
+                    break
+                record_message(message)
+            if not process.is_alive():
+                while receiving.poll():
+                    try:
+                        record_message(receiving.recv())
+                    except EOFError:
+                        break
+                break
+        if not timed_out:
+            process.join(max(0.0, deadline - time.monotonic()))
+            timed_out = process.is_alive()
+    finally:
+        receiving.close()
+    termination_mechanism = None
+    if timed_out:
+        termination_mechanism, reaped = _terminate_and_reap(process)
+    else:
+        process.join()
+        reaped = not process.is_alive()
+    exit_code = process.exitcode
+    signal_number, signal_name = _signal_metadata(exit_code)
+    worker = {
+        "start_method": "spawn", "started": True, "pid": process.pid,
+        "exit_code": exit_code, "signal": signal_number, "signal_name": signal_name,
+        "termination_mechanism": termination_mechanism, "reaped": reaped,
+    }
+    if reaped:
+        process.close()
+    memory = (
+        (response or {}).get("memory_limit")
+        or (startup or {}).get("memory_limit")
+        or {
+            "requested_bytes": NATIVE_REPLAY_MEMORY_LIMIT_BYTES,
+            "enforced": False,
+            "mechanism": "worker-did-not-report",
+            "effective_bytes": None,
+        }
+    )
+    base = {"worker": worker, "memory_limit": memory}
+    if timed_out:
+        return {
+            **base, "reason": "wall_clock_timeout", "status": "BLOCKED",
+            "message": "native replay exceeded the parent-owned wall-clock deadline",
+        }
+    if not reaped:
+        return {
+            **base, "reason": "worker_reap_failure", "status": "NOT_ASSESSED",
+            "message": "native replay worker could not be reaped",
+        }
+    if exit_code is not None and exit_code < 0:
+        return {
+            **base, "reason": "worker_signal", "status": "NOT_ASSESSED",
+            "message": f"native replay worker terminated by signal {signal_number}",
+        }
+    if exit_code not in {0, None}:
+        return {
+            **base, "reason": "worker_crash", "status": "NOT_ASSESSED",
+            "message": f"native replay worker exited with code {exit_code}",
+        }
+    if response is None:
+        return {
+            **base, "reason": "worker_protocol_error", "status": "NOT_ASSESSED",
+            "message": "native replay worker exited without a result",
+        }
+    if not all(key in response for key in ("kind", "status", "message")) and response.get("kind") != "result":
+        return {
+            **base, "reason": "worker_protocol_error", "status": "NOT_ASSESSED",
+            "message": "native replay worker returned an incomplete response",
+        }
+    if response.get("kind") == "result" and not all(
+        key in response for key in ("program", "backend_profile", "native_result")
+    ):
+        return {
+            **base, "reason": "worker_protocol_error", "status": "NOT_ASSESSED",
+            "message": "native replay worker omitted required result fields",
+        }
+    return {**base, **response, "reason": response["kind"]}
+
+
+def _failure(
+    status: str,
+    message: str,
+    runtime_evidence: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     return {
         "status": status,
         "message": message,
         "artifact_ids": {},
         "expected_payloads": {},
         "expected_relations": {},
+        "runtime_evidence": runtime_evidence,
     }
 
 
@@ -169,51 +522,35 @@ def _reconstruct(graph: dict[str, Any]) -> dict[str, Any]:
 
         if len(raw) > MAX_BYTES:
             return _failure("BLOCKED", "native source exceeds the preservation byte budget")
-        try:
-            program = parse(content)
-        except E7QError as exc:
-            status = (
-                "UNSUPPORTED"
-                if str(exc) == "noise channels require the densitymatrix backend"
-                else "FAIL"
-            )
-            return _failure(status, f"native source could not be admitted by the parser: {exc}")
-        except (UnicodeError, ValueError, TypeError) as exc:
-            return _failure("FAIL", f"native source could not be parsed: {exc}")
-        admission_status, admission_message = native_admission_status(program)
-        if admission_status != "PASS":
-            return _failure(admission_status, admission_message or "native source was not admitted")
-        try:
-            native_result = verify(run(program))
-        except Exception as exc:  # existing runtime is isolated by the semantic boundary
-            return _failure("FAIL", f"native reference execution failed: {type(exc).__name__}")
+        replay = _run_native_replay_isolated(content)
+        runtime_evidence = _runtime_evidence(replay)
+        if replay["status"] != "PASS":
+            return _failure(replay["status"], replay["message"], runtime_evidence)
+        program = replay["program"]
+        native_result = replay["native_result"]
 
         expected_payloads = {
             "source": _expected_source_payload(raw),
             "intent": {
                 "format": "e7q.native-intent/v1",
-                "name": program.name,
-                "path": program.path,
-                "require_normalized": program.require_normalized,
-                "allowed_outcomes": (
-                    sorted(program.allowed_outcomes)
-                    if program.allowed_outcomes is not None
-                    else None
-                ),
-                "shots": program.shots,
-                "seed": program.seed,
-                "backend": program.backend,
+                "name": program["name"],
+                "path": program["path"],
+                "require_normalized": program["require_normalized"],
+                "allowed_outcomes": program["allowed_outcomes"],
+                "shots": program["shots"],
+                "seed": program["seed"],
+                "backend": program["backend"],
                 "source_trust": "trusted-local-source",
             },
             "representation": {
                 "format": "e7q.native-program/v1",
-                "program": program_payload(program),
+                "program": program,
             },
             "execution": {
                 "format": "e7q.native-execution/v1",
-                "backend_profile": backend_profile(program),
-                "seed": program.seed,
-                "shots": program.shots,
+                "backend_profile": replay["backend_profile"],
+                "seed": program["seed"],
+                "shots": program["shots"],
                 "implementation": implementation_versions(),
                 "proof": native_result["proof"],
             },
@@ -222,7 +559,7 @@ def _reconstruct(graph: dict[str, Any]) -> dict[str, Any]:
                 "counts": native_result["counts"],
                 "probabilities": native_result["probabilities"],
                 "label_order": "clbit-ascending",
-                "bit_width": program.bits,
+                "bit_width": program["bits"],
                 "probability_basis": "reference-statevector-computational-basis",
             },
             "assessment": {
@@ -283,6 +620,7 @@ def _reconstruct(graph: dict[str, Any]) -> dict[str, Any]:
                 "assessment": [ids["intent"], ids["execution"], ids["observation"]],
             },
             "created_at": by_kind["source"].get("provenance", {}).get("created_at"),
+            "runtime_evidence": runtime_evidence,
         }
     except Exception as exc:
         return _failure("FAIL", f"native semantic reconstruction failed: {type(exc).__name__}")
@@ -290,13 +628,25 @@ def _reconstruct(graph: dict[str, Any]) -> dict[str, Any]:
 
 def _context(graph: dict[str, Any]) -> dict[str, Any]:
     graph_id = graph.get("graph_id")
-    if isinstance(graph_id, str) and graph_id in _CONTEXT_CACHE:
-        _CONTEXT_CACHE.move_to_end(graph_id)
-        return _CONTEXT_CACHE[graph_id]
-    context = _reconstruct(graph)
+    cache_key = None
     if isinstance(graph_id, str):
-        _CONTEXT_CACHE[graph_id] = context
-        _CONTEXT_CACHE.move_to_end(graph_id)
+        cache_key = "sha256:" + sha256(json.dumps(
+            {
+                "graph_id": graph_id,
+                "validator_id": VALIDATOR_ID,
+                "policy": native_resource_policy(),
+                "implementation": implementation_versions(),
+            },
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode()).hexdigest()
+    if cache_key is not None and cache_key in _CONTEXT_CACHE:
+        _CONTEXT_CACHE.move_to_end(cache_key)
+        return _CONTEXT_CACHE[cache_key]
+    context = _reconstruct(graph)
+    if cache_key is not None:
+        _CONTEXT_CACHE[cache_key] = context
+        _CONTEXT_CACHE.move_to_end(cache_key)
         while len(_CONTEXT_CACHE) > _CONTEXT_CACHE_LIMIT:
             _CONTEXT_CACHE.popitem(last=False)
     return context
@@ -311,6 +661,7 @@ def _semantic_result(
     evidence_refs: Iterable[str],
     message: str,
     criterion: dict[str, Any] | None = None,
+    runtime_evidence: dict[str, Any] | None = None,
 ) -> SemanticResult:
     return SemanticResult(
         check_id=check_id,
@@ -323,6 +674,7 @@ def _semantic_result(
         message=message,
         boundaries=BOUNDARIES,
         criterion=criterion,
+        runtime_evidence=runtime_evidence,
     )
 
 
@@ -346,6 +698,7 @@ class NativeExecutionValidator:
                 subject_id=artifact["artifact_id"],
                 evidence_refs=(artifact["artifact_id"],),
                 message=context["message"],
+                runtime_evidence=context["runtime_evidence"],
             )
             return
         kind = artifact.get("kind")
@@ -360,6 +713,7 @@ class NativeExecutionValidator:
                 subject_id=artifact["artifact_id"],
                 evidence_refs=all_refs,
                 message="Artifact is not the unique expected native workflow subject.",
+                runtime_evidence=context["runtime_evidence"],
             )
             return
         provenance = artifact.get("provenance")
@@ -387,6 +741,7 @@ class NativeExecutionValidator:
                 if envelope_ok
                 else "Profile capabilities, boundary declarations or provenance references differ."
             ),
+            runtime_evidence=context["runtime_evidence"],
         )
         payload_ok = artifact.get("payload") == context["expected_payloads"][kind]
         criterion = PARSER_CRITERION if kind == "representation" else None
@@ -402,6 +757,7 @@ class NativeExecutionValidator:
                 else f"The {kind} payload differs from independent reconstruction from preserved source."
             ),
             criterion=criterion,
+            runtime_evidence=context["runtime_evidence"],
         )
 
     def validate_relation(
@@ -417,6 +773,7 @@ class NativeExecutionValidator:
                 subject_id=relation["relation_id"],
                 evidence_refs=refs,
                 message=context["message"],
+                runtime_evidence=context["runtime_evidence"],
             )
             return
         expected = context["expected_relations"].get(refs)
@@ -442,4 +799,5 @@ class NativeExecutionValidator:
                 else "Relation endpoints, criterion, preservation, loss, assumptions or validation status differ."
             ),
             criterion=expected.get("criterion") if expected is not None else None,
+            runtime_evidence=context["runtime_evidence"],
         )

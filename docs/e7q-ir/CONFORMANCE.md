@@ -40,7 +40,8 @@ F2 uses five non-interchangeable states:
 An F2 request runs only after F0 and F1 pass. Unknown profiles remain fully
 inspectable at F0/F1 but produce F2 `BLOCKED`. Every semantic result identifies
 its subject, profile, stable check identifier, evidence references, boundaries,
-and deterministic content identity. A non-PASS result never upgrades a
+and deterministic content identity. Optional validator-runtime evidence records
+the validation policy/enforcement separately from graph evidence. A non-PASS result never upgrades a
 transformation declaration or claim.
 # Phase 1B implementation update
 

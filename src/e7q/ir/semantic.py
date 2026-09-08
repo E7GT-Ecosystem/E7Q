@@ -30,6 +30,7 @@ class SemanticResult:
     message: str
     boundaries: tuple[str, ...] = ()
     criterion: dict[str, Any] | None = None
+    runtime_evidence: dict[str, Any] | None = None
 
     def __post_init__(self) -> None:
         if not self.check_id or not isinstance(self.check_id, str):
@@ -57,6 +58,8 @@ class SemanticResult:
             raise ValueError("semantic boundaries must be non-empty strings")
         if self.criterion is not None and not isinstance(self.criterion, dict):
             raise ValueError("semantic criterion must be an object when supplied")
+        if self.runtime_evidence is not None and not isinstance(self.runtime_evidence, dict):
+            raise ValueError("semantic runtime_evidence must be an object when supplied")
 
     def as_dict(self) -> dict[str, Any]:
         value: dict[str, Any] = {
@@ -74,6 +77,8 @@ class SemanticResult:
         }
         if self.criterion is not None:
             value["criterion"] = self.criterion
+        if self.runtime_evidence is not None:
+            value["runtime_evidence"] = self.runtime_evidence
         value["result_id"] = digest(value)
         return value
 

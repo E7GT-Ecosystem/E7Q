@@ -56,7 +56,10 @@ F2 validators emit deterministic `semantic-result-v0alpha1` objects. Each
 result contains a content identity, stable check identifier, one status from
 `PASS`, `FAIL`, `BLOCKED`, `UNSUPPORTED`, or `NOT_ASSESSED`, the artifact or
 relation subject, the exact profile/version, evidence references, an
-explanation, retained boundaries, and an optional criterion.
+explanation, retained boundaries, and an optional criterion. A validator may
+also emit optional `runtime_evidence` describing the policy and enforcement of
+the validation computation itself. That field is evidence about the validator
+run, not about provider execution, source chronology or physical hardware.
 
 The validator registry is separate from capability negotiation. A supported
 capability declaration does not imply that an F2 validator is installed or
@@ -70,6 +73,12 @@ subjects or evidence, and excessive result counts fail or block explicitly.
 schema identifier. Implementations must reject unknown required capabilities
 for semantic processing, while remaining able to report structural facts about
 an otherwise valid envelope.
+
+Adding optional `runtime_evidence` is backward-compatible: historical reports
+without it remain valid and retain their identities. Validators that add it
+produce new semantic-result identities; no artifact, relation or graph identity
+is migrated. Consumers that reject unknown optional fields must update before
+processing newly generated hardened reports.
 # Phase 1B implementation update
 
 The bounded Phase 1B payload validator now supersedes the framework-only

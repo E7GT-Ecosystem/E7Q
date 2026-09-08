@@ -3,8 +3,11 @@ from copy import deepcopy
 from hashlib import sha256
 from pathlib import Path
 import json
+import multiprocessing
+import os
 import subprocess
 import sys
+import time
 
 import pytest
 
@@ -20,13 +23,15 @@ from e7q.ir.native_semantic import (
     VALIDATOR_ID,
     _CONTEXT_CACHE,
     _CONTEXT_CACHE_LIMIT,
+    _run_native_replay_isolated,
 )
 from e7q.ir.semantic import SemanticRegistry
 
 STAMP = "2026-09-07T00:00:00Z"
 BELL = Path("examples/bell.e7q").read_bytes()
 PUBLIC_GRAPH = Path("examples/e7q-ir/native-execution-bell-graph.json")
-PUBLIC_REPORT = Path("examples/e7q-ir/native-execution-bell-f2.json")
+HISTORICAL_REPORT = Path("examples/e7q-ir/native-execution-bell-f2.json")
+PUBLIC_REPORT = Path("examples/e7q-ir/native-execution-bell-f2-resource-safe.json")
 
 
 def artifact(graph, kind):
@@ -91,6 +96,18 @@ def test_native_bell_reaches_deterministic_f2_and_preserves_source():
     assert report["level_results"]["F2"] == "PASS"
     assert len(report["semantic_results"]) == 17
     assert all(item["status"] == "PASS" for item in report["semantic_results"])
+    runtime_evidence = report["semantic_results"][0]["runtime_evidence"]
+    assert runtime_evidence["outcome_reason"] == "result"
+    assert runtime_evidence["policy"]["parser"]["max_operations"] == 1024
+    assert runtime_evidence["policy"]["wall_clock_limit_seconds"] == 5.0
+    assert runtime_evidence["policy"]["implementation_revision"] == (
+        "native-f2-resource-safe-v1"
+    )
+    assert runtime_evidence["memory"]["requested_bytes"] == 8 * 1024**3
+    assert runtime_evidence["memory"]["enforced"] is True
+    assert runtime_evidence["memory"]["effective_bytes"] is not None
+    assert runtime_evidence["worker"]["exit_code"] == 0
+    assert runtime_evidence["worker"]["reaped"] is True
     assert all(
         item["profile"] == {"id": PROFILE_ID, "version": PROFILE_VERSION}
         and MAXIMUM_CONCLUSION in item["boundaries"]
@@ -344,7 +361,7 @@ def test_native_context_cache_is_bounded_and_does_not_retain_supplied_graphs():
     assert all("artifacts" not in context for context in _CONTEXT_CACHE.values())
     assert all(set(context) <= {
         "status", "message", "artifact_ids", "expected_payloads", "expected_relations",
-        "expected_source_refs", "created_at",
+        "expected_source_refs", "created_at", "runtime_evidence",
     } for context in _CONTEXT_CACHE.values())
     _CONTEXT_CACHE.clear()
 
@@ -354,6 +371,9 @@ def test_public_native_bell_f2_evidence_is_stable_and_fresh_graph_passes():
     report = validate_graph(graph, level="F2")
     assert report["status"] == "PASS"
     assert report["highest_level_passed"] == "F2"
+    assert sha256(HISTORICAL_REPORT.read_bytes()).hexdigest() == (
+        "475bae0b062182c8eadfe695ac1f74065e9bf524a5d9dc500d4f1fa69b6f2fa7"
+    )
 
     public_graph = json.loads(PUBLIC_GRAPH.read_text())
     public_report = json.loads(PUBLIC_REPORT.read_text())
@@ -371,6 +391,7 @@ def test_public_native_bell_f2_evidence_is_stable_and_fresh_graph_passes():
     artifact_ids = {item["artifact_id"] for item in public_graph["artifacts"]}
     assert public_report["status"] == "PASS"
     assert public_report["highest_level_passed"] == "F2"
+    assert report == public_report
     assert len(public_report["semantic_results"]) == 17
     assert all(
         item["status"] == "PASS"
@@ -390,3 +411,159 @@ def test_cli_native_execution(tmp_path):
     assert recover_source(graph) == BELL
     assert by_kind(graph, "assessment")["native_result"]["status"] == "PASS"
     assert validate_graph(graph, level="F2")["status"] == "PASS"
+
+
+def _fanout_source(depth=11):
+    paths = ["path P0 { X q[0] }"]
+    for level in range(1, depth + 1):
+        paths.append(f"path P{level} {{\n  use P{level - 1}\n  use P{level - 1}\n}}")
+    declarations = "\n".join(paths)
+    return (f"""context Fanout {{ shots: 1 backend: statevector seed: 1 }}
+qubits q[1]
+bits c[1]
+{declarations}
+path Root {{
+  use P{depth}
+  measure q -> c
+}}
+verify Root
+""").encode()
+
+
+def test_native_f2_compact_fanout_is_blocked_before_simulation():
+    graph = deepcopy(execute_native(BELL, created_at=STAMP))
+    payload = artifact(graph, "source")["payload"]
+    raw = _fanout_source()
+    payload["content"] = raw.decode()
+    payload["byte_length"] = len(raw)
+    payload["content_digest"] = "sha256:" + sha256(raw).hexdigest()
+    rehash(graph)
+    _CONTEXT_CACHE.clear()
+    report = validate_graph(graph, level="F2")
+    assert report["level_results"]["F2"] == "BLOCKED"
+    assert {item["status"] for item in report["semantic_results"]} == {"BLOCKED"}
+    runtime = report["semantic_results"][0]["runtime_evidence"]
+    assert runtime["outcome_reason"] == "expansion_limit"
+    assert runtime["worker"]["reaped"] is True
+    assert runtime["memory"]["requested_bytes"] == 8 * 1024**3
+
+
+def sleeping_native_worker(connection, content):
+    time.sleep(10)
+
+
+def crashing_native_worker(connection, content):
+    os._exit(23)
+
+
+def malformed_native_worker(connection, content):
+    connection.send("not-a-protocol-object")
+    connection.close()
+
+
+def memory_exhausted_native_worker(connection, content):
+    memory = {
+        "requested_bytes": 8 * 1024**3,
+        "enforced": True,
+        "mechanism": "posix-rlimit-as",
+        "effective_bytes": 8 * 1024**3,
+    }
+    connection.send({"kind": "worker_started", "memory_limit": memory})
+    connection.send({
+        "kind": "memory_exhaustion",
+        "status": "BLOCKED",
+        "message": "bounded allocation rejected",
+        "memory_limit": memory,
+    })
+    connection.close()
+
+
+def unsupported_memory_platform_worker(connection, content):
+    memory = {
+        "requested_bytes": 8 * 1024**3,
+        "enforced": False,
+        "mechanism": "unsupported",
+        "effective_bytes": None,
+    }
+    connection.send({"kind": "worker_started", "memory_limit": memory})
+    connection.send({
+        "kind": "unsupported_platform",
+        "status": "UNSUPPORTED",
+        "message": "RLIMIT_AS is unavailable",
+        "memory_limit": memory,
+    })
+    connection.close()
+
+
+@pytest.mark.parametrize(
+    "target,reason,status",
+    [
+        (crashing_native_worker, "worker_crash", "NOT_ASSESSED"),
+        (malformed_native_worker, "worker_protocol_error", "NOT_ASSESSED"),
+    ],
+)
+def test_native_replay_worker_failures_are_distinct_non_pass(target, reason, status):
+    result = _run_native_replay_isolated(BELL.decode(), worker_target=target)
+    assert result["reason"] == reason
+    assert result["status"] == status
+    assert result["worker"]["reaped"] is True
+    assert all(child.pid != result["worker"]["pid"] for child in multiprocessing.active_children())
+
+
+def test_native_replay_parent_deadline_terminates_and_reaps(monkeypatch):
+    monkeypatch.setattr("e7q.ir.native_semantic.NATIVE_REPLAY_TIMEOUT_SECONDS", 0.05)
+    result = _run_native_replay_isolated(BELL.decode(), worker_target=sleeping_native_worker)
+    assert result["reason"] == "wall_clock_timeout"
+    assert result["status"] == "BLOCKED"
+    assert result["worker"]["termination_mechanism"] in {"terminate", "kill"}
+    assert result["worker"]["reaped"] is True
+    assert all(child.pid != result["worker"]["pid"] for child in multiprocessing.active_children())
+
+
+def test_native_replay_memory_exhaustion_is_blocked_and_recorded():
+    result = _run_native_replay_isolated(
+        BELL.decode(), worker_target=memory_exhausted_native_worker
+    )
+    assert result["reason"] == "memory_exhaustion"
+    assert result["status"] == "BLOCKED"
+    assert result["memory_limit"]["enforced"] is True
+    assert result["memory_limit"]["effective_bytes"] == 8 * 1024**3
+    assert result["worker"]["reaped"] is True
+
+
+def test_native_replay_without_memory_enforcement_is_unsupported():
+    result = _run_native_replay_isolated(
+        BELL.decode(), worker_target=unsupported_memory_platform_worker
+    )
+    assert result["reason"] == "unsupported_platform"
+    assert result["status"] == "UNSUPPORTED"
+    assert result["memory_limit"]["enforced"] is False
+    assert result["worker"]["reaped"] is True
+
+
+def test_graph_supplied_resource_values_cannot_weaken_installed_policy():
+    graph = deepcopy(execute_native(BELL, created_at=STAMP))
+    artifact(graph, "source")["payload"]["resource_policy"] = {
+        "max_operations": 10**12,
+        "wall_clock_limit_seconds": 10**12,
+        "memory_limit_bytes": 10**18,
+    }
+    rehash(graph)
+    _CONTEXT_CACHE.clear()
+    report = validate_graph(graph, level="F2")
+    assert report["level_results"]["F2"] == "FAIL"
+    runtime = report["semantic_results"][0]["runtime_evidence"]
+    assert runtime["policy"]["parser"]["max_operations"] == 1024
+    assert runtime["policy"]["wall_clock_limit_seconds"] == 5.0
+    assert runtime["policy"]["memory_limit_requested_bytes"] == 8 * 1024**3
+
+
+def test_native_context_cache_key_includes_resource_policy(monkeypatch):
+    _CONTEXT_CACHE.clear()
+    graph = execute_native(BELL, created_at=STAMP)
+    original_keys = set(_CONTEXT_CACHE)
+    monkeypatch.setattr("e7q.ir.native_semantic.NATIVE_REPLAY_TIMEOUT_SECONDS", 1.0)
+    assert validate_graph(graph, level="F2")["status"] == "PASS"
+    assert len(_CONTEXT_CACHE) == 2
+    assert original_keys < set(_CONTEXT_CACHE)
+    _CONTEXT_CACHE.clear()
