@@ -62,7 +62,7 @@ See [H1–H10 acceptance gates](docs/e7q-ir/REVIEW_HARDENING.md).
 - [ ] H2 adversarial E7Q-IR semantic campaign;
 - [ ] H3 external-bundle security and interpretation checks;
 - [ ] H4 capability-to-evidence matrix and maintained current status;
-- [ ] H5 native/legacy evidence continuity adapters;
+- [x] H5 native/legacy evidence continuity adapters, including installed bounded native/default F2 reconstruction;
 - [ ] H6 optional Aer reference workflow;
 - [ ] H7 end-to-end supporting-module campaigns;
 - [ ] H8 independent mathematical cross-checks;
@@ -395,14 +395,14 @@ See [H1–H10 acceptance gates](docs/e7q-ir/REVIEW_HARDENING.md).
 - [x] Exact real H-unitary criterion and original H/u2(0,pi) F2 acceptance fixture (four-qubit, 64-gate bounds).
 
 - [x] Phase 2 first preservation adapter: original native/legacy source recovery and explicit assurance limits. See [contract](docs/e7q-ir/LEGACY_PRESERVATION.md).
-- [ ] Phase 2 typed native compiler/execution/legacy adapters; preservation, native execution, criterion-bound comparisons, topology compiler Proof-of-Path conversion and offline legacy receipt mapping are implemented, while native/default F2 validation remains open.
+- [x] Phase 2 typed native compiler/execution/legacy adapters: preservation, native execution, criterion-bound comparison, topology compiler Proof-of-Path conversion, offline legacy receipt mapping and installed native/default F2 reconstruction are complete within their declared bounds.
 
-- [x] Bounded native source/intent/execution/observation/assessment path with preserved Proof-of-Path and verdicts; [scope and limits](docs/e7q-ir/NATIVE_EXECUTION.md). Native/default F2 semantic validation remains pending.
+- [x] Bounded native source/intent/execution/observation/assessment path with preserved Proof-of-Path and verdicts plus installed `e7q.ir.native-execution/0alpha1` F2 reconstruction; [scope and limits](docs/e7q-ir/NATIVE_EXECUTION.md).
 
 - [x] External circuit-pair QCEC evidence workflow with byte-preserved sources, separate OpenQASM 2 projections, isolated numerical assessment, explicit tolerances/resource limits and bounded claim support. Default F2 integration, PyZX and general scalability remain pending.
 
-- [x] Bounded criterion-selected native E7Q to external OpenQASM 2 unitary-prefix comparison with explicit terminal-measurement projection loss, preserved native Proof-of-Path and fail-closed unsupported/resource outcomes. Native semantic validation and Phase 2/H5 completion remain pending.
+- [x] Bounded criterion-selected native E7Q to external OpenQASM 2 unitary-prefix comparison with explicit terminal-measurement projection loss, preserved native Proof-of-Path and fail-closed unsupported/resource outcomes. Its optional QCEC evidence remains separate from native/default F2 truth.
 
-- [x] Typed conversion of the existing topology-reference compiler Proof-of-Path into E7Q-IR, with explicit compilation request, verbatim and typed traces, independently identified source/compiled representations, isolated criterion-bound QCEC evidence and a bounded compiler-preservation claim. Native/default F2 validation remains pending; Phase 2/H5 stay open.
+- [x] Typed conversion of the existing topology-reference compiler Proof-of-Path into E7Q-IR, with explicit compilation request, verbatim and typed traces, independently identified source/compiled representations, isolated criterion-bound QCEC evidence and a bounded compiler-preservation claim. Imported compiler declarations are not native/default F2 truth.
 
-- [x] Typed offline mapping of existing legacy execution bundles, supplied results and receipts into distinct intent, execution, observation, assessment and bounded-claim artifacts, with byte-perfect recovery and independent `build_execution_receipt()` recomputation. Provider/authentication work and native/default F2 validation remain pending; Phase 2/H5 stay open.
+- [x] Typed offline mapping of existing legacy execution bundles, supplied results and receipts into distinct intent, execution, observation, assessment and bounded-claim artifacts, with byte-perfect recovery and independent `build_execution_receipt()` recomputation. Imported verdicts remain excluded from native/default F2 truth; provider/authentication work remains separate.

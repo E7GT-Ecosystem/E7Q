@@ -73,23 +73,32 @@ Gate: every advertised capability has evidence or an explicit proposed/unsupport
 label; adapters and semantic validators have distinct entries. Assign a builder
 in each implementation PR and update affected rows with each capability change.
 
-### H5 — Native/legacy evidence continuity (P1; Phase 2)
+### H5 — Native/legacy evidence continuity (P1; Phase 2) — COMPLETE
 
-This package is partially implemented through source/legacy preservation, bounded
-native execution, external QCEC evidence, criterion-bound native/external
-unitary-prefix comparison, typed topology-compiler Proof-of-Path conversion and
-offline legacy execution receipt mapping. H5 and Phase 2 remain incomplete until
-native/default F2 semantic validation lands.
+Source/legacy preservation, bounded native execution, external QCEC evidence,
+criterion-bound native/external unitary-prefix comparison, typed topology-compiler
+Proof-of-Path conversion and offline legacy execution receipt mapping are linked by
+inspectable evidence paths. The distinct `e7q.ir.native-execution/0alpha1` profile
+now supplies the remaining installed native/default F2 semantic reconstruction.
 
-Complete the remaining Phase 2 semantic-validation gate while retaining original
-bytes, native IDs, source references, compiler traces, execution settings and
-assessment boundaries. Describe omitted/derived fields and irreversible losses;
-do not fabricate values.
+The validator retains and checks original source bytes, native IDs, source
+references, execution settings, complete native Proof-of-Path, observation and
+assessment boundaries. Parser projection loss remains explicit. Historical core-
+profile graphs and legacy formats remain readable at F0/F1 and are neither
+rewritten nor retrospectively promoted.
 
-Gate: native Bell, external OpenQASM, compiler and legacy receipt workflows retain
-inspectable evidence paths, pass applicable F0/F1/F2 checks and preserve legacy
-readability. Supported round trips retain identity or explicitly report why
-identity is not preserved. Imported verdicts cannot become default F2 truth.
+Gate satisfied: the public native Bell workflow reaches F2 through independent
+reparse/readmission/reference replay/native verification; external OpenQASM,
+compiler and legacy receipt workflows retain their bounded inspectable paths;
+supported round trips retain identity or declare loss; and imported verdicts,
+compiler traces and optional QCEC results cannot become default native F2 truth.
+A faithfully recomputed native invariant FAIL may pass semantic conformance while
+remaining a FAIL program verdict.
+
+H1/H2/H3/H6/H8, E3/E5, provider authentication, OpenQASM 3, QIR and K12/CFS
+remain separate open packages. H5 completion establishes no hardware execution,
+fidelity, provider identity, chronology, external-circuit equivalence, scalability
+or computational advantage.
 
 ### H6 — Optional Aer reference integration (P1; Phase 2, after H2/H3)
 
@@ -481,10 +490,45 @@ protection and the default F2 boundary. The public graph ID is
 F0/F1 pass; 25 installed semantic checks run and F2 remains `BLOCKED` because no
 legacy-receipt validator is registered as default semantic truth.
 
-This checkpoint completes the planned offline legacy receipt mapping increment,
-not Phase 2 or H5. Native/default F2 validation, independent external review, PyZX
-and the repeated benchmark ladder remain pending. It establishes no submission,
-execution authenticity, provider identity, chronology, physical fidelity, circuit
-correctness, computational advantage, F3 authentication or arbitrary scalability.
-Provider integration, authenticated execution and K12/CFS implementation remain
-unstarted.
+At this checkpoint the offline legacy receipt mapping increment was complete,
+while native/default F2 still blocked Phase 2/H5. The subsequent native checkpoint
+below closes that blocker. The receipt workflow itself still establishes no
+submission, execution authenticity, provider identity, chronology, physical
+fidelity, circuit correctness, computational advantage, F3 authentication or
+arbitrary scalability. Provider integration, authenticated execution and K12/CFS
+implementation remain unstarted.
+
+## Installed native/default F2 checkpoint (2026-09-08)
+
+Baseline: `1a0a24b3d41f79bfa6a200006e4bf08761b39f52` (PR #61).
+`e7q.ir.native-execution/0alpha1` is a distinct installed profile; no validator is
+registered for `e7q.ir.core/0alpha1`. Newly generated native graphs use the native
+profile on all six artifacts and five relations. Historical core-profile native
+graphs and generic legacy/core artifacts remain F1-only and retain their original
+identities.
+
+The validator verifies source bytes, length and digest, reparses the preserved E7Q,
+reapplies the bounded admission contract before allocation, executes the existing
+seeded statevector reference backend, calls the existing native verifier and
+compares every intent, expanded operation, backend declaration, implementation
+version, Proof-of-Path, count, probability, assessment, provenance and relation
+field. It reuses `parse()`, `run()`, `verify()` and `backend_profile()` and requires
+no QCEC dependency.
+
+Adversarial tests rehash otherwise valid graphs after source, intent,
+representation, execution, observation, assessment, provenance and transformation
+tampering. Unknown format, noisy/dynamic/unseeded/excessive programs, validator
+exceptions, malformed contracts and missing results remain non-PASS. Native
+invariant failure remains separate: a faithfully recorded and recomputed native
+FAIL can pass F2 conformance without becoming successful execution or a scientific
+claim.
+
+The public Bell graph ID is
+`sha256:c9fe173151778dcae3df500674a53c063c32119c6b600bfe40c0b82f00e59598`.
+Its deterministic F2 report contains 17 PASS semantic checks. Focused verification
+passes 80 tests, the integrated IR/native/compiler/QCEC/receipt surface passes 250
+and the full suite passes 567. This satisfies H5 and Phase 2 because all continuity
+paths remain inspectable, applicable conformance
+checks fail closed, preservation/loss is explicit and imported verdicts cannot
+become native/default F2 truth. H1/H2/H3/H6/H8, E3/E5, authentication, broader
+interoperability and K12/CFS remain separate open gates.

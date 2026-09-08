@@ -342,14 +342,20 @@
     },
     {
       "id": "ir_native",
-      "scope": "Bounded static native execution into linked evidence artifacts",
+      "scope": "Installed e7q.ir.native-execution/0alpha1 F2 reconstruction for bounded static native source, intent, parsed representation, reference execution, observation, assessment and every relation",
       "test_file": "tests/test_ir_native.py",
       "implementation": [
-        "src/e7q/ir/native.py"
+        "src/e7q/ir/native.py",
+        "src/e7q/ir/native_semantic.py",
+        "src/e7q/ir/profiles.py",
+        "src/e7q/ir/semantic.py",
+        "profiles/native-execution-v0alpha1.json",
+        "examples/e7q-ir/native-execution-bell-graph.json",
+        "examples/e7q-ir/native-execution-bell-f2.json"
       ],
-      "limits": "Local reference simulation; no native F2 semantic validator, compilation or hardware assurance.",
-      "next_gate": "Native/default F2 semantic validation",
-      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+      "limits": "Trusted local UTF-8 source only; statevector, explicit seed, static gates, one terminal full-register measurement, at most 8 qubits/bits, 100000 shots and 1024 expanded operations. No hardware fidelity, provider authentication, chronology, compiler or external-circuit correctness, exact-algebraic equivalence, scalability, advantage, F3 or F4.",
+      "next_gate": "H2/H3 adversarial and external-bundle hardening plus H1/H8 independent review; optional Aer, PyZX and provider authentication remain separate packages",
+      "review_status": "LOCAL_REVIEW_COMPLETED"
     },
     {
       "id": "ir_qcec",

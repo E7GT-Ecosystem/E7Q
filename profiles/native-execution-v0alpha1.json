@@ -1,0 +1,30 @@
+{
+  "schema": "e7q.ir.profile/v0alpha1",
+  "id": "e7q.ir.native-execution",
+  "version": "0alpha1",
+  "status": "experimental",
+  "extends": "e7q.ir.core/0alpha1",
+  "capabilities": [
+    "artifact.identity",
+    "claim.boundary",
+    "observation.record",
+    "transformation.accounting",
+    "native.source.utf8-bytes",
+    "native.intent",
+    "native.parser.projection",
+    "native.reference-execution",
+    "native.observation",
+    "native.verification"
+  ],
+  "semantic_validators": [
+    {
+      "id": "e7q.ir.validator.native-execution/0alpha1",
+      "subject_kinds": [
+        "artifact",
+        "relation"
+      ],
+      "implementation_status": "installed-bounded-native-reconstruction"
+    }
+  ],
+  "semantic_boundary": "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source. Semantic conformance is separate from native program success: a faithfully recomputed native FAIL remains a FAIL program verdict. The profile establishes no hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, external-circuit or exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction."
+}

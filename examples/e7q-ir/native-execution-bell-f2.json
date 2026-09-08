@@ -1,0 +1,989 @@
+{
+  "capability_negotiation": [
+    {
+      "artifact_id": "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    }
+  ],
+  "checks": [
+    {
+      "name": "graph:object",
+      "passed": true
+    },
+    {
+      "name": "graph:fields",
+      "passed": true
+    },
+    {
+      "name": "graph:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "graph:schema",
+      "passed": true
+    },
+    {
+      "name": "graph:name",
+      "passed": true
+    },
+    {
+      "name": "graph:artifacts",
+      "passed": true
+    },
+    {
+      "name": "graph:relations",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:limitations",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:transformation-contract",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "graph:graph-id",
+      "passed": true
+    },
+    {
+      "name": "graph:unique-artifact-ids",
+      "passed": true
+    },
+    {
+      "name": "graph:unique-relation-ids",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[1]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[2]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[3]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[4]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[5]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[0]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[1]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[2]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[3]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[4]:references",
+      "passed": true,
+      "unresolved": []
+    }
+  ],
+  "highest_level_passed": "F2",
+  "level_results": {
+    "F0": "PASS",
+    "F1": "PASS",
+    "F2": "PASS",
+    "F3": "NOT_IMPLEMENTED",
+    "F4": "NOT_IMPLEMENTED"
+  },
+  "proof": [
+    {
+      "kind": "structural-conformance",
+      "status": "PASS",
+      "step": 0
+    },
+    {
+      "kind": "referential-conformance",
+      "status": "PASS",
+      "step": 1
+    },
+    {
+      "kind": "profile-semantic-conformance",
+      "semantic_results": 17,
+      "status": "PASS",
+      "step": 2
+    },
+    {
+      "boundary": "F0/F1 validation establishes structure, content identity, and graph reference integrity. F2 establishes only named installed profile checks that report PASS. It does not establish provider authenticity, physical fidelity, causation, or truth.",
+      "kind": "evidence-boundary",
+      "step": 3
+    }
+  ],
+  "requested_level": "F2",
+  "schema": "e7q.ir.conformance-report/v0alpha1",
+  "semantic_readiness": "PASS",
+  "semantic_results": [
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.intent.profile-and-provenance",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Profile capabilities, boundary declarations and provenance references match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:aa54f94a849bd07649a9251794d2a3b99418da4f2708efc085db43802d7f4a59",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.intent.recomputed",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "The intent payload matches independent reconstruction from preserved source.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:eb1a61ab5b5d6d666f40d8c05c783fb588f390ba1332e801c48ec7170edc46d1",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.observation.profile-and-provenance",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Profile capabilities, boundary declarations and provenance references match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:ea13287700cd0df59372ac7684edf3f2ed52f4a4b1bfb70c9018234cf740fab9",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.observation.recomputed",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "The observation payload matches independent reconstruction from preserved source.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:c61b1a85faca3fb9acbf533b4c7c8c3e7dd59637b285d9414fa88e721d166de8",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.representation.profile-and-provenance",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Profile capabilities, boundary declarations and provenance references match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:8d1e158e8eef3ff3cd046f4d3b5a2e5b2689a5dadc2e7246f309a8373ebe6767",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.representation.recomputed",
+      "criterion": {
+        "id": "e7q.ir.native-parser-projection",
+        "version": "1"
+      },
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "The representation payload matches independent reconstruction from preserved source.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:ea8d7f4e25af2fd90850248e78559a190728ee1a1f2f0e4b6aafb53a08673f2d",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.assessment.profile-and-provenance",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Profile capabilities, boundary declarations and provenance references match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:6806970d4a7b12c8fe079d2252d9db06455dd755a0978830eaba6627645f260a",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.assessment.recomputed",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "The assessment payload matches independent reconstruction from preserved source.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:87bd3a3e18203375b17b6eabe3653af755f9d6978668aeb9825eb72d3715c625",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.source.profile-and-provenance",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Profile capabilities, boundary declarations and provenance references match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:28c9a403dc2dc187dc22cbbc2f2f8bb1d90639410b6a2f11c1b38fc46a54afe9",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.source.recomputed",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "The source payload matches independent reconstruction from preserved source.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:85cdc489b04730f74f0ca510eb739f85ede6cae0f8d522912f087ab4eae01c96",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.execution.profile-and-provenance",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Profile capabilities, boundary declarations and provenance references match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:4cf9f18895a9a16fe43cb0bb56c29eafe24a0ff808565560815990ea759adca7",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.execution.recomputed",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "The execution payload matches independent reconstruction from preserved source.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:c85f17f23573f828bc7a86c023787a32c989deea8d1c5895eb84548e16151e17",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.relation.produces.representation-to-execution",
+      "evidence_refs": [
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Relation endpoints, criterion, preservation, loss, assumptions and validation status match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:f96a086162cb86c0f7e3e44ec693575c01fba596669b86f74f818031e1b7186d",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:27de324790a9c12c45c3569f5a06f5aadf8761140b6729324356004741db9c1b",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.relation.assesses.assessment-to-observation",
+      "evidence_refs": [
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb"
+      ],
+      "message": "Relation endpoints, criterion, preservation, loss, assumptions and validation status match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:ba911c5fac6fcf833895b77064d49271960c0d7d519e45822d78e0ea5729d141",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:79dbe8c6eed5eed39297667dbd4ebfbe74603d272e874ef328152372e5641d31",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.relation.transforms.source-to-representation",
+      "criterion": {
+        "id": "e7q.ir.native-parser-projection",
+        "version": "1"
+      },
+      "evidence_refs": [
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa"
+      ],
+      "message": "Relation endpoints, criterion, preservation, loss, assumptions and validation status match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:2c1bcab1648237c8a038df782594304c65ea54f4c0776150feae198b4c803d57",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:8f8c81eac1709cdf9bca5af15157a341a856650024d3af3665c4636ca925f6bf",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.relation.produces.execution-to-observation",
+      "evidence_refs": [
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Relation endpoints, criterion, preservation, loss, assumptions and validation status match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:fcd8dd2de76bb5d8cb7c887b8432dcd0dbe08a63f37a6a5dec519faa5200c276",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:a376c9eacdc4bd5fc3d947dfd3dcc0b811baf5a808c60f69635a0d78c7c8dd85",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.relation.represents.source-to-intent",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa"
+      ],
+      "message": "Relation endpoints, criterion, preservation, loss, assumptions and validation status match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:d739aee625fed967e92e9a638db97510ddef8bee90599695aabc2712a1770d04",
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:cf3dbf73c959fce3b36e28297ee6e42ec5e596c94585f1d4fc04552d51783b42",
+        "kind": "relation"
+      }
+    }
+  ],
+  "status": "PASS"
+}
