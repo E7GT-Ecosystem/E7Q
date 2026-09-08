@@ -76,8 +76,9 @@ in each implementation PR and update affected rows with each capability change.
 ### H5 — Native/legacy evidence continuity (P1; Phase 2)
 
 This package is partially implemented through source/legacy preservation, bounded
-native execution, external QCEC evidence and criterion-bound native/external
-unitary-prefix comparison. H5 and Phase 2 remain incomplete.
+native execution, external QCEC evidence, criterion-bound native/external
+unitary-prefix comparison and typed topology-compiler Proof-of-Path conversion.
+H5 and Phase 2 remain incomplete.
 
 Complete the remaining Phase 2 adapters, retaining original bytes, native IDs,
 source references, compiler traces, execution settings and assessment boundaries.
@@ -394,8 +395,51 @@ It passes F0/F1; all applicable installed F2 checks run, while overall F2 remain
 `BLOCKED` and projection relations remain `not-assessed` because no semantic
 validator exists for this adapter contract.
 
-This is partial H5/Phase 2 implementation, not completion. Typed compiler trace
-conversion, legacy execution/receipt mapping, native/default F2 validators,
-independent review, PyZX and the full repeated benchmark ladder remain pending.
-No compiler provenance, provider authentication, hardware fidelity or arbitrary
-scalability claim is added.
+This is partial H5/Phase 2 implementation, not completion. Legacy
+execution/receipt mapping, native/default F2 validators, independent review, PyZX
+and the full repeated benchmark ladder remain pending. No compiler provenance,
+provider authentication, hardware fidelity or arbitrary scalability claim is
+added.
+
+## Typed topology compiler Proof-of-Path checkpoint (2026-09-08)
+
+Baseline: `89531ebe1b01d8268d8756227ddaa77ce7096ee5`.
+The additive compiler workflow adapts the existing `compile_topology()` and
+`compilation_result()` implementation without changing or duplicating compiler
+behavior. It preserves the native source bytes, parsed program and complete
+original compiler Proof-of-Path, then converts every step into typed ordered
+E7Q-IR evidence covering the initial context, source operation index, logical
+operands, selected physical path, forward/reverse SWAPs, restored-layout
+assertions, final counts and routing overhead.
+
+The declared compilation request records coupling edges, logical width, native
+gate set, compiler implementation/version, selected program/path, numerical
+criterion, tolerances and resource limits. Source and compiled representations
+have independent content identities and explicit terminal-measurement projection
+boundaries. The compiler preservation declaration states that it is not semantic
+equivalence. A separate isolated QCEC assessment must PASS the requested numerical
+criterion before the bounded compiler-preservation claim can be supported.
+
+The local consistency validator reparses the preserved source and deterministically
+recompiles it, checking the complete proof, typed trace, compiled representation,
+projection, criterion and claim. Recomputed-identity tampering of either compiled
+content or trace therefore fails. This validator is not registered as default F2
+truth: F0/F1 pass for the public graph, while all 19 applicable F2 checks run and
+overall F2 remains `BLOCKED`.
+
+Regression coverage includes adjacent/no-routing, non-adjacent and multiple routes,
+forward/reverse SWAP order, disconnected graphs, missing SWAP/native gate support,
+invalid/duplicate edges, trace and representation tampering, QCEC inequality,
+timeout, exhaustion, worker crash, deterministic identities, exact source/proof
+recovery, inconclusive isolation and exact-criterion rejection. The public evidence
+graph is
+`sha256:17265fa58a1a46f47db36ba800ca5613e374fd3dd6a687c1dde832c5c74a5827`.
+It records four inserted SWAPs, restored logical layout, QCEC 3.9.0
+`equivalent`/PASS, 0.38756 seconds wall time, 59,174,912 bytes peak worker RSS,
+enforced parent deadline/POSIX `RLIMIT_AS` and a reaped zero-exit worker.
+
+Phase 2/H5 remain open for typed legacy execution/receipt mapping and
+native/default F2 semantic validation. No hardware feasibility, topology quality,
+physical fidelity, provider authentication, execution success, exact-algebraic
+or arbitrary-scalability claim is added. K12/CFS implementation remains
+unstarted.

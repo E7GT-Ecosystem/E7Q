@@ -5,17 +5,17 @@
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.
 
 **Current inspected baseline (2026-09-08):** `main` at
-`95f8c8d15cc311753fe746b1c641a07e2453bea4` (PR #56).
-That merge reconciled this roadmap with direction `E7-ECO-DIR-2026-09-08.1`
-and E7G-T v0.12/CFS1 without changing runtime semantics.
+`89531ebe1b01d8268d8756227ddaa77ce7096ee5` (PR #57).
+That merge added bounded criterion-selected comparison between native E7Q and
+external OpenQASM 2 unitary prefixes without changing default F2 truth.
 
-**Current bounded Phase 2 increment:** adds criterion-bound comparison between
-one native E7Q program and one external OpenQASM 2 circuit. It preserves both
-sources, parses them separately, validates a static noiseless common subset and
-terminal identity measurement, records explicit measurement-removal
-transformations, evaluates only immutable unitary-prefix projections through the
-isolated QCEC worker, and retains native Proof-of-Path evidence where available.
-It does not complete Phase 2/H5 or begin K12/CFS implementation.
+**Current bounded Phase 2 increment:** converts the complete Proof-of-Path from
+the existing deterministic `compile_topology()` implementation into typed E7Q-IR
+evidence. It records the compilation request, compiler declaration, ordered route
+steps, inserted forward/reverse SWAPs, restored-layout assertions, independent
+source/compiled circuit identities and isolated criterion-bound QCEC evidence.
+It does not create another compiler, complete Phase 2/H5 or begin K12/CFS
+implementation.
 
 **Revision 0.8:** adopts ecosystem direction `E7-ECO-DIR-2026-09-08.1` and pins E7G-T v0.12 experimental canonical revision CFS1 at commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca`. It adds an optional, additive family-state planning lane after the applicable H2/H3 and Phase 2 gates. EEC coefficients remain formal construction coefficients, never quantum amplitudes, probabilities or evidence weights. Existing artifacts, IDs, APIs and F0-F2 meanings are not migrated.
 
@@ -62,13 +62,12 @@ Each retains its own domain and limits. General angles, complex-gate IR criteria
 noisy-channel IR criteria and general Phase 1C coverage remain incomplete.
 
 **Next package:** complete the open H2/H3 hardening and remaining Phase 2 typed
-compiler/execution mapping, including compiler Proof-of-Path conversion and typed
-legacy receipt mapping. The external QCEC pair workflow and bounded
-native/external unitary-prefix comparison now provide criterion-bound comparison
-evidence, but neither becomes default F2 truth. Extend the benchmark ladder below
-25 qubits, evaluate PyZX separately, and repeat resource measurements across the
-supported corpus. Phase 2, H5, E3 and E5 remain open; optional QCEC evaluation
-must not bypass compatibility or conformance requirements.
+legacy execution/receipt mapping. Source preservation, bounded native execution,
+native/external comparison and topology-compiler Proof-of-Path conversion now
+provide criterion-bound evidence, but none becomes default F2 truth. Extend the
+benchmark ladder below 25 qubits, evaluate PyZX separately, and repeat resource
+measurements across the supported corpus. Phase 2, H5, E3 and E5 remain open;
+optional QCEC evaluation must not bypass compatibility or conformance requirements.
 
 **Historical baseline:** `b7dc357` had 181 passing tests and F0/F1 only.
 PRs #35–#37 merged framework/identity/exact signed-permutation work at `83b273a4`;
@@ -176,7 +175,7 @@ Every increment must preserve these rules:
 ### 4.2 Not implemented
 
 - general circuit semantics beyond the implemented bounded F2 criteria;
-- complete Phase 2 native/legacy-to-IR coverage and the proposed Aer adapter; preservation, bounded native execution and native/external QCEC comparison are partially implemented increments, while typed compiler/receipt mapping remains pending;
+- complete Phase 2 native/legacy-to-IR coverage and the proposed Aer adapter; preservation, bounded native execution, native/external QCEC comparison and typed topology-compiler Proof-of-Path conversion are implemented increments, while typed legacy receipt mapping remains pending;
 - a production OpenQASM 3 bridge;
 - a QIR bridge;
 - authenticated provider execution evidence;
@@ -1116,9 +1115,58 @@ unitary-prefix projection relations remain explicitly `not-assessed`.
 
 This increment partially advances Phase 2/H5 but does not complete either. Native
 preservation, bounded native execution, external QCEC and this comparison are
-implemented increments; typed compiler Proof-of-Path conversion, typed legacy
-receipt mapping, native/default F2 semantic validation and independent external
-review remain pending. E3, E5 and K12/CFS implementation remain open.
+implemented increments; typed legacy receipt mapping, native/default F2 semantic
+validation and independent external review remain pending. E3, E5 and K12/CFS
+implementation remain open.
+
+### Typed topology compiler Proof-of-Path checkpoint (2026-09-08)
+
+Baseline: `89531ebe1b01d8268d8756227ddaa77ce7096ee5`.
+The additive `e7q.ir.topology-compiler-proof-workflow/v1` API and CLI adapt the
+existing deterministic `e7q.language.compile_topology()` and
+`compilation_result()` behavior; no second compiler is introduced. One preserved
+native source is parsed, admitted to the PR #57 static noiseless unitary-prefix
+subset, compiled under caller-declared coupling edges and native gates, and
+compared with the compiled result through PR #54's isolated QCEC worker.
+
+The E7Q-IR path records source bytes and digest, parsed native representation,
+explicit compilation request/context, typed transformation trace, independently
+identified compiled representation, criterion-bound assessment and bounded claim.
+The request includes coupling edges, logical width, native gate set, compiler
+implementation/version, selected program/path, selected numerical criterion,
+tolerances and resource limits. The transformation preserves the complete original
+compiler Proof-of-Path verbatim and adds ordered typed evidence for the initial
+context, each source two-qubit operation, deterministic physical path, forward and
+reverse SWAP operations, routed physical operands, per-route restored-layout
+assertion, final counts and routing overhead.
+
+The compiler declaration is explicitly non-semantic. Claim support requires
+successful compilation, deterministic recompilation matching the trace and compiled
+representation, restored layout/register compatibility and PASS from the requested
+QCEC numerical criterion. Exact-algebraic criteria are rejected. Malformed or
+duplicate edges, disconnected topology, missing SWAP/native gate support, trace or
+compiled-representation tampering, QCEC inequality, timeout, exhaustion, worker
+crash and every inconclusive verdict remain non-PASS with distinct statuses.
+
+The public synthetic non-adjacent-CX example is under
+`examples/e7q-ir/compiler-proof/`; its evidence graph at
+`benchmarks/e7q-ir/compiler-proof-nonlocal-cx-results.json` has graph ID
+`sha256:17265fa58a1a46f47db36ba800ca5613e374fd3dd6a687c1dde832c5c74a5827`.
+The linear `0-1-2-3` route inserts four SWAP operations around `CX q[0],q[3]`,
+restores logical layout and increases the complete operation count from three to
+seven. MQT QCEC 3.9.0 returned deterministic `equivalent`/PASS in 0.38756 seconds
+of parent-observed wall time, with 59,174,912 bytes peak worker RSS, an enforced
+68,719,476,736-byte POSIX `RLIMIT_AS` limit and a reaped zero-exit worker.
+F0/F1 pass. All 19 applicable installed F2 checks run, while overall F2 remains
+`BLOCKED` because no compiler-proof semantic validator is installed; the local
+trace-consistency validator is not promoted to default F2 truth.
+
+This checkpoint advances Phase 2/H5 without completing either. Typed legacy
+execution/receipt mapping, native/default F2 semantic validation, independent
+external review, PyZX and the repeated benchmark ladder remain pending. It makes
+no hardware feasibility, topology quality, physical fidelity, provider
+authentication, execution-success, exact-algebraic or arbitrary-scalability claim.
+K12/CFS implementation remains unstarted.
 
 
 ## 12. E7G-T v0.12 optional family-state planning lane

@@ -348,7 +348,7 @@
         "src/e7q/ir/native.py"
       ],
       "limits": "Local reference simulation; no native F2 semantic validator, compilation or hardware assurance.",
-      "next_gate": "Phase 2 compiler and external/native criterion comparison",
+      "next_gate": "Typed legacy execution/receipt mapping and native/default F2 semantic validation",
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {
@@ -391,7 +391,23 @@
         "benchmarks/e7q-ir/native-external-qcec-bell-results.json"
       ],
       "limits": "At most 8 qubits and 256 supported unitary gates; one equally wide register pair per source and terminal identity measurement. Optional tolerance-based QCEC only. No exact-algebraic/default-F2 result, compiler provenance, provider authentication, hardware fidelity, arbitrary-circuit scalability or Phase 2/H5 completion claim.",
-      "next_gate": "Typed compiler Proof-of-Path and legacy receipt mapping, native/default F2 semantic validation, independent review, PyZX evaluation and the repeated benchmark ladder",
+      "next_gate": "Typed legacy receipt mapping, native/default F2 semantic validation, independent review, PyZX evaluation and the repeated benchmark ladder",
+      "review_status": "LOCAL_REVIEW_COMPLETED"
+    },
+    {
+      "id": "ir_compiler_proof_workflow",
+      "scope": "typed E7Q-IR conversion of the existing topology-reference compiler Proof-of-Path \u2014 preserved native source and original proof, explicit request context, ordered routing/SWAP/layout evidence, independent source/compiled identities, isolated numerical QCEC assessment and bounded claim",
+      "test_file": "tests/test_ir_compiler_workflow.py",
+      "implementation": [
+        "src/e7q/ir/compiler_workflow.py",
+        "src/e7q/language.py",
+        "src/e7q/ir/qcec.py",
+        "examples/e7q-ir/compiler-proof/nonlocal-cx.e7q",
+        "examples/e7q-ir/compiler-proof/README.md",
+        "benchmarks/e7q-ir/compiler-proof-nonlocal-cx-results.json"
+      ],
+      "limits": "Adapts only the existing deterministic compile_topology() implementation and PR #57 static noiseless unitary-prefix subset (at most 8 qubits and 256 gates). Compiler trace consistency is local evidence, not semantic equivalence or default F2 truth. No hardware feasibility, topology quality, physical fidelity, provider authentication, execution success, exact-algebraic equivalence, arbitrary scalability or Phase 2/H5 completion claim.",
+      "next_gate": "Typed legacy execution/receipt mapping, native/default F2 semantic validation, independent review, PyZX evaluation and the repeated benchmark ladder",
       "review_status": "LOCAL_REVIEW_COMPLETED"
     },
     {

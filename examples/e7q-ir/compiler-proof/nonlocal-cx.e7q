@@ -1,0 +1,21 @@
+# Public synthetic compiler Proof-of-Path example.
+# CX q[0], q[3] requires deterministic routing on the declared linear topology.
+
+context CompilerProofExample {
+  shots: 64
+  backend: statevector
+  seed: 7
+}
+
+qubits q[4]
+bits c[4]
+
+invariant normalized
+
+path NonLocalCX {
+  H q[0]
+  CX q[0], q[3]
+  measure q -> c
+}
+
+verify NonLocalCX
