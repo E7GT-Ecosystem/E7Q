@@ -1,21 +1,25 @@
 # E7Q / E7Q-IR direction
 
-Direction ID: `E7-ECO-DIR-2026-09-06.1`. Product repository: `E7GT-Ecosystem/E7Q`.
+Direction ID: `E7-ECO-DIR-2026-09-08.1`. Product repository: `E7GT-Ecosystem/E7Q`.
 
 ## Destination and ownership
 
-E7Q-IR is the single quantum representation and evidence direction, including the former quantum Fabric. It connects intent, source/compiled representations, transformations, hardware/execution context, observations and bounded claims. The native E7Q language is one front end; ordinary external workflows must be usable without adopting it.
+E7Q-IR is the single quantum representation and evidence direction, including the former quantum Fabric. It connects intent, source/compiled representations, transformations, hardware/execution context, observations and bounded claims. The native E7Q language is one front end; ordinary external workflows must remain usable without adopting it.
 
-E7Q-IR owns quantum-specific semantics. Shared ecosystem transport preserves native artifacts and cannot confer semantic equivalence, provider authentication or physical fidelity. Preserve existing native formats and IDs. Do not recreate a parallel quantum Fabric or require a universal ecosystem platform.
+E7Q-IR owns quantum-specific semantics. Shared ecosystem transport preserves native artifacts and cannot confer semantic equivalence, provider authentication or physical fidelity. Preserve existing formats and IDs. Do not recreate a parallel quantum Fabric or require a universal ecosystem platform.
+
+## E7G-T v0.12 relationship
+
+Pin E7G-T v0.12 experimental canonical revision CFS1 at commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca`. EEC-Q/0.1, SF/0.1 and CFS/0.1 are optional planning profiles, not replacements for E7Q quantum semantics. EEC coefficients are formal construction coefficients only, never amplitudes, probabilities or measured support.
+
+The experimental CFS lane may represent unresolved candidate circuits, layouts, targets and calibration contexts, transform those candidates, and realise a mapping under declared ordered objectives. It is additive: existing F0/F1/F2 meanings, native APIs, identities, receipts and current evidence remain unchanged.
 
 ## Next work
 
-Read the actual `ROADMAP.md`, `docs/e7q-ir/ARCHITECTURE.md`, `PROTOCOL.md`, `CONFORMANCE.md`, `PROFILE_AUTHORING.md` and `SECURITY_AND_TRUST.md`. The authoritative build plan is being published in [PR #34](https://github.com/E7GT-Ecosystem/E7Q/pull/34); use `docs/e7q-ir/BUILD_PLAN.md` when present, or the reviewed plan in that PR.
+Use `docs/e7q-ir/BUILD_PLAN.md` v0.8 as the authoritative plan. Reconcile the actual main head and open work first. Complete the current H2/H3 and Phase 2 obligations that guard the proposed adapter. Then implement only the first bounded CFS planning package: source/profile pin, typed candidate-family contracts, positive/negative/ambiguous/resource fixtures, and no provider execution requirement.
 
-The inspected code baseline `b7dc357715529ecc7f0426b708ae56320a204e2b` implements F0/F1. If the F2 framework is still absent, implement that bounded framework first. If another builder has already implemented it, review its actual acceptance evidence and continue from the next incomplete phase. Do not restart or replace their work.
-
-Acceptance must preserve F0/F1 meanings, expose unsupported validators/relations, reject semantic overclaims and retain deterministic results. Run meaningful focused cases and the existing product regression suite (`python -m pytest -q`). Separately exercise an independently supplied external workflow. Hardware execution, authentication, QEC and additional modalities require their own gates.
+The next evidence gate is a public-safe external-compiler/topology pilot linking the supplied source family, transformations, residual candidates, selected mapping and bounded execution observations. A topology result must be separated from gate count, depth, calibration drift and selection bias. It cannot establish general hardware advantage.
 
 ## Coordination
 
-Declare the current work package and shared interfaces in your PR check-in. The user sponsors overall ecosystem coordination; the builder retains responsibility for its product implementation. A queued run or a draft PR is not a completed gate. A collaborator or compiler integration must not become an undeclared mandatory dependency.
+Declare the active work package, exact source pin, profile disposition, preservation/loss, migration effect and compatibility vectors in the PR. A queued run, draft PR or published direction is not a completed gate. Private collaborator material must not be placed in this public repository.
