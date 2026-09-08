@@ -391,7 +391,7 @@ def test_public_native_bell_f2_evidence_is_stable_and_fresh_graph_passes():
     artifact_ids = {item["artifact_id"] for item in public_graph["artifacts"]}
     assert public_report["status"] == "PASS"
     assert public_report["highest_level_passed"] == "F2"
-    assert report == public_report
+    assert validate_graph(public_graph, level="F2") == public_report
     assert len(public_report["semantic_results"]) == 17
     assert all(
         item["status"] == "PASS"
