@@ -402,3 +402,17 @@ See [H1–H10 acceptance gates](docs/e7q-ir/REVIEW_HARDENING.md).
 - [x] External circuit-pair QCEC evidence workflow with byte-preserved sources, separate OpenQASM 2 projections, isolated numerical assessment, explicit tolerances/resource limits and bounded claim support. Default F2 integration, PyZX and general scalability remain pending.
 
 - [x] Bounded criterion-selected native E7Q to external OpenQASM 2 unitary-prefix comparison with explicit terminal-measurement projection loss, preserved native Proof-of-Path and fail-closed unsupported/resource outcomes. Typed compiler/legacy mapping, native semantic validation and Phase 2/H5 completion remain pending.
+
+## Post-rc12 additive pilot — pure two-qubit entanglement assurance
+
+- [x] classify supported ideal pure two-qubit states by reduced-density purity;
+- [x] distinguish entangled, separable, undetermined and unsupported outcomes;
+- [x] preserve the joint-state source, partial-trace projection and declared loss;
+- [x] exclude sampled-count, provider-authentication, hardware-preparation,
+  Bell-nonlocality and universal-connection inferences;
+- [x] provide deterministic CLI reports, fixtures, documentation and regression tests;
+- [ ] add any hardware-entanglement evidence profile;
+- [ ] extend beyond pure two-qubit state vectors under separately reviewed criteria.
+
+This isolated pilot does not alter E7Q-IR F0-F2 meanings or complete the open
+H2/H3 and Phase 2 gates.
