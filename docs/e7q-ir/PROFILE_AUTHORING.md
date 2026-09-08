@@ -24,14 +24,17 @@ no results yields `NOT_ASSESSED`; an unknown profile or missing validator yields
 `BLOCKED`; unsupported syntax or scale yields `UNSUPPORTED`; and a violated
 semantic rule yields `FAIL`.
 
-Phase 1A registers `e7q.ir.validator.circuit-basic/0alpha1` as
-`framework-only`. Its results remain `NOT_ASSESSED`; profile-specific QASM,
-count, distribution, and transformation checks belong to Phases 1B and 1C.
+The installed `e7q.ir.circuit-basic/0alpha1` and
+`e7q.ir.native-execution/0alpha1` profiles remain distinct. Circuit criteria do
+not validate native execution, and native deterministic replay does not validate
+generic core, legacy, compiler or external-circuit artifacts. The universal
+`e7q.ir.core/0alpha1` profile intentionally has no semantic validator.
 
-The initial `e7q.ir.circuit-basic/0alpha1` profile admits OpenQASM source
-identity, aggregate count observations, and descriptive total-variation
-assessment. It does not establish general circuit equivalence, provider
-authenticity, or physical fidelity.
+The native profile admits only bounded trusted-local statevector source and
+independently reparses, readmits, reruns and reverifies its complete evidence path.
+Its F2 PASS establishes faithful graph semantics, not native invariant success,
+hardware execution, provider authenticity, physical fidelity or broader circuit
+equivalence.
 
 Future QIR, QEC, hybrid, annealing, analog, photonic, and measurement-based
 profiles should be independently testable. They may share the core protocol but

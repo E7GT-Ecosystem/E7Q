@@ -188,6 +188,11 @@ class PendingCircuitBasicValidator:
 DEFAULT_REGISTRY = SemanticRegistry()
 DEFAULT_REGISTRY.register(PendingCircuitBasicValidator())
 
+# Imported after the framework contracts are defined to avoid circular imports.
+from .native_semantic import NativeExecutionValidator
+
+DEFAULT_REGISTRY.register(NativeExecutionValidator())
+
 
 def _profile(value: dict[str, Any]) -> tuple[str, str] | None:
     profile = value.get("profile")

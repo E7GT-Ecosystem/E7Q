@@ -44,9 +44,23 @@ CIRCUIT_BASIC = Profile(
     "e7q.ir.validator.circuit-basic/0alpha1",
 )
 
+NATIVE_EXECUTION = Profile(
+    "e7q.ir.native-execution",
+    "0alpha1",
+    CORE.capabilities | frozenset({
+        "native.source.utf8-bytes",
+        "native.intent",
+        "native.parser.projection",
+        "native.reference-execution",
+        "native.observation",
+        "native.verification",
+    }),
+    "e7q.ir.validator.native-execution/0alpha1",
+)
+
 BUILTIN_PROFILES = {
     (profile.profile_id, profile.version): profile
-    for profile in (CORE, CIRCUIT_BASIC)
+    for profile in (CORE, CIRCUIT_BASIC, NATIVE_EXECUTION)
 }
 
 

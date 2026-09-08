@@ -1,21 +1,28 @@
 # E7Q-IR Build Plan and AI Engineering Handoff
 
-**Plan version:** 0.8
+**Plan version:** 0.9
 
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.
 
 **Current inspected baseline (2026-09-08):** `main` at
-`538ac31e064ebddebb43f441ef316f0551581863` (PR #60).
-That merge added typed conversion of the existing topology compiler Proof-of-Path
-without changing the compiler or default F2 truth.
+`1a0a24b3d41f79bfa6a200006e4bf08761b39f52` (PR #61).
+That merge added typed offline mapping of existing execution bundles, supplied
+results and receipts without changing legacy formats or trusting imported PASS.
 
-**Current bounded Phase 2 increment:** maps supplied legacy execution-bundle,
-execution-result and execution-receipt files into typed E7Q-IR. It preserves each
-input byte-for-byte, records intent/event/observation separately, reruns the
-existing `build_execution_receipt()` semantics, compares the complete supplied
-receipt and proof, and supports only a bounded offline consistency claim. It does
-not authenticate providers or execution, complete Phase 2/H5, promote default F2
-truth or begin K12/CFS implementation.
+**Current bounded Phase 2 increment:** installs the distinct
+`e7q.ir.native-execution/0alpha1` profile and its default semantic validator.
+New native graphs preserve source bytes and independently reparse, readmit,
+re-execute and reverify the complete source/intent/representation/execution/
+observation/assessment path. Core-profile and historical evidence remains F1-only.
+This closes Phase 2 and H5 within the documented bounded continuity gate; it does
+not authenticate providers or chronology, establish hardware fidelity, promote
+legacy/compiler/QCEC declarations, or begin Aer, PyZX, K12/CFS, OpenQASM 3 or QIR.
+
+**Revision 0.9:** installs bounded native/default F2 semantic reconstruction under
+a separately versioned profile. It preserves old core-profile graphs at F0/F1,
+keeps semantic conformance separate from native invariant success, validates every
+native artifact and relation against recomputed evidence, and closes Phase 2/H5
+without broadening F2 into execution authentication or scientific truth.
 
 **Revision 0.8:** adopts ecosystem direction `E7-ECO-DIR-2026-09-08.1` and pins E7G-T v0.12 experimental canonical revision CFS1 at commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca`. It adds an optional, additive family-state planning lane after the applicable H2/H3 and Phase 2 gates. EEC coefficients remain formal construction coefficients, never quantum amplitudes, probabilities or evidence weights. Existing artifacts, IDs, APIs and F0-F2 meanings are not migrated.
 
@@ -61,14 +68,12 @@ noiseless unitary-channel comparison; exact real H/u2(0,pi) criterion.
 Each retains its own domain and limits. General angles, complex-gate IR criteria,
 noisy-channel IR criteria and general Phase 1C coverage remain incomplete.
 
-**Next package:** add native/default F2 semantic validation without promoting
-legacy declarations, compiler traces or optional QCEC evidence beyond their
-admitted criteria. Source preservation, bounded native execution, criterion-bound
-comparisons, compiler Proof-of-Path conversion and offline legacy receipt mapping
-are implemented Phase 2 increments. Extend the benchmark ladder below 25 qubits,
-evaluate PyZX separately, and repeat resource measurements across the supported
-corpus. Phase 2, H5, E3 and E5 remain open; optional evidence must not bypass
-compatibility or conformance requirements.
+**Next package:** Phase 2 and H5 are complete within their bounded evidence-
+continuity gate. Continue H2/H3 adversarial and external-bundle hardening, extend
+the repeated E5 benchmark ladder below 25 qubits, evaluate PyZX separately under
+E3, and pursue independent external review under H1/H8. Optional Aer remains H6;
+provider authentication remains Phase 5/F3. None of those packages may broaden
+native F2, trust imported declarations or bypass compatibility requirements.
 
 **Historical baseline:** `b7dc357` had 181 passing tests and F0/F1 only.
 PRs #35–#37 merged framework/identity/exact signed-permutation work at `83b273a4`;
@@ -176,7 +181,7 @@ Every increment must preserve these rules:
 ### 4.2 Not implemented
 
 - general circuit semantics beyond the implemented bounded F2 criteria;
-- complete Phase 2 native/default F2 semantic validation and the proposed Aer adapter; preservation, bounded native execution, native/external QCEC comparison, typed topology-compiler Proof-of-Path conversion and offline legacy receipt mapping are implemented increments;
+- the proposed optional Aer adapter; Phase 2 preservation, bounded native execution/default F2, native/external QCEC comparison, typed topology-compiler Proof-of-Path conversion and offline legacy receipt mapping are complete within their declared bounds;
 - a production OpenQASM 3 bridge;
 - a QIR bridge;
 - authenticated provider execution evidence;
@@ -1211,6 +1216,51 @@ physical fidelity, circuit correctness, computational advantage, F3 authenticati
 or arbitrary scalability. Phase 2/H5 remain open for native/default F2 semantic
 validation. Provider integration, authenticated execution and K12/CFS implementation
 remain unstarted.
+
+
+### Installed native/default F2 checkpoint (2026-09-08)
+
+Baseline: `1a0a24b3d41f79bfa6a200006e4bf08761b39f52` (PR #61).
+The distinct `e7q.ir.native-execution/0alpha1` profile is installed with
+`e7q.ir.validator.native-execution/0alpha1`. Newly generated native graphs use
+that profile for all six artifacts and five relations. The generic core profile
+remains validator-free, so historical core-profile native graphs and unrelated
+legacy/core evidence remain readable at F0/F1 without retrospective F2 promotion
+or identifier rewriting.
+
+The validator starts from the preserved source bytes. It verifies length and
+SHA-256, reparses with the existing parser, reapplies the statevector/static/
+terminal-measurement and 8-qubit/8-bit/100000-shot/1024-operation limits before
+allocation, then calls the existing seeded `run()` and `verify()` implementations.
+It compares reconstructed intent, expanded representation, backend profile,
+implementation versions, execution Proof-of-Path, counts, probabilities, bit
+width, label order, complete assessment, provenance and every relation endpoint,
+criterion, preservation, loss, assumption and validation status. It introduces no
+second parser, simulator, verifier or QCEC dependency.
+
+The public Bell graph is
+`examples/e7q-ir/native-execution-bell-graph.json`, graph ID
+`sha256:c9fe173151778dcae3df500674a53c063c32119c6b600bfe40c0b82f00e59598`.
+Its deterministic report at `examples/e7q-ir/native-execution-bell-f2.json`
+contains 17 PASS semantic checks and reaches F2. Focused verification passes 80
+tests, the integrated IR/native/compiler/QCEC/receipt surface passes 250 and the
+full suite passes 567. Rehashed adversarial fixtures
+cover every admitted artifact/relation field, unknown formats, unsupported and
+resource-limited source, validator exceptions, malformed results and missing
+results. A faithfully recomputed native invariant FAIL also reaches F2 conformance
+while retaining the program FAIL.
+
+The maximum conclusion is limited to faithful deterministic parsing, admitted
+reference execution, observation and native-verifier recomputation from preserved
+source. It establishes no hardware execution/fidelity, provider authentication,
+authenticated chronology, compiler correctness, external-circuit or exact-
+algebraic equivalence, scalability, advantage, F3 or F4.
+
+This closes Phase 2 and H5: native/external evidence paths, compiler Proof-of-Path,
+legacy preservation and receipt mapping are all inspectable; applicable F0/F1/F2
+checks fail closed; legacy evidence remains readable; and imported verdicts are
+not default F2 truth. H1/H2/H3/H6/H8, E3/E5, provider authentication, OpenQASM 3,
+QIR and K12/CFS remain separate open packages.
 
 
 ## 12. E7G-T v0.12 optional family-state planning lane

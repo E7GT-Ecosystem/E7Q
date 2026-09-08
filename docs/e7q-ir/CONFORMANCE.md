@@ -11,11 +11,12 @@ mistaken for a higher-level assurance claim.
 | F3 Authenticated | Declared signatures, identities, timestamps, or provider attestations | Truth of every semantic or scientific claim |
 | F4 Reproduced | Replication under declared conditions | Universal validity or causation |
 
-The Phase 1A v0alpha1 implementation supports F0 and F1 and implements the F2
-validation framework. The built-in `circuit-basic` validator remains
-`framework-only`: it emits per-artifact and per-relation `NOT_ASSESSED`
-results until Phase 1B supplies real circuit-profile rules. F3-F4 remain
-`NOT_IMPLEMENTED`.
+The v0alpha1 implementation supports F0/F1 and the F2 validation framework.
+`e7q.ir.circuit-basic/0alpha1` supplies its bounded circuit criteria separately.
+`e7q.ir.native-execution/0alpha1` supplies installed bounded native reconstruction
+without registering semantics for `e7q.ir.core/0alpha1`. Core-profile and
+historical graphs therefore remain inspectable at F0/F1 but F2 `BLOCKED`.
+F3-F4 remain `NOT_IMPLEMENTED`.
 
 Capability negotiation is separate from F0/F1. An artifact using an unknown
 profile may remain structurally inspectable, but its semantic readiness is
