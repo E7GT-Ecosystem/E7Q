@@ -190,6 +190,11 @@ def test_zip_resource_limits(tmp_path, monkeypatch, limit, value, message):
 @pytest.mark.parametrize('filename,field,value', [
     ('job_metadata.json', 'status', []),
     ('job_metadata.json', 'status', {}),
+    ('job_metadata.json', 'circuit_name', []),
+    ('job_metadata.json', 'circuit_depth', True),
+    ('job_metadata.json', 'creation_date', {}),
+    ('job_metadata.json', 'completion_time_utc', {}),
+    ('job_metadata.json', 'completed_at', '2026-08-25T13:02:00+00:00'),
     ('job_metadata.json', 'num_qubits_device', 2.0),
     ('job_metadata.json', 'op_counts', {'h': True, 'cx': 1, 'measure': 2}),
     ('job_metadata.json', 'op_counts', {'h': 1.0, 'cx': 1, 'measure': 2}),
@@ -198,6 +203,8 @@ def test_zip_resource_limits(tmp_path, monkeypatch, limit, value, message):
     ('raw_counts.json', 'num_unique_bitstrings', 2.0),
     ('mapping.json', 'num_clbits', 2.0),
     ('mapping.json', 'num_active_qubits', 2.0),
+    ('mapping.json', 'initial_index_layout', [0, 0]),
+    ('mapping.json', 'final_index_layout', [0, -1]),
     ('hieroglyphs_ir.json', 'num_gates', float(len(json.loads((RECORD / 'hieroglyphs_ir.json').read_text())['gates']))),
 ])
 def test_rehashed_malformed_fields_fail_consistency(tmp_path, filename, field, value):
