@@ -381,6 +381,20 @@
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {
+      "id": "ir_native_external_qcec_workflow",
+      "scope": "bounded native E7Q to external OpenQASM 2 QCEC comparison \u2014 byte-preserved independent sources, admitted static noiseless common subset, explicit terminal-measurement projection loss, isolated criterion-bound assessment and preserved native Proof-of-Path",
+      "test_file": "tests/test_ir_native_qcec_workflow.py",
+      "implementation": [
+        "src/e7q/ir/native_qcec_workflow.py",
+        "src/e7q/ir/qcec.py",
+        "src/e7q/ir/native.py",
+        "benchmarks/e7q-ir/native-external-qcec-bell-results.json"
+      ],
+      "limits": "At most 8 qubits and 256 supported unitary gates; one equally wide register pair per source and terminal identity measurement. Optional tolerance-based QCEC only. No exact-algebraic/default-F2 result, compiler provenance, provider authentication, hardware fidelity, arbitrary-circuit scalability or Phase 2/H5 completion claim.",
+      "next_gate": "Typed compiler Proof-of-Path and legacy receipt mapping, native/default F2 semantic validation, independent review, PyZX evaluation and the repeated benchmark ladder",
+      "review_status": "LOCAL_REVIEW_COMPLETED"
+    },
+    {
       "id": "language",
       "scope": "language \u2014 only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_language.py",

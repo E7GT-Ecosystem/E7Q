@@ -75,7 +75,11 @@ in each implementation PR and update affected rows with each capability change.
 
 ### H5 — Native/legacy evidence continuity (P1; Phase 2)
 
-Implement the existing Phase 2 adapters, retaining original bytes, native IDs,
+This package is partially implemented through source/legacy preservation, bounded
+native execution, external QCEC evidence and criterion-bound native/external
+unitary-prefix comparison. H5 and Phase 2 remain incomplete.
+
+Complete the remaining Phase 2 adapters, retaining original bytes, native IDs,
 source references, compiler traces, execution settings and assessment boundaries.
 Describe omitted/derived fields and irreversible losses; do not fabricate values.
 
@@ -360,3 +364,38 @@ criterion-bound native-to-external comparison are still absent. E3 remains open
 pending PyZX and broader backend evaluation; E5 remains open pending lower rungs,
 unsupported/dynamic cases and repeated measurements. Historical evidence files
 and verdicts are unchanged.
+
+## Phase 2 native/external comparison checkpoint (2026-09-08)
+
+Baseline: `95f8c8d15cc311753fe746b1c641a07e2453bea4`.
+The bounded native/external workflow preserves one native `.e7q` input and one
+external OpenQASM 2 input byte-for-byte, parses them independently and admits only
+one-register static noiseless circuits with compatible widths, terminal identity
+measurement and the supported X/Y/Z/H/S/T/CX/CZ/SWAP gate set. It constructs
+separate unitary-prefix evaluation representations and explicit transformation
+artifacts recording terminal-measurement removal, preserved gate order/operands,
+lost classical/measurement information and the criterion boundary.
+
+QCEC receives only immutable projections and runs through the isolated worker.
+The assessment and claim retain the selected numerical criterion, tolerances,
+backend/raw verdict, normalized result, resource enforcement and worker lifecycle.
+Global-phase-only equality remains criterion-sensitive. Parser/admission failures,
+timeout, exhaustion, worker crashes and all inconclusive verdicts remain non-PASS;
+exact-algebraic criterion requests are rejected. The native local Proof-of-Path is
+retained where an explicit seed permits deterministic execution, but it is not the
+QCEC verdict or an F2 semantic result.
+
+Regression coverage includes equivalent Bell, phase-only, altered, width/mapping,
+dynamic control, noise/assertion, unsupported gate, timeout/crash, exact recovery,
+deterministic identities, inconclusive isolation, exact-criterion rejection and
+CLI paths. The public Bell graph is
+`sha256:765272d4001adcca95743714f158ad44c62e4944a2705ca99667c2ac903433f1`.
+It passes F0/F1; all applicable installed F2 checks run, while overall F2 remains
+`BLOCKED` and projection relations remain `not-assessed` because no semantic
+validator exists for this adapter contract.
+
+This is partial H5/Phase 2 implementation, not completion. Typed compiler trace
+conversion, legacy execution/receipt mapping, native/default F2 validators,
+independent review, PyZX and the full repeated benchmark ladder remain pending.
+No compiler provenance, provider authentication, hardware fidelity or arbitrary
+scalability claim is added.
