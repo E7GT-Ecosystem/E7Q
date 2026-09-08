@@ -131,6 +131,9 @@ All 17 artifact/relation semantic checks pass and the highest level is F2. The
 pre-isolation report remains byte-preserved as
 `native-execution-bell-f2.json`; it is historical validation evidence and is not
 silently rewritten with enforcement metadata.
+Because implementation versions are evidence inputs, a fresh graph/report under a
+different dependency environment may have different artifact and semantic-result
+identities; byte stability of this captured report is not cross-version equivalence.
 Focused parser/native verification passes 93 tests; the full suite and repository
 review campaign pass 588 cases. Broader compiler/QCEC/receipt paths remain covered
 by that full campaign.
