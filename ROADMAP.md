@@ -395,10 +395,12 @@ See [H1–H10 acceptance gates](docs/e7q-ir/REVIEW_HARDENING.md).
 - [x] Exact real H-unitary criterion and original H/u2(0,pi) F2 acceptance fixture (four-qubit, 64-gate bounds).
 
 - [x] Phase 2 first preservation adapter: original native/legacy source recovery and explicit assurance limits. See [contract](docs/e7q-ir/LEGACY_PRESERVATION.md).
-- [ ] Phase 2 typed native compiler/execution/legacy adapters; preservation, native execution and criterion-bound native/external comparison increments are implemented, while the phase remains incomplete.
+- [ ] Phase 2 typed native compiler/execution/legacy adapters; preservation, native execution, criterion-bound native/external comparison and topology compiler Proof-of-Path conversion are implemented, while typed legacy receipt mapping and native/default F2 validation remain open.
 
 - [x] Bounded native source/intent/execution/observation/assessment path with preserved Proof-of-Path and verdicts; [scope and limits](docs/e7q-ir/NATIVE_EXECUTION.md). Compiler conversion and native F2 remain pending.
 
 - [x] External circuit-pair QCEC evidence workflow with byte-preserved sources, separate OpenQASM 2 projections, isolated numerical assessment, explicit tolerances/resource limits and bounded claim support. Default F2 integration, PyZX and general scalability remain pending.
 
-- [x] Bounded criterion-selected native E7Q to external OpenQASM 2 unitary-prefix comparison with explicit terminal-measurement projection loss, preserved native Proof-of-Path and fail-closed unsupported/resource outcomes. Typed compiler/legacy mapping, native semantic validation and Phase 2/H5 completion remain pending.
+- [x] Bounded criterion-selected native E7Q to external OpenQASM 2 unitary-prefix comparison with explicit terminal-measurement projection loss, preserved native Proof-of-Path and fail-closed unsupported/resource outcomes. Native semantic validation and Phase 2/H5 completion remain pending.
+
+- [x] Typed conversion of the existing topology-reference compiler Proof-of-Path into E7Q-IR, with explicit compilation request, verbatim and typed traces, independently identified source/compiled representations, isolated criterion-bound QCEC evidence and a bounded compiler-preservation claim. Typed legacy receipt mapping and native/default F2 validation remain pending; Phase 2/H5 stay open.
