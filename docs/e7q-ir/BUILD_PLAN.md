@@ -1,12 +1,20 @@
 # E7Q-IR Build Plan and AI Engineering Handoff
 
-**Plan version:** 0.6
+**Plan version:** 0.7
 
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.
 
-**Current inspected baseline (2026-09-07):** `main` at
-`ee3b1041b36af8f30fdfb2a7fcf9b5fa2dc7159d` (PR #53).
-That merge separated QCEC numerical criteria from exact-algebraic criteria.
+**Current inspected baseline (2026-09-08):** `main` at
+`6454a26326ecfa1a654548e131910be2a1ef5be2` (PR #54).
+That merge isolated every QCEC assessment and added enforceable resource limits.
+
+**Revision 0.7:** adds a bounded external circuit-pair workflow that captures two
+supplied files byte-for-byte, records separate bounded OpenQASM 2 projections,
+evaluates immutable snapshots only through the isolated QCEC worker, and links
+source, representation, assessment and claim artifacts. Callers must explicitly
+select one numerical criterion, both tolerances, and time/memory limits. Claims
+pass only with the selected numerical criterion; parser rejection and every
+inconclusive or worker/resource outcome remain non-PASS.
 
 **Revision 0.6:** hardens the optional QCEC increment with one spawned process
 per assessment, a parent-owned wall-clock deadline, bounded terminate/kill/join
@@ -44,7 +52,9 @@ noisy-channel IR criteria and general Phase 1C coverage remain incomplete.
 
 **Next package:** complete the open H2/H3 hardening and Phase 2 typed
 compiler/execution mapping, including Proof-of-Path conversion, typed legacy
-receipt mapping and criterion-bound native/external comparison. Extend the
+receipt mapping and criterion-bound native/external comparison. The external
+QCEC pair workflow now supplies the external side of that evidence path, but it
+does not perform native comparison or become default F2 truth. Extend the
 benchmark ladder below 25 qubits, evaluate PyZX separately, and repeat resource
 measurements across the supported corpus. Phase 2, E3 and E5 remain open; this
 bounded QCEC evaluation must not bypass compatibility or conformance requirements.
@@ -1015,4 +1025,40 @@ Public progress for this track must identify the accountable project
 contributor, disclose current limits, and cite exact commits, tests, skipped or
 unsupported cases, and the next acceptance gate. AI-assisted drafting and public
 discussion are not implementation or validation evidence.
+
+### External circuit-pair evidence workflow checkpoint (2026-09-08)
+
+Baseline: `6454a26326ecfa1a654548e131910be2a1ef5be2`.
+The additive `e7q.ir.external-qcec-workflow/v1` API and CLI accept two supplied
+circuit files, stable caller references, one explicit QCEC numerical criterion,
+numerical/fidelity tolerances, and wall-clock/memory limits. Each input is read
+once within the existing 256 KiB circuit budget, retained losslessly as base64
+with byte length and SHA-256 identity, and separately projected through the
+bounded non-executing OpenQASM 2 importer. QCEC receives only temporary files
+created from those captured bytes, and runs only through PR #54's spawned worker.
+
+The resulting F1-valid graph links two source artifacts to two parsed
+representations, one QCEC assessment and one bounded claim. The assessment
+retains backend/dependency versions, complete configuration, raw verdict,
+normalized status/conclusion/reason, checker output, runtime, worker lifecycle,
+limit-enforcement metadata, assumptions and limitations. Unsupported syntax is
+preserved in an `UNSUPPORTED/INCONCLUSIVE` graph without starting QCEC. Timeout,
+resource exhaustion, worker failure, probabilistic/no-information/unknown
+verdicts and numerical non-equivalence remain distinct non-PASS outcomes. A
+claim is supported only when the requested criterion itself reports PASS;
+unitary requests never inherit global-phase acceptance.
+
+The measured 32-qubit disjoint-SWAP fixture is preserved at
+`benchmarks/e7q-ir/external-qcec-32-results.json`, graph ID
+`sha256:cac37f3d4d78b8ae0a9dc4bb084f9eac786a23680efe7e6b9447ea4deae187c4`.
+MQT QCEC 3.9.0 returned deterministic `equivalent`/PASS in 0.38135 seconds of
+parent-observed wall time, with 40,460,288 bytes worker peak RSS and an enforced
+68,719,476,736-byte POSIX `RLIMIT_AS` bound. This one structured case is not
+evidence of general tractability above 25 qubits.
+
+This checkpoint does not complete Phase 2/H5 native comparison, default F2
+integration, PyZX evaluation, the full E5 ladder, OpenQASM 3, QIR, provider
+authentication, hardware fidelity or arbitrary-circuit scalability. Historical
+QCEC evidence remains unchanged. The next gate is criterion-bound native/external
+comparison plus the missing benchmark rungs and independent backend evaluation.
 

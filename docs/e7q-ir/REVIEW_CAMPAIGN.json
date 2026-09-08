@@ -366,6 +366,21 @@
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {
+      "id": "ir_qcec_external_workflow",
+      "scope": "external two-file QCEC evidence workflow \u2014 byte-preserved sources, separate bounded OpenQASM 2 representations, isolated numerical assessment, enforceable-limit metadata and criterion-bounded claim support",
+      "test_file": "tests/test_ir_qcec_workflow.py",
+      "implementation": [
+        "src/e7q/ir/qcec_workflow.py",
+        "src/e7q/ir/qcec.py",
+        "examples/e7q-ir/qcec-pair-32/left.qasm",
+        "examples/e7q-ir/qcec-pair-32/right.qasm",
+        "benchmarks/e7q-ir/external-qcec-32-results.json"
+      ],
+      "limits": "Optional OpenQASM 2 and MQT QCEC 3.9.0 numerical workflow only. PASS applies solely to the requested tolerance-bearing numerical criterion. No exact-algebraic equivalence, default F2 truth, arbitrary-circuit scalability, provider authentication, hardware fidelity or Phase 2 completion claim.",
+      "next_gate": "Criterion-bound native/external comparison, PyZX evaluation, and complete repeated 4/8/12/16/20/25+ benchmark ladder",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
       "id": "language",
       "scope": "language \u2014 only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_language.py",
