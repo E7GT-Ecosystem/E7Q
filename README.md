@@ -95,6 +95,9 @@ when you also need to answer:
 - Validates the structure of registered E7Q artifacts.
 - Offers an opt-in stabilizer-syndrome pilot with deterministic algebraic
   reports and executable reference circuits.
+- Offers a bounded pure two-qubit entanglement-assurance pilot that classifies
+  the ideal pre-measurement state without treating sampled correlation as an
+  entanglement certificate.
 
 ## What E7Q does not establish
 
@@ -211,6 +214,25 @@ the left or right. The QEC pilot profile records Qiskit's single-register
 display convention as `clbit-descending` and normalizes it to E7Q's canonical
 `clbit-ascending` order. See the
 [OpenQASM 2 and deterministic assessment guide](docs/OPENQASM2_AND_DETERMINISTIC_ASSESSMENT.md).
+
+### Pure two-qubit entanglement-assurance pilot
+
+E7Q can classify the ideal pre-measurement state of a supported static
+two-qubit state-vector program under a declared reduced-density-purity
+criterion:
+
+```bash
+e7q assess-entanglement examples/bell.e7q \
+  -o bell-entanglement.json
+```
+
+The report preserves the joint state, identifies the partial-trace projection
+and its loss, and distinguishes `ENTANGLED_ESTABLISHED`,
+`SEPARABLE_ESTABLISHED`, `UNDETERMINED`, and `UNSUPPORTED`. The result concerns
+the reference simulator only. It does not infer entanglement from sampled
+counts, authenticate hardware, demonstrate Bell nonlocality, or support a
+universal-connection claim. See the
+[entanglement-assurance pilot](docs/ENTANGLEMENT_ASSURANCE_PILOT.md).
 
 ### QEC syndrome-homomorphism pilot
 
@@ -345,6 +367,7 @@ only when the registered schema and required top-level evidence are present.
 - [Comparative experiments](docs/COMPARATIVE_EXPERIMENTS.md)
 - [rc12 release notes](docs/RELEASE_NOTES_1.0.0rc12.md)
 - [QEC syndrome-homomorphism pilot](docs/QEC_SYNDROME_PILOT.md)
+- [Pure two-qubit entanglement-assurance pilot](docs/ENTANGLEMENT_ASSURANCE_PILOT.md)
 - [External evidence importer](docs/EXTERNAL_EVIDENCE_IMPORTER.md)
 - [OpenQASM 2 and deterministic assessment](docs/OPENQASM2_AND_DETERMINISTIC_ASSESSMENT.md)
 - [Roadmap](ROADMAP.md)

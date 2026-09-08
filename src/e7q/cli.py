@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import sys
@@ -20,6 +21,7 @@ from .deterministic import (
 from .drift import assess_drift, load_replication_report
 from .external_bundles import verify_external_bundle
 from .experiments import assess_comparative_experiment, load_comparative_experiment
+from .entanglement import assess_pure_two_qubit_entanglement
 from .ir import (
     build_external_circuit_graph,
     load_external_circuit_manifest,
@@ -203,6 +205,13 @@ def _parser() -> argparse.ArgumentParser:
     qec_homomorphism.add_argument("--generator", action="append", required=True)
     qec_homomorphism.add_argument("--name", default="declared stabilizer code")
     qec_homomorphism.add_argument("-o", "--output", type=Path)
+    entanglement = commands.add_parser(
+        "assess-entanglement",
+        help="assess ideal pure two-qubit entanglement under a bounded criterion",
+    )
+    entanglement.add_argument("source", type=Path)
+    entanglement.add_argument("--tolerance", type=float, default=1e-12)
+    entanglement.add_argument("-o", "--output", type=Path)
     select = commands.add_parser("select")
     select.add_argument("source")
     select.add_argument("--snapshot", required=True, type=Path)
@@ -311,6 +320,22 @@ def main(argv: list[str] | None = None) -> int:
             else:
                 print(content, end="")
             return 0 if report.get("status", "PASS") == "PASS" else 1
+        if args.command == "assess-entanglement":
+            source_bytes = args.source.read_bytes()
+            report = assess_pure_two_qubit_entanglement(
+                load(args.source),
+                tolerance=args.tolerance,
+                source_sha256=hashlib.sha256(source_bytes).hexdigest(),
+            )
+            content = json.dumps(report, indent=2, sort_keys=True) + "\n"
+            if args.output:
+                args.output.write_text(content, encoding="utf-8")
+                print(f"Entanglement assessment: {args.output}")
+            else:
+                print(content, end="")
+            return 0 if report["status"] in {
+                "ENTANGLED_ESTABLISHED", "SEPARABLE_ESTABLISHED"
+            } else 1
         if args.command == "ingest-calibration":
             result = load_vendor_export(
                 args.source,
