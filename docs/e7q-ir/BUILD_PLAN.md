@@ -5,17 +5,17 @@
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.
 
 **Current inspected baseline (2026-09-08):** `main` at
-`89531ebe1b01d8268d8756227ddaa77ce7096ee5` (PR #57).
-That merge added bounded criterion-selected comparison between native E7Q and
-external OpenQASM 2 unitary prefixes without changing default F2 truth.
+`538ac31e064ebddebb43f441ef316f0551581863` (PR #60).
+That merge added typed conversion of the existing topology compiler Proof-of-Path
+without changing the compiler or default F2 truth.
 
-**Current bounded Phase 2 increment:** converts the complete Proof-of-Path from
-the existing deterministic `compile_topology()` implementation into typed E7Q-IR
-evidence. It records the compilation request, compiler declaration, ordered route
-steps, inserted forward/reverse SWAPs, restored-layout assertions, independent
-source/compiled circuit identities and isolated criterion-bound QCEC evidence.
-It does not create another compiler, complete Phase 2/H5 or begin K12/CFS
-implementation.
+**Current bounded Phase 2 increment:** maps supplied legacy execution-bundle,
+execution-result and execution-receipt files into typed E7Q-IR. It preserves each
+input byte-for-byte, records intent/event/observation separately, reruns the
+existing `build_execution_receipt()` semantics, compares the complete supplied
+receipt and proof, and supports only a bounded offline consistency claim. It does
+not authenticate providers or execution, complete Phase 2/H5, promote default F2
+truth or begin K12/CFS implementation.
 
 **Revision 0.8:** adopts ecosystem direction `E7-ECO-DIR-2026-09-08.1` and pins E7G-T v0.12 experimental canonical revision CFS1 at commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca`. It adds an optional, additive family-state planning lane after the applicable H2/H3 and Phase 2 gates. EEC coefficients remain formal construction coefficients, never quantum amplitudes, probabilities or evidence weights. Existing artifacts, IDs, APIs and F0-F2 meanings are not migrated.
 
@@ -61,13 +61,14 @@ noiseless unitary-channel comparison; exact real H/u2(0,pi) criterion.
 Each retains its own domain and limits. General angles, complex-gate IR criteria,
 noisy-channel IR criteria and general Phase 1C coverage remain incomplete.
 
-**Next package:** complete the open H2/H3 hardening and remaining Phase 2 typed
-legacy execution/receipt mapping. Source preservation, bounded native execution,
-native/external comparison and topology-compiler Proof-of-Path conversion now
-provide criterion-bound evidence, but none becomes default F2 truth. Extend the
-benchmark ladder below 25 qubits, evaluate PyZX separately, and repeat resource
-measurements across the supported corpus. Phase 2, H5, E3 and E5 remain open;
-optional QCEC evaluation must not bypass compatibility or conformance requirements.
+**Next package:** add native/default F2 semantic validation without promoting
+legacy declarations, compiler traces or optional QCEC evidence beyond their
+admitted criteria. Source preservation, bounded native execution, criterion-bound
+comparisons, compiler Proof-of-Path conversion and offline legacy receipt mapping
+are implemented Phase 2 increments. Extend the benchmark ladder below 25 qubits,
+evaluate PyZX separately, and repeat resource measurements across the supported
+corpus. Phase 2, H5, E3 and E5 remain open; optional evidence must not bypass
+compatibility or conformance requirements.
 
 **Historical baseline:** `b7dc357` had 181 passing tests and F0/F1 only.
 PRs #35–#37 merged framework/identity/exact signed-permutation work at `83b273a4`;
@@ -175,7 +176,7 @@ Every increment must preserve these rules:
 ### 4.2 Not implemented
 
 - general circuit semantics beyond the implemented bounded F2 criteria;
-- complete Phase 2 native/legacy-to-IR coverage and the proposed Aer adapter; preservation, bounded native execution, native/external QCEC comparison and typed topology-compiler Proof-of-Path conversion are implemented increments, while typed legacy receipt mapping remains pending;
+- complete Phase 2 native/default F2 semantic validation and the proposed Aer adapter; preservation, bounded native execution, native/external QCEC comparison, typed topology-compiler Proof-of-Path conversion and offline legacy receipt mapping are implemented increments;
 - a production OpenQASM 3 bridge;
 - a QIR bridge;
 - authenticated provider execution evidence;
@@ -1114,10 +1115,10 @@ because no semantic validator exists for these adapter profiles, while the
 unitary-prefix projection relations remain explicitly `not-assessed`.
 
 This increment partially advances Phase 2/H5 but does not complete either. Native
-preservation, bounded native execution, external QCEC and this comparison are
-implemented increments; typed legacy receipt mapping, native/default F2 semantic
-validation and independent external review remain pending. E3, E5 and K12/CFS
-implementation remain open.
+preservation, bounded native execution, external QCEC, criterion-bound comparison,
+topology compiler conversion and offline legacy receipt mapping are implemented
+increments; native/default F2 semantic validation and independent external review
+remain pending. E3, E5 and K12/CFS implementation remain open.
 
 ### Typed topology compiler Proof-of-Path checkpoint (2026-09-08)
 
@@ -1161,12 +1162,55 @@ F0/F1 pass. All 19 applicable installed F2 checks run, while overall F2 remains
 `BLOCKED` because no compiler-proof semantic validator is installed; the local
 trace-consistency validator is not promoted to default F2 truth.
 
-This checkpoint advances Phase 2/H5 without completing either. Typed legacy
-execution/receipt mapping, native/default F2 semantic validation, independent
-external review, PyZX and the repeated benchmark ladder remain pending. It makes
-no hardware feasibility, topology quality, physical fidelity, provider
+This checkpoint advances Phase 2/H5 without completing either. Offline legacy
+execution/receipt mapping is now implemented; native/default F2 semantic validation,
+independent external review, PyZX and the repeated benchmark ladder remain pending.
+It makes no hardware feasibility, topology quality, physical fidelity, provider
 authentication, execution-success, exact-algebraic or arbitrary-scalability claim.
 K12/CFS implementation remains unstarted.
+
+### Typed legacy execution receipt checkpoint (2026-09-08)
+
+Baseline: `538ac31e064ebddebb43f441ef316f0551581863` (PR #60).
+The additive `e7q.ir.legacy-execution-receipt-workflow/v1` API and CLI reuse
+`src/e7q/results.py`, `src/e7q/artifacts.py` and `src/e7q/ir/legacy.py`. Existing
+bundle, result and receipt schemas and `build_execution_receipt()` semantics are
+unchanged; no second receipt engine is introduced.
+
+The workflow preserves the bundle, result and receipt independently as exact bytes
+with SHA-256 identity, length, schema and stable source reference. Typed
+representations retain the complete original object, proof, status, unknown fields
+and limitations. Separate intent, supplied execution, count observation,
+receipt-consistency assessment and bounded claim artifacts keep interpretation
+boundaries explicit. Four transformation artifacts record deterministic identities,
+input/output references, criteria, preservation, loss, assumptions and validation
+status.
+
+Independent validation strictly reparses the preserved inputs and calls the existing
+legacy receipt builder over the exact bundle/result bytes. The supplied receipt PASS,
+digests, probabilities and Proof-of-Path are compared field by field rather than
+trusted. Count-label order is explicit workflow context. Malformed or duplicate JSON,
+non-finite values, missing/unknown schemas, unsupported count semantics, invalid
+outcomes, target/shot/digest mismatch, altered probabilities/proof, forged PASS,
+rehashed tampering and all imported non-PASS statuses remain non-PASS.
+
+The public deterministic fixture under `examples/e7q-ir/legacy-receipt/` produces
+`benchmarks/e7q-ir/legacy-receipt-results.json`, graph ID
+`sha256:2461fac5f5a9c5472280b9ae1daf2789167851d91f3a40df8ec388c22f3fff29`.
+It records the offline target, eight shots, unauthenticated synthetic provider/job
+and completion declarations, `clbit-descending` counts `00=4`, `01=0`, `11=4`,
+width two, deterministic outcome order, empirical probabilities and both optional
+pilot records. All 36 workflow checks pass. F0/F1 pass; 25 installed semantic checks
+run while F2 remains `BLOCKED` because no legacy-receipt validator is registered as
+default semantic truth.
+
+The bounded PASS establishes only internal consistency of the supplied bundle/result
+and agreement with independently recomputed legacy receipt semantics. It does not
+establish submission, execution authenticity, provider identity, chronology,
+physical fidelity, circuit correctness, computational advantage, F3 authentication
+or arbitrary scalability. Phase 2/H5 remain open for native/default F2 semantic
+validation. Provider integration, authenticated execution and K12/CFS implementation
+remain unstarted.
 
 
 ## 12. E7G-T v0.12 optional family-state planning lane

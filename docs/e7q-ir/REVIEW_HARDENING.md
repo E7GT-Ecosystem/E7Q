@@ -77,16 +77,19 @@ in each implementation PR and update affected rows with each capability change.
 
 This package is partially implemented through source/legacy preservation, bounded
 native execution, external QCEC evidence, criterion-bound native/external
-unitary-prefix comparison and typed topology-compiler Proof-of-Path conversion.
-H5 and Phase 2 remain incomplete.
+unitary-prefix comparison, typed topology-compiler Proof-of-Path conversion and
+offline legacy execution receipt mapping. H5 and Phase 2 remain incomplete until
+native/default F2 semantic validation lands.
 
-Complete the remaining Phase 2 adapters, retaining original bytes, native IDs,
-source references, compiler traces, execution settings and assessment boundaries.
-Describe omitted/derived fields and irreversible losses; do not fabricate values.
+Complete the remaining Phase 2 semantic-validation gate while retaining original
+bytes, native IDs, source references, compiler traces, execution settings and
+assessment boundaries. Describe omitted/derived fields and irreversible losses;
+do not fabricate values.
 
-Gate: native Bell and external OpenQASM workflows retain inspectable evidence
-paths, pass applicable F0/F1/F2 checks and preserve legacy readability. Supported
-round trips retain identity or explicitly report why identity is not preserved.
+Gate: native Bell, external OpenQASM, compiler and legacy receipt workflows retain
+inspectable evidence paths, pass applicable F0/F1/F2 checks and preserve legacy
+readability. Supported round trips retain identity or explicitly report why
+identity is not preserved. Imported verdicts cannot become default F2 truth.
 
 ### H6 — Optional Aer reference integration (P1; Phase 2, after H2/H3)
 
@@ -395,10 +398,10 @@ It passes F0/F1; all applicable installed F2 checks run, while overall F2 remain
 `BLOCKED` and projection relations remain `not-assessed` because no semantic
 validator exists for this adapter contract.
 
-This is partial H5/Phase 2 implementation, not completion. Legacy
-execution/receipt mapping, native/default F2 validators, independent review, PyZX
-and the full repeated benchmark ladder remain pending. No compiler provenance,
-provider authentication, hardware fidelity or arbitrary scalability claim is
+This is partial H5/Phase 2 implementation, not completion. Offline legacy
+execution/receipt mapping is now implemented; native/default F2 validators,
+independent review, PyZX and the full repeated benchmark ladder remain pending.
+No provider authentication, hardware fidelity or arbitrary scalability claim is
 added.
 
 ## Typed topology compiler Proof-of-Path checkpoint (2026-09-08)
@@ -438,8 +441,50 @@ It records four inserted SWAPs, restored logical layout, QCEC 3.9.0
 `equivalent`/PASS, 0.38756 seconds wall time, 59,174,912 bytes peak worker RSS,
 enforced parent deadline/POSIX `RLIMIT_AS` and a reaped zero-exit worker.
 
-Phase 2/H5 remain open for typed legacy execution/receipt mapping and
-native/default F2 semantic validation. No hardware feasibility, topology quality,
-physical fidelity, provider authentication, execution success, exact-algebraic
-or arbitrary-scalability claim is added. K12/CFS implementation remains
+Phase 2/H5 remain open for native/default F2 semantic validation. No hardware
+feasibility, topology quality, physical fidelity, provider authentication,
+execution success, exact-algebraic or arbitrary-scalability claim is added.
+K12/CFS implementation remains unstarted.
+
+## Typed legacy execution receipt checkpoint (2026-09-08)
+
+Baseline: `538ac31e064ebddebb43f441ef316f0551581863` (PR #60).
+The additive workflow maps the existing legacy execution bundle, supplied result
+and supplied receipt without changing their schemas or creating a second receipt
+engine. It preserves all three source byte streams independently and retains the
+complete original object, status, Proof-of-Path, unknown fields and limitations in
+typed representations.
+
+Intent, supplied execution, observation, assessment and claim remain separate.
+Provider/job/time values are unauthenticated declarations. The count observation
+records explicit label order, width, deterministic outcome sequence, zero-count
+outcomes and empirical probabilities without treating them as execution or fidelity
+evidence. Four typed transformation records provide deterministic identities,
+input/output references, criteria, preservation, loss, assumptions and validation
+status.
+
+The workflow strictly reparses the preserved bytes and invokes the existing
+`build_execution_receipt()` implementation. Thirty-six explicit checks cover
+schemas, registered structures, bundle readiness, source/OpenQASM/compiled
+identities, target, shots, bundle linkage, count validity, probabilities and every
+receipt proof field. Imported PASS, digests, proof and optional pilot records are
+compared rather than trusted. Duplicate keys, non-finite values, unknown schemas,
+unsupported count semantics, malformed outcomes, linkage mismatches, forged PASS,
+tampering and imported non-PASS statuses remain non-PASS.
+
+Regression coverage includes byte-perfect recovery, deterministic graph/artifact/
+relation/transformation identities, extra and zero-count outcomes, target/shot/
+digest mismatches, malformed/rehashed evidence, forged PASS, probability/proof
+tampering, status retention, optional temporal/observational records, CLI overwrite
+protection and the default F2 boundary. The public graph ID is
+`sha256:2461fac5f5a9c5472280b9ae1daf2789167851d91f3a40df8ec388c22f3fff29`.
+F0/F1 pass; 25 installed semantic checks run and F2 remains `BLOCKED` because no
+legacy-receipt validator is registered as default semantic truth.
+
+This checkpoint completes the planned offline legacy receipt mapping increment,
+not Phase 2 or H5. Native/default F2 validation, independent external review, PyZX
+and the repeated benchmark ladder remain pending. It establishes no submission,
+execution authenticity, provider identity, chronology, physical fidelity, circuit
+correctness, computational advantage, F3 authentication or arbitrary scalability.
+Provider integration, authenticated execution and K12/CFS implementation remain
 unstarted.

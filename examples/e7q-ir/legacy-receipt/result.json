@@ -1,0 +1,14 @@
+{
+  "bundle_digest": "sha256:61766d2bcad1202a2498bb2b343ab0d0fdcbc01c10e99fc31fac11909d40e6f1",
+  "completed_at": "2026-09-08T00:01:00Z",
+  "counts": {
+    "00": 4,
+    "01": 0,
+    "11": 4
+  },
+  "job_id": "synthetic-job-declaration",
+  "provider": "synthetic-provider-declaration",
+  "schema": "e7q.execution-result/v1",
+  "shots": 8,
+  "target": "synthetic-offline-target"
+}

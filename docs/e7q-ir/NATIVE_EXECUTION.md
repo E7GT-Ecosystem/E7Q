@@ -59,6 +59,6 @@ graphs, failed invariants, non-palindromic labels with an extra bit, admission
 rejection before execution and the CLI. The separate bounded native/external QCEC
 workflow now preserves this native Proof-of-Path while comparing compatible
 unitary prefixes under one explicitly selected numerical criterion. Phase 2/H5
-remain open. The existing topology-reference compiler Proof-of-Path now has a
-typed E7Q-IR conversion with independent QCEC evidence; remaining gates are typed
-legacy execution/receipt adapters and native/default F2 semantic validation.
+remain open. The existing topology-reference compiler Proof-of-Path and legacy
+execution-bundle/result/receipt path now have typed offline E7Q-IR mappings;
+the remaining Phase 2/H5 gate is native/default F2 semantic validation.
