@@ -39,8 +39,8 @@ This lane follows the applicable H2/H3 and Phase 2 gates. It does not change qua
   under the existing four-qubit and 64-gate reference-oracle limits;
 - [ ] optional pinned QCEC/PyZX backends and an external conformance corpus,
   preserving inconclusive, unsupported, blocked, and resource-limit outcomes
-  (QCEC adapter and external pair evidence workflow implemented; PyZX and the
-  complete corpus remain pending);
+  (QCEC adapter, external pair workflow and bounded native/external unitary-prefix
+  comparison implemented; PyZX and the complete corpus remain pending);
 - [ ] structured equivalence benchmark ladder through 25+ qubits with published
   runtime/resource evidence and no arbitrary-circuit scalability claim
   (structured 26/32-qubit QCEC corpus and one complete 32-qubit evidence graph
@@ -395,8 +395,10 @@ See [H1–H10 acceptance gates](docs/e7q-ir/REVIEW_HARDENING.md).
 - [x] Exact real H-unitary criterion and original H/u2(0,pi) F2 acceptance fixture (four-qubit, 64-gate bounds).
 
 - [x] Phase 2 first preservation adapter: original native/legacy source recovery and explicit assurance limits. See [contract](docs/e7q-ir/LEGACY_PRESERVATION.md).
-- [ ] Phase 2 typed native intent/compiler/execution adapters and criterion-bound native/external comparison.
+- [ ] Phase 2 typed native compiler/execution/legacy adapters; preservation, native execution and criterion-bound native/external comparison increments are implemented, while the phase remains incomplete.
 
 - [x] Bounded native source/intent/execution/observation/assessment path with preserved Proof-of-Path and verdicts; [scope and limits](docs/e7q-ir/NATIVE_EXECUTION.md). Compiler conversion and native F2 remain pending.
 
-- [x] External circuit-pair QCEC evidence workflow with byte-preserved sources, separate OpenQASM 2 projections, isolated numerical assessment, explicit tolerances/resource limits and bounded claim support. Native comparison, default F2 integration, PyZX and general scalability remain pending.
+- [x] External circuit-pair QCEC evidence workflow with byte-preserved sources, separate OpenQASM 2 projections, isolated numerical assessment, explicit tolerances/resource limits and bounded claim support. Default F2 integration, PyZX and general scalability remain pending.
+
+- [x] Bounded criterion-selected native E7Q to external OpenQASM 2 unitary-prefix comparison with explicit terminal-measurement projection loss, preserved native Proof-of-Path and fail-closed unsupported/resource outcomes. Typed compiler/legacy mapping, native semantic validation and Phase 2/H5 completion remain pending.

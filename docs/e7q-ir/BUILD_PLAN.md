@@ -5,8 +5,17 @@
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.
 
 **Current inspected baseline (2026-09-08):** `main` at
-`363c58c9855c45626d143bb66b320e2790c01588` (PR #55).
-That merge added the bounded external circuit-pair QCEC evidence workflow on top of the isolated, resource-limited assessment path.
+`95f8c8d15cc311753fe746b1c641a07e2453bea4` (PR #56).
+That merge reconciled this roadmap with direction `E7-ECO-DIR-2026-09-08.1`
+and E7G-T v0.12/CFS1 without changing runtime semantics.
+
+**Current bounded Phase 2 increment:** adds criterion-bound comparison between
+one native E7Q program and one external OpenQASM 2 circuit. It preserves both
+sources, parses them separately, validates a static noiseless common subset and
+terminal identity measurement, records explicit measurement-removal
+transformations, evaluates only immutable unitary-prefix projections through the
+isolated QCEC worker, and retains native Proof-of-Path evidence where available.
+It does not complete Phase 2/H5 or begin K12/CFS implementation.
 
 **Revision 0.8:** adopts ecosystem direction `E7-ECO-DIR-2026-09-08.1` and pins E7G-T v0.12 experimental canonical revision CFS1 at commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca`. It adds an optional, additive family-state planning lane after the applicable H2/H3 and Phase 2 gates. EEC coefficients remain formal construction coefficients, never quantum amplitudes, probabilities or evidence weights. Existing artifacts, IDs, APIs and F0-F2 meanings are not migrated.
 
@@ -52,14 +61,14 @@ noiseless unitary-channel comparison; exact real H/u2(0,pi) criterion.
 Each retains its own domain and limits. General angles, complex-gate IR criteria,
 noisy-channel IR criteria and general Phase 1C coverage remain incomplete.
 
-**Next package:** complete the open H2/H3 hardening and Phase 2 typed
-compiler/execution mapping, including Proof-of-Path conversion, typed legacy
-receipt mapping and criterion-bound native/external comparison. The external
-QCEC pair workflow now supplies the external side of that evidence path, but it
-does not perform native comparison or become default F2 truth. Extend the
-benchmark ladder below 25 qubits, evaluate PyZX separately, and repeat resource
-measurements across the supported corpus. Phase 2, E3 and E5 remain open; this
-bounded QCEC evaluation must not bypass compatibility or conformance requirements.
+**Next package:** complete the open H2/H3 hardening and remaining Phase 2 typed
+compiler/execution mapping, including compiler Proof-of-Path conversion and typed
+legacy receipt mapping. The external QCEC pair workflow and bounded
+native/external unitary-prefix comparison now provide criterion-bound comparison
+evidence, but neither becomes default F2 truth. Extend the benchmark ladder below
+25 qubits, evaluate PyZX separately, and repeat resource measurements across the
+supported corpus. Phase 2, H5, E3 and E5 remain open; optional QCEC evaluation
+must not bypass compatibility or conformance requirements.
 
 **Historical baseline:** `b7dc357` had 181 passing tests and F0/F1 only.
 PRs #35–#37 merged framework/identity/exact signed-permutation work at `83b273a4`;
@@ -167,7 +176,7 @@ Every increment must preserve these rules:
 ### 4.2 Not implemented
 
 - general circuit semantics beyond the implemented bounded F2 criteria;
-- Phase 2 native/legacy-to-IR adapters and the proposed Aer adapter;
+- complete Phase 2 native/legacy-to-IR coverage and the proposed Aer adapter; preservation, bounded native execution and native/external QCEC comparison are partially implemented increments, while typed compiler/receipt mapping remains pending;
 - a production OpenQASM 3 bridge;
 - a QIR bridge;
 - authenticated provider execution evidence;
@@ -1064,6 +1073,52 @@ authentication, hardware fidelity or arbitrary-circuit scalability. Historical
 QCEC evidence remains unchanged. The next gate is criterion-bound native/external
 comparison plus the missing benchmark rungs and independent backend evaluation.
 
+### Native E7Q to external OpenQASM 2 comparison checkpoint (2026-09-08)
+
+Baseline: `95f8c8d15cc311753fe746b1c641a07e2453bea4`.
+The additive `e7q.ir.native-external-qcec-workflow/v1` API and CLI accept one
+native `.e7q` snapshot and one external OpenQASM 2 snapshot with stable source
+references, one explicitly selected numerical criterion, numerical/fidelity
+tolerances, and wall-clock/memory limits. Both sources are retained byte-for-byte
+with SHA-256 identities and parsed independently.
+
+The first common subset is deliberately bounded to eight qubits and 256 unitary
+gates: one equally wide quantum/classical register on each side, the static
+noiseless `x`, `y`, `z`, `h`, `s`, `t`, `cx`, `cz` and `swap` gate set, no
+conditions/assertions/noise/barriers/ancillas, and terminal identity measurement
+mapping. Width or mapping differences and unsupported constructs stop before
+QCEC. The two evaluation representations are reconstructed from parsed operations,
+not by deleting source text. Separate transformation artifacts and relations
+record preserved width/gate order/operands, removal of terminal measurement and
+classical state from the evaluation projection, loss of measurement outcomes and
+formatting, and the unitary-prefix-only criterion boundary.
+
+Only immutable OpenQASM 2 unitary-prefix projections reach PR #54's isolated QCEC
+worker. The assessment retains backend/dependency versions, raw verdict,
+normalized outcome, exact configuration, recorded tolerances, runtime, memory
+and wall-limit enforcement, worker exit/signal and reaping evidence. The bounded
+claim passes only when the requested numerical criterion passes. Numerical results
+cannot satisfy exact-algebraic criteria; global-phase-only equality fails
+`e7q.ir.qcec-numerical-unitary` and passes
+`e7q.ir.qcec-numerical-global-phase`. Unsupported, blocked, timeout, exhaustion,
+worker failure, probabilistic, unknown and no-information outcomes remain non-PASS.
+No compiler origin is inferred from the supplied external file.
+
+The public-safe Bell graph at
+`benchmarks/e7q-ir/native-external-qcec-bell-results.json` has graph ID
+`sha256:765272d4001adcca95743714f158ad44c62e4944a2705ca99667c2ac903433f1`.
+MQT QCEC 3.9.0 returned deterministic `equivalent`/PASS in 0.43561 seconds of
+parent-observed wall time, with 60,375,040 bytes peak worker RSS, an enforced
+68,719,476,736-byte POSIX `RLIMIT_AS` limit and a reaped zero-exit worker. F0 and
+F1 pass. All 19 applicable installed F2 checks ran; overall F2 remains `BLOCKED`
+because no semantic validator exists for these adapter profiles, while the
+unitary-prefix projection relations remain explicitly `not-assessed`.
+
+This increment partially advances Phase 2/H5 but does not complete either. Native
+preservation, bounded native execution, external QCEC and this comparison are
+implemented increments; typed compiler Proof-of-Path conversion, typed legacy
+receipt mapping, native/default F2 semantic validation and independent external
+review remain pending. E3, E5 and K12/CFS implementation remain open.
 
 
 ## 12. E7G-T v0.12 optional family-state planning lane

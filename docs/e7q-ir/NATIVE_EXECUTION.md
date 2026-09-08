@@ -56,6 +56,8 @@ compiler conversion, provider authentication or physical fidelity claim here.
 
 Tests cover direct native-result agreement, byte recovery, deterministic seeded
 graphs, failed invariants, non-palindromic labels with an extra bit, admission
-rejection before execution and the CLI. Phase 2/H5 remain open: next gates are
-compiler Proof-of-Path conversion, typed legacy execution/receipt adapters and
-native/external Bell comparison under an explicit semantic criterion.
+rejection before execution and the CLI. The separate bounded native/external QCEC
+workflow now preserves this native Proof-of-Path while comparing compatible
+unitary prefixes under one explicitly selected numerical criterion. Phase 2/H5
+remain open: next gates are compiler Proof-of-Path conversion, typed legacy
+execution/receipt adapters and native/default F2 semantic validation.
