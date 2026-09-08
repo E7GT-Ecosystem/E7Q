@@ -4,7 +4,16 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from e7q.language import E7QError, load, openqasm, parse, run, verify
+from e7q.language import (
+    E7QError,
+    E7QResourceLimitError,
+    ParseLimits,
+    load,
+    openqasm,
+    parse,
+    run,
+    verify,
+)
 
 
 BELL = Path(__file__).parents[1] / "examples" / "bell.e7q"
@@ -169,3 +178,55 @@ def test_distinct_reusable_paths_remain_permitted():
         1,
     )
     assert parse(source).subpaths == ("Prepare",)
+
+
+def _bounded_source(paths: str, target: str) -> str:
+    return f"""context Bounded {{ shots: 1 backend: statevector seed: 1 }}
+qubits q[1]
+bits c[1]
+{paths}
+path Root {{
+  use {target}
+  measure q -> c
+}}
+verify Root
+"""
+
+
+def test_parser_operation_budget_accepts_limit_and_rejects_limit_plus_one():
+    limits = ParseLimits(8, 8, 16, 8)
+    accepted = _bounded_source("path Leaf {\n" + "  X q[0]\n" * 7 + "}", "Leaf")
+    assert len(parse(accepted, limits=limits).operations) == 8
+    rejected = _bounded_source("path Leaf {\n" + "  X q[0]\n" * 8 + "}", "Leaf")
+    with pytest.raises(E7QResourceLimitError, match="8-expanded-operation"):
+        parse(rejected, limits=limits)
+
+
+def test_parser_stops_compact_acyclic_fanout_during_expansion():
+    paths = ["path P0 { X q[0] }"]
+    for depth in range(1, 12):
+        paths.append(f"path P{depth} {{\n  use P{depth - 1}\n  use P{depth - 1}\n}}")
+    source = _bounded_source("\n".join(paths), "P11")
+    limits = ParseLimits(1024, 4096, 8192, 64)
+    with pytest.raises(E7QResourceLimitError, match="1024-expanded-operation"):
+        parse(source, limits=limits)
+
+
+def test_parser_stops_use_only_fanout_and_deep_nesting():
+    fanout = ["path P0 { }"]
+    for depth in range(1, 8):
+        fanout.append(f"path P{depth} {{\n  use P{depth - 1}\n  use P{depth - 1}\n}}")
+    with pytest.raises(E7QResourceLimitError, match="path-invocations"):
+        parse(
+            _bounded_source("\n".join(fanout), "P7"),
+            limits=ParseLimits(1024, 32, 1024, 64),
+        )
+
+    chain = ["path P0 { X q[0] }"]
+    for depth in range(1, 9):
+        chain.append(f"path P{depth} {{ use P{depth - 1} }}")
+    with pytest.raises(E7QResourceLimitError, match="nesting-depth"):
+        parse(
+            _bounded_source("\n".join(chain), "P8"),
+            limits=ParseLimits(1024, 1024, 2048, 8),
+        )

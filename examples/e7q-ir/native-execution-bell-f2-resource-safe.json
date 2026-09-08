@@ -1,0 +1,1550 @@
+{
+  "capability_negotiation": [
+    {
+      "artifact_id": "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    },
+    {
+      "artifact_id": "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "reason": null,
+      "status": "SUPPORTED",
+      "unsupported_capabilities": []
+    }
+  ],
+  "checks": [
+    {
+      "name": "graph:object",
+      "passed": true
+    },
+    {
+      "name": "graph:fields",
+      "passed": true
+    },
+    {
+      "name": "graph:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "graph:schema",
+      "passed": true
+    },
+    {
+      "name": "graph:name",
+      "passed": true
+    },
+    {
+      "name": "graph:artifacts",
+      "passed": true
+    },
+    {
+      "name": "graph:relations",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[1]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[2]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[3]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[4]:limitations",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:unknown-fields",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:schema",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:kind",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:artifact-id-format",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:artifact-id",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:profile",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:provenance",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:payload",
+      "passed": true
+    },
+    {
+      "name": "artifact[5]:limitations",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[0]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[1]:transformation-contract",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[2]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[3]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:object",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:kind",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:endpoints",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:validation-status",
+      "passed": true
+    },
+    {
+      "name": "relation[4]:relation-id",
+      "passed": true
+    },
+    {
+      "name": "graph:graph-id",
+      "passed": true
+    },
+    {
+      "name": "graph:unique-artifact-ids",
+      "passed": true
+    },
+    {
+      "name": "graph:unique-relation-ids",
+      "passed": true
+    },
+    {
+      "name": "artifact[0]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[1]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[2]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[3]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[4]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "artifact[5]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[0]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[1]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[2]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[3]:references",
+      "passed": true,
+      "unresolved": []
+    },
+    {
+      "name": "relation[4]:references",
+      "passed": true,
+      "unresolved": []
+    }
+  ],
+  "highest_level_passed": "F2",
+  "level_results": {
+    "F0": "PASS",
+    "F1": "PASS",
+    "F2": "PASS",
+    "F3": "NOT_IMPLEMENTED",
+    "F4": "NOT_IMPLEMENTED"
+  },
+  "proof": [
+    {
+      "kind": "structural-conformance",
+      "status": "PASS",
+      "step": 0
+    },
+    {
+      "kind": "referential-conformance",
+      "status": "PASS",
+      "step": 1
+    },
+    {
+      "kind": "profile-semantic-conformance",
+      "semantic_results": 17,
+      "status": "PASS",
+      "step": 2
+    },
+    {
+      "boundary": "F0/F1 validation establishes structure, content identity, and graph reference integrity. F2 establishes only named installed profile checks that report PASS. It does not establish provider authenticity, physical fidelity, causation, or truth.",
+      "kind": "evidence-boundary",
+      "step": 3
+    }
+  ],
+  "requested_level": "F2",
+  "schema": "e7q.ir.conformance-report/v0alpha1",
+  "semantic_readiness": "PASS",
+  "semantic_results": [
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.intent.profile-and-provenance",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Profile capabilities, boundary declarations and provenance references match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:36971269ae8c131397e92fc2676c47a5eff7871da8bf6b12cfc2e37b5c14493a",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.intent.recomputed",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "The intent payload matches independent reconstruction from preserved source.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:9f3988f933fafb1f2e977bc218321b0b54c414593d8c93030550fc1b647a75eb",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.observation.profile-and-provenance",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Profile capabilities, boundary declarations and provenance references match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:418f1e0a821eeb5abf1311d620c5154d43a53330852bc9b5d0d1350b521ec213",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.observation.recomputed",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "The observation payload matches independent reconstruction from preserved source.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:48923e5c9e53e86d349707c24f2bcc1837d698a7dfbefd6976bcb867466863f7",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.representation.profile-and-provenance",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Profile capabilities, boundary declarations and provenance references match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:a6fec734d89997bc84bb4998ba55cc92855784bdb42093a2904787795f8fdd85",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.representation.recomputed",
+      "criterion": {
+        "id": "e7q.ir.native-parser-projection",
+        "version": "1"
+      },
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "The representation payload matches independent reconstruction from preserved source.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:627dc6df103632e808ca8f2b0af8aaede5b2648e52ee633cacb5f3eefe42b6de",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.assessment.profile-and-provenance",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Profile capabilities, boundary declarations and provenance references match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:cf35ec6213b1e02947c67c4c387a2b66dfb8b5a623456fbf5e5f41ef09bb8d2d",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.assessment.recomputed",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "The assessment payload matches independent reconstruction from preserved source.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:4bfeed107127dc2350904f23ea93d43b433071f25bb3952b5db90018abac856c",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.source.profile-and-provenance",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Profile capabilities, boundary declarations and provenance references match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:709fc4eea7ff0e714805629f627cb5a4cf188bb10e2ebe0a4a9c405a903964f4",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.source.recomputed",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "The source payload matches independent reconstruction from preserved source.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:e18f1d2d11188a565fced0d52a06891d17133859d6585699256ec752f267258e",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.execution.profile-and-provenance",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Profile capabilities, boundary declarations and provenance references match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:da47576b3c0583e771b34a84ab017f196a58aee31dd669100f156034afdeb258",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.artifact.execution.recomputed",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "The execution payload matches independent reconstruction from preserved source.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:adfdb53fb31e96f86e7d20413ad2c8d5cba36840e4801da33240d8dbec23171a",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a",
+        "kind": "artifact"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.relation.produces.representation-to-execution",
+      "evidence_refs": [
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Relation endpoints, criterion, preservation, loss, assumptions and validation status match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:aeedcff6a57bf49a8bb90c30fe6eccdbced7c24ee1352754d04eacf0a33c0f4c",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:27de324790a9c12c45c3569f5a06f5aadf8761140b6729324356004741db9c1b",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.relation.assesses.assessment-to-observation",
+      "evidence_refs": [
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:9f5f3f52565d779312314befc4f8b098f1a06d57f6edaf67a8bc88b37e5f45cb"
+      ],
+      "message": "Relation endpoints, criterion, preservation, loss, assumptions and validation status match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:a68ca643e1ca29237d35f1b92c9e4763f7ed1fb8be7c0aafd293d1e2abbe56e5",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:79dbe8c6eed5eed39297667dbd4ebfbe74603d272e874ef328152372e5641d31",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.relation.transforms.source-to-representation",
+      "criterion": {
+        "id": "e7q.ir.native-parser-projection",
+        "version": "1"
+      },
+      "evidence_refs": [
+        "sha256:9c62d7adcfa39bd0753251e67397c9d60a9bc9b6c38a56ab78a8c276003e0894",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa"
+      ],
+      "message": "Relation endpoints, criterion, preservation, loss, assumptions and validation status match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:8db48d19a3e80854debd733dfe02921654daea757d198082711bcef5e4c77102",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:8f8c81eac1709cdf9bca5af15157a341a856650024d3af3665c4636ca925f6bf",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.relation.produces.execution-to-observation",
+      "evidence_refs": [
+        "sha256:7de47eb8efc47f6946324151f0a66d0eecb9341c2855b0eece056bc91881b311",
+        "sha256:d2fd654fe9382239d0470cf643c5dd9dc6b6d7d49b53ccb14aa2c9b00b90081a"
+      ],
+      "message": "Relation endpoints, criterion, preservation, loss, assumptions and validation status match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:40287ffca497f99113b90e4c38faebcf22e46bef9e93ed2435acf1bbacff91b7",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:a376c9eacdc4bd5fc3d947dfd3dcc0b811baf5a808c60f69635a0d78c7c8dd85",
+        "kind": "relation"
+      }
+    },
+    {
+      "boundaries": [
+        "F2 does not establish hardware execution or fidelity, provider authentication, authenticated chronology, compiler correctness, equivalence to an external circuit, exact-algebraic equivalence, scalability, computational advantage, F3 authentication or F4 reproduction.",
+        "Semantic conformance is separate from native program success; a faithfully recomputed native FAIL remains a FAIL program verdict.",
+        "Under the installed bounded native-execution profile, this graph faithfully records the deterministic parsing, admitted reference execution, observation and native-verifier result recomputed from the preserved source."
+      ],
+      "check_id": "native-execution.relation.represents.source-to-intent",
+      "evidence_refs": [
+        "sha256:0b9532af148cde9d57642fd108876dd357f980ace85b2d6fc958e9dcbb4ee93d",
+        "sha256:acf8e66e618f76e1febe46fe85b30c2124bbf8c7cee751962df5845fccb54bfa"
+      ],
+      "message": "Relation endpoints, criterion, preservation, loss, assumptions and validation status match.",
+      "profile": {
+        "id": "e7q.ir.native-execution",
+        "version": "0alpha1"
+      },
+      "result_id": "sha256:3481024f6fee84c271f117044ce856b8740e2087b233342213cc3503fac28cba",
+      "runtime_evidence": {
+        "memory": {
+          "effective_bytes": 8589934592,
+          "enforced": true,
+          "hard_limit_bytes": 8589934592,
+          "mechanism": "posix-rlimit-as",
+          "requested_bytes": 8589934592,
+          "soft_limit_bytes": 8589934592
+        },
+        "outcome_reason": "result",
+        "policy": {
+          "implementation_revision": "native-f2-resource-safe-v1",
+          "memory_limit_mechanism": "posix-rlimit-as",
+          "memory_limit_requested_bytes": 8589934592,
+          "parser": {
+            "max_nesting_depth": 64,
+            "max_operations": 1024,
+            "max_path_invocations": 1024,
+            "max_statement_visits": 2048
+          },
+          "wall_clock_limit_seconds": 5.0,
+          "worker_start_method": "spawn"
+        },
+        "worker": {
+          "exit_code": 0,
+          "reaped": true,
+          "signal": null,
+          "signal_name": null,
+          "start_method": "spawn",
+          "started": true,
+          "termination_mechanism": null
+        }
+      },
+      "status": "PASS",
+      "subject": {
+        "id": "sha256:cf3dbf73c959fce3b36e28297ee6e42ec5e596c94585f1d4fc04552d51783b42",
+        "kind": "relation"
+      }
+    }
+  ],
+  "status": "PASS"
+}

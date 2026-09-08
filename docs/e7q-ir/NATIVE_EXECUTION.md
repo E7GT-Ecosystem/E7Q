@@ -46,10 +46,27 @@ The profile admits only:
 - static gates followed by exactly one terminal full-register measurement;
 - no noise, dynamic measurement/control or assertions.
 
-The existing parser runs first. The remaining admission limits are reapplied before
-reference-simulator allocation. Unsupported features are `UNSUPPORTED`; exceeded
-resource limits are `BLOCKED`; mismatched recomputed evidence is `FAIL`; missing
-or malformed validator results remain `NOT_ASSESSED` or `FAIL`. No exception,
+Native producers and the installed validator invoke the existing parser in bounded
+mode. The parser counts expanded operations, reusable-path invocations, expanded
+statement visits and nesting depth before appending to the corresponding materialized
+lists. The fixed validator policy allows 1,024 operations, 1,024 path invocations,
+2,048 statement visits and 64 nested path levels. Ordinary `parse()` callers retain
+the compatibility-preserving unbounded API unless they explicitly supply limits.
+
+F2 replay runs in a fresh `spawn` worker with a parent-owned five-second monotonic
+deadline and an 8 GiB address-space request enforced through POSIX `RLIMIT_AS`.
+Platforms that cannot enforce that memory boundary return `UNSUPPORTED` for this
+installed profile instead of silently running without it. Timeout and parser/memory
+exhaustion are `BLOCKED`; worker startup, crash, signal, reap and protocol failures
+are distinct non-PASS outcomes. Requested/effective memory enforcement and bounded
+worker exit metadata are recorded as `runtime_evidence` on semantic results. Graph-
+supplied values cannot weaken the installed policy, and the reconstruction cache key
+includes the validator, policy and implementation versions.
+
+These changes enforce the already documented `0alpha1` domain; they do not broaden
+or reinterpret its semantic conclusion, so the profile identity is unchanged.
+Unsupported features are `UNSUPPORTED`; mismatched recomputed evidence is `FAIL`;
+missing or malformed validator results remain `NOT_ASSESSED` or `FAIL`. No exception,
 unknown format, stale declaration or inconclusive state can become `PASS`.
 
 ## Independent semantic reconstruction
@@ -108,11 +125,18 @@ authentication or F4 reproduction.
 
 The deterministic Bell graph is
 `examples/e7q-ir/native-execution-bell-graph.json`; its F2 report is
-`examples/e7q-ir/native-execution-bell-f2.json`. The graph ID is
+`examples/e7q-ir/native-execution-bell-f2-resource-safe.json`. The graph ID is
 `sha256:c9fe173151778dcae3df500674a53c063c32119c6b600bfe40c0b82f00e59598`.
-All 17 artifact/relation semantic checks pass and the highest level is F2.
-Focused verification passes 80 tests; the integrated IR/native/compiler/QCEC/
-receipt surface passes 250; and the full suite passes 567.
+All 17 artifact/relation semantic checks pass and the highest level is F2. The
+pre-isolation report remains byte-preserved as
+`native-execution-bell-f2.json`; it is historical validation evidence and is not
+silently rewritten with enforcement metadata.
+Because implementation versions are evidence inputs, a fresh graph/report under a
+different dependency environment may have different artifact and semantic-result
+identities; byte stability of this captured report is not cross-version equivalence.
+Focused parser/native verification passes 93 tests; the full suite and repository
+review campaign pass 588 cases. Broader compiler/QCEC/receipt paths remain covered
+by that full campaign.
 
 Phase 2 and H5 are complete because the native and external paths, topology
 compiler Proof-of-Path, legacy preservation and receipt mapping are all linked

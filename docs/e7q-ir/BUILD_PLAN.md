@@ -1,13 +1,14 @@
 # E7Q-IR Build Plan and AI Engineering Handoff
 
-**Plan version:** 0.9
+**Plan version:** 0.10
 
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.
 
 **Current inspected baseline (2026-09-08):** `main` at
-`1a0a24b3d41f79bfa6a200006e4bf08761b39f52` (PR #61).
-That merge added typed offline mapping of existing execution bundles, supplied
-results and receipts without changing legacy formats or trusting imported PASS.
+`25fa967cbaa6fe3dd139e141692ce40b39e314d1` (PR #63).
+That merge added bounded H2/H3 declaration consistency and external-bundle
+field-shape checks. The current package closes the native replay resource-safety
+gap identified after PR #62 without claiming H2, H3 or H10 completion.
 
 **Current bounded Phase 2 increment:** installs the distinct
 `e7q.ir.native-execution/0alpha1` profile and its default semantic validator.
@@ -23,6 +24,13 @@ a separately versioned profile. It preserves old core-profile graphs at F0/F1,
 keeps semantic conformance separate from native invariant success, validates every
 native artifact and relation against recomputed evidence, and closes Phase 2/H5
 without broadening F2 into execution authentication or scientific truth.
+
+**Revision 0.10:** enforces native parser budgets during reusable-path expansion
+and isolates installed F2 replay behind a parent-owned deadline and POSIX address-
+space limit. Semantic results record policy, effective enforcement and bounded
+worker exit metadata. The already documented `0alpha1` domain and historical graph
+identity are unchanged; the former report is retained and a new resource-safe
+report records the hardened validation run.
 
 **Revision 0.8:** adopts ecosystem direction `E7-ECO-DIR-2026-09-08.1` and pins E7G-T v0.12 experimental canonical revision CFS1 at commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca`. It adds an optional, additive family-state planning lane after the applicable H2/H3 and Phase 2 gates. EEC coefficients remain formal construction coefficients, never quantum amplitudes, probabilities or evidence weights. Existing artifacts, IDs, APIs and F0-F2 meanings are not migrated.
 
@@ -69,9 +77,10 @@ Each retains its own domain and limits. General angles, complex-gate IR criteria
 noisy-channel IR criteria and general Phase 1C coverage remain incomplete.
 
 **Next package:** Phase 2 and H5 are complete within their bounded evidence-
-continuity gate. Continue H2/H3 adversarial and external-bundle hardening, extend
-the repeated E5 benchmark ladder below 25 qubits, evaluate PyZX separately under
-E3, and pursue independent external review under H1/H8. Optional Aer remains H6;
+continuity gate, and native replay now has its first enforced H10 boundary. Extend
+the repeated E5 benchmark ladder at 4/8/12/16/20 qubits, then continue H2/H3 and
+evaluate PyZX separately under E3. Pursue independent external review under H1/H8.
+Optional Aer remains H6;
 provider authentication remains Phase 5/F3. None of those packages may broaden
 native F2, trust imported declarations or bypass compatibility requirements.
 

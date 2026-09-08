@@ -68,6 +68,9 @@ See [H1–H10 acceptance gates](docs/e7q-ir/REVIEW_HARDENING.md).
 - [ ] H8 independent mathematical cross-checks;
 - [ ] H9 bounded dynamic noisy execution contract and implementation;
 - [ ] H10 resource budgets, compatibility and release gates.
+  - [x] native F2 expansion-time budgets, isolated replay deadline/address-space
+    enforcement, failure-state retention and runtime evidence;
+  - [ ] representative-family measurements, release-wide compatibility and final gates.
 
 ## v0.1 — Minimum Executable Language
 

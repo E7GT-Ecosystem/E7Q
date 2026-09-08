@@ -21,6 +21,7 @@ from .native_semantic import (
     PARSER_PRESERVES,
     PROFILE_ID,
     PROFILE_VERSION,
+    NATIVE_PARSE_LIMITS,
     admit_native_program,
     implementation_versions,
     program_payload,
@@ -30,7 +31,7 @@ from .native_semantic import (
 def execute_native(raw: bytes, *, created_at: str):
     """Parse and execute source explicitly; never execute imported legacy evidence."""
     preserved = import_evidence(raw, format="e7q", created_at=created_at)
-    program = parse(raw.decode("utf-8"))
+    program = parse(raw.decode("utf-8"), limits=NATIVE_PARSE_LIMITS)
     admit_native_program(program)
 
     core_source = preserved["artifacts"][0]
