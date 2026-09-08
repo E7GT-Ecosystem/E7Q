@@ -8,6 +8,7 @@ resource-limited results to universal equivalence.
 from __future__ import annotations
 
 from importlib.metadata import PackageNotFoundError, version
+import math
 import multiprocessing
 from multiprocessing.connection import Connection
 from pathlib import Path
@@ -174,8 +175,8 @@ def _qcec_worker(connection: Connection, request: dict[str, Any]) -> None:
             parallel=False,
             max_sims=request["max_simulations"],
             seed=request["seed"],
-            numerical_tolerance=NUMERICAL_TOLERANCE,
-            fidelity_threshold=FIDELITY_THRESHOLD,
+            numerical_tolerance=request["numerical_tolerance"],
+            fidelity_threshold=request["fidelity_threshold"],
         )
         serialized = result.json()
         protocol_message: str | None = None
@@ -397,6 +398,8 @@ def evaluate(
     max_simulations: int = 16,
     seed: int = 0,
     memory_limit_bytes: int | None = None,
+    numerical_tolerance: float = NUMERICAL_TOLERANCE,
+    fidelity_threshold: float = FIDELITY_THRESHOLD,
     verify_backend: Callable[..., Any] | None = None,
 ) -> dict[str, Any]:
     """Run one optional-backend check in an isolated, bounded worker process.
@@ -422,6 +425,20 @@ def evaluate(
         type(memory_limit_bytes) is not int or memory_limit_bytes <= 0
     ):
         raise ValueError("memory_limit_bytes must be positive when supplied")
+    if (
+        not isinstance(numerical_tolerance, (int, float))
+        or isinstance(numerical_tolerance, bool)
+        or not math.isfinite(float(numerical_tolerance))
+        or numerical_tolerance <= 0
+    ):
+        raise ValueError("numerical_tolerance must be a positive finite number")
+    if (
+        not isinstance(fidelity_threshold, (int, float))
+        or isinstance(fidelity_threshold, bool)
+        or not math.isfinite(float(fidelity_threshold))
+        or not 0 < fidelity_threshold <= 1
+    ):
+        raise ValueError("fidelity_threshold must be finite and in (0, 1]")
     if len(source_refs) != 2 or any(not isinstance(ref, str) for ref in source_refs):
         raise ValueError("source_refs must identify exactly two circuit artifacts")
 
@@ -432,8 +449,8 @@ def evaluate(
         "max_simulations": max_simulations,
         "seed": seed,
         "memory_limit_bytes": memory_limit_bytes,
-        "numerical_tolerance": NUMERICAL_TOLERANCE,
-        "fidelity_threshold": FIDELITY_THRESHOLD,
+        "numerical_tolerance": float(numerical_tolerance),
+        "fidelity_threshold": float(fidelity_threshold),
     }
     backend = {
         "id": BACKEND_ID,
@@ -449,6 +466,8 @@ def evaluate(
         "max_simulations": max_simulations,
         "seed": seed,
         "memory_limit_bytes": memory_limit_bytes,
+        "numerical_tolerance": float(numerical_tolerance),
+        "fidelity_threshold": float(fidelity_threshold),
         "verify_backend": verify_backend,
     })
     reason = execution["reason"]
@@ -491,9 +510,18 @@ def evaluate(
 
     memory = execution["memory_limit"]
     worker = execution["worker"]
+    criterion_record = {
+        "id": criterion["id"],
+        "version": criterion["version"],
+        "options": {
+            **criterion["options"],
+            "numerical_tolerance": float(numerical_tolerance),
+            "fidelity_threshold": float(fidelity_threshold),
+        },
+    }
     payload: dict[str, Any] = {
         "format": "e7q.ir.external-equivalence-assessment/v1",
-        "criterion": dict(criterion),
+        "criterion": criterion_record,
         "backend": backend,
         "configuration": configuration,
         "method": {

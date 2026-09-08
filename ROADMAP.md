@@ -28,9 +28,13 @@ E7G-T extension/projection contract. Added packages are planned, not completed.
 - [ ] bounded real-H global-phase criterion with paired exact/phase fixtures
   under the existing four-qubit and 64-gate reference-oracle limits;
 - [ ] optional pinned QCEC/PyZX backends and an external conformance corpus,
-  preserving inconclusive, unsupported, blocked, and resource-limit outcomes;
+  preserving inconclusive, unsupported, blocked, and resource-limit outcomes
+  (QCEC adapter and external pair evidence workflow implemented; PyZX and the
+  complete corpus remain pending);
 - [ ] structured equivalence benchmark ladder through 25+ qubits with published
-  runtime/resource evidence and no arbitrary-circuit scalability claim;
+  runtime/resource evidence and no arbitrary-circuit scalability claim
+  (structured 26/32-qubit QCEC corpus and one complete 32-qubit evidence graph
+  implemented; 4/8/12/16/20 rungs and repeated measurements remain pending);
 - [ ] compositional compiler-transformation evidence with named rules and
   inspectable preservation/loss;
 - [x] Phase 1C UTF-8 byte identity and parsed structural identity with F2 fixtures;
@@ -384,3 +388,5 @@ See [H1–H10 acceptance gates](docs/e7q-ir/REVIEW_HARDENING.md).
 - [ ] Phase 2 typed native intent/compiler/execution adapters and criterion-bound native/external comparison.
 
 - [x] Bounded native source/intent/execution/observation/assessment path with preserved Proof-of-Path and verdicts; [scope and limits](docs/e7q-ir/NATIVE_EXECUTION.md). Compiler conversion and native F2 remain pending.
+
+- [x] External circuit-pair QCEC evidence workflow with byte-preserved sources, separate OpenQASM 2 projections, isolated numerical assessment, explicit tolerances/resource limits and bounded claim support. Native comparison, default F2 integration, PyZX and general scalability remain pending.

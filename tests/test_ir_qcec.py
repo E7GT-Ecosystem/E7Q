@@ -93,6 +93,17 @@ class Backend:
         return Result(self.verdict, self.check_time)
 
 
+class ConfiguredBackend:
+    def __init__(self, numerical_tolerance, fidelity_threshold):
+        self.numerical_tolerance = numerical_tolerance
+        self.fidelity_threshold = fidelity_threshold
+
+    def __call__(self, *args, **kwargs):
+        assert kwargs['numerical_tolerance'] == self.numerical_tolerance
+        assert kwargs['fidelity_threshold'] == self.fidelity_threshold
+        return Result('equivalent')
+
+
 class MalformedResult:
     def json(self):
         return 'not-a-mapping'
@@ -201,6 +212,24 @@ def test_assessment_records_backend_criterion_method_resources_and_raw_result():
     assert payload['worker']['reaped'] is True
     assert payload['raw_result']['checkers'][0]['checker'] == 'decision_diagram_alternating'
     assert any('not default' in item for item in artifact['limitations'])
+
+
+def test_explicit_tolerances_are_applied_and_recorded():
+    numerical_tolerance = 1e-10
+    fidelity_threshold = 1e-6
+    artifact = evaluate(
+        'left.qasm', 'right.qasm', criterion=NUMERICAL_EXACT_CRITERION,
+        source_refs=REFS, created_at=STAMP, timeout_seconds=5.0,
+        numerical_tolerance=numerical_tolerance,
+        fidelity_threshold=fidelity_threshold,
+        verify_backend=ConfiguredBackend(numerical_tolerance, fidelity_threshold),
+    )
+    payload = artifact['payload']
+    assert payload['outcome']['status'] == 'PASS'
+    assert payload['configuration']['numerical_tolerance'] == numerical_tolerance
+    assert payload['configuration']['fidelity_threshold'] == fidelity_threshold
+    assert payload['criterion']['options']['numerical_tolerance'] == numerical_tolerance
+    assert payload['criterion']['options']['fidelity_threshold'] == fidelity_threshold
 
 
 def test_parent_wall_timeout_terminates_and_reaps_worker():

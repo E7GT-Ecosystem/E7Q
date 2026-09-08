@@ -327,3 +327,36 @@ The full E5 ladder, repeated measurements and PyZX comparison remain pending.
 This checkpoint does not complete H2/H3, E3, E5, Phase 2 or H5. Proof-of-Path
 conversion, typed legacy receipt mapping and criterion-bound native/external
 workflow comparison remain required.
+
+## External QCEC pair evidence checkpoint (2026-09-08)
+
+Baseline: `6454a26326ecfa1a654548e131910be2a1ef5be2`.
+The new external pair workflow captures both supplied circuit files once, retains
+recoverable base64 bytes, digests and stable caller references, and stores bounded
+OpenQASM 2 parsed projections in separate representation artifacts. Successful
+projections are evaluated from immutable temporary snapshots only through the
+isolated QCEC worker. The workflow requires explicit criterion, numerical and
+fidelity tolerances, wall-clock limit and memory limit.
+
+The F1-valid graph links source → representation → assessment → bounded claim.
+QCEC version/configuration, raw and normalized outcomes, runtime, worker lifecycle,
+resource enforcement, assumptions and limitations remain inspectable. Unsupported
+syntax does not start QCEC. Timeout, resource exhaustion, worker failure,
+probabilistic/no-information/unknown verdicts and numerical inequality remain
+non-PASS; exact-unitary requests do not inherit global-phase acceptance. Original
+bytes recover only after envelope, size and digest checks.
+
+Focused coverage includes identical, global-phase-only, altered, unsupported,
+timeout, enforced-memory exhaustion, worker crash, deterministic request/source/
+representation identities, exact recovery, inconclusive assurance isolation and
+a structured 32-qubit fixture. The measured fixture graph is
+`sha256:cac37f3d4d78b8ae0a9dc4bb084f9eac786a23680efe7e6b9447ea4deae187c4`:
+PASS/`equivalent`, 0.38135 seconds, 40,460,288 bytes peak worker RSS, with Linux
+`RLIMIT_AS` enforcement recorded. This is a single structured observation, not
+a general scalability, exact-algebraic, default-F2, hardware or provider claim.
+
+H5 and Phase 2 remain open because native/compiler/receipt mapping and actual
+criterion-bound native-to-external comparison are still absent. E3 remains open
+pending PyZX and broader backend evaluation; E5 remains open pending lower rungs,
+unsupported/dynamic cases and repeated measurements. Historical evidence files
+and verdicts are unchanged.
