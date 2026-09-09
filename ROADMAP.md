@@ -37,10 +37,10 @@ This lane follows the applicable H2/H3 and Phase 2 gates. It does not change qua
   selected by the caller;
 - [ ] bounded real-H global-phase criterion with paired exact/phase fixtures
   under the existing four-qubit and 64-gate reference-oracle limits;
-- [ ] optional pinned QCEC/PyZX backends and an external conformance corpus,
+- [x] optional pinned QCEC/PyZX backends and external evaluation corpora,
   preserving inconclusive, unsupported, blocked, and resource-limit outcomes
-  (QCEC adapter, external pair workflow and bounded native/external unitary-prefix
-  comparison implemented; PyZX and the complete corpus remain pending);
+  (QCEC numerical and PyZX one-sided rewrite criteria remain distinct; neither
+  backend is default F2 truth);
 - [x] structured equivalence benchmark ladder through 25+ qubits with published
   runtime/resource evidence and no arbitrary-circuit scalability claim
   (31 structured/control cases and 174 repeated criterion runs at
@@ -403,7 +403,7 @@ See [H1–H10 acceptance gates](docs/e7q-ir/REVIEW_HARDENING.md).
 
 - [x] Bounded native source/intent/execution/observation/assessment path with preserved Proof-of-Path and verdicts plus installed `e7q.ir.native-execution/0alpha1` F2 reconstruction; [scope and limits](docs/e7q-ir/NATIVE_EXECUTION.md).
 
-- [x] External circuit-pair QCEC evidence workflow with byte-preserved sources, separate OpenQASM 2 projections, isolated numerical assessment, explicit tolerances/resource limits and bounded claim support. Default F2 integration, PyZX and general scalability remain pending.
+- [x] External circuit-pair QCEC evidence workflow with byte-preserved sources, separate OpenQASM 2 projections, isolated numerical assessment, explicit tolerances/resource limits and bounded claim support. Native/default F2 and the optional bounded PyZX evaluation are now implemented separately; arbitrary scalability remains unsupported.
 
 - [x] Bounded criterion-selected native E7Q to external OpenQASM 2 unitary-prefix comparison with explicit terminal-measurement projection loss, preserved native Proof-of-Path and fail-closed unsupported/resource outcomes. Its optional QCEC evidence remains separate from native/default F2 truth.
 

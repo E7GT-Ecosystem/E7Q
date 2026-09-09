@@ -385,6 +385,20 @@
       "review_status": "LOCAL_REVIEW_COMPLETED"
     },
     {
+      "id": "ir_pyzx",
+      "scope": "optional pinned PyZX rewrite-equality adapter — separate exact/global-phase options, bounded OpenQASM 2 projection, spawned-process resource isolation and one-sided success semantics",
+      "test_file": "tests/test_ir_pyzx.py",
+      "implementation": [
+        "src/e7q/ir/pyzx.py",
+        "scripts/benchmark_pyzx.py",
+        "benchmarks/e7q-ir/pyzx-0.10.6-results.json",
+        "docs/e7q-ir/PYZX.md"
+      ],
+      "limits": "Pinned structured evaluation only. Successful reduction may establish only the selected PyZX rewrite criterion; unsuccessful reduction is inconclusive and never proves inequality. No default F2 truth, exact-algebraic E7Q criterion, arbitrary scalability, provider authenticity, hardware execution or physical fidelity.",
+      "next_gate": "Release-wide H10 compatibility gates, H2/H3 adversarial hardening and independent H1/H8 reproduction",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
       "id": "ir_qcec_external_workflow",
       "scope": "external two-file QCEC evidence workflow \u2014 byte-preserved sources, separate bounded OpenQASM 2 representations, isolated numerical assessment, enforceable-limit metadata and criterion-bounded claim support",
       "test_file": "tests/test_ir_qcec_workflow.py",
