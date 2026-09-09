@@ -374,11 +374,38 @@ and reaped by the parent deadline and report `wall_clock_timeout`; they are not
 backend inequality. POSIX `RLIMIT_AS` is applied when requested and supported,
 with actual success/effective limit recorded. Native termination without an
 explicit `MemoryError` remains a signal/crash rather than guessed exhaustion.
-The full E5 ladder, repeated measurements and PyZX comparison remain pending.
+The later repeated E5 checkpoint completes the ladder; PyZX comparison remains
+pending under E3.
 
 This checkpoint does not complete H2/H3, E3, E5, Phase 2 or H5. Proof-of-Path
 conversion, typed legacy receipt mapping and criterion-bound native/external
 workflow comparison remain required.
+
+## Repeated E5 equivalence benchmark checkpoint (2026-09-09)
+
+Baseline: `34387b069763911fd41f310ef6e63310402b07f9` (PR #64).
+The `e7q.ir.qcec-benchmark/v2` corpus contains 31 cases and 174 isolated
+criterion attempts over 4/8/12/16/20/26/32 qubits. Four supported families at
+every rung are repeated three times under both numerical exact and numerical
+global-phase criteria. Unsupported dynamic/noise inputs and a forced deadline
+control are retained once per criterion.
+
+The report records 105 PASS, 63 FAIL, 4 UNSUPPORTED and 2 BLOCKED outcomes.
+All 174 match their preregistered case/criterion expectation. Each record
+retains backend versions, tolerances, seed, deadline, memory policy, runtime,
+worker peak RSS, exit/reaping state, raw result and evidence identity. The
+manifest/corpus identity is separate from the observation-bearing report
+identity so repeated measurements are not misrepresented as byte-identical
+performance results. All 168 decisive workers enforced the requested 2 GiB
+POSIX address-space bound; all 174 workers were reaped. Recorded decisive wall
+time was 0.124–0.213 seconds (median 0.149), with 32,567,296–83,263,488 bytes
+worker peak RSS.
+
+This completes E5 for this pinned structured corpus and supplies the
+representative-family portion of H10. It does not establish arbitrary-circuit
+scalability, exact-algebraic equivalence, default F2 conformance, hardware
+execution or fidelity. PyZX/E3, release-wide compatibility, H2/H3 and
+independent H1/H8 review remain open.
 
 ## External QCEC pair evidence checkpoint (2026-09-08)
 

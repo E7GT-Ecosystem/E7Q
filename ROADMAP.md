@@ -2,7 +2,7 @@
 
 ## E7Q-IR v0.1 — Evidence-native IR foundation
 
-The authoritative [build plan](docs/e7q-ir/BUILD_PLAN.md) v0.8 includes
+The authoritative [build plan](docs/e7q-ir/BUILD_PLAN.md) v0.11 includes
 [research-backed extensions](docs/e7q-ir/RESEARCH_FOUNDATIONS.md) under the
 E7G-T extension/projection contract. Added packages are planned, not completed.
 
@@ -41,10 +41,10 @@ This lane follows the applicable H2/H3 and Phase 2 gates. It does not change qua
   preserving inconclusive, unsupported, blocked, and resource-limit outcomes
   (QCEC adapter, external pair workflow and bounded native/external unitary-prefix
   comparison implemented; PyZX and the complete corpus remain pending);
-- [ ] structured equivalence benchmark ladder through 25+ qubits with published
+- [x] structured equivalence benchmark ladder through 25+ qubits with published
   runtime/resource evidence and no arbitrary-circuit scalability claim
-  (structured 26/32-qubit QCEC corpus and one complete 32-qubit evidence graph
-  implemented; 4/8/12/16/20 rungs and repeated measurements remain pending);
+  (31 structured/control cases and 174 repeated criterion runs at
+  4/8/12/16/20/26/32 qubits; all non-PASS outcomes retained);
 - [ ] compositional compiler-transformation evidence with named rules and
   inspectable preservation/loss;
 - [x] Phase 1C UTF-8 byte identity and parsed structural identity with F2 fixtures;
@@ -70,7 +70,8 @@ See [H1–H10 acceptance gates](docs/e7q-ir/REVIEW_HARDENING.md).
 - [ ] H10 resource budgets, compatibility and release gates.
   - [x] native F2 expansion-time budgets, isolated replay deadline/address-space
     enforcement, failure-state retention and runtime evidence;
-  - [ ] representative-family measurements, release-wide compatibility and final gates.
+  - [x] representative-family repeated resource measurements through 32 qubits;
+  - [ ] release-wide compatibility and final gates.
 
 ## v0.1 — Minimum Executable Language
 

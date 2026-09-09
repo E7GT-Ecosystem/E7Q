@@ -1,14 +1,15 @@
 # E7Q-IR Build Plan and AI Engineering Handoff
 
-**Plan version:** 0.10
+**Plan version:** 0.11
 
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.
 
-**Current inspected baseline (2026-09-08):** `main` at
-`25fa967cbaa6fe3dd139e141692ce40b39e314d1` (PR #63).
-That merge added bounded H2/H3 declaration consistency and external-bundle
-field-shape checks. The current package closes the native replay resource-safety
-gap identified after PR #62 without claiming H2, H3 or H10 completion.
+**Current inspected baseline (2026-09-09):** `main` at
+`34387b069763911fd41f310ef6e63310402b07f9` (PR #64).
+That merge added expansion-time native parser budgets, isolated F2 replay,
+parent-owned deadlines, POSIX address-space enforcement and runtime evidence.
+The current package completes the bounded repeated E5 structured benchmark
+ladder without claiming arbitrary-circuit scalability or E3 completion.
 
 **Current bounded Phase 2 increment:** installs the distinct
 `e7q.ir.native-execution/0alpha1` profile and its default semantic validator.
@@ -31,6 +32,13 @@ space limit. Semantic results record policy, effective enforcement and bounded
 worker exit metadata. The already documented `0alpha1` domain and historical graph
 identity are unchanged; the former report is retained and a new resource-safe
 report records the hardened validation run.
+
+**Revision 0.11:** publishes the complete repeated E5 ladder at
+4/8/12/16/20/26/32 qubits. Four supported structured families run three times
+under both numerical criteria; dynamic, noise and deadline controls run once
+under each. The manifest has an identity independent of variable runtime
+observations, while every assessment retains its own evidence identity, resource
+record, status and reason. This is corpus-bounded evaluation evidence only.
 
 **Revision 0.8:** adopts ecosystem direction `E7-ECO-DIR-2026-09-08.1` and pins E7G-T v0.12 experimental canonical revision CFS1 at commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca`. It adds an optional, additive family-state planning lane after the applicable H2/H3 and Phase 2 gates. EEC coefficients remain formal construction coefficients, never quantum amplitudes, probabilities or evidence weights. Existing artifacts, IDs, APIs and F0-F2 meanings are not migrated.
 
@@ -76,9 +84,8 @@ noiseless unitary-channel comparison; exact real H/u2(0,pi) criterion.
 Each retains its own domain and limits. General angles, complex-gate IR criteria,
 noisy-channel IR criteria and general Phase 1C coverage remain incomplete.
 
-**Next package:** Phase 2 and H5 are complete within their bounded evidence-
-continuity gate, and native replay now has its first enforced H10 boundary. Extend
-the repeated E5 benchmark ladder at 4/8/12/16/20 qubits, then continue H2/H3 and
+**Next package:** Phase 2/H5 and the bounded repeated E5 ladder are complete,
+and native replay has its first enforced H10 boundary. Continue H2/H3 and
 evaluate PyZX separately under E3. Pursue independent external review under H1/H8.
 Optional Aer remains H6;
 provider authentication remains Phase 5/F3. None of those packages may broaden
@@ -1065,16 +1072,45 @@ failures rather than guessed out-of-memory events. Regression coverage also
 keeps startup and malformed/missing worker responses non-PASS.
 
 This is evidence for supported structured instances above 25 qubits, not general
-25-qubit tractability. E3 remains open pending broader backend/domain isolation
-and PyZX evaluation. E5 remains open pending the 4/8/12/16/20 rungs, unsupported
-and dynamic/noisy fixtures, repeated resource measurements and reproducibility
-review. Phase 2/H5 remain open pending Proof-of-Path conversion, typed legacy
-receipt mapping and criterion-bound native/external workflow comparison.
+25-qubit tractability. The later repeated E5 checkpoint completes the missing
+lower rungs and controls. E3 remains open pending PyZX evaluation.
 
 Public progress for this track must identify the accountable project
 contributor, disclose current limits, and cite exact commits, tests, skipped or
 unsupported cases, and the next acceptance gate. AI-assisted drafting and public
 discussion are not implementation or validation evidence.
+
+### Repeated E5 scalability ladder checkpoint (2026-09-09)
+
+Baseline: `34387b069763911fd41f310ef6e63310402b07f9` (PR #64).
+The versioned `e7q.ir.qcec-benchmark/v2` runner publishes 31 cases over
+4/8/12/16/20/26/32 qubits. At every rung it evaluates disjoint SWAP
+decomposition, global-phase-only Pauli anticommutation, an intentional gate
+error and a commuting operation-order permutation. Each supported pair runs
+three times under both `e7q.ir.qcec-numerical-unitary` and
+`e7q.ir.qcec-numerical-global-phase`.
+
+The corpus also retains mid-circuit/classical-control and unknown noise
+instructions as `UNSUPPORTED/INCONCLUSIVE`, plus a parent-deadline control as
+`BLOCKED/INCONCLUSIVE`. Explicit backend input-domain diagnostics are now
+distinguished from genuine backend runtime errors. Every assessment records its
+criterion, backend/dependency versions, configuration, wall time, worker peak
+RSS, requested/effective memory bound, worker exit/reaping metadata, status,
+reason and evidence ID.
+
+The fixed manifest and its corpus ID exclude variable runtime observations;
+the full report ID covers the observations. The public report at
+`benchmarks/e7q-ir/qcec-e5-repeated-ladder-results.json` contains 174 attempts:
+105 PASS, 63 FAIL, 4 UNSUPPORTED and 2 BLOCKED, with all expected outcomes
+matched. All 168 decisive workers enforced the requested 2 GiB POSIX address-
+space bound and all 174 workers were reaped. Decisive parent wall time ranged
+from 0.124 to 0.213 seconds (median 0.149); worker peak RSS ranged from
+32,567,296 to 83,263,488 bytes in the recorded environment. This completes E5
+only for the named structured corpus. It establishes
+neither arbitrary 25+ qubit tractability nor exact-algebraic equivalence,
+default F2 truth, hardware execution, provider authenticity or physical
+fidelity. E3/PyZX, broader H2/H3 hardening and independent H1/H8 review remain
+open.
 
 ### External circuit-pair evidence workflow checkpoint (2026-09-08)
 

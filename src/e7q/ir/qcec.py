@@ -156,6 +156,17 @@ def _worker_send(connection: Connection, message: dict[str, Any]) -> None:
         pass
 
 
+def _unsupported_runtime_error(exc: RuntimeError) -> bool:
+    """Recognize backend diagnostics that explicitly reject the input domain."""
+    message = str(exc).lower()
+    return any(fragment in message for fragment in (
+        "contains mid-circuit non-unitary primitives",
+        "usage of unknown gate",
+        "unsupported operation",
+        "unsupported instruction",
+    ))
+
+
 def _qcec_worker(connection: Connection, request: dict[str, Any]) -> None:
     """Apply worker-local limits and execute one backend call."""
     memory = _memory_enforcement(request["memory_limit_bytes"])
@@ -210,7 +221,12 @@ def _qcec_worker(connection: Connection, request: dict[str, Any]) -> None:
             "kind": "unsupported_input",
             "error": {"type": type(exc).__name__, "message": str(exc)},
         }
-    except (RuntimeError, OSError) as exc:
+    except RuntimeError as exc:
+        response = {
+            "kind": "unsupported_input" if _unsupported_runtime_error(exc) else "backend_error",
+            "error": {"type": type(exc).__name__, "message": str(exc)},
+        }
+    except OSError as exc:
         response = {
             "kind": "backend_error",
             "error": {"type": type(exc).__name__, "message": str(exc)},
