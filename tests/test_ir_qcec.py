@@ -134,6 +134,14 @@ def broken_backend(*args, **kwargs):
     raise RuntimeError('backend internal failure')
 
 
+def unsupported_dynamic_backend(*args, **kwargs):
+    raise RuntimeError('One of the circuits contains mid-circuit non-unitary primitives.')
+
+
+def unsupported_gate_backend(*args, **kwargs):
+    raise RuntimeError("Usage of unknown gate 'bit_flip'.")
+
+
 def sleeping_backend(*args, **kwargs):
     time.sleep(10)
     return Result('equivalent')
@@ -179,6 +187,22 @@ def assessment(verdict, criterion=NUMERICAL_EXACT_CRITERION, check_time=0.01):
         max_simulations=4, seed=7,
         verify_backend=backend(verdict, check_time),
     )
+
+
+@pytest.mark.parametrize('verify_backend', [
+    unsupported_dynamic_backend,
+    unsupported_gate_backend,
+])
+def test_explicit_backend_input_rejections_remain_unsupported(verify_backend):
+    artifact = evaluate(
+        'left.qasm', 'right.qasm', criterion=NUMERICAL_EXACT_CRITERION,
+        source_refs=REFS, created_at=STAMP, timeout_seconds=5.0,
+        verify_backend=verify_backend,
+    )
+    outcome = artifact['payload']['outcome']
+    assert outcome['status'] == 'UNSUPPORTED'
+    assert outcome['conclusion'] == 'INCONCLUSIVE'
+    assert outcome['reason'] == 'unsupported_input'
 
 
 def assert_non_pass_reason(artifact, reason):
