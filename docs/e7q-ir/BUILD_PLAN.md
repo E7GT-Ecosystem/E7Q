@@ -1,15 +1,14 @@
 # E7Q-IR Build Plan and AI Engineering Handoff
 
-**Plan version:** 0.11
+**Plan version:** 0.12
 
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.
 
 **Current inspected baseline (2026-09-09):** `main` at
-`34387b069763911fd41f310ef6e63310402b07f9` (PR #64).
-That merge added expansion-time native parser budgets, isolated F2 replay,
-parent-owned deadlines, POSIX address-space enforcement and runtime evidence.
-The current package completes the bounded repeated E5 structured benchmark
-ladder without claiming arbitrary-circuit scalability or E3 completion.
+`61bc936c15869a4eb3f64dfb3b34564a01f3f565` (PR #65).
+That merge completed the repeated bounded E5 structured benchmark ladder.
+The current package evaluates pinned PyZX 0.10.6 as a second, optional,
+one-sided E3 backend without making it default F2 truth.
 
 **Current bounded Phase 2 increment:** installs the distinct
 `e7q.ir.native-execution/0alpha1` profile and its default semantic validator.
@@ -39,6 +38,12 @@ under both numerical criteria; dynamic, noise and deadline controls run once
 under each. The manifest has an identity independent of variable runtime
 observations, while every assessment retains its own evidence identity, resource
 record, status and reason. This is corpus-bounded evaluation evidence only.
+
+**Revision 0.12:** adds an isolated PyZX 0.10.6 rewrite-equality adapter with
+separate exact/global-phase criteria, swaps disabled, bounded OpenQASM 2
+admission, terminal-measurement projection, deadline/address-space enforcement
+and one-sided outcome mapping. Reduction success can PASS; failed reduction
+remains NOT_ASSESSED and cannot refute equivalence.
 
 **Revision 0.8:** adopts ecosystem direction `E7-ECO-DIR-2026-09-08.1` and pins E7G-T v0.12 experimental canonical revision CFS1 at commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca`. It adds an optional, additive family-state planning lane after the applicable H2/H3 and Phase 2 gates. EEC coefficients remain formal construction coefficients, never quantum amplitudes, probabilities or evidence weights. Existing artifacts, IDs, APIs and F0-F2 meanings are not migrated.
 
@@ -84,9 +89,9 @@ noiseless unitary-channel comparison; exact real H/u2(0,pi) criterion.
 Each retains its own domain and limits. General angles, complex-gate IR criteria,
 noisy-channel IR criteria and general Phase 1C coverage remain incomplete.
 
-**Next package:** Phase 2/H5 and the bounded repeated E5 ladder are complete,
+**Next package:** Phase 2/H5, E3 and the bounded repeated E5 ladder are complete,
 and native replay has its first enforced H10 boundary. Continue H2/H3 and
-evaluate PyZX separately under E3. Pursue independent external review under H1/H8.
+release-wide H10 compatibility. Pursue independent external review under H1/H8.
 Optional Aer remains H6;
 provider authentication remains Phase 5/F3. None of those packages may broaden
 native F2, trust imported declarations or bypass compatibility requirements.
@@ -1111,6 +1116,39 @@ neither arbitrary 25+ qubit tractability nor exact-algebraic equivalence,
 default F2 truth, hardware execution, provider authenticity or physical
 fidelity. E3/PyZX, broader H2/H3 hardening and independent H1/H8 review remain
 open.
+
+### Optional PyZX E3 checkpoint (2026-09-09)
+
+Baseline: `61bc936c15869a4eb3f64dfb3b34564a01f3f565` (PR #65).
+The optional Apache-2.0 PyZX 0.10.6 adapter uses the documented
+`Circuit.verify_equality(..., up_to_swaps=False, up_to_global_phase=...)`
+surface. It defines separate `e7q.ir.pyzx-rewrite-unitary` and
+`e7q.ir.pyzx-rewrite-global-phase` version-1 criteria. These are not QCEC
+numerical criteria or E7Q exact-algebraic criteria.
+
+Before PyZX parses any supplied content, E7Q's bounded OpenQASM 2 importer
+requires UTF-8, one equally wide quantum/classical register pair, qelib1.inc,
+at most 64 qubits and 2,048 static noiseless gates, and terminal identity
+measurement. The measurement is then explicitly projected away. Classical
+control, barriers, nonterminal/incomplete measurement, unknown syntax,
+excessive size/gates/qubits and mismatched pair shape fail closed.
+
+Each assessment runs in a spawned worker with a parent deadline and requested
+POSIX address-space bound. It records the pinned version, criterion options,
+projection identities, method, elapsed time, worker peak RSS, effective memory
+enforcement, exit/signal/reaping metadata, errors and evidence identity. A
+successful rewrite reduction is PASS. PyZX's documented inability to reduce
+returns NOT_ASSESSED/INCONCLUSIVE, never FAIL; therefore it cannot supply a
+counterexample or refute equivalence.
+
+The public 26-qubit four-case report at
+`benchmarks/e7q-ir/pyzx-0.10.6-results.json` has report ID
+`sha256:22a2349b04a7cb75a21cd5f43cb3574be9bd84acf0b59abe14fe56ca0b19d561`.
+Its eight criterion runs contain three PASS, three NOT_ASSESSED and two BLOCKED,
+all matching preregistered expectations. This completes the bounded E3
+second-backend evaluation only. It establishes no arbitrary scalability,
+non-equivalence from failed reduction, default F2 truth, provider authenticity,
+hardware execution or physical fidelity.
 
 ### External circuit-pair evidence workflow checkpoint (2026-09-08)
 

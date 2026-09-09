@@ -407,6 +407,41 @@ scalability, exact-algebraic equivalence, default F2 conformance, hardware
 execution or fidelity. PyZX/E3, release-wide compatibility, H2/H3 and
 independent H1/H8 review remain open.
 
+## Optional PyZX E3 checkpoint (2026-09-09)
+
+Baseline: `61bc936c15869a4eb3f64dfb3b34564a01f3f565` (PR #65).
+The optional Apache-2.0 PyZX 0.10.6 adapter supplies a second bounded E3
+evaluation backend. Callers must select either
+`e7q.ir.pyzx-rewrite-unitary` or
+`e7q.ir.pyzx-rewrite-global-phase`; input/output swaps are disabled and these
+criteria remain distinct from QCEC's tolerance-bearing criteria and E7Q's
+exact-algebraic signed-permutation criteria.
+
+E7Q performs bounded OpenQASM 2 admission before starting PyZX. The admitted
+domain has one equally wide quantum/classical register pair per circuit, equal
+width across the pair, at most 64 qubits and 2,048 static noiseless gates, and
+terminal identity measurement that is explicitly projected away. Each check
+runs in a spawned worker with a parent deadline and a recorded POSIX address-
+space policy. Projection SHA-256 identities, backend version, resource use,
+worker lifecycle, raw outcome and selected criterion remain in the assessment.
+
+PyZX reduction success can PASS only the selected rewrite criterion. False,
+absent or unsuccessful reduction is always NOT_ASSESSED/INCONCLUSIVE and never
+proves non-equivalence. Timeout and memory exhaustion are BLOCKED; rejected
+input is UNSUPPORTED; crashes, signals, protocol failures and other backend
+errors remain non-PASS.
+
+The four-case 26-qubit public corpus exercises a SWAP/CX rewrite, global-phase
+separation, an altered-gate non-reduction and forced timeout under both
+criteria. Its eight attempts record three PASS, three NOT_ASSESSED and two
+BLOCKED outcomes, all matching their preregistered expectations and with every
+worker reaped. Its report ID is
+`sha256:22a2349b04a7cb75a21cd5f43cb3574be9bd84acf0b59abe14fe56ca0b19d561`.
+This completes E3 only for the pinned bounded evaluation. It
+does not establish arbitrary scalability, negative equivalence, default F2,
+provider authenticity, hardware execution or physical fidelity. Release-wide
+H10, H2/H3 and independent H1/H8 review remain open.
+
 ## External QCEC pair evidence checkpoint (2026-09-08)
 
 Baseline: `6454a26326ecfa1a654548e131910be2a1ef5be2`.
