@@ -399,6 +399,21 @@
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {
+      "id": "research_dhsp",
+      "scope": "bounded experimental DHSP phase-state combination and affine candidate counterexample harness",
+      "test_file": "tests/test_research_dhsp.py",
+      "implementation": [
+        "src/e7q/research/__init__.py",
+        "src/e7q/research/dhsp.py",
+        "scripts/benchmark_dhsp.py",
+        "benchmarks/e7q-research/dhsp-affine-corpus.json",
+        "docs/e7q-research/DHSP_LAB.md"
+      ],
+      "limits": "Experimental ideal-state research helper only; bounded affine rules and moduli 2–64. PASS means no counterexample in an enumerated domain. No new algorithm, universal correctness, polynomial time, oracle feasibility, quantum advantage, hardware fidelity or registered E7Q-IR capability.",
+      "next_gate": "Typed multi-stage DHSP proposal and independently checked complexity-recurrence contract",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
       "id": "ir_qcec_external_workflow",
       "scope": "external two-file QCEC evidence workflow \u2014 byte-preserved sources, separate bounded OpenQASM 2 representations, isolated numerical assessment, enforceable-limit metadata and criterion-bounded claim support",
       "test_file": "tests/test_ir_qcec_workflow.py",

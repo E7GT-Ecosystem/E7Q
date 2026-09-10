@@ -1,14 +1,14 @@
 # E7Q-IR Build Plan and AI Engineering Handoff
 
-**Plan version:** 0.12
+**Plan version:** 0.13
 
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.
 
-**Current inspected baseline (2026-09-09):** `main` at
-`61bc936c15869a4eb3f64dfb3b34564a01f3f565` (PR #65).
-That merge completed the repeated bounded E5 structured benchmark ladder.
-The current package evaluates pinned PyZX 0.10.6 as a second, optional,
-one-sided E3 backend without making it default F2 truth.
+**Current inspected baseline (2026-09-10):** `main` at
+`9f22185727ffa0439b4af95922583b9554f01e51` (PR #66).
+That merge completed the optional, one-sided PyZX E3 evaluation.
+The current package opens a bounded DHSP research harness without registering a
+new E7Q-IR capability or claiming a new quantum algorithm.
 
 **Current bounded Phase 2 increment:** installs the distinct
 `e7q.ir.native-execution/0alpha1` profile and its default semantic validator.
@@ -17,7 +17,7 @@ re-execute and reverify the complete source/intent/representation/execution/
 observation/assessment path. Core-profile and historical evidence remains F1-only.
 This closes Phase 2 and H5 within the documented bounded continuity gate; it does
 not authenticate providers or chronology, establish hardware fidelity, promote
-legacy/compiler/QCEC declarations, or begin Aer, PyZX, K12/CFS, OpenQASM 3 or QIR.
+legacy/compiler/QCEC/PyZX declarations, or begin Aer, K12/CFS, OpenQASM 3 or QIR.
 
 **Revision 0.9:** installs bounded native/default F2 semantic reconstruction under
 a separately versioned profile. It preserves old core-profile graphs at F0/F1,
@@ -44,6 +44,12 @@ separate exact/global-phase criteria, swaps disabled, bounded OpenQASM 2
 admission, terminal-measurement projection, deadline/address-space enforcement
 and one-sided outcome mapping. Reduction success can PASS; failed reduction
 remains NOT_ASSESSED and cannot refute equivalence.
+
+**Revision 0.13:** opens a Phase-8/R6 DHSP research lane with an ideal phase-state
+reference, CNOT/measurement label-combination evidence, bounded affine candidate
+evaluation, deterministic counterexamples and explicit asymptotic nonclaims.
+Existing IR profiles, conformance levels, artifact identities and quantum
+execution semantics are unchanged.
 
 **Revision 0.8:** adopts ecosystem direction `E7-ECO-DIR-2026-09-08.1` and pins E7G-T v0.12 experimental canonical revision CFS1 at commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca`. It adds an optional, additive family-state planning lane after the applicable H2/H3 and Phase 2 gates. EEC coefficients remain formal construction coefficients, never quantum amplitudes, probabilities or evidence weights. Existing artifacts, IDs, APIs and F0-F2 meanings are not migrated.
 
@@ -95,6 +101,8 @@ release-wide H10 compatibility. Pursue independent external review under H1/H8.
 Optional Aer remains H6;
 provider authentication remains Phase 5/F3. None of those packages may broaden
 native F2, trust imported declarations or bypass compatibility requirements.
+The DHSP laboratory may advance in parallel only as bounded experimental R6
+research; its next gate is explicit multi-stage complexity accounting.
 
 **Historical baseline:** `b7dc357` had 181 passing tests and F0/F1 only.
 PRs #35–#37 merged framework/identity/exact signed-permutation work at `83b273a4`;
@@ -647,6 +655,23 @@ Acceptance: no proof claim exceeds the checked theorem/domain; an unimplemented
 or unreviewed extension cannot advertise F2 support; independent conformance
 results identify exact profile and tool versions.
 
+##### R6-DHSP — AI-assisted algorithm research laboratory
+
+- Reproduce known dihedral phase-state transformations before accepting
+  generated candidates [28-29].
+- Admit candidate rules as data, never executable model output. Preserve the
+  proposal, tested domain, first counterexample, assumptions and maximum claim.
+- Track oracle calls, state preparation, postselection, success amplification,
+  quantum gates/qubits and classical time/memory independently. No bounded
+  simulation or test count may satisfy an asymptotic proof obligation.
+- Record downstream lattice/cryptographic consequences only when every premise
+  of the cited reduction is separately established [30].
+
+Acceptance: the reference combination identity passes amplitude-level checks;
+incorrect restricted rules yield deterministic counterexamples; bounded PASS
+states explicitly deny universal correctness and polynomial time. The next gate
+is a typed multi-stage proposal and complexity-recurrence contract.
+
 ### Review-driven hardening packages
 
 [REVIEW_HARDENING.md](REVIEW_HARDENING.md) defines H1–H10, priorities,
@@ -1149,6 +1174,32 @@ all matching preregistered expectations. This completes the bounded E3
 second-backend evaluation only. It establishes no arbitrary scalability,
 non-equivalence from failed reduction, default F2 truth, provider authenticity,
 hardware execution or physical fidelity.
+
+### Bounded DHSP research foundation checkpoint (2026-09-10)
+
+Baseline: `9f22185727ffa0439b4af95922583b9554f01e51` (PR #66).
+The new `e7q.research.dhsp` module is deliberately outside the E7Q-IR semantic
+registry. It represents ideal dihedral phase states and reproduces the standard
+CNOT/measurement identity: outcome zero retains label `k+l`, while outcome one
+retains `k-l` modulo `N`, with absolute global phase explicitly discarded.
+
+The first candidate format is restricted to bounded two-label affine rules.
+Evaluation enumerates all label pairs and both measurement outcomes for at most
+32 distinct moduli, each between 2 and 64. Candidate identifiers and integer
+coefficients are bounded. Incorrect rules retain their first deterministic
+counterexample. PASS means only no counterexample in the listed finite domain;
+the record always marks universal correctness and polynomial time unestablished.
+
+The public corpus at `benchmarks/e7q-research/dhsp-affine-corpus.json` evaluates
+the reference rule and two intentionally incorrect candidates over moduli 2–16.
+Its report ID is
+`sha256:b4ce39c5bafedc69a316ba861dcb2af51e2dd97c13bfaa935c7e3ee0714bf735`.
+One bounded assessment passes and two fail with counterexamples. This establishes
+the harness behavior, not a new DHSP algorithm, full Kuperberg/Regev reproduction,
+oracle feasibility, asymptotic improvement, quantum advantage or hardware
+fidelity. The next research gate is a typed multi-stage proposal format with
+independent query, gate, qubit, classical-time, memory and success-probability
+recurrences.
 
 ### External circuit-pair evidence workflow checkpoint (2026-09-08)
 
