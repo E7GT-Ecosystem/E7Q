@@ -2,9 +2,24 @@
 
 ## E7Q-IR v0.1 — Evidence-native IR foundation
 
-The authoritative [build plan](docs/e7q-ir/BUILD_PLAN.md) v0.11 includes
+The authoritative [build plan](docs/e7q-ir/BUILD_PLAN.md) v0.13 includes
 [research-backed extensions](docs/e7q-ir/RESEARCH_FOUNDATIONS.md) under the
 E7G-T extension/projection contract. Added packages are planned, not completed.
+
+### Experimental DHSP algorithm-discovery lane
+
+- [x] bounded ideal phase-state and CNOT/measurement combination reference;
+- [x] deterministic affine-rule candidate evaluator with concrete
+  counterexamples and explicit nonclaims;
+- [ ] typed multi-stage proposal format covering oracle access, query/gate/
+  qubit/classical-time/memory costs and success probability;
+- [ ] independently checked complexity recurrences and formal proof-obligation
+  export;
+- [ ] human/AI candidate-generation campaign against reproduced Kuperberg and
+  Regev baselines.
+
+This is a Phase-8/R6 research harness, not a registered E7Q-IR capability or a
+claim of a new or polynomial-time DHSP algorithm.
 
 ### Optional v0.12 family-state planning lane
 

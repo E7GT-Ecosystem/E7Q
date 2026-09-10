@@ -1,8 +1,8 @@
 # E7Q-IR Research Foundations
 
-**Register version:** 0.1  
-**Reviewed:** 2026-09-06  
-**Role:** primary-source inputs to [BUILD_PLAN.md](BUILD_PLAN.md) v0.2.
+**Register version:** 0.2
+**Reviewed:** 2026-09-10
+**Role:** primary-source inputs to [BUILD_PLAN.md](BUILD_PLAN.md) v0.13.
 
 This register records research findings and proposed uses, not implemented
 capabilities or dependency approvals. The build plan governs implementation
@@ -176,6 +176,37 @@ Prefer an adapter for established characterization workflows over rebuilding tom
 Wallman; Quantum 2, 47, 29 January 2018. [Open manuscript](https://arxiv.org/abs/1703.09835).
 
 Use to bound interpretation of benchmarking decay under the stated model. Preserve protocol variant, gate set, sequence lengths, seeds, repetitions, fitted model and uncertainty. An aggregate RB metric must not be substituted for arbitrary application fidelity or worst-case error.
+
+## [28] A subexponential-time quantum algorithm for the DHSP
+
+Greg Kuperberg; submitted 14 February 2003, SIAM Journal on Computing 2005.
+[Open manuscript](https://arxiv.org/abs/quant-ph/0302112).
+
+The reference sieve constructs dihedral phase states and combines their labels
+to approach a label that reveals the hidden reflection. Use its ideal state and
+combination identities as the first DHSP laboratory baseline. The published
+subexponential complexity is a comparison boundary: reproducing small states or
+one transition does not reproduce the algorithm or improve its asymptotics.
+
+## [29] Polynomial-space subexponential DHSP algorithm
+
+Oded Regev; submitted 21 June 2004.
+[Open manuscript](https://arxiv.org/abs/quant-ph/0406151).
+
+This modifies the Kuperberg approach to require polynomial space while retaining
+subexponential time. Use it as a second future baseline for time/space recurrence
+records. A candidate may not hide exponential work in state preparation,
+postselection, subset-sum processing or classical memory.
+
+## [30] Quantum computation and lattice problems
+
+Oded Regev; submitted 1 April 2003.
+[Open manuscript](https://arxiv.org/abs/cs/0304005).
+
+This connects dihedral coset sampling with lattice problems and average-case
+subset sum. It motivates careful consequence and oracle-contract tracking. E7Q
+must not infer a lattice or cryptographic result from a bounded DHSP simulation;
+every reduction premise and complexity obligation requires separate evidence.
 
 ## Adoption and unresolved scope
 
