@@ -317,6 +317,18 @@
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {
+      "id": "ir_candidate_family",
+      "scope": "Q-A1 finite dependence-aware candidate factors, deterministic identities, explicit restriction and source-preserving inventory views",
+      "test_file": "tests/test_ir_candidate_family.py",
+      "implementation": [
+        "src/e7q/ir/candidate_family.py",
+        "schemas/e7q-ir-candidate-family-v0alpha1.schema.json"
+      ],
+      "limits": "No quantum semantics, feasibility, optimality, Pack/Quote, identification, realization or F2 promotion.",
+      "next_gate": "Q-A2 ordered transformation history and typed view/identify/restrict integration",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
       "id": "ir_circuit",
       "scope": "Bounded circuit F2 payload checks, rehashed tampering, boolean probability rejection, malformed ordering, numeric overflow and claim failure propagation",
       "test_file": "tests/test_ir_circuit.py",

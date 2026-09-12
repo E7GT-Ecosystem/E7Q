@@ -4,7 +4,7 @@ Direction: `E7-ECO-DIR-2026-09-12.2`
 Reviewed baseline: `a9fd841d47ea4ed434fabad3bc9a9a406b33c9a8`  
 Kernel: E7G-T v0.12-experimental/CFS1 at
 `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca`  
-Status: `ALIGNED_IN_DESIGN`; Q-A1 implementation remains unstarted.
+Status: `ALIGNED_IN_DESIGN`; Q-A1 bounded candidate-family contract implemented.
 
 ## Audit boundary
 
@@ -72,3 +72,7 @@ selection criterion and selected mapping.
 Stop or narrow the lane if it invents independence, changes existing quantum
 meaning, weakens fail-closed behavior, or supplies no observable assurance
 advantage over an ordinary candidate table.
+
+Implementation: `src/e7q/ir/candidate_family.py` and
+`tests/test_ir_candidate_family.py`. Q-A1 deliberately stops before semantic
+selection, quotation, realization, or F2 promotion.
