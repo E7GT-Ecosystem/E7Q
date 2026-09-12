@@ -1,3 +1,6 @@
+Warning: truncated output (original token count: 20302)
+Total output lines: 1490
+
 # E7Q-IR Build Plan and AI Engineering Handoff
 
 **Plan version:** 0.14
@@ -6,8 +9,8 @@
 **Direction:** `E7-ECO-DIR-2026-09-12.2`.
 
 **Current inspected baseline (2026-09-12):** `main` at
-`a9fd841d47ea4ed434fabad3bc9a9a406b33c9a8` (PR #68).
-That merge installed the repository-local v0.12 alignment gate. The bounded
+`888d6dbaec6e62122e2c80483d222f0382320b4e` (PR #69).
+That merge installed the repository-local v0.12 alignment gate and Q-A0 audit. The bounded
 PyZX and DHSP increments remain preserved; neither registers a general
 equivalence capability, a new quantum algorithm or arbitrary scalability.
 
@@ -120,9 +123,10 @@ F0-F2 meanings, QCEC/PyZX isolation and evidence receipts are retained.
 Candidate planning, transformation-domain history, explicit dependence scope
 and complete-construction quotation are additive adaptation points.
 
-**Next material package: Q-A1 candidate-family contract.** Define a product-local,
-versioned schema and compatibility fixtures for correlated circuit, layout,
-target, calibration and constraint candidates. It must:
+**Q-A1 candidate-family contract is implemented.** The product-local
+`e7q.ir.candidate-family/v0alpha1` contract and compatibility fixtures cover
+correlated and explicitly independent dimensions, bounded expansion,
+source-linked views and exclusion-recording restrictions. It:
 
 - preserve shared, independent and constrained dependence explicitly;
 - keep quantum amplitudes and probabilities outside EEC-Q coefficient semantics;
@@ -131,9 +135,15 @@ target, calibration and constraint candidates. It must:
 - change no existing E7Q-IR artifact identity or F0-F2 verdict;
 - remain product-local until E2CI independently demonstrates compatible reuse.
 
-The Q-A1 gate is falsified if the proposed family can be represented with the
-same meaning by the current candidate table, if it invents independence, or if
-it weakens existing deterministic replay and bounded-claim behavior.
+The Q-A1 gate remains falsifiable if the contract invents independence or
+weakens existing deterministic replay and bounded-claim behavior. The current
+fixtures reject those conditions. No F2 or quantum-semantic promotion follows.
+
+**Next material package: Q-A2 ordered transformation history.** Bind each
+transformation to its declared domain, order, preservation/loss contract and
+typed `view`, `identify` or `restrict` effect. Identical final circuit bytes
+must not erase distinct histories, and a history result must remain linked to
+the source family without asserting executable feasibility or equivalence.
 
 ## 1. Purpose
 
@@ -799,37 +809,7 @@ Every work package requires:
 - at least one valid golden fixture;
 - malformed and tampered fixtures;
 - unsupported-capability fixtures;
-- boundary/resource-limit fixtures where relevant;
-- deterministic repeat-build comparison;
-- complete repository regression.
-
-The baseline command is:
-
-```bash
-python -m pytest -q
-```
-
-Record the actual test count. Do not report success from a subset as though the
-complete suite passed.
-
-## 9. Git and change discipline for AI agents
-
-1. Start from the latest verified `main` commit.
-2. Read the governing documents before editing.
-3. Create one bounded branch per work package, for example
-   `e7q-ir-f2-framework`.
-4. Inspect the existing implementation and tests before proposing new types.
-5. Keep unrelated changes out of the branch.
-6. Update protocol, profile, conformance, security, and roadmap documents when
-   their contracts change.
-7. Run focused tests, then the complete suite.
-8. Review `git diff --check`, the final diff, and generated artifacts.
-9. Commit an inspectable checkpoint with limitations recorded.
-10. Follow the user's current session authorisation for publishing and merging.
-    Existing authorisation persists; do not request it repeatedly. An authorised
-    implementation may be prepared as an isolated review branch and draft PR.
-    Live provider expenditure, private-code publication and external messages
-    still require applicable authorisation. This document grants none by itself.
+- boundary/resource-limit fixtures where releva…302 tokens truncated…require applicable authorisation. This document grants none by itself.
 
 Resolve routine implementation choices and complete reviewable work within the
 authorised scope. Ask the user only when an unresolved decision exceeds that
