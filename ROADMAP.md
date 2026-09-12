@@ -4,7 +4,7 @@
 
 - [x] Pin v0.12-experimental/CFS1 and Ecosystem Kernel v0.2 locally.
 - [x] Complete Q-A0 component-level retain/adapt/replace/retire audit.
-- [ ] Q-A1: versioned candidate-family contract for correlated circuit, layout,
+- [x] Q-A1: versioned candidate-family contract for correlated circuit, layout,
   target, calibration and constraint alternatives.
 - [ ] Q-A2: ordered transformation-domain history with explicit
   preservation/loss and view/identify/restrict semantics.
@@ -19,7 +19,7 @@ weights. See [the component audit](docs/e7q-ir/V012_COMPONENT_AUDIT.md).
 
 ## E7Q-IR v0.1 — Evidence-native IR foundation
 
-The authoritative [build plan](docs/e7q-ir/BUILD_PLAN.md) v0.13 includes
+The authoritative [build plan](docs/e7q-ir/BUILD_PLAN.md) v0.14 includes
 [research-backed extensions](docs/e7q-ir/RESEARCH_FOUNDATIONS.md) under the
 E7G-T extension/projection contract. Added packages are planned, not completed.
 
@@ -41,7 +41,7 @@ claim of a new or polynomial-time DHSP algorithm.
 ### Optional v0.12 family-state planning lane
 
 - [ ] K12-A pin E7G-T v0.12/CFS1 profiles, models, limits and non-claims;
-- [ ] K12-B define additive candidate-family contracts for circuits, layouts, targets and calibration contexts;
+- [x] K12-B define additive candidate-family contracts for circuits, layouts, targets and calibration contexts;
 - [ ] K12-C preserve transformation, residual-family, objective order, ties and selected-mapping membership;
 - [ ] K12-D run a public-safe external-compiler/topology pilot through the existing evidence workflow;
 - [ ] K12-E decide from two-consumer evidence whether any shared runtime contract should be extracted.
