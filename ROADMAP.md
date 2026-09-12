@@ -1,5 +1,22 @@
 # Roadmap
 
+## E7G-T v0.12 Wave 1 realignment
+
+- [x] Pin v0.12-experimental/CFS1 and Ecosystem Kernel v0.2 locally.
+- [x] Complete Q-A0 component-level retain/adapt/replace/retire audit.
+- [ ] Q-A1: versioned candidate-family contract for correlated circuit, layout,
+  target, calibration and constraint alternatives.
+- [ ] Q-A2: ordered transformation-domain history with explicit
+  preservation/loss and view/identify/restrict semantics.
+- [ ] Q-A3/Q-A4: declared realisation and digest-bound E7Q receipt.
+- [ ] Reassess shared E7 Core extraction only after an independent E2CI
+  consumer passes the same compatibility vectors without semantic distortion.
+
+The audit preserves all existing quantum semantics and rejects a wholesale
+rewrite. EEC-Q coefficients are never amplitudes, probabilities or evidence
+weights. See [the component audit](docs/e7q-ir/V012_COMPONENT_AUDIT.md).
+
+
 ## E7Q-IR v0.1 — Evidence-native IR foundation
 
 The authoritative [build plan](docs/e7q-ir/BUILD_PLAN.md) v0.13 includes
