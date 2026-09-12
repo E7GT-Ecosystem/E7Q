@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 20302)
-Total output lines: 1490
-
 # E7Q-IR Build Plan and AI Engineering Handoff
 
 **Plan version:** 0.14
@@ -809,7 +806,37 @@ Every work package requires:
 - at least one valid golden fixture;
 - malformed and tampered fixtures;
 - unsupported-capability fixtures;
-- boundary/resource-limit fixtures where releva…302 tokens truncated…require applicable authorisation. This document grants none by itself.
+- boundary/resource-limit fixtures where relevant;
+- deterministic repeat-build comparison;
+- complete repository regression.
+
+The baseline command is:
+
+```bash
+python -m pytest -q
+```
+
+Record the actual test count. Do not report success from a subset as though the
+complete suite passed.
+
+## 9. Git and change discipline for AI agents
+
+1. Start from the latest verified `main` commit.
+2. Read the governing documents before editing.
+3. Create one bounded branch per work package, for example
+   `e7q-ir-f2-framework`.
+4. Inspect the existing implementation and tests before proposing new types.
+5. Keep unrelated changes out of the branch.
+6. Update protocol, profile, conformance, security, and roadmap documents when
+   their contracts change.
+7. Run focused tests, then the complete suite.
+8. Review `git diff --check`, the final diff, and generated artifacts.
+9. Commit an inspectable checkpoint with limitations recorded.
+10. Follow the user's current session authorisation for publishing and merging.
+    Existing authorisation persists; do not request it repeatedly. An authorised
+    implementation may be prepared as an isolated review branch and draft PR.
+    Live provider expenditure, private-code publication and external messages
+    still require applicable authorisation. This document grants none by itself.
 
 Resolve routine implementation choices and complete reviewable work within the
 authorised scope. Ask the user only when an unresolved decision exceeds that
