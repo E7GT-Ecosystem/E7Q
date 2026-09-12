@@ -1,14 +1,15 @@
 # E7Q-IR Build Plan and AI Engineering Handoff
 
-**Plan version:** 0.13
+**Plan version:** 0.14
 
-**Status:** authoritative implementation plan for the experimental E7Q-IR line.
+**Status:** authoritative implementation plan for the experimental E7Q-IR line.  
+**Direction:** `E7-ECO-DIR-2026-09-12.2`.
 
-**Current inspected baseline (2026-09-10):** `main` at
-`9f22185727ffa0439b4af95922583b9554f01e51` (PR #66).
-That merge completed the optional, one-sided PyZX E3 evaluation.
-The current package opens a bounded DHSP research harness without registering a
-new E7Q-IR capability or claiming a new quantum algorithm.
+**Current inspected baseline (2026-09-12):** `main` at
+`a9fd841d47ea4ed434fabad3bc9a9a406b33c9a8` (PR #68).
+That merge installed the repository-local v0.12 alignment gate. The bounded
+PyZX and DHSP increments remain preserved; neither registers a general
+equivalence capability, a new quantum algorithm or arbitrary scalability.
 
 **Current bounded Phase 2 increment:** installs the distinct
 `e7q.ir.native-execution/0alpha1` profile and its default semantic validator.
@@ -110,6 +111,30 @@ PRs #35–#37 merged framework/identity/exact signed-permutation work at `83b273
 #40 noiseless channel at `1226a1a9`; #41 exact real H/u2 at `c1608b11`.
 Earlier local/queued checkpoints are historical and do not override current status.
 
+## v0.12 Wave 1 alignment
+
+**Q-A0 is complete in design at this plan revision.** The component audit
+classifies the current implementation at file/interface level and finds no
+basis for a repository-wide rewrite. Existing quantum semantics, artifact IDs,
+F0-F2 meanings, QCEC/PyZX isolation and evidence receipts are retained.
+Candidate planning, transformation-domain history, explicit dependence scope
+and complete-construction quotation are additive adaptation points.
+
+**Next material package: Q-A1 candidate-family contract.** Define a product-local,
+versioned schema and compatibility fixtures for correlated circuit, layout,
+target, calibration and constraint candidates. It must:
+
+- preserve shared, independent and constrained dependence explicitly;
+- keep quantum amplitudes and probabilities outside EEC-Q coefficient semantics;
+- distinguish source-preserving view, identification and restriction;
+- retain unsupported, domain-error and resource-limit outcomes;
+- change no existing E7Q-IR artifact identity or F0-F2 verdict;
+- remain product-local until E2CI independently demonstrates compatible reuse.
+
+The Q-A1 gate is falsified if the proposed family can be represented with the
+same meaning by the current candidate table, if it invents independence, or if
+it weakens existing deterministic replay and bounded-claim behavior.
+
 ## 1. Purpose
 
 This document allows a new engineer or AI coding agent to continue E7Q-IR
@@ -120,12 +145,18 @@ executable assignment.
 
 This plan is subordinate to:
 
-1. E7G-T v0.11-UC5 as the constitutional modelling and reasoning kernel;
-2. the E7G-T Ecosystem Operating Kernel and its E7Q-IR instruction;
-3. [ADR-0001](ADR-0001-E7Q-IR-CONSOLIDATION.md);
-4. [ARCHITECTURE.md](ARCHITECTURE.md);
-5. [PROTOCOL.md](PROTOCOL.md); and
-6. [CONFORMANCE.md](CONFORMANCE.md).
+1. E7G-T v0.12-experimental revision CFS1 at commit
+   `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca` for new architecture;
+2. E7G-T v0.11-UC5 as the inherited constitutional predecessor and
+   compatibility baseline;
+3. E7G-T Ecosystem Operating Kernel v0.2 and direction
+   `E7-ECO-DIR-2026-09-12.2`;
+4. [the repository kernel alignment](../KERNEL_ALIGNMENT.md) and
+   [the Q-A0 component audit](V012_COMPONENT_AUDIT.md);
+5. [ADR-0001](ADR-0001-E7Q-IR-CONSOLIDATION.md);
+6. [ARCHITECTURE.md](ARCHITECTURE.md);
+7. [PROTOCOL.md](PROTOCOL.md); and
+8. [CONFORMANCE.md](CONFORMANCE.md).
 
 If an implementation proposal conflicts with those sources, stop and record
 the conflict. Do not silently redefine the architecture in code.
