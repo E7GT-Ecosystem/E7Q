@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e7q.dev/schemas/e7q-ir-candidate-family-v0alpha1.schema.json",
+  "title": "E7Q-IR dependence-aware candidate family v0alpha1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "source_id",
+    "combination_rule",
+    "factors",
+    "members",
+    "assumptions",
+    "limitations",
+    "family_id"
+  ],
+  "properties": {
+    "schema": {"const": "e7q.ir.candidate-family/v0alpha1"},
+    "source_id": {"$ref": "#/$defs/digest"},
+    "combination_rule": {"const": "explicit-independent-factors"},
+    "factors": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "items": {"$ref": "#/$defs/factor"}
+    },
+    "members": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 65536,
+      "items": {"$ref": "#/$defs/member"}
+    },
+    "assumptions": {"$ref": "#/$defs/stringList"},
+    "limitations": {"$ref": "#/$defs/stringList"},
+    "family_id": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "name": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,127}$"},
+    "stringList": {
+      "type": "array",
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "bindings": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 32,
+      "additionalProperties": {"type": "string", "minLength": 1},
+      "propertyNames": {"$ref": "#/$defs/name"}
+    },
+    "alternative": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bindings", "alternative_id"],
+      "properties": {
+        "bindings": {"$ref": "#/$defs/bindings"},
+        "alternative_id": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "factor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "dimensions", "combination_rule", "alternatives", "factor_id"],
+      "properties": {
+        "name": {"$ref": "#/$defs/name"},
+        "dimensions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/name"}
+        },
+        "combination_rule": {"const": "correlated-alternatives"},
+        "alternatives": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 256,
+          "items": {"$ref": "#/$defs/alternative"}
+        },
+        "factor_id": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "member": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_id", "bindings", "alternative_refs", "member_id"],
+      "properties": {
+        "source_id": {"$ref": "#/$defs/digest"},
+        "bindings": {"$ref": "#/$defs/bindings"},
+        "alternative_refs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/digest"}
+        },
+        "member_id": {"$ref": "#/$defs/digest"}
+      }
+    }
+  }
+}
