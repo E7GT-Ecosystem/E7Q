@@ -6,7 +6,7 @@
 - [x] Complete Q-A0 component-level retain/adapt/replace/retire audit.
 - [x] Q-A1: versioned candidate-family contract for correlated circuit, layout,
   target, calibration and constraint alternatives.
-- [ ] Q-A2: ordered transformation-domain history with explicit
+- [x] Q-A2: ordered transformation-domain history with explicit
   preservation/loss and view/identify/restrict semantics.
 - [ ] Q-A3/Q-A4: declared realisation and digest-bound E7Q receipt.
 - [ ] Reassess shared E7 Core extraction only after an independent E2CI
