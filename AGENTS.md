@@ -1,6 +1,6 @@
 # Current ecosystem realignment control
 
-Direction ID: `E7-ECO-DIR-2026-09-12.2`.
+Direction ID: `E7-ECO-DIR-2026-09-13.1`.
 
 Before starting a new material milestone, read and reconcile [docs/KERNEL_ALIGNMENT.md](docs/KERNEL_ALIGNMENT.md) with the actual code, current branch and open work. E7G-T v0.12-experimental/CFS1 at commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca` governs new architecture; v0.11-UC5 is the predecessor and compatibility baseline. Record profile dispositions and component-level `retain`, `adapt`, `replace` or `retire` decisions. Preserve existing IDs, data and APIs until a reviewed migration exists. Safe maintenance and already bounded corrections may continue, but they do not establish v0.12 alignment.
 
@@ -14,7 +14,7 @@ Direction ID: `E7-ECO-DIR-2026-09-08.1`.
 
 Read `docs/ECOSYSTEM_DIRECTION.md` and `docs/e7q-ir/BUILD_PLAN.md` before starting a new work package, after a context reset, and when the coordinator announces a direction change. The current [ecosystem direction](https://github.com/E7GT-Ecosystem/E7-Ecosystem/blob/main/DIRECTION.md) is maintained in the central repository. If you lack access to that private repository, use the self-contained local brief and continue routine authorised work; disclose the visibility limit before redefining a shared boundary.
 
-E7G-T v0.12 experimental canonical revision CFS1 at commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca` is the constitutional source for new work. Its EEC-Q, SF and CFS profiles are opt-in. Follow the disposition and sequencing in `docs/e7q-ir/BUILD_PLAN.md`; do not reinterpret EEC coefficients as quantum amplitudes or probabilities, silently migrate existing artifacts, or bypass current hardening and Phase 2 gates. Apply source/representation separation, explicit preservation/loss, criterion-bound equivalence, temporal limits and evidence-bounded claims. Neither a model nor a passing test is evidence of production readiness, market demand or broader scientific truth.
+E7G-T v0.12.1 experimental canonical revision RGP2 at commit `fc4cdf95c6434e653efbe017587aab60b4b2a86c` is the constitutional source for new work. Its EEC-Q, SF and CFS profiles are opt-in. Follow the disposition and sequencing in `docs/e7q-ir/BUILD_PLAN.md`; do not reinterpret EEC coefficients as quantum amplitudes or probabilities, silently migrate existing artifacts, or bypass current hardening and Phase 2 gates. Apply source/representation separation, explicit preservation/loss, criterion-bound equivalence, temporal limits and evidence-bounded claims. Neither a model nor a passing test is evidence of production readiness, market demand or broader scientific truth.
 
 Coordination board: [ECOORD #2](https://github.com/E7GT-Ecosystem/E7-Ecosystem/issues/2).
 
