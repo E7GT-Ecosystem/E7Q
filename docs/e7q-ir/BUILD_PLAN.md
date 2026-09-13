@@ -1,15 +1,19 @@
 # E7Q-IR Build Plan and AI Engineering Handoff
 
-**Plan version:** 0.16
+**Plan version:** 0.17
 
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.  
 **Direction:** `E7-ECO-DIR-2026-09-12.2`.
 
 **Current inspected baseline (2026-09-13):** `main` at
-`4a078fb9590e3d936b314dccd09724fdc26b383d`. Q-A0 and the Q-A1 family are
-retained. This revision corrects Q-A1 restriction/view semantics additively and
-revalidates the published Q-A2 history contract without changing native quantum
-execution, F0–F2 or existing IDs.
+`48a3999bb2068a8666eae7bec05c0c070665a3b7`. Q-A0 and the Q-A1 family are
+retained. This revision completes Q-A1 restriction-result interoperability with
+Q-A2 without changing native quantum execution, F0–F2 or existing IDs.
+
+**Revision 0.17:** Q-A2 now retains a valid Q-A1 retain-none result as terminal
+`empty` with no residual family, and accepts successful retain-all identity
+restriction without requiring a fabricated exclusion. Partial restriction
+behavior remains unchanged. Focused fixtures cover all three paths.
 
 **Revision 0.16:** adds `candidate-restriction/v0alpha2` and
 `candidate-family-view/v0alpha2`. Restriction criteria are named, versioned and

@@ -26,6 +26,8 @@ The original `v0alpha1` restriction and view functions remain available for
 compatibility, but new work must use the corrected additive profiles. Q-A2
 ordered histories consume the residual-family identity only from a successful
 restriction; empty and other non-success records publish no residual family.
+The Q-A2 adapter accepts a successful retain-all restriction as an identity
+restriction and records a valid retain-none restriction as terminal `empty`.
 
 This contract does not establish circuit equivalence, executable feasibility,
 hardware availability, topology quality, optimality, probability, amplitude,

@@ -11,7 +11,7 @@ from .canonical import digest
 
 SCHEMA = "e7q.ir.transformation-history/v0alpha1"
 STEP_SCHEMA = "e7q.ir.transformation-step/v0alpha1"
-OUTCOMES = frozenset({"success", "invalid_input", "domain_error", "unsupported", "resource_limit"})
+OUTCOMES = frozenset({"success", "empty", "invalid_input", "domain_error", "unsupported", "resource_limit"})
 KINDS = frozenset({"transform", "identify", "restrict"})
 MAX_STEPS = 256
 MAX_MEMBERS = 65_536
@@ -96,8 +96,12 @@ def transformation_step(
         raise TransformationHistoryError("non-success step must not publish an output family")
     if kind == "transform" and excluded:
         raise TransformationHistoryError("strict transform cannot silently exclude members")
-    if kind == "restrict" and not excluded:
-        raise TransformationHistoryError("restriction must disclose excluded members")
+    if kind == "restrict" and outcome == "success" and not admitted:
+        raise TransformationHistoryError("successful restriction must retain members")
+    if outcome == "empty" and (kind != "restrict" or admitted or not excluded):
+        raise TransformationHistoryError(
+            "empty outcome requires a restriction that excludes its admitted domain"
+        )
     if not isinstance(message, str) or not message:
         raise TransformationHistoryError("message must be non-empty")
     value: dict[str, Any] = {
