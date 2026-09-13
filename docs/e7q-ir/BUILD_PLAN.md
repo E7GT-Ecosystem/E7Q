@@ -70,7 +70,7 @@ evaluation, deterministic counterexamples and explicit asymptotic nonclaims.
 Existing IR profiles, conformance levels, artifact identities and quantum
 execution semantics are unchanged.
 
-**Revision 0.8:** adopts ecosystem direction `E7-ECO-DIR-2026-09-08.1` and pins E7G-T v0.12.1 experimental canonical revision RGP2 at commit `fc4cdf95c6434e653efbe017587aab60b4b2a86c`. It adds an optional, additive family-state planning lane after the applicable H2/H3 and Phase 2 gates. EEC coefficients remain formal construction coefficients, never quantum amplitudes, probabilities or evidence weights. Existing artifacts, IDs, APIs and F0-F2 meanings are not migrated.
+**Revision 0.8:** adopts ecosystem direction `E7-ECO-DIR-2026-09-13.1` and pins E7G-T v0.12.1 experimental canonical revision RGP2 at commit `fc4cdf95c6434e653efbe017587aab60b4b2a86c`. It adds an optional, additive family-state planning lane after the applicable H2/H3 and Phase 2 gates. EEC coefficients remain formal construction coefficients, never quantum amplitudes, probabilities or evidence weights. Existing artifacts, IDs, APIs and F0-F2 meanings are not migrated.
 
 **Revision 0.7:** adds a bounded external circuit-pair workflow that captures two
 supplied files byte-for-byte, records separate bounded OpenQASM 2 projections,
@@ -172,8 +172,8 @@ executable assignment.
 
 This plan is subordinate to:
 
-1. E7G-T v0.12-experimental revision CFS1 at commit
-   `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca` for new architecture;
+1. E7G-T v0.12.1-experimental revision RGP2 at commit
+   `fc4cdf95c6434e653efbe017587aab60b4b2a86c` for new architecture; existing v0.12 artefacts retain their recorded identifiers;
 2. E7G-T v0.11-UC5 as the inherited constitutional predecessor and
    compatibility baseline;
 3. E7G-T Ecosystem Operating Kernel v0.2 and direction
@@ -1482,7 +1482,7 @@ QIR and K12/CFS remain separate open packages.
 
 ## 12. E7G-T v0.12 optional family-state planning lane
 
-**Disposition:** EEC-Q/0.1, SF/0.1 and CFS/0.1 are `experimental` for E7Q-IR planning. E7Q verification uses only the resulting explicit records and does not adopt EEC-Q as quantum state semantics.
+**Disposition:** EEC-Q/0.1, SF/0.1 and CFS/0.1 are `experimental` for E7Q-IR planning. RGP/0.1 is `experimental` only for forward-compatible Q-A4 layer and generation-edge bindings. E7Q verification uses only the resulting explicit records and does not adopt EEC-Q as quantum state semantics.
 
 **Dependency rule:** this lane does not displace current H2/H3 hardening, criterion-bound Phase 2 native/external comparison, the missing benchmark rungs or independent backend evaluation. Begin it only as an additive package whose inputs and outputs preserve all current Evidence Core identities.
 
