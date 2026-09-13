@@ -1,10 +1,10 @@
 # E7Q-IR v0.12 component audit
 
 Direction: `E7-ECO-DIR-2026-09-12.2`  
-Reviewed baseline: `a9fd841d47ea4ed434fabad3bc9a9a406b33c9a8`  
+Reviewed baseline: `16bd96c36b0e659ffc6798ff1a88e72cc56d11dc`  
 Kernel: E7G-T v0.12-experimental/CFS1 at
 `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca`  
-Status: `ALIGNED_IN_DESIGN`; Q-A1 bounded candidate-family contract implemented.
+Status: `ALIGNED_THROUGH_Q_A2` within the finite declared contract boundary.
 
 ## Audit boundary
 
@@ -22,10 +22,11 @@ conformance, hardware validation, independent review or product validation.
 | Semantic profiles and F2 results | `profiles.py`, `semantic.py`, `conformance.py` | retain | Preserve criterion-specific verdicts and non-PASS states |
 | Native, legacy and external adapters | `native.py`, `legacy*.py`, workflow modules | retain | No silent promotion of imported declarations |
 | Isolated QCEC and PyZX assessment | `qcec.py`, `pyzx.py`, process/resource tests | retain | Keep numerical/exact criteria and inconclusive outcomes separate |
-| Compiler path | `compiler_workflow.py` and compiler Proof-of-Path fixture | adapt | Add explicit transform domain, order and loss contract |
-| Candidate selection | current planning and calibration modules | adapt | Introduce dependence-aware candidate family without changing quantum semantics |
-| Views and pruning | report/inspection and candidate filtering surfaces | adapt | Type each as `view`, `identify` or `restrict` |
-| Complete compilation construction | source, candidates, transforms, selection and receipt | adapt | Add immutable quotation metadata and source-linked receipt |
+| Compiler path | `compiler_workflow.py` and compiler Proof-of-Path fixture | adapt | Retain native execution; adapt remaining planning/compiler surfaces to the implemented declared domains and ordered histories where required |
+| Candidate families and restriction | `candidate_family.py`, schemas, profiles and tests | retain | Retain the implemented finite dependence contract and partial, identity and terminal-empty restriction paths |
+| Views and identification | versioned candidate-family view/restriction records and history declarations | retain/adapt | Retain source-return and declared loss; general identification execution remains unproved |
+| Ordered histories | `transformation_history.py`, schema, profile and tests | retain | Preserve order-sensitive identity and typed validation without claiming compiler execution |
+| Complete compilation construction | source, candidates, transforms, realisation and receipt | adapt | Add Q-A3 realisation and Q-A4 family/realisation receipt binding before considering whole-construction quotation |
 | EEC-Q coefficient arithmetic | no native quantum mapping | not applicable | Prohibit use as amplitudes, probabilities or evidence weights |
 
 No component requires replacement or retirement on current evidence.
@@ -34,45 +35,35 @@ No component requires replacement or retirement on current evidence.
 
 1. Existing evidence graphs preserve source/representation separation and
    criterion-bound verdicts; a rewrite would risk losing tested compatibility.
-2. Current candidate and calibration surfaces do not yet provide a single
-   versioned dependence contract for circuit/layout/target/calibration choices.
-3. Transformation evidence exists, but a general ordered domain and
-   view/identify/restrict declaration is not yet shared across all compiler
-   stages.
+2. Q-A1 now provides a finite versioned dependence contract for admitted candidate families; remaining native planning/compiler surfaces are not automatically covered by that contract.
+3. Q-A2 validates declared ordered histories and view/identify/restrict step kinds, but does not execute compiler transformations or prove their quantum correctness.
 4. Existing non-PASS states and isolated external-tool outcomes already satisfy
    the v0.12 requirement not to collapse failure into algebraic zero or success.
 5. Whole-construction quotation is not yet a native E7Q-IR contract. Adding it
    must not distribute one compilation family's authority or evidence to its
    members.
 
-## Compatibility vectors required for Q-A1
+## Delivered compatibility vectors through Q-A2
 
 - a shared layout/target choice remains two correlated alternatives, not four
   independent cross-products;
 - an explicitly independent candidate pair expands as declared;
 - restriction records excluded candidates and never masquerades as a view;
 - identification records its many-to-one loss;
-- unsupported and resource-limited candidate evaluation cannot realise a
-  mapping;
-- changing transform order changes history identity even when final circuit
-  bytes happen to match;
+- partial, retain-all identity and retain-none terminal-empty restriction results interoperate with ordered histories;
+- changing transform order changes history identity even when final circuit bytes happen to match;
 - packing the complete candidate construction differs from packing each
   candidate independently;
 - old E7Q-IR graphs, profiles and F0-F2 reports remain byte- and verdict-stable.
 
-## Bounded Q-A1 demonstration
+## Current delivered boundary and multi-package target
 
-Represent one topology-sensitive program as a family over circuit, layout,
-target, calibration snapshot and constraints. Apply an ordered transformation
-sequence, retain the residual family, and realise one mapping under declared
-lexicographic objectives. Produce a source-preserving inspection view and a
-receipt binding the source family, transformation history, residual family,
-selection criterion and selected mapping.
+Q-A1 candidate families and corrected restriction/view profiles, together with Q-A2 ordered-history contracts, are implemented and internally tested at the cited commit. Partial, identity and terminal-empty restriction paths are covered. Declared domains and validated history records do not execute compiler transformations or prove quantum correctness.
+
+The multi-package target is a complete family → transformation → realisation → receipt demonstration. Native compiler execution integration, Q-A3 realisation, Q-A4 family/realisation receipt binding and whole-construction quotation remain outside this delivered boundary. Existing native receipts are retained; the missing work is the new binding between the source family, ordered history, residual family, selected realisation and receipt.
 
 Stop or narrow the lane if it invents independence, changes existing quantum
 meaning, weakens fail-closed behavior, or supplies no observable assurance
 advantage over an ordinary candidate table.
 
-Implementation: `src/e7q/ir/candidate_family.py` and
-`tests/test_ir_candidate_family.py`. Q-A1 deliberately stops before semantic
-selection, quotation, realization, or F2 promotion.
+Implementations include `src/e7q/ir/candidate_family.py` and `src/e7q/ir/transformation_history.py` with their versioned schemas, profiles and regression tests. PR #74 closed the reproduced partial/identity/terminal-empty interoperability paths. This boundary is not full SF, EEC-Q or CFS conformance and does not promote any result to F2.
