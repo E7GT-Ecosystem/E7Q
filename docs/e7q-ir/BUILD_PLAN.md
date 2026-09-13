@@ -1,15 +1,21 @@
 # E7Q-IR Build Plan and AI Engineering Handoff
 
-**Plan version:** 0.14
+**Plan version:** 0.15
 
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.  
 **Direction:** `E7-ECO-DIR-2026-09-12.2`.
 
-**Current inspected baseline (2026-09-12):** `main` at
-`888d6dbaec6e62122e2c80483d222f0382320b4e` (PR #69).
-That merge installed the repository-local v0.12 alignment gate and Q-A0 audit. The bounded
-PyZX and DHSP increments remain preserved; neither registers a general
-equivalence capability, a new quantum algorithm or arbitrary scalability.
+**Current inspected baseline (2026-09-13):** `main` at
+`55cbf8a6b147d6a56d7c09665078155eef3693a0`. Q-A0 and Q-A1 are retained.
+This revision adds Q-A2's bounded order-sensitive transformation-history
+contract without changing native quantum execution, F0–F2 or existing IDs.
+
+**Revision 0.15:** adds `e7q.ir.transformation-history/v0alpha1`. Every step
+binds its rule edition, exact input/output family chain, admitted domain,
+explicit exclusions, preservation/loss and typed outcome. Non-success stops the
+history and publishes no output family. Strict transforms cannot hide
+restriction, and changing operation order changes history identity. Q-A3
+realisation and Q-A4 receipt binding remain next.
 
 **Current bounded Phase 2 increment:** installs the distinct
 `e7q.ir.native-execution/0alpha1` profile and its default semantic validator.

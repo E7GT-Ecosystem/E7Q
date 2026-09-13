@@ -12,6 +12,13 @@ from .candidate_family import (
 from .envelope import build_artifact
 from .graph import build_graph, build_relation
 from .semantic import SemanticRegistry, SemanticResult, SemanticValidator
+from .transformation_history import (
+    TransformationHistoryError,
+    build_transformation_history,
+    transformation_step,
+    validate_transformation_history,
+    validate_transformation_step,
+)
 from .workflow import build_external_circuit_graph, load_external_circuit_manifest
 
 __all__ = [
@@ -27,6 +34,11 @@ __all__ = [
     "SemanticRegistry",
     "SemanticResult",
     "SemanticValidator",
+    "TransformationHistoryError",
+    "build_transformation_history",
+    "transformation_step",
+    "validate_transformation_history",
+    "validate_transformation_step",
     "restrict_candidate_family",
     "validate_candidate_family",
     "validate_graph",

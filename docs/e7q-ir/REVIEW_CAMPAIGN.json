@@ -329,6 +329,18 @@
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {
+      "id": "ir_transformation_history",
+      "scope": "Q-A2 order-sensitive family-chain history with explicit domains, preservation/loss, transform/identify/restrict kinds and retained terminal failures",
+      "test_file": "tests/test_ir_transformation_history.py",
+      "implementation": [
+        "src/e7q/ir/transformation_history.py",
+        "schemas/e7q-ir-transformation-history-v0alpha1.schema.json"
+      ],
+      "limits": "Declared execution structure only; no proof of rule correctness, domain completeness, feasibility, optimality, hardware execution or F2 promotion.",
+      "next_gate": "Q-A3 residual-family realisation with ordered objectives, tie handling and membership proof",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
       "id": "ir_circuit",
       "scope": "Bounded circuit F2 payload checks, rehashed tampering, boolean probability rejection, malformed ordering, numeric overflow and claim failure propagation",
       "test_file": "tests/test_ir_circuit.py",

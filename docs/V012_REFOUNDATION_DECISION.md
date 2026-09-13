@@ -47,7 +47,7 @@ Retain all verified quantum semantics, F0–F2 criteria, receipts, resource isol
 
 ## Next bounded package
 
-Finish release-wide H10 only as bounded hardening, then make Q-A1–Q-A4 the next architecture package before adding unrelated capability tracks.
+Q-A1 is already implemented by `e7q.ir.candidate-family/v0alpha1` on the inspected baseline. Preserve it. Make Q-A2 ordered transformation history the next architecture package, followed by Q-A3 declared realisation and Q-A4 receipt binding. Release-wide H10 may continue only as bounded hardening; do not add unrelated capability tracks first.
 
 ## Falsification and stop gate
 

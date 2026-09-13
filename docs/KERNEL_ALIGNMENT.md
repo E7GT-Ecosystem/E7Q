@@ -1,8 +1,8 @@
 # E7Q and E7Q-IR kernel alignment
 
 Direction: `E7-ECO-DIR-2026-09-12.2`  
-Baseline reviewed: main `edddb774bba8fc1eb6f9fbd425802e480f7c5cd8`  
-Status: `ALIGNMENT_REQUIRED` before the next new material architecture milestone; bounded current research and corrections retain their existing gates.
+Baseline reviewed: main `55cbf8a6b147d6a56d7c09665078155eef3693a0`
+Status: `ALIGNED_THROUGH_Q_A2` for finite candidate families and ordered declared transformation histories. Q-A3 realisation and Q-A4 receipt binding remain unimplemented.
 
 ## Source and profiles
 
@@ -21,8 +21,8 @@ EEC-Q rational coefficients are not quantum amplitudes or probabilities. Physica
 | Invariants, equivalence criteria and assessments | Criterion-bound product rules and findings | retain |
 | Proof-of-Path and deterministic receipts | History/provenance and replay evidence | retain |
 | Provider/import artifacts | Explicit external references; never automatically trusted or executed | retain |
-| Candidate circuits, layouts and targets | SF/CFS candidate-family opportunity | adapt |
-| Lowering, routing, scheduling and binding | Ordered typed transformations with domains and loss | adapt |
+| Candidate circuits, layouts and targets | Q-A1 dependence-aware finite candidate family | retain |
+| Lowering, routing, scheduling and binding | Q-A2 ordered typed declaration with domains, loss and terminal outcomes | retain as bounded contract; adapt to native executors later |
 | Selected hardware mapping | Declared realization from a residual family | adapt |
 | Complete compilation path | Candidate immutable quoted construction | adapt |
 

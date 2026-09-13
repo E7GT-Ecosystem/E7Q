@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e7q.dev/schemas/e7q-ir-transformation-history-v0alpha1.schema.json",
+  "title": "E7Q-IR ordered transformation history v0alpha1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "source_family_id", "context", "inquiry", "steps", "terminal_outcome", "residual_family_id", "limitations", "history_id"],
+  "properties": {
+    "schema": {"const": "e7q.ir.transformation-history/v0alpha1"},
+    "source_family_id": {"$ref": "#/$defs/digest"},
+    "context": {"type": "string", "minLength": 1},
+    "inquiry": {"type": "string", "minLength": 1},
+    "steps": {"type": "array", "minItems": 1, "maxItems": 256, "items": {"$ref": "#/$defs/step"}},
+    "terminal_outcome": {"enum": ["success", "invalid_input", "domain_error", "unsupported", "resource_limit"]},
+    "residual_family_id": {"oneOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]},
+    "limitations": {"type": "array", "minItems": 2, "maxItems": 128, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "history_id": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "strings": {"type": "array", "maxItems": 128, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "digests": {"type": "array", "maxItems": 65536, "items": {"$ref": "#/$defs/digest"}, "uniqueItems": true},
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "index", "kind", "rule", "domain", "input_family_id", "outcome", "output_family_id", "preserves", "loses", "limitations", "message", "step_id"],
+      "properties": {
+        "schema": {"const": "e7q.ir.transformation-step/v0alpha1"},
+        "index": {"type": "integer", "minimum": 0, "maximum": 255},
+        "kind": {"enum": ["transform", "identify", "restrict"]},
+        "rule": {"type": "object", "additionalProperties": false, "required": ["id", "edition"], "properties": {"id": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_.:/-]{0,255}$"}, "edition": {"type": "string", "minLength": 1}}},
+        "domain": {"type": "object", "additionalProperties": false, "required": ["admitted_member_ids", "excluded_member_ids"], "properties": {"admitted_member_ids": {"$ref": "#/$defs/digests"}, "excluded_member_ids": {"$ref": "#/$defs/digests"}}},
+        "input_family_id": {"$ref": "#/$defs/digest"},
+        "outcome": {"enum": ["success", "invalid_input", "domain_error", "unsupported", "resource_limit"]},
+        "output_family_id": {"oneOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]},
+        "preserves": {"$ref": "#/$defs/strings"},
+        "loses": {"$ref": "#/$defs/strings"},
+        "limitations": {"$ref": "#/$defs/strings"},
+        "message": {"type": "string", "minLength": 1},
+        "step_id": {"$ref": "#/$defs/digest"}
+      }
+    }
+  }
+}
