@@ -3,7 +3,7 @@
 **Plan version:** 0.17
 
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.  
-**Direction:** `E7-ECO-DIR-2026-09-12.2`.
+**Direction:** `E7-ECO-DIR-2026-09-13.1`.
 
 **Current inspected baseline (2026-09-13):** `main` at
 `48a3999bb2068a8666eae7bec05c0c070665a3b7`. Q-A0 and the Q-A1 family are
@@ -70,7 +70,7 @@ evaluation, deterministic counterexamples and explicit asymptotic nonclaims.
 Existing IR profiles, conformance levels, artifact identities and quantum
 execution semantics are unchanged.
 
-**Revision 0.8:** adopts ecosystem direction `E7-ECO-DIR-2026-09-08.1` and pins E7G-T v0.12 experimental canonical revision CFS1 at commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca`. It adds an optional, additive family-state planning lane after the applicable H2/H3 and Phase 2 gates. EEC coefficients remain formal construction coefficients, never quantum amplitudes, probabilities or evidence weights. Existing artifacts, IDs, APIs and F0-F2 meanings are not migrated.
+**Revision 0.8:** adopts ecosystem direction `E7-ECO-DIR-2026-09-08.1` and pins E7G-T v0.12.1 experimental canonical revision RGP2 at commit `fc4cdf95c6434e653efbe017587aab60b4b2a86c`. It adds an optional, additive family-state planning lane after the applicable H2/H3 and Phase 2 gates. EEC coefficients remain formal construction coefficients, never quantum amplitudes, probabilities or evidence weights. Existing artifacts, IDs, APIs and F0-F2 meanings are not migrated.
 
 **Revision 0.7:** adds a bounded external circuit-pair workflow that captures two
 supplied files byte-for-byte, records separate bounded OpenQASM 2 projections,
@@ -159,7 +159,8 @@ Q-A1 correction.** Each transformation binds its declared domain, order,
 preservation/loss contract and typed `view`, `identify` or `restrict` effect.
 Identical final circuit bytes do not erase distinct histories. The next material
 package is Q-A3 residual-family realisation; it must not assert executable
-feasibility or equivalence.
+feasibility or equivalence. Q-A4 then adds forward-compatible RGP layer and
+generation-edge bindings without retroactively relabelling Q-A1/Q-A2.
 
 ## 1. Purpose
 
@@ -176,7 +177,7 @@ This plan is subordinate to:
 2. E7G-T v0.11-UC5 as the inherited constitutional predecessor and
    compatibility baseline;
 3. E7G-T Ecosystem Operating Kernel v0.2 and direction
-   `E7-ECO-DIR-2026-09-12.2`;
+   `E7-ECO-DIR-2026-09-13.1`;
 4. [the repository kernel alignment](../KERNEL_ALIGNMENT.md) and
    [the Q-A0 component audit](V012_COMPONENT_AUDIT.md);
 5. [ADR-0001](ADR-0001-E7Q-IR-CONSOLIDATION.md);
