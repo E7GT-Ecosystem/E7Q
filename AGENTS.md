@@ -2,7 +2,7 @@
 
 Direction ID: `E7-ECO-DIR-2026-09-13.1`.
 
-Before starting a new material milestone, read and reconcile [docs/KERNEL_ALIGNMENT.md](docs/KERNEL_ALIGNMENT.md) with the actual code, current branch and open work. E7G-T v0.12-experimental/CFS1 at commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca` governs new architecture; v0.11-UC5 is the predecessor and compatibility baseline. Record profile dispositions and component-level `retain`, `adapt`, `replace` or `retire` decisions. Preserve existing IDs, data and APIs until a reviewed migration exists. Safe maintenance and already bounded corrections may continue, but they do not establish v0.12 alignment.
+Before starting a new material milestone, read and reconcile [docs/KERNEL_ALIGNMENT.md](docs/KERNEL_ALIGNMENT.md) with the actual code, current branch and open work. E7G-T v0.12.1-experimental/RGP2 at commit `fc4cdf95c6434e653efbe017587aab60b4b2a86c` governs new architecture; v0.11-UC5 is the predecessor and compatibility baseline. Record profile dispositions and component-level `retain`, `adapt`, `replace` or `retire` decisions. Preserve existing IDs, data and APIs until a reviewed migration exists. Safe maintenance and already bounded corrections may continue, but they do not establish v0.12 alignment.
 
 This section supersedes an older ecosystem direction ID below where they conflict. All product-specific safety, validation, authorship and authorization boundaries remain in force.
 
@@ -10,7 +10,7 @@ This section supersedes an older ecosystem direction ID below where they conflic
 
 # Agent instructions — ecosystem coordination
 
-Direction ID: `E7-ECO-DIR-2026-09-08.1`.
+Direction ID: `E7-ECO-DIR-2026-09-13.1`.
 
 Read `docs/ECOSYSTEM_DIRECTION.md` and `docs/e7q-ir/BUILD_PLAN.md` before starting a new work package, after a context reset, and when the coordinator announces a direction change. The current [ecosystem direction](https://github.com/E7GT-Ecosystem/E7-Ecosystem/blob/main/DIRECTION.md) is maintained in the central repository. If you lack access to that private repository, use the self-contained local brief and continue routine authorised work; disclose the visibility limit before redefining a shared boundary.
 
