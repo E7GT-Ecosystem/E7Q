@@ -10,7 +10,7 @@ E7Q-IR owns quantum-specific semantics. Shared ecosystem transport preserves nat
 
 ## E7G-T v0.12 relationship
 
-Pin E7G-T v0.12 experimental canonical revision CFS1 at commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca`. EEC-Q/0.1, SF/0.1 and CFS/0.1 are optional planning profiles, not replacements for E7Q quantum semantics. EEC coefficients are formal construction coefficients only, never amplitudes, probabilities or measured support.
+Pin E7G-T v0.12.1 experimental canonical revision RGP2 at commit `fc4cdf95c6434e653efbe017587aab60b4b2a86c`. EEC-Q/0.1, SF/0.1 and CFS/0.1 are optional planning profiles, not replacements for E7Q quantum semantics. EEC coefficients are formal construction coefficients only, never amplitudes, probabilities or measured support.
 
 The experimental CFS lane may represent unresolved candidate circuits, layouts, targets and calibration contexts, transform those candidates, and realise a mapping under declared ordered objectives. It is additive: existing F0/F1/F2 meanings, native APIs, identities, receipts and current evidence remain unchanged.
 
