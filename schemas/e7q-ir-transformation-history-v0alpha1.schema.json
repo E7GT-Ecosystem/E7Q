@@ -11,7 +11,7 @@
     "context": {"type": "string", "minLength": 1},
     "inquiry": {"type": "string", "minLength": 1},
     "steps": {"type": "array", "minItems": 1, "maxItems": 256, "items": {"$ref": "#/$defs/step"}},
-    "terminal_outcome": {"enum": ["success", "invalid_input", "domain_error", "unsupported", "resource_limit"]},
+    "terminal_outcome": {"enum": ["success", "empty", "invalid_input", "domain_error", "unsupported", "resource_limit"]},
     "residual_family_id": {"oneOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]},
     "limitations": {"type": "array", "minItems": 2, "maxItems": 128, "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
     "history_id": {"$ref": "#/$defs/digest"}
@@ -31,7 +31,7 @@
         "rule": {"type": "object", "additionalProperties": false, "required": ["id", "edition"], "properties": {"id": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_.:/-]{0,255}$"}, "edition": {"type": "string", "minLength": 1}}},
         "domain": {"type": "object", "additionalProperties": false, "required": ["admitted_member_ids", "excluded_member_ids"], "properties": {"admitted_member_ids": {"$ref": "#/$defs/digests"}, "excluded_member_ids": {"$ref": "#/$defs/digests"}}},
         "input_family_id": {"$ref": "#/$defs/digest"},
-        "outcome": {"enum": ["success", "invalid_input", "domain_error", "unsupported", "resource_limit"]},
+        "outcome": {"enum": ["success", "empty", "invalid_input", "domain_error", "unsupported", "resource_limit"]},
         "output_family_id": {"oneOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]},
         "preserves": {"$ref": "#/$defs/strings"},
         "loses": {"$ref": "#/$defs/strings"},

@@ -1,10 +1,15 @@
 # E7Q and E7Q-IR kernel alignment
 
 Direction: `E7-ECO-DIR-2026-09-12.2`  
-Baseline reviewed: main `4a078fb9590e3d936b314dccd09724fdc26b383d`
+Baseline reviewed: main `48a3999bb2068a8666eae7bec05c0c070665a3b7`
 Status: `ALIGNED_THROUGH_Q_A2` after the additive Q-A1 restriction/view
 correction and Q-A2 interoperability revalidation. Q-A3 realisation and Q-A4
 receipt binding remain unimplemented.
+
+Interoperability includes partial, identity (retain-all), and terminal-empty
+restrictions. `empty` is retained as a non-success history outcome with no
+residual family; retain-all success is not rejected merely because it excludes
+no member.
 
 ## Source and profiles
 

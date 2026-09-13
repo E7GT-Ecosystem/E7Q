@@ -151,3 +151,65 @@ def test_q_a2_consumes_corrected_q_a1_residual_family_identity():
         family["family_id"], (step,), context="compiler", inquiry="topology"
     )
     assert history["residual_family_id"] == restriction["result_family"]["family_id"]
+
+
+def test_q_a2_retains_empty_q_a1_restriction_as_terminal_outcome():
+    family = build_candidate_family(
+        D1,
+        (factor("layout", ("layout",), ({"layout": "a"}, {"layout": "b"})),),
+    )
+    restriction = assess_candidate_restriction(
+        family,
+        (),
+        criterion_id="e7q.reject-all",
+        criterion_edition="2026-09-13.1",
+        criterion_text="retain no admitted candidate",
+    )
+    step = transformation_step(
+        index=0,
+        kind="restrict",
+        rule_id=restriction["criterion"]["id"],
+        rule_edition=restriction["criterion"]["edition"],
+        input_family_id=family["family_id"],
+        admitted_member_ids=restriction["retained_member_ids"],
+        excluded_member_ids=restriction["excluded_member_ids"],
+        outcome=restriction["outcome"],
+        message=restriction["message"],
+    )
+    history = build_transformation_history(
+        family["family_id"], (step,), context="compiler", inquiry="topology"
+    )
+    assert history["terminal_outcome"] == "empty"
+    assert history["residual_family_id"] is None
+
+
+def test_q_a2_accepts_successful_identity_restriction_with_no_exclusions():
+    family = build_candidate_family(
+        D1,
+        (factor("layout", ("layout",), ({"layout": "a"}, {"layout": "b"})),),
+    )
+    all_members = [item["member_id"] for item in family["members"]]
+    restriction = assess_candidate_restriction(
+        family,
+        all_members,
+        criterion_id="e7q.retain-all",
+        criterion_edition="2026-09-13.1",
+        criterion_text="retain every admitted candidate",
+    )
+    step = transformation_step(
+        index=0,
+        kind="restrict",
+        rule_id=restriction["criterion"]["id"],
+        rule_edition=restriction["criterion"]["edition"],
+        input_family_id=family["family_id"],
+        admitted_member_ids=restriction["retained_member_ids"],
+        excluded_member_ids=restriction["excluded_member_ids"],
+        outcome=restriction["outcome"],
+        output_family_id=restriction["result_family"]["family_id"],
+        message=restriction["message"],
+    )
+    history = build_transformation_history(
+        family["family_id"], (step,), context="compiler", inquiry="topology"
+    )
+    assert history["terminal_outcome"] == "success"
+    assert history["residual_family_id"] == restriction["result_family"]["family_id"]
