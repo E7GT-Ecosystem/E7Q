@@ -318,14 +318,16 @@
     },
     {
       "id": "ir_candidate_family",
-      "scope": "Q-A1 finite dependence-aware candidate factors, deterministic identities, explicit restriction and source-preserving inventory views",
+      "scope": "Q-A1 finite dependence-aware candidate factors plus additive bounded restriction outcomes, canonical residual identity and explicit view preservation/loss/source return",
       "test_file": "tests/test_ir_candidate_family.py",
       "implementation": [
         "src/e7q/ir/candidate_family.py",
-        "schemas/e7q-ir-candidate-family-v0alpha1.schema.json"
+        "schemas/e7q-ir-candidate-family-v0alpha1.schema.json",
+        "schemas/e7q-ir-candidate-restriction-v0alpha2.schema.json",
+        "schemas/e7q-ir-candidate-family-view-v0alpha2.schema.json"
       ],
       "limits": "No quantum semantics, feasibility, optimality, Pack/Quote, identification, realization or F2 promotion.",
-      "next_gate": "Q-A2 ordered transformation history and typed view/identify/restrict integration",
+      "next_gate": "Q-A3 residual-family realisation after Q-A2 interoperability revalidation",
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {

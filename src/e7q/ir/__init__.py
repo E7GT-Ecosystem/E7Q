@@ -3,8 +3,10 @@
 from .conformance import validate_graph
 from .candidate_family import (
     CandidateFamilyError,
+    assess_candidate_restriction,
     build_candidate_family,
     candidate_family_view,
+    candidate_family_view_v2,
     factor,
     restrict_candidate_family,
     validate_candidate_family,
@@ -24,10 +26,12 @@ from .workflow import build_external_circuit_graph, load_external_circuit_manife
 __all__ = [
     "build_artifact",
     "build_candidate_family",
+    "assess_candidate_restriction",
     "build_external_circuit_graph",
     "build_graph",
     "build_relation",
     "candidate_family_view",
+    "candidate_family_view_v2",
     "CandidateFamilyError",
     "factor",
     "load_external_circuit_manifest",

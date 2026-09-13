@@ -1,14 +1,22 @@
 # E7Q-IR Build Plan and AI Engineering Handoff
 
-**Plan version:** 0.15
+**Plan version:** 0.16
 
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.  
 **Direction:** `E7-ECO-DIR-2026-09-12.2`.
 
 **Current inspected baseline (2026-09-13):** `main` at
-`55cbf8a6b147d6a56d7c09665078155eef3693a0`. Q-A0 and Q-A1 are retained.
-This revision adds Q-A2's bounded order-sensitive transformation-history
-contract without changing native quantum execution, F0–F2 or existing IDs.
+`4a078fb9590e3d936b314dccd09724fdc26b383d`. Q-A0 and the Q-A1 family are
+retained. This revision corrects Q-A1 restriction/view semantics additively and
+revalidates the published Q-A2 history contract without changing native quantum
+execution, F0–F2 or existing IDs.
+
+**Revision 0.16:** adds `candidate-restriction/v0alpha2` and
+`candidate-family-view/v0alpha2`. Restriction criteria are named, versioned and
+byte-bounded; success, empty, invalid input and resource refusal are distinct;
+only success publishes a canonical residual-family identity. Views declare
+preservation, loss and exact source return. A compatibility test proves Q-A2
+chains the successful residual identity. The v0alpha1 interfaces remain stable.
 
 **Revision 0.15:** adds `e7q.ir.transformation-history/v0alpha1`. Every step
 binds its rule edition, exact input/output family chain, admitted domain,
@@ -142,11 +150,12 @@ The Q-A1 gate remains falsifiable if the contract invents independence or
 weakens existing deterministic replay and bounded-claim behavior. The current
 fixtures reject those conditions. No F2 or quantum-semantic promotion follows.
 
-**Next material package: Q-A2 ordered transformation history.** Bind each
-transformation to its declared domain, order, preservation/loss contract and
-typed `view`, `identify` or `restrict` effect. Identical final circuit bytes
-must not erase distinct histories, and a history result must remain linked to
-the source family without asserting executable feasibility or equivalence.
+**Q-A2 ordered transformation history is implemented and revalidated after the
+Q-A1 correction.** Each transformation binds its declared domain, order,
+preservation/loss contract and typed `view`, `identify` or `restrict` effect.
+Identical final circuit bytes do not erase distinct histories. The next material
+package is Q-A3 residual-family realisation; it must not assert executable
+feasibility or equivalence.
 
 ## 1. Purpose
 

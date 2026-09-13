@@ -7,8 +7,10 @@ import pytest
 
 from e7q.ir.candidate_family import (
     CandidateFamilyError,
+    assess_candidate_restriction,
     build_candidate_family,
     candidate_family_view,
+    candidate_family_view_v2,
     factor,
     restrict_candidate_family,
     validate_candidate_family,
@@ -103,6 +105,89 @@ def test_view_preserves_source_link_and_does_not_prune():
     assert view["operation"] == "view"
     assert view["source_family_id"] == family["family_id"]
     assert view["member_ids"] == [family["members"][0]["member_id"]]
+    assert "retained_member_ids" not in view
+
+
+def _two_member_family():
+    return build_candidate_family(
+        SOURCE,
+        (factor("layout", ("layout",), ({"layout": "a"}, {"layout": "b"})),),
+    )
+
+
+def test_v2_restriction_has_versioned_bounded_criterion_and_source_return():
+    family = _two_member_family()
+    keep = family["members"][0]["member_id"]
+    result = assess_candidate_restriction(
+        family,
+        (keep,),
+        criterion_id="topology-filter",
+        criterion_edition="2026-09-13.1",
+        criterion_text="retain members admitted by the declared topology",
+    )
+    assert result["outcome"] == "success"
+    assert result["criterion"]["edition"] == "2026-09-13.1"
+    assert result["result_family"]["family_id"].startswith("sha256:")
+    assert result["source_return"] == {
+        "required": True,
+        "source_family_id": family["family_id"],
+    }
+    assert len(result["excluded_member_ids"]) == 1
+
+
+def test_v2_empty_is_distinct_from_invalid_input():
+    family = _two_member_family()
+    empty = assess_candidate_restriction(
+        family, (), criterion_id="none", criterion_edition="1", criterion_text="retain none"
+    )
+    invalid = assess_candidate_restriction(
+        family,
+        ("sha256:" + "f" * 64,),
+        criterion_id="unknown",
+        criterion_edition="1",
+        criterion_text="retain an unknown member",
+    )
+    assert empty["outcome"] == "empty"
+    assert empty["retained_member_ids"] == []
+    assert empty["result_family"] is None
+    assert invalid["outcome"] == "invalid_input"
+
+
+def test_v2_resource_limit_is_not_collapsed_to_empty_or_invalid():
+    family = _two_member_family()
+    too_many = ("sha256:" + f"{index:064x}" for index in range(65_537))
+    result = assess_candidate_restriction(
+        family,
+        too_many,
+        criterion_id="bounded",
+        criterion_edition="1",
+        criterion_text="exercise the declared input bound",
+    )
+    assert result["outcome"] == "resource_limit"
+    assert result["retained_member_ids"] == []
+    assert result["result_family"] is None
+
+
+def test_v2_criterion_text_is_bounded():
+    family = _two_member_family()
+    result = assess_candidate_restriction(
+        family,
+        (),
+        criterion_id="oversized",
+        criterion_edition="1",
+        criterion_text="x" * 1_025,
+    )
+    assert result["outcome"] == "invalid_input"
+    assert result["criterion"] is None
+
+
+def test_v2_view_declares_loss_and_source_return_without_restriction():
+    family = _two_member_family()
+    view = candidate_family_view_v2(family)
+    assert view["operation"] == "view"
+    assert view["preserves"]
+    assert view["loses"]
+    assert view["source_return"]["source_family_id"] == family["family_id"]
     assert "retained_member_ids" not in view
 
 
