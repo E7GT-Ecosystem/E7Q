@@ -1,6 +1,6 @@
 # E7Q and E7Q-IR kernel alignment
 
-Direction: `E7-ECO-DIR-2026-09-12.2`  
+Direction: `E7-ECO-DIR-2026-09-13.1`  
 Baseline reviewed: main `48a3999bb2068a8666eae7bec05c0c070665a3b7`
 Status: `ALIGNED_THROUGH_Q_A2` after the additive Q-A1 restriction/view
 correction and Q-A2 interoperability revalidation. Q-A3 realisation and Q-A4
@@ -13,7 +13,7 @@ no member.
 
 ## Source and profiles
 
-- Kernel: E7G-T v0.12-experimental, revision CFS1, commit `b7a30b2d56375a5a0646e0c1cab4f621b4de99ca`.
+- Kernel: E7G-T v0.12.1-experimental, revision RGP2, commit `fc4cdf95c6434e653efbe017587aab60b4b2a86c`.
 - EEC-Q/0.1: `experimental` for formal construction semantics only.
 - SF/0.1: `experimental` for circuit/layout/target/calibration candidate families.
 - CFS/0.1: `experimental` for an SF-outside/product-state-inside planning adapter.
