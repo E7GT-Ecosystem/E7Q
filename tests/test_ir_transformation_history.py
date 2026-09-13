@@ -5,6 +5,8 @@ from pathlib import Path
 
 import pytest
 
+from e7q.ir.candidate_family import assess_candidate_restriction, build_candidate_family, factor
+
 from e7q.ir.transformation_history import (
     TransformationHistoryError,
     build_transformation_history,
@@ -117,3 +119,35 @@ def test_restriction_discloses_exclusion():
         outcome="success", output_family_id=D2, loses=("excluded candidate",), message="filtered",
     )
     assert result["domain"]["excluded_member_ids"] == [M2]
+
+
+def test_q_a2_consumes_corrected_q_a1_residual_family_identity():
+    family = build_candidate_family(
+        D1,
+        (factor("layout", ("layout",), ({"layout": "a"}, {"layout": "b"})),),
+    )
+    retained = family["members"][0]["member_id"]
+    restriction = assess_candidate_restriction(
+        family,
+        (retained,),
+        criterion_id="e7q.topology-filter",
+        criterion_edition="2026-09-13.1",
+        criterion_text="retain the declared topology domain",
+    )
+    step = transformation_step(
+        index=0,
+        kind="restrict",
+        rule_id=restriction["criterion"]["id"],
+        rule_edition=restriction["criterion"]["edition"],
+        input_family_id=family["family_id"],
+        admitted_member_ids=restriction["retained_member_ids"],
+        excluded_member_ids=restriction["excluded_member_ids"],
+        outcome=restriction["outcome"],
+        output_family_id=restriction["result_family"]["family_id"],
+        loses=("excluded candidates",),
+        message=restriction["message"],
+    )
+    history = build_transformation_history(
+        family["family_id"], (step,), context="compiler", inquiry="topology"
+    )
+    assert history["residual_family_id"] == restriction["result_family"]["family_id"]

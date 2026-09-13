@@ -16,6 +16,8 @@ from .canonical import digest, identified_digest
 
 
 SCHEMA = "e7q.ir.candidate-family/v0alpha1"
+RESTRICTION_SCHEMA = "e7q.ir.candidate-restriction/v0alpha2"
+VIEW_SCHEMA = "e7q.ir.candidate-family-view/v0alpha2"
 _DIGEST = re.compile(r"^sha256:[0-9a-f]{64}$")
 _NAME = re.compile(r"^[A-Za-z][A-Za-z0-9_.-]{0,127}$")
 MAX_FACTORS = 32
@@ -23,6 +25,7 @@ MAX_DIMENSIONS_PER_FACTOR = 32
 MAX_ALTERNATIVES_PER_FACTOR = 256
 MAX_MEMBERS = 65_536
 MAX_METADATA_ITEMS = 128
+MAX_CRITERION_TEXT = 1_024
 
 
 class CandidateFamilyError(ValueError):
@@ -213,6 +216,131 @@ def candidate_family_view(family: dict[str, Any]) -> dict[str, Any]:
             dimension for item in family["factors"] for dimension in item["dimensions"]
         ),
         "member_ids": [item["member_id"] for item in family["members"]],
+        "limitations": ["This inventory view does not select, identify, or restrict candidates."],
+    }
+    value["view_id"] = digest(value)
+    return value
+
+
+def assess_candidate_restriction(
+    family: dict[str, Any],
+    retained_member_ids: Iterable[str],
+    *,
+    criterion_id: str,
+    criterion_edition: str,
+    criterion_text: str,
+) -> dict[str, Any]:
+    """Assess a bounded restriction and retain non-success as typed evidence.
+
+    This additive v0alpha2 operation does not change the v0alpha1 family or
+    restriction identities.  In particular, an empty result is not invalid
+    input and a resource refusal is not collapsed into either state.
+    """
+    source_family_id = family.get("family_id") if isinstance(family, dict) else None
+    criterion: dict[str, str] | None = None
+    outcome = "success"
+    message = "Restriction retained a non-empty subset of the source family."
+    retained: list[str] = []
+    excluded: list[str] = []
+    result_family: dict[str, Any] | None = None
+    try:
+        validate_candidate_family(family)
+        if not isinstance(criterion_id, str) or not _NAME.fullmatch(criterion_id):
+            raise CandidateFamilyError("restriction criterion id is invalid")
+        if (
+            not isinstance(criterion_edition, str)
+            or not criterion_edition
+            or len(criterion_edition.encode("utf-8")) > MAX_CRITERION_TEXT
+        ):
+            raise CandidateFamilyError("restriction criterion edition is invalid or too large")
+        if (
+            not isinstance(criterion_text, str)
+            or not criterion_text
+            or len(criterion_text.encode("utf-8")) > MAX_CRITERION_TEXT
+        ):
+            raise CandidateFamilyError("restriction criterion text is invalid or too large")
+        criterion = {
+            "id": criterion_id,
+            "edition": criterion_edition,
+            "text": criterion_text,
+        }
+        raw = _bounded_tuple(retained_member_ids, MAX_MEMBERS, "retained_member_ids")
+        if any(not isinstance(item, str) or not _DIGEST.fullmatch(item) for item in raw):
+            raise CandidateFamilyError("retained_member_ids must contain SHA-256 identities")
+        if len(set(raw)) != len(raw):
+            raise CandidateFamilyError("retained_member_ids must not contain duplicates")
+        known = {item["member_id"] for item in family["members"]}
+        if not set(raw).issubset(known):
+            raise CandidateFamilyError("retained_member_ids contain unknown members")
+        retained = sorted(raw)
+        excluded = sorted(known - set(retained))
+        if not retained:
+            outcome = "empty"
+            message = "The valid bounded criterion retained no source-family members."
+        else:
+            result_family = {
+                "schema": "e7q.ir.candidate-family-subset/v0alpha1",
+                "source_family_id": family["family_id"],
+                "member_ids": retained,
+            }
+            result_family["family_id"] = digest(result_family)
+    except CandidateFamilyError as exc:
+        if "exceeds the supported bound" in str(exc):
+            outcome = "resource_limit"
+        else:
+            outcome = "invalid_input"
+        message = str(exc)
+
+    value: dict[str, Any] = {
+        "schema": RESTRICTION_SCHEMA,
+        "operation": "restrict",
+        "source_family_id": source_family_id if isinstance(source_family_id, str) else None,
+        "criterion": criterion,
+        "outcome": outcome,
+        "retained_member_ids": retained,
+        "excluded_member_ids": excluded,
+        "result_family": result_family,
+        "source_return": {
+            "required": True,
+            "source_family_id": source_family_id if isinstance(source_family_id, str) else None,
+        },
+        "message": message,
+        "limitations": [
+            "Restriction records exclusion; it is not a source-preserving view.",
+            "No feasibility, optimality, or quantum-semantic conclusion is established.",
+        ],
+    }
+    value["restriction_id"] = digest(value)
+    return value
+
+
+def candidate_family_view_v2(family: dict[str, Any]) -> dict[str, Any]:
+    """Return a source-linked inventory with explicit preservation and loss."""
+    validate_candidate_family(family)
+    value: dict[str, Any] = {
+        "schema": VIEW_SCHEMA,
+        "operation": "view",
+        "source_family_id": family["family_id"],
+        "factor_count": len(family["factors"]),
+        "member_count": len(family["members"]),
+        "dimensions": sorted(
+            dimension for item in family["factors"] for dimension in item["dimensions"]
+        ),
+        "member_ids": [item["member_id"] for item in family["members"]],
+        "preserves": [
+            "factor and member inventory",
+            "member identities",
+            "source-family linkage",
+        ],
+        "loses": [
+            "alternative bindings",
+            "assumption and limitation text",
+            "factor correlation structure beyond the listed inventory",
+        ],
+        "source_return": {
+            "required": True,
+            "source_family_id": family["family_id"],
+        },
         "limitations": ["This inventory view does not select, identify, or restrict candidates."],
     }
     value["view_id"] = digest(value)

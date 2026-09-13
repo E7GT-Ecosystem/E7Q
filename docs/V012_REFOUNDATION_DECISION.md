@@ -3,7 +3,15 @@
 Repository: `E7GT-Ecosystem/E7Q`  
 Role: quantum verification and first direct executable candidate  
 Inspected main: `47fd2d8461f55bb55bd9f3d0fe3e5d226d089225`  
-Decision status: `RETAIN_NATIVE_REBUILD_PLANNING_LANE`
+Decision status: `RETAIN_NATIVE_SELECTIVE_ADAPTATION`
+
+## Record precedence
+
+This is a supplemental implementation decision. It does not replace the
+repository Gate 1A authority in `docs/KERNEL_ALIGNMENT.md`,
+`docs/e7q-ir/V012_COMPONENT_AUDIT.md`, or `docs/e7q-ir/BUILD_PLAN.md`. Where
+wording differs, those repository-local records and the portfolio direction
+govern; this record supplies only the inspected snapshot and bounded rationale.
 
 ## Governing sources
 
@@ -47,7 +55,13 @@ Retain all verified quantum semantics, F0–F2 criteria, receipts, resource isol
 
 ## Next bounded package
 
-Q-A1 is already implemented by `e7q.ir.candidate-family/v0alpha1` on the inspected baseline. Preserve it. Make Q-A2 ordered transformation history the next architecture package, followed by Q-A3 declared realisation and Q-A4 receipt binding. Release-wide H10 may continue only as bounded hardening; do not add unrelated capability tracks first.
+Q-A1 family construction was already implemented by
+`e7q.ir.candidate-family/v0alpha1`. Its restriction/view semantics required an
+additive correction before Q-A2 could be accepted: versioned bounded criteria,
+distinct empty/invalid/resource outcomes, a canonical residual-family identity,
+and explicit view loss/source return. After those compatibility fixtures pass,
+revalidate the already-published Q-A2 history integration, then proceed to Q-A3
+declared realisation and Q-A4 receipt binding.
 
 ## Falsification and stop gate
 
