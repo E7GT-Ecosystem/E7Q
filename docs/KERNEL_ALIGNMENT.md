@@ -17,6 +17,7 @@ no member.
 - EEC-Q/0.1: `experimental` for formal construction semantics only.
 - SF/0.1: `experimental` for circuit/layout/target/calibration candidate families.
 - CFS/0.1: `experimental` for an SF-outside/product-state-inside planning adapter.
+- RGP/0.1: `experimental` for forward-compatible Q-A4 layer and generation-edge receipt binding; not active in Q-A1/Q-A2.
 
 EEC-Q rational coefficients are not quantum amplitudes or probabilities. Physical state, channel, measurement and backend semantics remain in E7Q's quantum layer.
 
