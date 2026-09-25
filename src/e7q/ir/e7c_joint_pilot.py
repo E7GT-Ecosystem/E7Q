@@ -79,9 +79,13 @@ def _rows(source: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def map_joint(source: dict[str, Any], *, admit_source: Callable[[dict[str, Any]], Any]) -> tuple[dict[str, Any], dict[str, Any]]:
-    """Validate this narrower pilot domain; preserve source row and Q-A1 orders."""
-    # The pinned E7C admission is required; our narrow mapping is not a
-    # replacement for canonical Joint, edition, or resource admission.
+    """Map a Joint given a trusted pinned E7C admission callback.
+
+    The generic callable parameter is a caller premise, not a mechanism for
+    authenticating E7C code. The executable runner checks its checkout SHA and
+    passes the actual selected E7C ``admit`` implementation.
+    """
+    # Our narrow mapping is not a replacement for E7C canonical admission.
     if admit_source is None:
         raise MappingAdmission("pinned E7C admission is required")
     admit_source(source)
