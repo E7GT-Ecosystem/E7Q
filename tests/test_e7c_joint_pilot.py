@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import copy
 from fractions import Fraction
+import importlib.util
 import os
 from pathlib import Path
 
@@ -10,7 +11,11 @@ import pytest
 
 from e7q.ir.canonical import canonical_bytes
 from e7q.ir.e7c_joint_pilot import MappingAdmission, map_joint, validate_mapping
-from tools.run_e7c_joint_pilot import import_e7c, make_joint, output_cases
+_runner_file = Path(__file__).resolve().parents[1] / "tools" / "run_e7c_joint_pilot.py"
+_runner_spec = importlib.util.spec_from_file_location("e7q_joint_pilot_runner", _runner_file)
+_runner = importlib.util.module_from_spec(_runner_spec)
+_runner_spec.loader.exec_module(_runner)
+import_e7c, make_joint, output_cases = _runner.import_e7c, _runner.make_joint, _runner.output_cases
 
 
 @pytest.fixture(scope="module")

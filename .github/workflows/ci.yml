@@ -28,6 +28,6 @@ jobs:
           cache: pip
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -e ".[test]"
-      - run: pytest -q
+      - run: python -m pytest -q tests
         env:
           E7C_ROOT: ${{ github.workspace }}/pinned-e7c
