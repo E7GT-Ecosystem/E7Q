@@ -10,15 +10,15 @@ E7Q-IR owns candidate planning, ordered compiler transformations and receipts. E
 
 | v0.15 component | New-work posture | Native mapping / preservation | Adversarial or boundary gate |
 |---|---|---|---|
-| EEC-Q/0.1 | experimental planning | Formal rational construction only; keep correlated Joint rows and signed coefficients exact. Never treat them as quantum amplitudes or evidence weights. | Same marginals/different Joint tables must yield different candidate paths; invalid cancellation and zero/empty/failure remain distinct. |
-| SF/0.1 | experimental planning | Shared circuit/layout/target/calibration assignments and criterion-bound realisation. | Two dependent assignments must not become a four-row independent product; no-feasible outcome is typed. |
-| CFS/0.1 | experimental planning | SF-outside/EEC-inside only where a formal EEC state actually exists; native quantum state remains separate. | Reverse nesting and coefficient-to-measurement coercion rejected. |
-| RGP/0.2 | experimental design | Q-A4 may bind source, generation/transform edge, layer and exact receipt edition; no current /0.2 runtime claim. | Hosting differs from generation, SR0 locator differs from SR4 source-bearing encoding, rank differs from execution time. |
-| WPC-Core/0.2 | deferred candidate | A full compilation construction may have portions, relations and constraints independent of how per-pass artifacts encode it. | Constituted but unencoded whole; stale portion and pairwise-pass/global-fail compilation constraints. |
+| EEC-Q/0.1 | experimental | planning; Formal rational construction only; keep correlated Joint rows and signed coefficients exact. Never treat them as quantum amplitudes or evidence weights. | Same marginals/different Joint tables must yield different candidate paths; invalid cancellation and zero/empty/failure remain distinct. |
+| SF/0.1 | experimental | planning; Shared circuit/layout/target/calibration assignments and criterion-bound realisation. | Two dependent assignments must not become a four-row independent product; no-feasible outcome is typed. |
+| CFS/0.1 | experimental | planning; SF-outside/EEC-inside only where a formal EEC state actually exists; native quantum state remains separate. | Reverse nesting and coefficient-to-measurement coercion rejected. |
+| RGP/0.2 | experimental | design; Q-A4 may bind source, generation/transform edge, layer and exact receipt edition; no current /0.2 runtime claim. | Hosting differs from generation, SR0 locator differs from SR4 source-bearing encoding, rank differs from execution time. |
+| WPC-Core/0.2 | deferred | candidate; A full compilation construction may have portions, relations and constraints independent of how per-pass artifacts encode it. | Constituted but unencoded whole; stale portion and pairwise-pass/global-fail compilation constraints. |
 | WPC-Evolution/0.1 | deferred | An optimizer candidate is not a committed successor. | Uncommitted candidate cannot replace accepted compilation history. |
-| WPC-Distributed/0.1 | not_applicable / unsupported | No distributed WPC model declared by E7Q-IR. | Do not infer consensus from parallel backends. |
+| WPC-Distributed/0.1 | not_applicable | unsupported; No distributed WPC model declared by E7Q-IR. | Do not infer consensus from parallel backends. |
 | REC/0.1 | deferred | A future evidence receipt may separately track support/refutation, scope, time and replay; existing Proof-of-Path is not REC. | Signed coefficient or hash cannot turn an unsupported hardware claim into support. |
-| MSC/0.1 | deferred candidate | Potential typed comparisons among program, compiled circuit and hardware context require explicit carriers and common-codomain maps. | Link-wise compatibility must not be reported as a global executable mapping; resource limit is not incompatibility. |
+| MSC/0.1 | deferred | candidate; Potential typed comparisons among program, compiled circuit and hardware context require explicit carriers and common-codomain maps. | Link-wise compatibility must not be reported as a global executable mapping; resource limit is not incompatibility. |
 
 ## Ordered work and acceptance
 
