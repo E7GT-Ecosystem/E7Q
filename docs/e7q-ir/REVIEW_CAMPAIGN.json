@@ -317,6 +317,19 @@
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {
+      "id": "e7c_joint_pilot",
+      "scope": "Opt-in Q-A1 mapping with pinned E7C admission, source and independent nested/outer IR replay; two correlated inputs, exact rational table baseline, hostile mutations and separate IR package limits",
+      "test_file": "tests/test_e7c_joint_pilot.py",
+      "implementation": [
+        "src/e7q/ir/e7c_joint_pilot.py",
+        "tools/run_e7c_joint_pilot.py",
+        "docs/e7q-ir/SECOND_PRODUCT_JOINT_PILOT_EXECUTION.md"
+      ],
+      "limits": "Synthetic planning fixture and finite evidence only; E7C all-input code-to-Lean proof, independent review, provenance and real product workflow comparison remain open.",
+      "next_gate": "Adversarial semantic review and real workflow comparison against full correlated table",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
       "id": "ir_candidate_family",
       "scope": "Q-A1 finite dependence-aware candidate factors plus additive bounded restriction outcomes, canonical residual identity and explicit view preservation/loss/source return",
       "test_file": "tests/test_ir_candidate_family.py",
