@@ -120,6 +120,13 @@ def test_oracle_bytes_are_checked_against_the_frozen_sha256(tmp_path):
     loaded, checked_sha = load_oracle(value, path)
     assert loaded["terminal_status"] == "success"
     assert checked_sha == value["expected_result"]["sha256"]
+    oracle["retained"][0]["coefficient"] = 0.5
+    numeric_coefficient = json.dumps(oracle, sort_keys=True).encode()
+    value["expected_result"]["sha256"] = sha256(numeric_coefficient).hexdigest()
+    path.write_bytes(numeric_coefficient)
+    with pytest.raises(TaskFormatError, match="exact fraction string"):
+        load_oracle(value, path)
+    value["expected_result"]["sha256"] = sha256(raw).hexdigest()
     path.write_bytes(raw + b" ")
     with pytest.raises(TaskFormatError, match="do not match"):
         load_oracle(value, path)
