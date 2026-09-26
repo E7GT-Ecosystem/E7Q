@@ -1,7 +1,7 @@
 # Bounded quantum-view mathematics audit
 
-**Subject:** E7Q PR #81, bounded adapter `e7q.quantum-view/0alpha1`  
-**Audited source head:** `fe1795bfcdd072e41e02b193da6724df14474ff9`  
+**Subject:** E7Q PR #81, bounded adapter `e7q.quantum-view/0alpha1`
+**Audited source head:** `fe1795bfcdd072e41e02b193da6724df14474ff9`
 **Audit result:** the stated finite-qubit fixture calculations are correct under the assumptions below. One result-path under-report and one proof-wording overstatement were corrected in the successor head. This record is a bounded mathematical audit; it does not certify the package as “physics reviewed.”
 
 ## Assumptions and domain
