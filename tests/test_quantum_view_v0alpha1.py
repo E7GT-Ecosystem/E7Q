@@ -181,6 +181,12 @@ def test_views_and_fibres_enforce_aggregate_work_budget():
     assert fibre_result.status is Status.RESOURCE_LIMIT
 
 
+def test_fibre_rejects_an_unsupported_selected_context_before_search():
+    state = density_from_bloch_y(1)
+    malformed_view = (PredictedDistribution("W", ((1, Fraction(1, 2)), (-1, Fraction(1, 2)))),)
+    assert state_fibre((), ("W",), malformed_view).status is Status.UNSUPPORTED
+
+
 def test_invalid_physical_record_does_not_become_a_predicted_result():
     bad = PhysicalOutcomeRecord("", "", "", "X", 1, "", "")
     assert import_physical_record(bad).status is Status.INVALID_INPUT
