@@ -44,6 +44,8 @@ def test_accepts_exact_signed_rational_rows_and_labels_result_as_real_task():
     scope = task_scope_limit(document)
     assert "real-workflow task" in scope
     assert "synthetic" not in scope
+    # Inherited run_case limitation text is overridden for a real task input.
+    assert scope == "Finite real-workflow task 'private-task-01' as declared in the frozen input; one-task machine replay only, with no human reviewer timing or decision."
 
 
 def test_rejects_synthetic_task_label_instead_of_treating_it_as_real():
