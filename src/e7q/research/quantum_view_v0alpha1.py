@@ -476,11 +476,14 @@ def sharp_xz_obstruction_certificate() -> SharpXZObstructionCertificate:
 def verify_sharp_xz_obstruction(certificate: SharpXZObstructionCertificate) -> bool:
     """Check the exact 2D projector-overlap certificate for sharp Pauli X/Z.
 
-    For positive effects under a sharp marginal, each joint effect is bounded
-    above by its corresponding rank-one projector. The checked overlap 1/2
-    proves each X/Z projector pair has distinct one-dimensional ranges, so
-    their range intersection is zero. Thus every joint effect is zero, which
-    cannot sum to I.
+    This checks the exact projector-overlap data and certificate fields. The
+    support-intersection lemma is an elementary mathematical argument stated
+    here and in the audit record; this function does not formally verify that
+    lemma. For positive effects under a sharp marginal, each joint effect is
+    bounded above by its corresponding rank-one projector. The checked
+    overlap 1/2 makes each X/Z projector pair have distinct one-dimensional
+    ranges, so their range intersection is zero. Thus every joint effect is
+    zero, which cannot sum to I.
     """
     if not isinstance(certificate, SharpXZObstructionCertificate):
         return False
@@ -587,15 +590,26 @@ def check_joint_device_xz(
                 return Result(
                     Status.INCOMPATIBLE,
                     certificate,
-                    reason="candidate is a valid POVM but misses the sharp marginals; the independent sharp-projector obstruction certificate verifies incompatibility",
+                    reason="candidate is a valid POVM but misses the sharp marginals; exact projector overlaps are checked, and the stated support-intersection argument yields incompatibility",
                     operations=required,
                 )
             return Result(Status.UNDETERMINED, reason="candidate misses target marginals and obstruction verification did not complete", operations=required)
-        return Result(Status.UNDETERMINED, reason="valid candidate POVM has wrong target marginals; no conclusion about other parents", operations=required)
+        if eta == Fraction(1, 2):
+            effects = _parent_effects(eta)
+            constructed_checks = _verify_parent(eta, effects)
+            if all(constructed_checks):
+                return Result(
+                    Status.SUCCESS,
+                    VerifiedParentPOVM(eta, effects, *constructed_checks),
+                    reason="supplied candidate misses the target marginals; a separate constructed parent passed exact positivity, normalization, and both marginal checks",
+                    operations=required,
+                )
+            return Result(Status.UNDETERMINED, reason="candidate misses target marginals and constructed parent did not verify", operations=required)
+        return Result(Status.UNDETERMINED, reason="valid candidate POVM has wrong target marginals; no checked parent or obstruction is available for this eta", operations=required)
     if eta == 1:
         certificate = sharp_xz_obstruction_certificate()
         if verify_sharp_xz_obstruction(certificate):
-            return Result(Status.INCOMPATIBLE, certificate, reason="exact sharp-projector obstruction certificate verified", operations=required)
+            return Result(Status.INCOMPATIBLE, certificate, reason="exact projector-overlap data checked; the stated support-intersection argument yields incompatibility", operations=required)
         return Result(Status.UNDETERMINED, reason="obstruction certificate verification did not complete", operations=required)
     if eta == Fraction(1, 2):
         effects = _parent_effects(eta)
