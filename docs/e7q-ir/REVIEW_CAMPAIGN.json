@@ -4,7 +4,7 @@
   "capabilities": [
     {
       "id": "artifacts",
-      "scope": "artifacts \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "artifacts — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_artifacts.py",
       "implementation": [
         "src/e7q/artifacts.py",
@@ -16,7 +16,7 @@
     },
     {
       "id": "assessment",
-      "scope": "assessment \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "assessment — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_assessment.py",
       "implementation": [
         "src/e7q/assessment.py",
@@ -29,7 +29,7 @@
     },
     {
       "id": "bell",
-      "scope": "bell \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "bell — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_bell.py",
       "implementation": [
         "src/e7q/reference.py"
@@ -40,7 +40,7 @@
     },
     {
       "id": "calibration_ingestion",
-      "scope": "calibration ingestion \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "calibration ingestion — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_calibration_ingestion.py",
       "implementation": [
         "src/e7q/cli.py",
@@ -54,7 +54,7 @@
     },
     {
       "id": "calibration_selection",
-      "scope": "calibration selection \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "calibration selection — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_calibration_selection.py",
       "implementation": [
         "src/e7q/calibration.py",
@@ -67,7 +67,7 @@
     },
     {
       "id": "campaigns",
-      "scope": "campaigns \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "campaigns — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_campaigns.py",
       "implementation": [
         "src/e7q/campaigns.py",
@@ -82,7 +82,7 @@
     },
     {
       "id": "channel_equivalence",
-      "scope": "channel equivalence \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "channel equivalence — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_channel_equivalence.py",
       "implementation": [
         "src/e7q/cli.py",
@@ -94,7 +94,7 @@
     },
     {
       "id": "composition_diagnostics",
-      "scope": "composition diagnostics \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "composition diagnostics — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_composition_diagnostics.py",
       "implementation": [
         "src/e7q/language.py"
@@ -105,7 +105,7 @@
     },
     {
       "id": "deterministic_assessment",
-      "scope": "deterministic assessment \u2014 only the behaviours asserted in the linked test cases; receipt/reference ordering conflict rejection and non-palindromic normalization",
+      "scope": "deterministic assessment — only the behaviours asserted in the linked test cases; receipt/reference ordering conflict rejection and non-palindromic normalization",
       "test_file": "tests/test_deterministic_assessment.py",
       "implementation": [
         "src/e7q/artifacts.py",
@@ -119,7 +119,7 @@
     },
     {
       "id": "drift",
-      "scope": "drift \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "drift — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_drift.py",
       "implementation": [
         "src/e7q/cli.py",
@@ -134,7 +134,7 @@
     },
     {
       "id": "dynamic",
-      "scope": "dynamic \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "dynamic — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_dynamic.py",
       "implementation": [
         "src/e7q/language.py"
@@ -145,7 +145,7 @@
     },
     {
       "id": "e7q_ir",
-      "scope": "e7q ir \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "e7q ir — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_e7q_ir.py",
       "implementation": [
         "src/e7q/cli.py",
@@ -163,7 +163,7 @@
     },
     {
       "id": "e7q_ir_channel",
-      "scope": "e7q ir channel \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "e7q ir channel — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_e7q_ir_channel.py",
       "implementation": [
         "src/e7q/ir/channel.py",
@@ -178,7 +178,7 @@
     },
     {
       "id": "e7q_ir_global_phase",
-      "scope": "e7q ir global phase \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "e7q ir global phase — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_e7q_ir_global_phase.py",
       "implementation": [
         "src/e7q/ir/conformance.py",
@@ -190,7 +190,7 @@
     },
     {
       "id": "e7q_ir_identity",
-      "scope": "e7q ir identity \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "e7q ir identity — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_e7q_ir_identity.py",
       "implementation": [
         "src/e7q/ir/canonical.py",
@@ -205,7 +205,7 @@
     },
     {
       "id": "e7q_ir_measurement",
-      "scope": "e7q ir measurement \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "e7q ir measurement — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_e7q_ir_measurement.py",
       "implementation": [
         "src/e7q/ir/conformance.py",
@@ -217,7 +217,7 @@
     },
     {
       "id": "e7q_ir_real_unitary",
-      "scope": "e7q ir real unitary \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "e7q ir real unitary — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_e7q_ir_real_unitary.py",
       "implementation": [
         "src/e7q/ir/conformance.py",
@@ -233,7 +233,7 @@
     },
     {
       "id": "e7q_ir_unitary",
-      "scope": "e7q ir unitary \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "e7q ir unitary — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_e7q_ir_unitary.py",
       "implementation": [
         "src/e7q/ir/conformance.py",
@@ -248,7 +248,7 @@
     },
     {
       "id": "equivalence",
-      "scope": "equivalence \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "equivalence — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_equivalence.py",
       "implementation": [
         "src/e7q/cli.py",
@@ -260,7 +260,7 @@
     },
     {
       "id": "execution_bundles",
-      "scope": "execution bundles \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "execution bundles — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_execution_bundles.py",
       "implementation": [
         "src/e7q/bundles.py",
@@ -274,7 +274,7 @@
     },
     {
       "id": "execution_results",
-      "scope": "execution results \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "execution results — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_execution_results.py",
       "implementation": [
         "src/e7q/cli.py",
@@ -289,7 +289,7 @@
     },
     {
       "id": "experiments",
-      "scope": "experiments \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "experiments — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_experiments.py",
       "implementation": [
         "src/e7q/artifacts.py",
@@ -328,6 +328,18 @@
       "limits": "Synthetic planning fixture and finite evidence only; E7C all-input code-to-Lean proof, independent review, provenance and real product workflow comparison remain open.",
       "next_gate": "Adversarial semantic review and real workflow comparison against full correlated table",
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "joint_visible_effect_reviewer_protocol",
+      "scope": "bounded real-task replay and reviewer-session protocol comparing the Joint path, a competent full correlated table, and a deliberately lossy marginal reconstruction",
+      "test_file": "tests/test_joint_visible_effect_task.py",
+      "implementation": [
+        "tools/run_joint_visible_effect_review.py",
+        "docs/e7q-ir/JOINT_VISIBLE_EFFECT_REVIEW_PROTOCOL.md",
+        "docs/e7q-ir/reviewer-protocol/JOINT_VISIBLE_EFFECT_SESSION_RECORD_TEMPLATE.md"
+      ],
+      "limits": "The runner accepts only sanitized task carriers representable by the pinned L0/L1 by T0/T1 mapping and emits machine replay/baseline results; it does not record or infer human decisions, effort, errors, reasons, general product improvement, or adoption. No independent real task or reviewer session is currently supplied.",
+      "next_gate": "Run one independently supplied real reviewer task with the exact pinned E7C source and an independent assessor; complete the session form, including a possible no-advantage result, before any adoption claim."
     },
     {
       "id": "ir_candidate_family",
@@ -398,7 +410,7 @@
     },
     {
       "id": "ir_qcec",
-      "scope": "optional MQT QCEC adapter \u2014 explicit tolerance-bearing numerical exact/global-phase criteria, spawned process isolation, enforced parent wall deadlines, supported POSIX memory limits, conservative failure mapping and bounded 25+ qubit corpus",
+      "scope": "optional MQT QCEC adapter — explicit tolerance-bearing numerical exact/global-phase criteria, spawned process isolation, enforced parent wall deadlines, supported POSIX memory limits, conservative failure mapping and bounded 25+ qubit corpus",
       "test_file": "tests/test_ir_qcec.py",
       "implementation": [
         "src/e7q/ir/qcec.py",
@@ -454,7 +466,7 @@
     },
     {
       "id": "ir_qcec_external_workflow",
-      "scope": "external two-file QCEC evidence workflow \u2014 byte-preserved sources, separate bounded OpenQASM 2 representations, isolated numerical assessment, enforceable-limit metadata and criterion-bounded claim support",
+      "scope": "external two-file QCEC evidence workflow — byte-preserved sources, separate bounded OpenQASM 2 representations, isolated numerical assessment, enforceable-limit metadata and criterion-bounded claim support",
       "test_file": "tests/test_ir_qcec_workflow.py",
       "implementation": [
         "src/e7q/ir/qcec_workflow.py",
@@ -469,7 +481,7 @@
     },
     {
       "id": "ir_native_external_qcec_workflow",
-      "scope": "bounded native E7Q to external OpenQASM 2 QCEC comparison \u2014 byte-preserved independent sources, admitted static noiseless common subset, explicit terminal-measurement projection loss, isolated criterion-bound assessment and preserved native Proof-of-Path",
+      "scope": "bounded native E7Q to external OpenQASM 2 QCEC comparison — byte-preserved independent sources, admitted static noiseless common subset, explicit terminal-measurement projection loss, isolated criterion-bound assessment and preserved native Proof-of-Path",
       "test_file": "tests/test_ir_native_qcec_workflow.py",
       "implementation": [
         "src/e7q/ir/native_qcec_workflow.py",
@@ -483,7 +495,7 @@
     },
     {
       "id": "ir_compiler_proof_workflow",
-      "scope": "typed E7Q-IR conversion of the existing topology-reference compiler Proof-of-Path \u2014 preserved native source and original proof, explicit request context, ordered routing/SWAP/layout evidence, independent source/compiled identities, isolated numerical QCEC assessment and bounded claim",
+      "scope": "typed E7Q-IR conversion of the existing topology-reference compiler Proof-of-Path — preserved native source and original proof, explicit request context, ordered routing/SWAP/layout evidence, independent source/compiled identities, isolated numerical QCEC assessment and bounded claim",
       "test_file": "tests/test_ir_compiler_workflow.py",
       "implementation": [
         "src/e7q/ir/compiler_workflow.py",
@@ -499,7 +511,7 @@
     },
     {
       "id": "ir_legacy_receipt_workflow",
-      "scope": "typed offline mapping of existing execution-bundle, supplied execution-result and supplied execution-receipt files \u2014 independent byte preservation, intent/event/observation separation, explicit count ordering, existing build_execution_receipt recomputation, field-by-field proof comparison and bounded consistency claim",
+      "scope": "typed offline mapping of existing execution-bundle, supplied execution-result and supplied execution-receipt files — independent byte preservation, intent/event/observation separation, explicit count ordering, existing build_execution_receipt recomputation, field-by-field proof comparison and bounded consistency claim",
       "test_file": "tests/test_ir_legacy_receipt_workflow.py",
       "implementation": [
         "src/e7q/ir/legacy_receipt_workflow.py",
@@ -520,7 +532,7 @@
     },
     {
       "id": "language",
-      "scope": "language \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "language — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_language.py",
       "implementation": [
         "src/e7q/language.py"
@@ -531,7 +543,7 @@
     },
     {
       "id": "noise_backend",
-      "scope": "noise backend \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "noise backend — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_noise_backend.py",
       "implementation": [
         "src/e7q/language.py"
@@ -542,7 +554,7 @@
     },
     {
       "id": "observations",
-      "scope": "observations \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "observations — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_observations.py",
       "implementation": [
         "src/e7q/observations.py"
@@ -553,7 +565,7 @@
     },
     {
       "id": "openqasm2",
-      "scope": "openqasm2 \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "openqasm2 — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_openqasm2.py",
       "implementation": [
         "src/e7q/artifacts.py",
@@ -567,7 +579,7 @@
     },
     {
       "id": "orientation",
-      "scope": "orientation \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "orientation — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_orientation.py",
       "implementation": [
         "src/e7q/orientation.py"
@@ -578,7 +590,7 @@
     },
     {
       "id": "qec_syndrome_pilot",
-      "scope": "qec syndrome pilot \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "qec syndrome pilot — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_qec_syndrome_pilot.py",
       "implementation": [
         "src/e7q/cli.py",
@@ -591,7 +603,7 @@
     },
     {
       "id": "resource_planning",
-      "scope": "resource planning \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "resource planning — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_resource_planning.py",
       "implementation": [
         "src/e7q/cli.py",
@@ -604,7 +616,7 @@
     },
     {
       "id": "review_campaign",
-      "scope": "review campaign \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "review campaign — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_review_campaign.py",
       "implementation": [
         "scripts/review_campaign.py"
@@ -615,7 +627,7 @@
     },
     {
       "id": "support",
-      "scope": "support \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "support — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_support.py",
       "implementation": [
         "src/e7q/support.py"
@@ -626,7 +638,7 @@
     },
     {
       "id": "temporal",
-      "scope": "temporal \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "temporal — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_temporal.py",
       "implementation": [
         "src/e7q/temporal.py"
@@ -637,7 +649,7 @@
     },
     {
       "id": "topology_compilation",
-      "scope": "topology compilation \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "topology compilation — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_topology_compilation.py",
       "implementation": [
         "src/e7q/cli.py",
@@ -649,7 +661,7 @@
     },
     {
       "id": "trends",
-      "scope": "trends \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "trends — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_trends.py",
       "implementation": [
         "src/e7q/cli.py",
@@ -664,7 +676,7 @@
     },
     {
       "id": "vendor_adapters",
-      "scope": "vendor adapters \u2014 only the behaviours asserted in the linked test cases",
+      "scope": "vendor adapters — only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_vendor_adapters.py",
       "implementation": [
         "src/e7q/adapters.py",
