@@ -1,0 +1,65 @@
+{
+  "fixture": "examples/quantum-view/v0alpha1/qubit_xzy_fixture.json",
+  "format": "e7q.quantum-view.independent-numpy-check/v1",
+  "max_probability_error_vs_exact_fixture": 0.0,
+  "method": "direct 2x2 NumPy matrices and trace/eigenspectrum calculations; no adapter imports",
+  "probabilities": {
+    "rho_minus": {
+      "X": {
+        "+1": 0.5,
+        "-1": 0.5
+      },
+      "Y": {
+        "+1": 0.25,
+        "-1": 0.75
+      },
+      "Z": {
+        "+1": 0.5,
+        "-1": 0.5
+      }
+    },
+    "rho_plus": {
+      "X": {
+        "+1": 0.5,
+        "-1": 0.5
+      },
+      "Y": {
+        "+1": 0.75,
+        "-1": 0.25
+      },
+      "Z": {
+        "+1": 0.5,
+        "-1": 0.5
+      }
+    }
+  },
+  "scope_note": "independent finite numerical reproduction only; not a universal proof, physical run, product comparison, or new-physics claim",
+  "sharp_xz_rank_one_projector_overlap_squared": {
+    "+1,+1": 0.5,
+    "+1,-1": 0.5,
+    "-1,+1": 0.5,
+    "-1,-1": 0.5
+  },
+  "unsharp_eta": "1/2",
+  "unsharp_parent_effects": {
+    "+1,+1": {
+      "minimum_eigenvalue": 0.07322330470336313,
+      "trace": 0.5
+    },
+    "+1,-1": {
+      "minimum_eigenvalue": 0.07322330470336313,
+      "trace": 0.5
+    },
+    "-1,+1": {
+      "minimum_eigenvalue": 0.07322330470336313,
+      "trace": 0.5
+    },
+    "-1,-1": {
+      "minimum_eigenvalue": 0.07322330470336313,
+      "trace": 0.5
+    }
+  },
+  "unsharp_parent_normalizes": true,
+  "unsharp_x_marginals_verified": true,
+  "unsharp_z_marginals_verified": true
+}
