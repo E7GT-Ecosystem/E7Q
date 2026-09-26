@@ -1,0 +1,181 @@
+{
+  "boundary_countercases": {
+    "0": {
+      "eigenvalues": [
+        "1/2",
+        "1/2"
+      ],
+      "plus_equals_minus_state": true,
+      "xz_views_equal": true,
+      "y_views_differ": false
+    },
+    "1": {
+      "eigenvalues": [
+        "1",
+        "0"
+      ],
+      "plus_equals_minus_state": false,
+      "xz_views_equal": true,
+      "y_views_differ": true
+    }
+  },
+  "density_family_a_1_2": {
+    "born_probabilities": {
+      "rho_minus": {
+        "X": {
+          "+1": "1/2",
+          "-1": "1/2"
+        },
+        "Y": {
+          "+1": "1/4",
+          "-1": "3/4"
+        },
+        "Z": {
+          "+1": "1/2",
+          "-1": "1/2"
+        }
+      },
+      "rho_plus": {
+        "X": {
+          "+1": "1/2",
+          "-1": "1/2"
+        },
+        "Y": {
+          "+1": "3/4",
+          "-1": "1/4"
+        },
+        "Z": {
+          "+1": "1/2",
+          "-1": "1/2"
+        }
+      }
+    },
+    "rho_minus_eigenvalues": [
+      "3/4",
+      "1/4"
+    ],
+    "rho_plus_eigenvalues": [
+      "3/4",
+      "1/4"
+    ]
+  },
+  "eta_half_parent": {
+    "effects_diagonal_and_determinants": {
+      "+1,+1": {
+        "determinant": "1/32",
+        "diagonal": [
+          "3/8",
+          "1/8"
+        ]
+      },
+      "+1,-1": {
+        "determinant": "1/32",
+        "diagonal": [
+          "1/8",
+          "3/8"
+        ]
+      },
+      "-1,+1": {
+        "determinant": "1/32",
+        "diagonal": [
+          "3/8",
+          "1/8"
+        ]
+      },
+      "-1,-1": {
+        "determinant": "1/32",
+        "diagonal": [
+          "1/8",
+          "3/8"
+        ]
+      }
+    },
+    "normalization": "True",
+    "x_marginals": {
+      "+1": [
+        [
+          "1/2",
+          "1/4"
+        ],
+        [
+          "1/4",
+          "1/2"
+        ]
+      ],
+      "-1": [
+        [
+          "1/2",
+          "-1/4"
+        ],
+        [
+          "-1/4",
+          "1/2"
+        ]
+      ]
+    },
+    "z_marginals": {
+      "+1": [
+        [
+          "3/4",
+          "0"
+        ],
+        [
+          "0",
+          "1/4"
+        ]
+      ],
+      "-1": [
+        [
+          "1/4",
+          "0"
+        ],
+        [
+          "0",
+          "3/4"
+        ]
+      ]
+    }
+  },
+  "format": "e7q.quantum-view.math-audit-calculations/v1",
+  "input_fixture": "examples/quantum-view/v0alpha1/qubit_xzy_fixture.json",
+  "limits": [
+    "the table of state fibres is only over the finite explicitly admitted tuple passed to the API",
+    "the overlap arithmetic is checked but the support-intersection lemma is a written mathematical derivation, not a formal proof checked by this script",
+    "a failed positive-semidefinite test for one proposed parent never proves that no other parent exists",
+    "no physical experiment or product workflow is represented"
+  ],
+  "method": "exact Fraction Bloch trace identities and independent 2x2 real matrix calculations; no adapter imports",
+  "same_constructive_parent_formula_scope": {
+    "0": {
+      "adapter_has_general_witness_claim": false,
+      "determinant_for_same_parent_formula": "1/16",
+      "formula_parent_psd": true
+    },
+    "1": {
+      "adapter_has_general_witness_claim": false,
+      "determinant_for_same_parent_formula": "-1/16",
+      "formula_parent_psd": false
+    },
+    "1/2": {
+      "adapter_has_general_witness_claim": true,
+      "determinant_for_same_parent_formula": "1/32",
+      "formula_parent_psd": true
+    },
+    "3/4": {
+      "adapter_has_general_witness_claim": false,
+      "determinant_for_same_parent_formula": "-1/128",
+      "formula_parent_psd": false
+    },
+    "3/5": {
+      "adapter_has_general_witness_claim": false,
+      "determinant_for_same_parent_formula": "7/400",
+      "formula_parent_psd": true
+    }
+  },
+  "sharp_projector_overlap_squared": {
+    "+1,+1": "1/2",
+    "+1,-1": "1/2",
+    "-1,+1": "1/2",
+    "-1,-1": "1/2"
+  }
+}
