@@ -4,6 +4,8 @@ from __future__ import annotations
 import json
 from fractions import Fraction
 from pathlib import Path
+import subprocess
+import sys
 
 import pytest
 
@@ -81,6 +83,14 @@ def test_sharp_xz_is_rejected_with_verified_obstruction_certificate():
     assert result.value.overlap_squared_by_sign == tuple(
         (x, z, Fraction(1, 2)) for x in (1, -1) for z in (1, -1)
     )
+    tampered = type(result.value)(
+        result.value.certificate_id,
+        result.value.pair,
+        ((1, 1, Fraction(2, 3)), *result.value.overlap_squared_by_sign[1:]),
+        result.value.lemma,
+        result.value.conclusion,
+    )
+    assert not verify_sharp_xz_obstruction(tampered)
 
 
 def test_unsharp_eta_half_parent_and_both_marginals_are_verified():
@@ -95,10 +105,10 @@ def test_unsharp_eta_half_parent_and_both_marginals_are_verified():
     assert len(parent.effects) == 4
 
 
-def test_valid_but_wrong_parent_candidate_is_undetermined_not_a_no_go_claim():
+def test_valid_but_wrong_parent_candidate_does_not_suppress_known_eta_half_witness():
     # A valid POVM that ignores z has the correct X marginals but not the
-    # declared sharp/unsharp Z marginals. It disproves neither existence nor
-    # non-existence of some other parent.
+    # declared Z marginals. The result must report this candidate failure
+    # while retaining the separately constructed eta=1/2 parent witness.
     eta = Fraction(1, 2)
     wrong = tuple(
         (x, z, Matrix2((
@@ -108,8 +118,13 @@ def test_valid_but_wrong_parent_candidate_is_undetermined_not_a_no_go_claim():
         for x in (1, -1) for z in (1, -1)
     )
     result = check_joint_device_xz(eta, candidate_parent=wrong)
-    assert result.status is Status.UNDETERMINED
-    assert result.value is None
+    assert result.status is Status.SUCCESS
+    assert result.value is not None
+    assert result.value.positivity_checked
+    assert result.value.normalization_checked
+    assert result.value.x_marginals_checked
+    assert result.value.z_marginals_checked
+    assert "separate constructed parent" in result.reason
 
 
 def test_known_sharp_obstruction_is_not_suppressed_by_a_valid_unsharp_candidate():
@@ -148,6 +163,8 @@ def test_required_failure_statuses_remain_distinct():
     assert born_distribution(valid, "X", ResourcePolicy(max_operations=0)).status is Status.RESOURCE_LIMIT
     assert check_joint_device_xz(Fraction(2)).status is Status.INVALID_INPUT
     assert check_joint_device_xz(Fraction(3, 4)).status is Status.UNDETERMINED
+    assert check_joint_device_xz(Fraction(0)).status is Status.UNDETERMINED
+    assert check_joint_device_xz(Fraction(3, 5)).status is Status.UNDETERMINED
 
 
 @pytest.mark.parametrize(
@@ -218,3 +235,15 @@ def test_malformed_matrix_and_candidate_parent_fail_closed():
     malformed = DensityOperator(Matrix2(((GaussianRational(1),), (GaussianRational(0), GaussianRational(1)))))  # type: ignore[arg-type]
     assert born_distribution(malformed, "X").status is Status.INVALID_INPUT
     assert check_joint_device_xz(Fraction(1, 2), candidate_parent=((1, 1, malformed.matrix),)).status is Status.INVALID_INPUT
+
+
+def test_independent_exact_mathematics_audit_is_reproducible():
+    script = ROOT / "scripts/audit_quantum_view_math.py"
+    output = ROOT / "examples/quantum-view/v0alpha1/math_audit_calculations.json"
+    run = subprocess.run([sys.executable, str(script)], check=True, capture_output=True, text=True)
+    assert '"status": "PASS"' in run.stdout
+    result = json.loads(output.read_text())
+    assert result["method"].startswith("exact Fraction Bloch trace identities")
+    assert result["density_family_a_1_2"]["rho_plus_eigenvalues"] == ["3/4", "1/4"]
+    assert result["eta_half_parent"]["normalization"] == "True"
+    assert all(item["determinant"] == "1/32" for item in result["eta_half_parent"]["effects_diagonal_and_determinants"].values())
