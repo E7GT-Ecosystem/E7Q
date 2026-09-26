@@ -12,6 +12,7 @@ from e7q.research.quantum_view_v0alpha1 import (
     GaussianRational,
     I2,
     Matrix2,
+    PredictedDistribution,
     PhysicalOutcomeRecord,
     PreparationDescription,
     ResourcePolicy,
@@ -111,6 +112,16 @@ def test_valid_but_wrong_parent_candidate_is_undetermined_not_a_no_go_claim():
     assert result.value is None
 
 
+def test_known_sharp_obstruction_is_not_suppressed_by_a_valid_unsharp_candidate():
+    candidate = check_joint_device_xz(Fraction(1, 2)).value
+    assert candidate is not None
+    result = check_joint_device_xz(Fraction(1), candidate_parent=candidate.effects)
+    assert result.status is Status.INCOMPATIBLE
+    assert result.value is not None
+    assert verify_sharp_xz_obstruction(result.value)
+    assert "candidate is a valid POVM" in result.reason
+
+
 def test_physical_records_are_imported_and_simulated_records_stay_separate():
     imported = PhysicalOutcomeRecord(
         record_id="rec-1", run_id="run-1", preparation_id="prep-plus",
@@ -137,6 +148,37 @@ def test_required_failure_statuses_remain_distinct():
     assert born_distribution(valid, "X", ResourcePolicy(max_operations=0)).status is Status.RESOURCE_LIMIT
     assert check_joint_device_xz(Fraction(2)).status is Status.INVALID_INPUT
     assert check_joint_device_xz(Fraction(3, 4)).status is Status.UNDETERMINED
+
+
+@pytest.mark.parametrize(
+    "observed",
+    [
+        (PredictedDistribution("X", ((1, Fraction(-1)), (-1, Fraction(2)))),),
+        (PredictedDistribution("X", ((1, Fraction(1, 3)), (-1, Fraction(1, 3)))),),
+        (PredictedDistribution("X", ((1, Fraction(1, 2)), (0, Fraction(1, 2)))),),
+        (PredictedDistribution("Y", ((1, Fraction(1, 2)), (-1, Fraction(1, 2)))),),
+        (PredictedDistribution("W", ((1, Fraction(1, 2)), (-1, Fraction(1, 2)))),),
+    ],
+)
+def test_fibres_validate_observed_distribution_before_empty_or_nonempty_search(observed):
+    state = density_from_bloch_y(1)
+    axes = ("X",)
+    assert state_fibre((state,), axes, observed).status in {Status.INVALID_INPUT, Status.UNSUPPORTED}
+    assert preparation_description_fibre((PreparationDescription("p", state),), axes, observed).status in {
+        Status.INVALID_INPUT, Status.UNSUPPORTED,
+    }
+
+
+def test_views_and_fibres_enforce_aggregate_work_budget():
+    state = density_from_bloch_y(1)
+    too_many_axes = ("X",) * 129
+    result = view(state, too_many_axes)
+    assert result.status is Status.RESOURCE_LIMIT
+    assert result.operations == 0
+    one_x = view(state, ("X",)).value
+    assert one_x is not None
+    fibre_result = state_fibre((state,) * 6, ("X", "Z"), view(state, ("X", "Z")).value)
+    assert fibre_result.status is Status.RESOURCE_LIMIT
 
 
 def test_invalid_physical_record_does_not_become_a_predicted_result():
