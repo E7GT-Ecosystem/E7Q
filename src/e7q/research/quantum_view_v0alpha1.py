@@ -39,6 +39,13 @@ class Result(Generic[T]):
 
 @dataclass(frozen=True)
 class ResourcePolicy:
+    """Bounds adapter-accounted Born work units, not Fraction bit complexity.
+
+    Each requested state/context Born distribution is charged 12 fixed work
+    units. Aggregate views and fibres preflight their full charge. Python's
+    arbitrary-precision rational arithmetic is exact; numerator/denominator
+    bit growth is outside this accounting measure.
+    """
     max_operations: int = 128
 
 
@@ -248,6 +255,44 @@ def _valid_density(state: DensityOperator) -> bool:
     return tr == ONE and _positive_semidefinite(state.matrix)
 
 
+def _valid_resource_policy(policy: ResourcePolicy) -> bool:
+    return (
+        isinstance(policy, ResourcePolicy)
+        and type(policy.max_operations) is int
+        and policy.max_operations >= 0
+    )
+
+
+def _validate_observed_view(
+    axes: tuple[str, ...], observed: tuple[PredictedDistribution, ...]
+) -> Result[None]:
+    if not isinstance(axes, tuple) or not axes or any(not isinstance(axis, str) for axis in axes):
+        return Result(Status.INVALID_INPUT, reason="axes must be a non-empty tuple of context names")
+    if any(axis not in PAULI for axis in axes):
+        unsupported = next(axis for axis in axes if axis not in PAULI)
+        return Result(Status.UNSUPPORTED, reason=f"unsupported Pauli context: {unsupported!r}")
+    if not isinstance(observed, tuple) or len(axes) != len(observed):
+        return Result(Status.INVALID_INPUT, reason="observed view must contain one distribution per selected context")
+    for axis, item in zip(axes, observed):
+        if not isinstance(item, PredictedDistribution) or item.axis != axis:
+            return Result(Status.INVALID_INPUT, reason="observed distribution context does not match the selected context")
+        probabilities = item.probabilities
+        if (
+            not isinstance(probabilities, tuple)
+            or len(probabilities) != 2
+            or any(not isinstance(pair, tuple) or len(pair) != 2 for pair in probabilities)
+        ):
+            return Result(Status.INVALID_INPUT, reason="observed probabilities must contain two outcome/probability pairs")
+        if (
+            tuple(label for label, _ in probabilities) != (1, -1)
+            or any(type(label) is not int or type(probability) is not Fraction for label, probability in probabilities)
+            or any(not 0 <= probability <= 1 for _, probability in probabilities)
+            or sum((probability for _, probability in probabilities), Fraction(0)) != 1
+        ):
+            return Result(Status.INVALID_INPUT, reason="observed probabilities must be exact, normalized values for outcomes +1 and -1")
+    return Result(Status.SUCCESS)
+
+
 def density_from_bloch_y(sign: int, a: Fraction = Fraction(1, 2)) -> DensityOperator:
     """Construct rho=(I+sign*a*Y)/2, exactly; `sign` must be +/-1."""
     if type(sign) is not int or sign not in {-1, 1}:
@@ -280,7 +325,7 @@ def born_distribution(
     policy: ResourcePolicy = ResourcePolicy(),
 ) -> Result[PredictedDistribution]:
     required = 12
-    if not isinstance(policy, ResourcePolicy) or type(policy.max_operations) is not int or policy.max_operations < 0:
+    if not _valid_resource_policy(policy):
         return Result(Status.INVALID_INPUT, reason="invalid resource policy")
     if policy.max_operations < required:
         return Result(Status.RESOURCE_LIMIT, reason=f"requires {required} bounded matrix operations", operations=policy.max_operations)
@@ -303,69 +348,85 @@ def born_distribution(
     return Result(Status.SUCCESS, PredictedDistribution(axis, tuple(values)), operations=required)  # type: ignore[arg-type]
 
 
-def view(state: DensityOperator, axes: tuple[str, ...] = ("X", "Z")) -> Result[tuple[PredictedDistribution, ...]]:
+def view(
+    state: DensityOperator,
+    axes: tuple[str, ...] = ("X", "Z"),
+    policy: ResourcePolicy = ResourcePolicy(),
+) -> Result[tuple[PredictedDistribution, ...]]:
+    if not _valid_resource_policy(policy):
+        return Result(Status.INVALID_INPUT, reason="invalid resource policy")
     if not isinstance(state, DensityOperator) or not _valid_density(state):
         return Result(Status.INVALID_INPUT, reason="invalid density operator")
     if not isinstance(axes, tuple) or not axes or any(not isinstance(axis, str) for axis in axes):
         return Result(Status.INVALID_INPUT, reason="axes must be a non-empty tuple of context names")
+    unsupported_axes = tuple(axis for axis in axes if axis not in PAULI)
+    if unsupported_axes:
+        return Result(Status.UNSUPPORTED, reason=f"unsupported Pauli context: {unsupported_axes[0]!r}")
+    required = 12 * len(axes)
+    if required > policy.max_operations:
+        return Result(Status.RESOURCE_LIMIT, reason=f"view requires {required} accounted Born work units", operations=0)
     distributions: list[PredictedDistribution] = []
     for axis in axes:
-        result = born_distribution(state, axis)
+        result = born_distribution(state, axis, policy)
         if result.status is not Status.SUCCESS or result.value is None:
             return Result(result.status, reason=result.reason, operations=result.operations)
         distributions.append(result.value)
-    return Result(Status.SUCCESS, tuple(distributions), operations=sum(12 for _ in distributions))
+    return Result(Status.SUCCESS, tuple(distributions), operations=required)
 
 
 def state_fibre(
-    states: tuple[DensityOperator, ...], axes: tuple[str, ...], observed: tuple[PredictedDistribution, ...]
+    states: tuple[DensityOperator, ...], axes: tuple[str, ...], observed: tuple[PredictedDistribution, ...],
+    policy: ResourcePolicy = ResourcePolicy(),
 ) -> Result[tuple[DensityOperator, ...]]:
     """Distinct admitted density operators matching the selected distributions."""
     if (
         not isinstance(states, tuple)
         or any(not isinstance(state, DensityOperator) or not _valid_density(state) for state in states)
-        or not isinstance(axes, tuple)
-        or any(not isinstance(axis, str) for axis in axes)
-        or not isinstance(observed, tuple)
-        or any(not isinstance(item, PredictedDistribution) for item in observed)
-        or len(axes) != len(observed)
-        or not axes
+        or not _valid_resource_policy(policy)
     ):
         return Result(Status.INVALID_INPUT, reason="states, contexts, and observed views must be well-formed tuples")
+    observed_check = _validate_observed_view(axes, observed)
+    if observed_check.status is not Status.SUCCESS:
+        return Result(observed_check.status, reason=observed_check.reason)
+    required = 12 * len(states) * len(axes)
+    if required > policy.max_operations:
+        return Result(Status.RESOURCE_LIMIT, reason=f"state fibre requires {required} accounted Born work units", operations=0)
     matches: list[DensityOperator] = []
     for state in states:
-        candidate = view(state, axes)
+        candidate = view(state, axes, policy)
         if candidate.status is not Status.SUCCESS or candidate.value is None:
             return Result(candidate.status, reason=candidate.reason, operations=candidate.operations)
         if candidate.value == observed:
             if state not in matches:
                 matches.append(state)
-    return Result(Status.SUCCESS, tuple(matches), operations=12 * len(states) * len(axes))
+    return Result(Status.SUCCESS, tuple(matches), operations=required)
 
 
 def preparation_description_fibre(
-    descriptions: tuple[PreparationDescription, ...], axes: tuple[str, ...], observed: tuple[PredictedDistribution, ...]
+    descriptions: tuple[PreparationDescription, ...], axes: tuple[str, ...], observed: tuple[PredictedDistribution, ...],
+    policy: ResourcePolicy = ResourcePolicy(),
 ) -> Result[tuple[PreparationDescription, ...]]:
     """Preparation descriptions matching a view; aliases remain distinct."""
     if (
         not isinstance(descriptions, tuple)
         or any(not isinstance(d, PreparationDescription) or not _valid_density(d.state) for d in descriptions)
-        or not isinstance(axes, tuple)
-        or any(not isinstance(axis, str) for axis in axes)
-        or not isinstance(observed, tuple)
-        or any(not isinstance(item, PredictedDistribution) for item in observed)
-        or not axes
-        or len(axes) != len(observed)
+        or not _valid_resource_policy(policy)
     ):
         return Result(Status.INVALID_INPUT, reason="descriptions, contexts, and observed views must be well-formed tuples")
+    observed_check = _validate_observed_view(axes, observed)
+    if observed_check.status is not Status.SUCCESS:
+        return Result(observed_check.status, reason=observed_check.reason)
+    required = 12 * len(descriptions) * len(axes)
+    if required > policy.max_operations:
+        return Result(Status.RESOURCE_LIMIT, reason=f"preparation-description fibre requires {required} accounted Born work units", operations=0)
     matches: list[PreparationDescription] = []
     for description in descriptions:
-        candidate = view(description.state, axes)
+        candidate = view(description.state, axes, policy)
         if candidate.status is not Status.SUCCESS or candidate.value is None:
             return Result(candidate.status, reason=candidate.reason, operations=candidate.operations)
         if candidate.value == observed:
             matches.append(description)
-    return Result(Status.SUCCESS, tuple(matches), operations=12 * len(descriptions) * len(axes))
+    return Result(Status.SUCCESS, tuple(matches), operations=required)
 
 
 def import_physical_record(record: PhysicalOutcomeRecord) -> Result[ValidatedPhysicalOutcome]:
@@ -520,6 +581,16 @@ def check_joint_device_xz(
         checks = _verify_parent(eta, candidate_parent)
         if all(checks):
             return Result(Status.SUCCESS, VerifiedParentPOVM(eta, candidate_parent, *checks), operations=required)
+        if eta == 1:
+            certificate = sharp_xz_obstruction_certificate()
+            if verify_sharp_xz_obstruction(certificate):
+                return Result(
+                    Status.INCOMPATIBLE,
+                    certificate,
+                    reason="candidate is a valid POVM but misses the sharp marginals; the independent sharp-projector obstruction certificate verifies incompatibility",
+                    operations=required,
+                )
+            return Result(Status.UNDETERMINED, reason="candidate misses target marginals and obstruction verification did not complete", operations=required)
         return Result(Status.UNDETERMINED, reason="valid candidate POVM has wrong target marginals; no conclusion about other parents", operations=required)
     if eta == 1:
         certificate = sharp_xz_obstruction_certificate()
