@@ -5,21 +5,26 @@
 ## Frozen task and evidence
 
 - Task ID (pseudonymous):
+- Task kind (must be `real_workflow`):
 - Independent origin reference (private or approved hash):
 - Date supplied / date frozen:
 - Sanitization and use permission confirmed by:
 - Source-intent description (sanitized):
+- Real meaning assigned to `L0` and `L1`:
+- Real meaning assigned to `T0` and `T1`:
 - Frozen task JSON SHA-256:
+- Ordered filter rule IDs, descriptions and source meanings:
+- Separate oracle reference and SHA-256:
+- Oracle task ID/status and independent assessor confirmation:
 - Source Joint digest and exact row count:
-- Mapping of real alternatives to `L0/L1`, `T0/T1`:
-- Ordered filter rules:
+- Frozen expected retained/excluded sets and reasons:
 - E7Q PR number and exact reviewed HEAD:
 - E7G-T/E7C source HEAD (must be `5b5cb5f10ddd913df66f5d9f65fbe059a2e33193`):
 - `/0.5` and `/0.6` IR edition pins:
 - Machine replay command and exit status:
 - Machine replay output SHA-256:
-- Frozen expected retained/excluded sets and reasons:
-- Independent assessor and oracle check:
+- Terminal outcome: `success` / `resource_limit` / other:
+- If `resource_limit`, progress and reason; mark retained/excluded comparison not run:
 
 ## Reviewer and session
 
@@ -27,7 +32,10 @@
 - Relevant planning/review experience:
 - Independence from adapter and baseline construction:
 - Consent for timing/activity capture:
-- Condition order (randomized/counterbalanced method):
+- Randomization method and draw for Joint/full-table order:
+- Actual Joint/full-table order (single session is randomized, not counterbalanced):
+- Carryover risk acknowledged:
+- Marginal diagnostic shown last?:
 - Setup and interruptions to exclude from active time:
 - Assistance or protocol deviations:
 
@@ -58,6 +66,7 @@ Error categories: disallowed pair selected; missed/invented exclusion; coefficie
 
 ## Assessor and outcome
 
+- Did the machine replay match the hashed oracle? Include status:
 - Did Joint and the full correlated table agree on the correct set, reasons and typed outcome? Explain:
 - Did either condition produce an incorrect reviewer decision? Explain:
 - Which condition required less active effort? What was measured:
