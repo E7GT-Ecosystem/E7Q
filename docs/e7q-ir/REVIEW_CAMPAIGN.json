@@ -412,7 +412,7 @@
     },
     {
       "id": "ir_pyzx",
-      "scope": "optional pinned PyZX rewrite-equality adapter — separate exact/global-phase options, bounded OpenQASM 2 projection, spawned-process resource isolation and one-sided success semantics",
+      "scope": "optional pinned PyZX rewrite-equality adapter \u2014 separate exact/global-phase options, bounded OpenQASM 2 projection, spawned-process resource isolation and one-sided success semantics",
       "test_file": "tests/test_ir_pyzx.py",
       "implementation": [
         "src/e7q/ir/pyzx.py",
@@ -435,7 +435,7 @@
         "benchmarks/e7q-research/dhsp-affine-corpus.json",
         "docs/e7q-research/DHSP_LAB.md"
       ],
-      "limits": "Experimental ideal-state research helper only; bounded affine rules and moduli 2–64. PASS means no counterexample in an enumerated domain. No new algorithm, universal correctness, polynomial time, oracle feasibility, quantum advantage, hardware fidelity or registered E7Q-IR capability.",
+      "limits": "Experimental ideal-state research helper only; bounded affine rules and moduli 2\u201364. PASS means no counterexample in an enumerated domain. No new algorithm, universal correctness, polynomial time, oracle feasibility, quantum advantage, hardware fidelity or registered E7Q-IR capability.",
       "next_gate": "Typed multi-stage DHSP proposal and independently checked complexity-recurrence contract",
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
@@ -661,6 +661,24 @@
       "limits": "Internal regression evidence only; no external reproduction or broader semantic claim.",
       "next_gate": "H4/H7/H8 domain and independent-coverage review",
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "research_quantum_view_v0alpha1",
+      "scope": "opt-in exact qubit view adapter and bounded mathematical audit \u2014 rational complex 2x2 states, exact Pauli Born distributions, finite supplied-domain fibres, selected X/Z joint witness/obstruction and independent rational derivation",
+      "test_file": "tests/test_quantum_view_v0alpha1.py",
+      "implementation": [
+        "src/e7q/research/quantum_view_v0alpha1.py",
+        "scripts/quantum_view_numpy_check.py",
+        "examples/quantum-view/v0alpha1/qubit_xzy_fixture.json",
+        "examples/quantum-view/v0alpha1/independent_numpy_result.json",
+        "examples/quantum-view/v0alpha1/README.md",
+        "scripts/audit_quantum_view_math.py",
+        "docs/e7q-research/QUANTUM_VIEW_MATHEMATICAL_AUDIT.md",
+        "examples/quantum-view/v0alpha1/math_audit_calculations.json"
+      ],
+      "limits": "Exact finite qubit model only. Mathematical audit uses exact Fraction Bloch trace identities and independent 2x2 calculations; the support-intersection lemma is derived in the review record, not formally proved by the adapter. Fibres range only over supplied finite tuples. Supports Pauli X/Y/Z Born distributions, a sharp X/Z incompatibility result under the stated assumptions, and a verified unbiased X/Z parent at eta=1/2; other eta values lacking an implemented witness/certificate remain undetermined, including known compatible cases. ResourcePolicy counts 12 fixed Born work units per state/context evaluation and preflights aggregate views/fibres; it does not bound rational bit growth or wall time. Imported record checks validate record shape, non-empty metadata, allowed context and outcome only; they do not authenticate provenance; seeded outputs are simulated. No physical measurement, general POVM solver, position-momentum result, E7G-T profile promotion, product adoption/improvement or E7C Python/IR-to-Lean proof.",
+      "next_gate": "Independent mathematical-physics review of joint-measurability definitions and support/range argument; separate functional-analysis review before any continuous-variable position/momentum extension",
+      "review_status": "LOCAL_MATHEMATICAL_AUDIT_COMPLETE_EXTERNAL_REVIEW_PENDING"
     }
   ],
   "external_report_groups": [
