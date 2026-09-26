@@ -317,6 +317,31 @@
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {
+      "id": "e7c_joint_pilot",
+      "scope": "Opt-in Q-A1 mapping with pinned E7C admission, source and independent nested/outer IR replay; two correlated inputs, exact rational table baseline, hostile mutations and separate IR package limits",
+      "test_file": "tests/test_e7c_joint_pilot.py",
+      "implementation": [
+        "src/e7q/ir/e7c_joint_pilot.py",
+        "tools/run_e7c_joint_pilot.py",
+        "docs/e7q-ir/SECOND_PRODUCT_JOINT_PILOT_EXECUTION.md"
+      ],
+      "limits": "Synthetic planning fixture and finite evidence only; E7C all-input code-to-Lean proof, independent review, provenance and real product workflow comparison remain open.",
+      "next_gate": "Adversarial semantic review and real workflow comparison against full correlated table",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "joint_visible_effect_reviewer_protocol",
+      "scope": "bounded real-task replay and reviewer-session protocol comparing the Joint path, a competent full correlated table, and a deliberately lossy marginal reconstruction",
+      "test_file": "tests/test_joint_visible_effect_task.py",
+      "implementation": [
+        "tools/run_joint_visible_effect_review.py",
+        "docs/e7q-ir/JOINT_VISIBLE_EFFECT_REVIEW_PROTOCOL.md",
+        "docs/e7q-ir/reviewer-protocol/JOINT_VISIBLE_EFFECT_SESSION_RECORD_TEMPLATE.md"
+      ],
+      "limits": "The runner accepts only sanitized task carriers representable by the pinned L0/L1 by T0/T1 mapping and emits machine replay/baseline results; it does not record or infer human decisions, effort, errors, reasons, general product improvement, or adoption. No independent real task or reviewer session is currently supplied.",
+      "next_gate": "Run one independently supplied real reviewer task with the exact pinned E7C source and an independent assessor; complete the session form, including a possible no-advantage result, before any adoption claim."
+    },
+    {
       "id": "ir_candidate_family",
       "scope": "Q-A1 finite dependence-aware candidate factors plus additive bounded restriction outcomes, canonical residual identity and explicit view preservation/loss/source return",
       "test_file": "tests/test_ir_candidate_family.py",

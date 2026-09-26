@@ -1,0 +1,36 @@
+name: E7Q Joint planning pilot
+on:
+  push:
+    paths:
+      - "src/e7q/ir/e7c_joint_pilot.py"
+      - "tools/run_e7c_joint_pilot.py"
+      - "tests/test_e7c_joint_pilot.py"
+      - "fixtures/e7c-joint-pilot/**"
+      - ".github/workflows/e7c-joint-pilot.yml"
+  pull_request:
+    paths:
+      - "src/e7q/ir/e7c_joint_pilot.py"
+      - "tools/run_e7c_joint_pilot.py"
+      - "tests/test_e7c_joint_pilot.py"
+      - "fixtures/e7c-joint-pilot/**"
+      - ".github/workflows/e7c-joint-pilot.yml"
+
+jobs:
+  pinned-source-ir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch pinned E7C without submodule hooks
+        run: |
+          git init pinned-e7c
+          git -C pinned-e7c remote add origin https://github.com/E7GT-Ecosystem/E7G-T.git
+          git -C pinned-e7c fetch --depth=1 origin 5b5cb5f10ddd913df66f5d9f65fbe059a2e33193
+          git -C pinned-e7c checkout --detach FETCH_HEAD
+          test "$(git -C pinned-e7c rev-parse HEAD)" = 5b5cb5f10ddd913df66f5d9f65fbe059a2e33193
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -e '.[test]'
+      - run: python -m pytest -q tests/test_e7c_joint_pilot.py
+        env:
+          E7C_ROOT: ${{ github.workspace }}/pinned-e7c
