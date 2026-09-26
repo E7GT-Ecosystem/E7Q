@@ -1,0 +1,53 @@
+{
+  "format": "e7q.quantum-view.qubit-fixture/v1",
+  "adapter_profile": "e7q.quantum-view/0alpha1",
+  "model": {
+    "hilbert_space_dimension": 2,
+    "pauli_contexts": ["X", "Y", "Z"],
+    "outcomes": [-1, 1],
+    "state_family": "rho_sign = (I + sign*a*Y)/2",
+    "a": {"numerator": 1, "denominator": 2},
+    "preparation_descriptions": [
+      {"id": "prep-plus", "state": "rho_plus"},
+      {"id": "prep-plus-alias", "state": "rho_plus"},
+      {"id": "prep-minus", "state": "rho_minus"}
+    ],
+    "view_run_posture": "separate identically-prepared runs for each context"
+  },
+  "expected_exact": {
+    "rho_plus": {
+      "X": {"+1": "1/2", "-1": "1/2"},
+      "Y": {"+1": "3/4", "-1": "1/4"},
+      "Z": {"+1": "1/2", "-1": "1/2"}
+    },
+    "rho_minus": {
+      "X": {"+1": "1/2", "-1": "1/2"},
+      "Y": {"+1": "1/4", "-1": "3/4"},
+      "Z": {"+1": "1/2", "-1": "1/2"}
+    },
+    "xz_reconstruction_fibres": {
+      "state_density_operator_ids": ["rho_plus", "rho_minus"],
+      "preparation_description_ids": ["prep-plus", "prep-plus-alias", "prep-minus"]
+    },
+    "sharp_xz_joint_device": {
+      "status": "incompatible",
+      "certificate": "qubit-sharp-pauli-xz-no-parent/v1",
+      "projector_overlap_squared_for_each_sign_pair": "1/2",
+      "proof_summary": "Positive parent effects are supported in both associated rank-one eigenspaces; each X/Z eigenspace intersection is zero, so all effects vanish and cannot sum to I."
+    },
+    "unsharp_xz_eta_1_2": {
+      "status": "success",
+      "parent_formula": "G[x,z]=(I+x*(1/2)*X+z*(1/2)*Z)/4",
+      "positivity_check": "each diagonal entry is 1/8 or 3/8 and each determinant is 1/32",
+      "normalization": "sum_(x,z) G[x,z] = I",
+      "marginals": "sum_z G[x,z]=(I+x*(1/2)*X)/2; sum_x G[x,z]=(I+z*(1/2)*Z)/2"
+    }
+  },
+  "nonclaims": [
+    "no physical outcomes are inferred from Born distributions",
+    "no E7G-T profile is registered",
+    "no E7Q product adoption or improvement claim",
+    "no E7C Python-or-IR-to-Lean proof is supplied",
+    "no position-momentum derivation or new-physics claim"
+  ]
+}
