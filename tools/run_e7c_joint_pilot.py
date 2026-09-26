@@ -115,7 +115,7 @@ def run_case(e7c, name, value, *, step_bound=20, ledger_bound=20):
                                   "outer_size": outer_size, "outer_max": ir.MAX_BYTES},
             "q_a1_restrictions": q_a1, "full_correlated_table": full,
             "lossy_marginal_cartesian": marginal_cartesian_baseline(mapping),
-            "limits": ["Finite synthetic planning case; no reviewer timing/error sample.",
+            "limits": ["Finite planning case supplied to the pilot runner; no reviewer timing/error sample.",
                        "Independent IR replay is finite evidence, not an all-input code-to-Lean proof."]}
 
 
