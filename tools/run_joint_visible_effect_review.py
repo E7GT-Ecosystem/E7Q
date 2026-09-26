@@ -136,7 +136,8 @@ def _row_signature(row: dict) -> tuple[str, str, str]:
         coefficient = Fraction(row["coefficient"])
     except (KeyError, TypeError, ValueError, ZeroDivisionError) as exc:
         raise TaskFormatError("oracle row needs layout, target, and exact coefficient") from exc
-    if layout not in LAYOUTS or target not in TARGETS or coefficient == 0:
+    if (not isinstance(layout, str) or layout not in LAYOUTS
+            or not isinstance(target, str) or target not in TARGETS or coefficient == 0):
         raise TaskFormatError("oracle row has unsupported labels or a zero coefficient")
     return layout, target, str(coefficient)
 
@@ -154,7 +155,8 @@ def load_oracle(task: dict, oracle_path: Path) -> tuple[dict, str]:
         raise TaskFormatError(f"oracle schema must be {ORACLE_SCHEMA}")
     if oracle.get("task_id") != task["task_id"]:
         raise TaskFormatError("oracle task_id does not match the frozen task")
-    if oracle.get("terminal_status") not in {"success", "resource_limit"}:
+    if (not isinstance(oracle.get("terminal_status"), str)
+            or oracle.get("terminal_status") not in {"success", "resource_limit"}):
         raise TaskFormatError("oracle terminal_status must be success or resource_limit")
     if oracle["terminal_status"] == "resource_limit":
         _nonempty_text(oracle.get("resource_limit_reason"), "oracle.resource_limit_reason")
@@ -187,7 +189,10 @@ def _validate_oracle_reasons(oracle: dict) -> None:
     for reason in reasons:
         if not isinstance(reason, dict):
             raise TaskFormatError("oracle exclusion reasons must be objects")
-        key = (reason.get("layout"), reason.get("target"))
+        layout, target = reason.get("layout"), reason.get("target")
+        if not isinstance(layout, str) or not isinstance(target, str):
+            raise TaskFormatError("oracle exclusion reason needs string row labels")
+        key = (layout, target)
         if key in seen:
             raise TaskFormatError("oracle has duplicate exclusion reasons")
         if key not in excluded or reason.get("rule_id") != excluded[key]:
@@ -262,7 +267,7 @@ def main() -> int:
             step_bound=task.get("step_bound", 20),
             ledger_bound=task.get("ledger_bound", 20),
         )
-        replay["limits"] = [task_scope_limit(task)]
+        replay["limits"][0] = task_scope_limit(task)
         comparison = check_success_oracle(oracle, replay)
     except (OSError, json.JSONDecodeError, TaskFormatError, ValueError, KeyError) as exc:
         parser.error(str(exc))
