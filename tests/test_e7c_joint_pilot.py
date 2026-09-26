@@ -28,6 +28,7 @@ def test_saved_replays_and_distinct_empty_outcome(e7c, tmp_path):
     cases = output_cases(Path(os.environ["E7C_ROOT"]), tmp_path)
     saved = Path(__file__).resolve().parents[1] / "fixtures" / "e7c-joint-pilot"
     for case in cases:
+        assert case["limits"][0] == "Finite planning case supplied to the pilot runner; no reviewer timing/error sample."
         assert (tmp_path / (case["case"] + ".json")).read_bytes() == (
             saved / (case["case"] + ".json")).read_bytes()
         assert case["e7c_source_transition_events"] == case["ir_transition_events"]
