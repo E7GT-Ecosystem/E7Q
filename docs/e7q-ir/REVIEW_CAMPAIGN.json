@@ -664,7 +664,7 @@
     },
     {
       "id": "research_quantum_view_v0alpha1",
-      "scope": "opt-in exact qubit view adapter \u2014 rational complex 2x2 density operators, Born distributions, selected X/Z reconstruction fibres, and bounded joint-device witness/certificate checking",
+      "scope": "opt-in exact qubit view adapter \u2014 rational complex 2x2 density operators, validated Born distributions, validated X/Y/Z reconstruction fibres, and bounded joint-device witness/certificate checking with aggregate Born-work accounting",
       "test_file": "tests/test_quantum_view_v0alpha1.py",
       "implementation": [
         "src/e7q/research/quantum_view_v0alpha1.py",
@@ -673,7 +673,7 @@
         "examples/quantum-view/v0alpha1/independent_numpy_result.json",
         "examples/quantum-view/v0alpha1/README.md"
       ],
-      "limits": "Exact finite qubit model only. Supports Pauli X/Y/Z Born distributions, sharp X/Z obstruction certificate, and a verified unbiased X/Z parent at eta=1/2. Other valid eta values without checked witness/certificate remain undetermined. Imported record checks validate record shape, non-empty metadata, allowed context and outcome only; they do not authenticate provenance; seeded outputs are simulated. No physical measurement, instrument dynamics, general POVM solver, position-momentum result, E7G-T profile promotion, product adoption/improvement or E7C Python/IR-to-Lean proof.",
+      "limits": "Exact finite qubit model only. Supports Pauli X/Y/Z Born distributions; fibres validate context, canonical outcomes, exact probabilities, range and normalization. ResourcePolicy counts 12 fixed Born work units per state/context evaluation and preflights aggregate views/fibres; it does not bound rational bit growth or wall time. Sharp X/Z obstruction certificate and verified unbiased X/Z parent at eta=1/2. Other valid eta values without checked witness/certificate remain undetermined. Imported record checks validate record shape, non-empty metadata, allowed context and outcome only; they do not authenticate provenance; seeded outputs are simulated. No physical measurement, instrument dynamics, general POVM solver, position-momentum result, E7G-T profile promotion, product adoption/improvement or E7C Python/IR-to-Lean proof.",
       "next_gate": "Exact-head mathematical and physics review; only then decide whether to extend parameter coverage or add continuous-variable position/momentum semantics",
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     }
