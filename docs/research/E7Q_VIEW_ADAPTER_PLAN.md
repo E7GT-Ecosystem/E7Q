@@ -33,7 +33,7 @@ QuantumViewAdapter/0alpha1:
   joint_device: (c1,c2) -> success(parent, verified_marginals) | incompatible(obstruction_certificate) | invalid_input(diagnostic) | unsupported(capability) | undetermined(reason) | resource_limit(bound)
 ```
 
-The adapter must keep five things distinct: (1) preparation description, (2) operational whole `rho`, (3) predicted outcome distribution, (4) actual sampled outcome from one run, and (5) post-measurement state. Include the system, preparation and context editions, domains, partiality, canonical identity/equality policy, provenance, numeric precision/tolerance, and resource bounds in any eventual artifact.
+The adapter must keep five things distinct: (1) preparation description, (2) operational whole `rho`, (3) predicted outcome distribution, (4) imported physical outcome record from one run (or a separately typed simulated record), and (5) post-measurement state. Include the system, preparation and context editions, domains, partiality, canonical identity/equality policy, provenance, numeric precision/tolerance, and resource bounds in any eventual artifact.
 
 A physical outcome record is imported with provenance and run identity. The Born rule gives a distribution; it does not determine the result of a particular physical run. An optional simulator may sample only a separately typed simulated record, binding its seed and simulator edition. Distributions collected on separately prepared runs do not imply two actual outcomes on one run. If a state transition is needed, specify an instrument `I_o`; probability is `tr(I_o(rho))`, and the normalized conditional state is `I_o(rho)/tr(I_o(rho))` only for nonzero probability. Otherwise omit state update from the first build.
 
