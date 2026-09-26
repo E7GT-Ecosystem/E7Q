@@ -664,18 +664,21 @@
     },
     {
       "id": "research_quantum_view_v0alpha1",
-      "scope": "opt-in exact qubit view adapter \u2014 rational complex 2x2 density operators, validated Born distributions, validated X/Y/Z reconstruction fibres, and bounded joint-device witness/certificate checking with aggregate Born-work accounting",
+      "scope": "opt-in exact qubit view adapter and bounded mathematical audit \u2014 rational complex 2x2 states, exact Pauli Born distributions, finite supplied-domain fibres, selected X/Z joint witness/obstruction and independent rational derivation",
       "test_file": "tests/test_quantum_view_v0alpha1.py",
       "implementation": [
         "src/e7q/research/quantum_view_v0alpha1.py",
         "scripts/quantum_view_numpy_check.py",
         "examples/quantum-view/v0alpha1/qubit_xzy_fixture.json",
         "examples/quantum-view/v0alpha1/independent_numpy_result.json",
-        "examples/quantum-view/v0alpha1/README.md"
+        "examples/quantum-view/v0alpha1/README.md",
+        "scripts/audit_quantum_view_math.py",
+        "docs/e7q-research/QUANTUM_VIEW_MATHEMATICAL_AUDIT.md",
+        "examples/quantum-view/v0alpha1/math_audit_calculations.json"
       ],
-      "limits": "Exact finite qubit model only. Supports Pauli X/Y/Z Born distributions; fibres validate context, canonical outcomes, exact probabilities, range and normalization. ResourcePolicy counts 12 fixed Born work units per state/context evaluation and preflights aggregate views/fibres; it does not bound rational bit growth or wall time. Sharp X/Z obstruction certificate and verified unbiased X/Z parent at eta=1/2. Other valid eta values without checked witness/certificate remain undetermined. Imported record checks validate record shape, non-empty metadata, allowed context and outcome only; they do not authenticate provenance; seeded outputs are simulated. No physical measurement, instrument dynamics, general POVM solver, position-momentum result, E7G-T profile promotion, product adoption/improvement or E7C Python/IR-to-Lean proof.",
-      "next_gate": "Exact-head mathematical and physics review; only then decide whether to extend parameter coverage or add continuous-variable position/momentum semantics",
-      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+      "limits": "Exact finite qubit model only. Mathematical audit uses exact Fraction Bloch trace identities and independent 2x2 calculations; the support-intersection lemma is derived in the review record, not formally proved by the adapter. Fibres range only over supplied finite tuples. Supports Pauli X/Y/Z Born distributions, a sharp X/Z incompatibility result under the stated assumptions, and a verified unbiased X/Z parent at eta=1/2; other eta values lacking an implemented witness/certificate remain undetermined, including known compatible cases. ResourcePolicy counts 12 fixed Born work units per state/context evaluation and preflights aggregate views/fibres; it does not bound rational bit growth or wall time. Imported record checks validate record shape, non-empty metadata, allowed context and outcome only; they do not authenticate provenance; seeded outputs are simulated. No physical measurement, general POVM solver, position-momentum result, E7G-T profile promotion, product adoption/improvement or E7C Python/IR-to-Lean proof.",
+      "next_gate": "Independent mathematical-physics review of joint-measurability definitions and support/range argument; separate functional-analysis review before any continuous-variable position/momentum extension",
+      "review_status": "LOCAL_MATHEMATICAL_AUDIT_COMPLETE_EXTERNAL_REVIEW_PENDING"
     }
   ],
   "external_report_groups": [
