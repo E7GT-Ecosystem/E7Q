@@ -133,9 +133,17 @@ def _row_signature(row: dict) -> tuple[str, str, str]:
         raise TaskFormatError("oracle rows must be objects")
     try:
         layout, target = row["layout"], row["target"]
-        coefficient = Fraction(row["coefficient"])
-    except (KeyError, TypeError, ValueError, ZeroDivisionError) as exc:
+        coefficient_text = row["coefficient"]
+    except (KeyError, TypeError) as exc:
         raise TaskFormatError("oracle row needs layout, target, and exact coefficient") from exc
+    if not isinstance(coefficient_text, str):
+        raise TaskFormatError("oracle coefficient must be an exact fraction string")
+    try:
+        coefficient = Fraction(coefficient_text)
+    except (TypeError, ValueError, ZeroDivisionError) as exc:
+        raise TaskFormatError("oracle coefficient must be a rational string") from exc
+    if str(coefficient) != coefficient_text:
+        raise TaskFormatError("oracle coefficient must be reduced canonical form")
     if (not isinstance(layout, str) or layout not in LAYOUTS
             or not isinstance(target, str) or target not in TARGETS or coefficient == 0):
         raise TaskFormatError("oracle row has unsupported labels or a zero coefficient")
