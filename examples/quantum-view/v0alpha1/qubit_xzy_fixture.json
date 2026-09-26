@@ -33,7 +33,7 @@
       "status": "incompatible",
       "certificate": "qubit-sharp-pauli-xz-no-parent/v1",
       "projector_overlap_squared_for_each_sign_pair": "1/2",
-      "proof_summary": "Positive parent effects are supported in both associated rank-one eigenspaces; each X/Z eigenspace intersection is zero, so all effects vanish and cannot sum to I."
+      "proof_summary": "The checker verifies exact projector overlaps of 1/2; the mathematical support-intersection argument then forces every positive parent effect to zero, contradicting normalization. The checker does not formalize that lemma; see the mathematical audit record."
     },
     "unsharp_xz_eta_1_2": {
       "status": "success",
