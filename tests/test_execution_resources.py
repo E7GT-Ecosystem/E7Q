@@ -80,3 +80,46 @@ def test_cli_budget_receipt(tmp_path, capsys):
     result = json.loads(proof.read_text())
     assert result["execution_status"] == "RESOURCE_BLOCKED"
     assert result["verification_status"] == "NOT_ASSESSED"
+
+@pytest.mark.parametrize("gate", ["CX", "CZ", "SWAP"])
+def test_dense_two_qubit_kernel_against_independent_index_oracle(gate):
+    for n in range(2, 6):
+        state = np.random.default_rng(n).normal(size=2**n) + 1j * np.random.default_rng(n+1).normal(size=2**n)
+        for first in range(n):
+            for second in range(n):
+                if first == second:
+                    continue
+                a, b = 1 << (n-first-1), 1 << (n-second-1)
+                expected = np.empty_like(state)
+                for i, value in enumerate(state):
+                    j = i
+                    if gate == "CX" and i & a:
+                        j ^= b
+                    elif gate == "CZ" and i & a and i & b:
+                        value = -value
+                    elif gate == "SWAP" and bool(i & a) != bool(i & b):
+                        j ^= a | b
+                    expected[j] = value
+                np.testing.assert_array_equal(l._apply_two(state, gate, first, second, n), expected)
+
+
+def test_terminal_preparation_reused_without_rng_change(monkeypatch):
+    p = program(4)
+    p = replace(p, operations=p.operations[:-1] + tuple(l.Operation("MEASURE", (i,), (i,)) for i in range(4)))
+    calls = []
+    original = l._apply_two
+    def tracked(*args):
+        calls.append(args[1])
+        return original(*args)
+    monkeypatch.setattr(l, "_apply_two", tracked)
+    execution = l.run(p)
+    assert calls == ["CX"] * 3
+    # Preserve one draw per measured bit per shot; preparation consumes no RNG.
+    rng = np.random.default_rng(42)
+    counts = {"0000": 0, "1111": 0}
+    for _ in range(64):
+        outcome = int(rng.random() < .5)
+        rng.random(3)
+        counts[str(outcome)*4] += 1
+    assert execution.counts == counts
+    assert all(step.get("executed", 64) == 64 for step in execution.proof)

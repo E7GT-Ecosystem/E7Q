@@ -429,28 +429,36 @@ def _apply_one(state: np.ndarray, gate: np.ndarray, target: int, size: int) -> n
 
 
 def _apply_two(state: np.ndarray, gate: str, first: int, second: int, size: int) -> np.ndarray:
-    output = np.zeros_like(state)
-    for index, amplitude in enumerate(state):
-        values = list(f"{index:0{size}b}")
-        a, b = int(values[first]), int(values[second])
-        if gate == "CX" and a:
-            values[second] = str(1 - b)
-        elif gate == "CZ" and a and b:
-            amplitude = -amplitude
-        elif gate == "SWAP":
-            values[first], values[second] = values[second], values[first]
-        output[int("".join(values), 2)] += amplitude
-    return output
+    # Tensor slices are views; retain only input and one output state.
+    tensor = state.reshape((2,) * size)
+    output = tensor.copy()
+    def section(a: int, b: int) -> tuple:
+        indices = [slice(None)] * size
+        indices[first], indices[second] = a, b
+        return tuple(indices)
+    if gate == "CX":
+        output[section(1, 0)] = tensor[section(1, 1)]
+        output[section(1, 1)] = tensor[section(1, 0)]
+    elif gate == "CZ":
+        output[section(1, 1)] *= -1
+    elif gate == "SWAP":
+        output[section(0, 1)] = tensor[section(1, 0)]
+        output[section(1, 0)] = tensor[section(0, 1)]
+    else:
+        raise E7QError(f"unsupported two-qubit gate: {gate}")
+    return output.reshape(-1)
 
 
 def _measure_qubit(
     state: np.ndarray, target: int, size: int, rng: np.random.Generator
 ) -> tuple[np.ndarray, int, float]:
-    mask = np.array([int(f"{index:0{size}b}"[target]) for index in range(len(state))])
-    p_one = float(np.sum(np.abs(state[mask == 1]) ** 2))
+    stride = 1 << (size - target - 1)
+    branches = state.reshape(-1, 2, stride)
+    ones = branches[:, 1, :]
+    p_one = float(np.vdot(ones, ones).real)
     outcome = int(rng.random() < p_one)
     collapsed = state.copy()
-    collapsed[mask != outcome] = 0
+    collapsed.reshape(-1, 2, stride)[:, 1 - outcome, :] = 0
     probability = p_one if outcome else 1 - p_one
     if probability <= 1e-15:
         raise E7QError("measurement selected a zero-probability branch")
@@ -496,11 +504,28 @@ def _run(program: Program) -> Execution:
          "outcomes": {"0": 0, "1": 0}}
         for _ in program.operations
     ]
-    final_state = _initial_state(program)
+    # Reuse only an unconditional unitary prefix followed exclusively by Z
+    # measurements. Keep per-bit collapse and RNG calls identical to replay.
+    first_measure = next(i for i, op in enumerate(program.operations) if op.gate == "MEASURE")
+    reusable = (all(op.gate in _EXECUTABLE_GATES and op.condition is None
+                    for op in program.operations[:first_measure]) and
+                all(op.gate == "MEASURE" for op in program.operations[first_measure:]))
+    prefix_length = first_measure if reusable else 0
+    prepared = None
+    if reusable:
+        prepared = _initial_state(program)
+        for operation in program.operations[:prefix_length]:
+            if operation.gate in _ONE_QUBIT:
+                prepared = _apply_one(prepared, _ONE_QUBIT[operation.gate], operation.qubits[0], program.qubits)
+            else:
+                prepared = _apply_two(prepared, operation.gate, *operation.qubits, program.qubits)
     for _ in range(program.shots):
-        state = _initial_state(program)
+        state = prepared.copy() if prepared is not None else _initial_state(program)
         classical = [0] * program.bits
         for index, operation in enumerate(program.operations):
+            if index < prefix_length:
+                stats[index]["executed"] += 1
+                continue
             if operation.gate == "ASSERT":
                 stats[index]["executed"] += 1
                 bit, value = operation.condition
@@ -580,23 +605,6 @@ def _run(program: Program) -> Execution:
     return Execution(program, final_state, probabilities, counts, tuple(proof))
 
 
-def _operator_matrix(operation: Operation, size: int) -> np.ndarray:
-    """Construct a full-system unitary for the small reference backend."""
-    dimension = 2**size
-    columns: list[np.ndarray] = []
-    for basis in range(dimension):
-        state = np.zeros(dimension, complex)
-        state[basis] = 1
-        if operation.gate in _ONE_QUBIT:
-            state = _apply_one(
-                state, _ONE_QUBIT[operation.gate], operation.qubits[0], size
-            )
-        else:
-            state = _apply_two(state, operation.gate, *operation.qubits, size)
-        columns.append(state)
-    return np.column_stack(columns)
-
-
 def _noise_kraus(operation: Operation) -> tuple[np.ndarray, ...]:
     probability = float(operation.probability)
     identity = np.eye(2, dtype=complex)
@@ -620,15 +628,17 @@ def _noise_kraus(operation: Operation) -> tuple[np.ndarray, ...]:
     )
 
 
-def _embed_one(operator: np.ndarray, target: int, size: int) -> np.ndarray:
-    operation = Operation("_embedded", (target,))
-    dimension = 2**size
-    columns = []
-    for basis in range(dimension):
-        state = np.zeros(dimension, complex)
-        state[basis] = 1
-        columns.append(_apply_one(state, operator, target, size))
-    return np.column_stack(columns)
+def _density_local(density: np.ndarray, operator: np.ndarray, target: int, size: int) -> np.ndarray:
+    flat = _apply_one(density.reshape(-1), operator, target, 2 * size)
+    return _apply_one(flat, operator.conj(), size + target, 2 * size).reshape(density.shape)
+
+
+def _density_gate(density: np.ndarray, operation: Operation, size: int) -> np.ndarray:
+    if operation.gate in _ONE_QUBIT:
+        return _density_local(density, _ONE_QUBIT[operation.gate], operation.qubits[0], size)
+    first, second = operation.qubits
+    flat = _apply_two(density.reshape(-1), operation.gate, first, second, 2 * size)
+    return _apply_two(flat, operation.gate, size + first, size + second, 2 * size).reshape(density.shape)
 
 
 def _run_densitymatrix(program: Program) -> Execution:
@@ -645,13 +655,11 @@ def _run_densitymatrix(program: Program) -> Execution:
         if operation.gate == "NOISE":
             updated = np.zeros_like(density)
             for local in _noise_kraus(operation):
-                kraus = _embed_one(local, operation.qubits[0], program.qubits)
-                updated += kraus @ density @ kraus.conj().T
+                updated += _density_local(density, local, operation.qubits[0], program.qubits)
             density = updated
             kind, operator = "channel", operation.label
         else:
-            unitary = _operator_matrix(operation, program.qubits)
-            density = unitary @ density @ unitary.conj().T
+            density = _density_gate(density, operation, program.qubits)
             kind, operator = "transform", operation.gate
         proof.append({
             "step": len(proof), "kind": kind, "operator": operator,
@@ -783,14 +791,10 @@ def channel_superoperator(program: Program, *, policy=None) -> np.ndarray:
                 if operation.gate == "NOISE":
                     updated = np.zeros_like(density)
                     for local in _noise_kraus(operation):
-                        kraus = _embed_one(
-                            local, operation.qubits[0], program.qubits
-                        )
-                        updated += kraus @ density @ kraus.conj().T
+                        updated += _density_local(density, local, operation.qubits[0], program.qubits)
                     density = updated
                 else:
-                    unitary = _operator_matrix(operation, program.qubits)
-                    density = unitary @ density @ unitary.conj().T
+                    density = _density_gate(density, operation, program.qubits)
             columns.append(density.reshape(-1))
     return np.column_stack(columns)
 
