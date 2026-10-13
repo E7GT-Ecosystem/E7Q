@@ -34,6 +34,7 @@ from .language import (
     E7QError, backend_profile, compare, comparison_result, compilation_result,
     compile_topology, load, openqasm, proof_json, run, topology_edges, verify,
 )
+from .resources import ExecutionPolicy, ResourceBlocked, AllocationFailed, failure_result
 from .planning import plan, plan_result
 from .qec import (
     QECError, StabilizerCode, analyze_error, qec_proof_json,
@@ -53,6 +54,7 @@ def _parser() -> argparse.ArgumentParser:
         command = commands.add_parser(name)
         command.add_argument("source")
         command.add_argument("--proof", type=Path)
+        command.add_argument("--memory-budget-bytes", type=int, default=256 * 1024**2)
     export = commands.add_parser("export")
     export.add_argument("source")
     export.add_argument(
@@ -73,6 +75,7 @@ def _parser() -> argparse.ArgumentParser:
     )
     compare_command.add_argument("--tolerance", type=float, default=1e-12)
     compare_command.add_argument("--proof", type=Path)
+    compare_command.add_argument("--memory-budget-bytes", type=int, default=256 * 1024**2)
     capabilities = commands.add_parser("capabilities")
     capabilities.add_argument("source")
     ingest = commands.add_parser("ingest-calibration")
@@ -424,7 +427,8 @@ def main(argv: list[str] | None = None) -> int:
             return 0 if report["status"] == "PASS" else 1
         if args.command == "compare":
             comparison = compare(
-                load(args.first), load(args.second), args.criterion, args.tolerance
+                load(args.first), load(args.second), args.criterion, args.tolerance,
+                policy=ExecutionPolicy(args.memory_budget_bytes)
             )
             result = comparison_result(comparison)
             print(
@@ -501,7 +505,7 @@ def main(argv: list[str] | None = None) -> int:
                 args.proof.write_text(proof_json(result), encoding="utf-8")
                 print(f"Proof-of-Path: {args.proof}", file=sys.stderr)
             return 0
-        result = verify(run(program))
+        result = verify(run(program, policy=ExecutionPolicy(args.memory_budget_bytes)))
         if args.proof:
             args.proof.write_text(proof_json(result), encoding="utf-8")
         if args.command == "run":
@@ -515,7 +519,14 @@ def main(argv: list[str] | None = None) -> int:
             if args.proof:
                 print(f"\nProof-of-Path: {args.proof}")
         return 0 if result["status"] == "PASS" else 1
-    except (E7QError, QECError, OSError) as exc:
+    except (ResourceBlocked, AllocationFailed) as exc:
+        result = failure_result(exc)
+        content = proof_json(result)
+        print(content, end="")
+        if getattr(args, "proof", None):
+            args.proof.write_text(content, encoding="utf-8")
+        return 3
+    except (E7QError, QECError, OSError, ValueError) as exc:
         print(f"e7q: error: {exc}", file=sys.stderr)
         return 2
 

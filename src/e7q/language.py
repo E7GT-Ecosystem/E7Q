@@ -472,8 +472,18 @@ def _initial_state(program: Program) -> np.ndarray:
     return state
 
 
-def run(program: Program) -> Execution:
-    """Execute a program; dynamic paths are evaluated shot by shot."""
+def run(program: Program, *, policy=None) -> Execution:
+    """Execute only after allocation preflight; no implicit backend fallback."""
+    from .resources import preflight, AllocationFailed
+    preflight(program, policy)
+    try:
+        return _run(program)
+    except MemoryError as exc:
+        raise AllocationFailed("simulation", program.backend) from exc
+
+
+def _run(program: Program) -> Execution:
+    """Dynamic paths retain shot-by-shot measurement semantics."""
     if program.backend == "densitymatrix":
         return _run_densitymatrix(program)
     if not _is_dynamic(program):
@@ -653,22 +663,34 @@ def _run_densitymatrix(program: Program) -> Execution:
     raw = np.real(np.diag(density))
     raw = np.clip(raw, 0.0, 1.0)
     raw /= raw.sum()
-    qlabels = [f"{index:0{program.qubits}b}" for index in range(len(raw))]
-    labels = [label + "0" * (program.bits - program.qubits) for label in qlabels]
-    probabilities = {
-        label: float(value) for label, value in zip(labels, raw) if value > 1e-15
-    }
-    rng = np.random.default_rng(program.seed)
-    samples = rng.choice(labels, size=program.shots, p=raw)
-    counts = {
-        label: int(np.count_nonzero(samples == label)) for label in labels
-        if np.count_nonzero(samples == label)
-    }
+    probabilities, counts = _sample_dense(raw, program)
     proof.append({
         "step": len(proof), "kind": "project", "operator": "measure",
         "shots": program.shots, "outcomes": counts,
     })
     return Execution(program, density, probabilities, counts, tuple(proof))
+
+
+def _sample_dense(raw: np.ndarray, program: Program) -> tuple[dict[str, float], dict[str, int]]:
+    """Format supported probabilities and observed indices, never the whole basis.
+
+    Exact support remains bounded by preflight; it is not replaced by sample support.
+    Integer choice retains the old categorical draw order and seed behavior.
+    """
+    padding = "0" * (program.bits - program.qubits)
+    def label(index: int) -> str:
+        return f"{index:0{program.qubits}b}" + padding
+    probabilities: dict[str, float] = {}
+    # Chunk support discovery so no basis-sized index array is constructed.
+    for start in range(0, len(raw), 65536):
+        block = raw[start:start + 65536]
+        for offset in np.flatnonzero(block > 1e-15):
+            probabilities[label(start + int(offset))] = float(block[offset])
+    rng = np.random.default_rng(program.seed)
+    samples = rng.choice(len(raw), size=program.shots, p=raw)
+    indices, frequencies = np.unique(samples, return_counts=True)
+    counts = {label(int(index)): int(count) for index, count in zip(indices, frequencies)}
+    return probabilities, counts
 
 
 def _run_unitary(program: Program) -> Execution:
@@ -693,17 +715,7 @@ def _run_unitary(program: Program) -> Execution:
             "state_norm": float(np.vdot(state, state).real),
         })
     raw = np.abs(state) ** 2
-    qlabels = [f"{index:0{program.qubits}b}" for index in range(len(raw))]
-    labels = [label + "0" * (program.bits - program.qubits) for label in qlabels]
-    probabilities = {
-        label: float(value) for label, value in zip(labels, raw) if value > 1e-15
-    }
-    rng = np.random.default_rng(program.seed)
-    samples = rng.choice(labels, size=program.shots, p=raw)
-    counts = {
-        label: int(np.count_nonzero(samples == label)) for label in labels
-        if np.count_nonzero(samples == label)
-    }
+    probabilities, counts = _sample_dense(raw, program)
     proof.append({
         "step": len(proof), "kind": "project", "operator": "measure",
         "shots": program.shots, "outcomes": counts,
@@ -711,7 +723,7 @@ def _run_unitary(program: Program) -> Execution:
     return Execution(program, state, probabilities, counts, tuple(proof))
 
 
-def circuit_unitary(program: Program) -> np.ndarray:
+def circuit_unitary(program: Program, *, policy=None) -> np.ndarray:
     """Return a circuit unitary, rejecting non-unitary dynamic paths."""
     if _is_dynamic(program):
         raise E7QError(
@@ -721,6 +733,8 @@ def circuit_unitary(program: Program) -> np.ndarray:
         operation.gate == "NOISE" for operation in program.operations
     ):
         raise E7QError("unitary comparison does not support noise channels")
+    from .resources import preflight
+    preflight(program, policy, representation="unitary")
     dimension = 2**program.qubits
     columns: list[np.ndarray] = []
     for basis in range(dimension):
@@ -744,7 +758,7 @@ def circuit_unitary(program: Program) -> np.ndarray:
     return np.column_stack(columns)
 
 
-def channel_superoperator(program: Program) -> np.ndarray:
+def channel_superoperator(program: Program, *, policy=None) -> np.ndarray:
     """Return the linear density-matrix map induced before terminal measurement."""
     if program.backend != "densitymatrix":
         raise E7QError("channel comparison requires the densitymatrix backend")
@@ -755,6 +769,8 @@ def channel_superoperator(program: Program) -> np.ndarray:
             "channel comparison does not support mid-circuit measurement, "
             "classical control, or assertions"
         )
+    from .resources import preflight
+    preflight(program, policy, representation="superoperator")
     dimension = 2**program.qubits
     columns: list[np.ndarray] = []
     for row in range(dimension):
@@ -781,8 +797,20 @@ def channel_superoperator(program: Program) -> np.ndarray:
 
 def compare(
     first: Program, second: Program, criterion: str = "global-phase",
-    tolerance: float = 1e-12,
+    tolerance: float = 1e-12, *, policy=None,
 ) -> Comparison:
+    from .resources import preflight, AllocationFailed
+    representation = "superoperator" if criterion.startswith("channel-") else "unitary"
+    preflight(first, policy, representation=representation)
+    preflight(second, policy, representation=representation)
+    try:
+        return _compare(first, second, criterion, tolerance, policy=policy)
+    except MemoryError as exc:
+        raise AllocationFailed("dense comparison", representation) from exc
+
+
+def _compare(first: Program, second: Program, criterion: str,
+             tolerance: float, *, policy=None) -> Comparison:
     criteria = {
         "exact", "global-phase", "measurement", "tolerance",
         "channel-exact", "channel-tolerance", "channel-measurement",
@@ -795,10 +823,10 @@ def compare(
         raise E7QError("circuits must have the same number of qubits")
     is_channel = criterion.startswith("channel-")
     if is_channel:
-        left = channel_superoperator(first)
-        right = channel_superoperator(second)
+        left = channel_superoperator(first, policy=policy)
+        right = channel_superoperator(second, policy=policy)
     else:
-        left, right = circuit_unitary(first), circuit_unitary(second)
+        left, right = circuit_unitary(first, policy=policy), circuit_unitary(second, policy=policy)
     phase: complex | None = None
     if criterion == "channel-measurement":
         dimension = 2**first.qubits
