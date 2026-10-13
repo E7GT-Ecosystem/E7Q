@@ -674,6 +674,20 @@
       "limits": "Conservative estimate, not hard process containment or OOM confirmation.",
       "next_gate": "Independent resource-policy review",
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
+      "id": "stabilizer_execution",
+      "scope": "Optional Clifford model execution and exact premeasurement Pauli checks against dense/Qiskit references",
+      "test_file": "tests/test_stabilizer_execution.py",
+      "implementation": [
+        "src/e7q/stabilizer.py",
+        "src/e7q/resources.py",
+        "src/e7q/language.py",
+        "src/e7q/cli.py"
+      ],
+      "limits": "No noise, dense expansion, exact output-support assessment, hardware or universal equivalence claims.",
+      "next_gate": "Independent backend/capability review",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     }
   ],
   "external_report_groups": [

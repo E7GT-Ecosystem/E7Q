@@ -217,8 +217,8 @@ def parse(source: str, *, limits: ParseLimits | None = None) -> Program:
     if shots < 1:
         raise E7QError("shots must be positive")
     backend = settings.get("backend", "statevector")
-    if backend not in {"statevector", "densitymatrix"}:
-        raise E7QError("backend must be statevector or densitymatrix")
+    if backend not in {"statevector", "densitymatrix", "stabilizer"}:
+        raise E7QError("backend must be statevector, densitymatrix or stabilizer")
     try:
         seed = int(settings["seed"]) if "seed" in settings else None
     except ValueError as exc:
@@ -483,8 +483,11 @@ def _initial_state(program: Program) -> np.ndarray:
 def run(program: Program, *, policy=None) -> Execution:
     """Execute only after allocation preflight; no implicit backend fallback."""
     from .resources import preflight, AllocationFailed
-    preflight(program, policy)
+    resources = preflight(program, policy)
     try:
+        if program.backend == "stabilizer":
+            from .stabilizer import run_stabilizer
+            return run_stabilizer(program, resources)
         return _run(program)
     except MemoryError as exc:
         raise AllocationFailed("simulation", program.backend) from exc
@@ -732,6 +735,14 @@ def _run_unitary(program: Program) -> Execution:
 
 
 def circuit_unitary(program: Program, *, policy=None) -> np.ndarray:
+    from .resources import AllocationFailed
+    try:
+        return _circuit_unitary(program, policy=policy)
+    except MemoryError as exc:
+        raise AllocationFailed("unitary construction", "unitary") from exc
+
+
+def _circuit_unitary(program: Program, *, policy=None) -> np.ndarray:
     """Return a circuit unitary, rejecting non-unitary dynamic paths."""
     if _is_dynamic(program):
         raise E7QError(
@@ -767,6 +778,14 @@ def circuit_unitary(program: Program, *, policy=None) -> np.ndarray:
 
 
 def channel_superoperator(program: Program, *, policy=None) -> np.ndarray:
+    from .resources import AllocationFailed
+    try:
+        return _channel_superoperator(program, policy=policy)
+    except MemoryError as exc:
+        raise AllocationFailed("superoperator construction", "superoperator") from exc
+
+
+def _channel_superoperator(program: Program, *, policy=None) -> np.ndarray:
     """Return the linear density-matrix map induced before terminal measurement."""
     if program.backend != "densitymatrix":
         raise E7QError("channel comparison requires the densitymatrix backend")
@@ -1016,7 +1035,12 @@ def compilation_result(compilation: Compilation) -> dict[str, object]:
     }
 
 
-def verify(execution: Execution, tolerance: float = 1e-12) -> dict[str, object]:
+def verify(execution: Execution, tolerance: float = 1e-12, *, pauli_checks=()) -> dict[str, object]:
+    if execution.program.backend == "stabilizer":
+        from .stabilizer import verify_stabilizer
+        return verify_stabilizer(execution, pauli_checks=pauli_checks)
+    if pauli_checks:
+        raise E7QError("Pauli verification requests require the explicitly selected stabilizer backend")
     checks: list[dict[str, object]] = []
     if execution.program.require_normalized:
         if execution.program.backend == "densitymatrix":
@@ -1174,7 +1198,7 @@ def load(path: str | Path) -> Program:
 
 def backend_profile(program: Program) -> dict[str, object]:
     """Return the declared capabilities required to execute a program."""
-    return {
+    profile = {
         "backend": program.backend,
         "qubits": program.qubits,
         "shots": program.shots,
@@ -1198,3 +1222,8 @@ def backend_profile(program: Program) -> dict[str, object]:
             "Reference simulator profile; no physical hardware fidelity is implied."
         ),
     }
+
+    if program.backend == "stabilizer":
+        from .stabilizer import capabilities
+        profile["capabilities"] = capabilities()
+    return profile

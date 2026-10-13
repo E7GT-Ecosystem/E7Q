@@ -64,7 +64,12 @@ def validate_program(program: Program) -> None:
         raise E7QError("execution exceeds 100000 operations")
     if program.backend not in {"statevector", "densitymatrix", "stabilizer"}:
         raise E7QError("unsupported execution backend")
+    full_measured = False
     for operation in program.operations:
+        if full_measured:
+            raise E7QError("full-register measurement must be final")
+        if operation.gate == "MEASURE" and operation.full_register:
+            full_measured = True
         if any(type(q) is not int or not 0 <= q < program.qubits for q in operation.qubits):
             raise E7QError("execution qubit index out of range")
         if any(type(b) is not int or not 0 <= b < program.bits for b in operation.bits):
@@ -184,6 +189,8 @@ def preflight(program: Program, policy: ExecutionPolicy | None = None,
         'schema': 'e7q.resource-preflight/1', 'backend': program.backend,
         'representation': kind, 'dtype': 'compact-tableau' if kind == 'stabilizer' else 'complex128',
         'state_storage_bytes': storage, 'estimated_working_bytes': working,
+        'state_storage_expression': ('compact-tableau estimate' if kind == 'stabilizer' else
+                                     f'16 * 2**{n if kind == "statevector" else (4*n if kind == "superoperator" else 2*n)}'),
         'output_allowance_bytes': output, 'runtime_allowance_bytes': RUNTIME_ALLOWANCE_BYTES,
         'configured_budget_bytes': policy.memory_budget_bytes, 'usable_budget_bytes': usable,
         'host_headroom': limits, 'host_fraction': 0.5, 'host_limits_respected': policy.respect_host_limits,

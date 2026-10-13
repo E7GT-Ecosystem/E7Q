@@ -35,6 +35,7 @@ from .language import (
     compile_topology, load, openqasm, proof_json, run, topology_edges, verify,
 )
 from .resources import ExecutionPolicy, ResourceBlocked, AllocationFailed, failure_result
+from .stabilizer import BackendUnsupported
 from .planning import plan, plan_result
 from .qec import (
     QECError, StabilizerCode, analyze_error, qec_proof_json,
@@ -55,6 +56,7 @@ def _parser() -> argparse.ArgumentParser:
         command.add_argument("source")
         command.add_argument("--proof", type=Path)
         command.add_argument("--memory-budget-bytes", type=int, default=256 * 1024**2)
+        command.add_argument("--pauli-check", action="append", default=[], metavar="PAULI=EXPECTED")
     export = commands.add_parser("export")
     export.add_argument("source")
     export.add_argument(
@@ -505,20 +507,37 @@ def main(argv: list[str] | None = None) -> int:
                 args.proof.write_text(proof_json(result), encoding="utf-8")
                 print(f"Proof-of-Path: {args.proof}", file=sys.stderr)
             return 0
-        result = verify(run(program, policy=ExecutionPolicy(args.memory_budget_bytes)))
+        pauli_checks = []
+        for request in args.pauli_check:
+            try:
+                pauli, expected = request.rsplit("=", 1)
+                pauli_checks.append({"pauli": pauli, "expected": int(expected)})
+            except ValueError as exc:
+                raise E7QError("Pauli request must be PAULI=EXPECTED") from exc
+        result = verify(run(program, policy=ExecutionPolicy(args.memory_budget_bytes)), pauli_checks=pauli_checks)
         if args.proof:
             args.proof.write_text(proof_json(result), encoding="utf-8")
         if args.command == "run":
             print(json.dumps(result["counts"], sort_keys=True))
         else:
             for check in result["checks"]:
-                print(f"{'PASS' if check['passed'] else 'FAIL'}  {check['name']}")
+                print(f"{check.get('status', 'PASS' if check['passed'] else 'FAIL')}  {check['name']}")
             print("\nProbabilities:")
-            for outcome, probability in sorted(result["probabilities"].items()):
+            for outcome, probability in sorted((result["probabilities"] or {}).items()):
                 print(f"{outcome}  {probability:.3f}")
             if args.proof:
                 print(f"\nProof-of-Path: {args.proof}")
         return 0 if result["status"] == "PASS" else 1
+    except BackendUnsupported as exc:
+        result = {"schema": "e7q.execution-outcome/1", "status": "UNSUPPORTED",
+                  "execution_status": "UNSUPPORTED", "verification_status": "NOT_ASSESSED",
+                  "checks": [], "detail": exc.assessment,
+                  "boundary": "No fallback or requested property verification occurred."}
+        content = proof_json(result)
+        print(content, end="")
+        if getattr(args, "proof", None):
+            args.proof.write_text(content, encoding="utf-8")
+        return 3
     except (ResourceBlocked, AllocationFailed) as exc:
         result = failure_result(exc)
         content = proof_json(result)
