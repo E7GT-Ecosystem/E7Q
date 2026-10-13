@@ -208,3 +208,13 @@ def test_versioned_result_and_failure_schemas():
     result = verify(run(program(2)), pauli_checks=[{"pauli":"XX", "expected":0}])
     assert result["execution_status"] == "COMPLETED"
     assert result["status"] == "FAIL"
+
+
+def test_unsupported_comparison_does_not_attempt_dense_preflight(monkeypatch):
+    from e7q.language import compare
+    import e7q.resources as resources
+    def forbidden(*args, **kwargs):
+        pytest.fail("unsupported compact comparison entered dense preflight")
+    monkeypatch.setattr(resources, "preflight", forbidden)
+    with pytest.raises(BackendUnsupported, match="no fallback"):
+        compare(program(25), program(25))

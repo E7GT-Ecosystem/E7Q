@@ -823,6 +823,9 @@ def compare(
     tolerance: float = 1e-12, *, policy=None,
 ) -> Comparison:
     from .resources import preflight, AllocationFailed
+    if first.backend == "stabilizer" or second.backend == "stabilizer":
+        from .stabilizer import BackendUnsupported
+        raise BackendUnsupported("dense unitary/channel comparison does not admit stabilizer programs; no fallback")
     representation = "superoperator" if criterion.startswith("channel-") else "unitary"
     preflight(first, policy, representation=representation)
     preflight(second, policy, representation=representation)

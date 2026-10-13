@@ -522,7 +522,10 @@ def main(argv: list[str] | None = None) -> int:
         else:
             for check in result["checks"]:
                 print(f"{check.get('status', 'PASS' if check['passed'] else 'FAIL')}  {check['name']}")
-            print("\nProbabilities:")
+            if result["probabilities"] is None:
+                print(f"Verification: {result['status']}; exact probability dictionary not materialized")
+            else:
+                print("\nProbabilities:")
             for outcome, probability in sorted((result["probabilities"] or {}).items()):
                 print(f"{outcome}  {probability:.3f}")
             if args.proof:

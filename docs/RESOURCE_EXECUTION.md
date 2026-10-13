@@ -107,3 +107,34 @@ Stim seeds are repeatable only for the same version, calls and compatible machin
 SIMD behavior; there is no promise that Stim counts match dense counts for the same
 seed. Compare exact small-state properties or properly scoped distributions,
 not cross-backend sample identity. Test extras: `.[test,simulation-test]`.
+
+## Reproduction and benchmark provenance
+
+From a clean committed repository, install `.[test,simulation-test]`, then run:
+
+```bash
+python -m pytest -q
+python scripts/benchmark_execution.py --baseline --output /tmp/baseline-new.json
+python scripts/benchmark_execution.py --output /tmp/current-new.json
+```
+
+The runner refuses existing output files or a dirty checkout. `--baseline` loads
+exactly the language module from the starting commit and admits only GHZ-12 full,
+GHZ-12 individual and GHZ-14 individual measurement, at 8 shots/seed 42. It never
+runs dense GHZ-25. Current mode reproduces those cases, GHZ-25 full/individual
+stabilizer (1024 shots), opposite phase, a small density mixture, resource
+refusals and non-Clifford refusal. Each row records original circuit bytes/hash,
+commands, code-module hash, backend/shots/seed, versions, wall time and fresh-worker
+peak RSS. Exact simulator checks and sampled observations are named separately.
+
+Workers use one BLAS/OpenMP thread, a 30-second external timeout, and on Linux
+RLIMIT_AS capped at the post-import virtual footprint plus 512 MiB (or any lower
+inherited bound). This is a separate address-space limit, not an RSS budget.
+Timeout and signal termination are supervisor observations with INCOMPLETE status,
+no fabricated worker receipt/RSS, and no inferred confirmed OOM. Unexpected worker
+errors are FAILED. Supplied third-party GHZ-25 observations remain explicitly
+unreproduced, distinct from the new bounded measurements.
+
+Versioned checked-in baseline/current artifacts will identify the exact clean
+implementation/harness commits measured. Later documentation/result-only commits
+need not be the measured code commit; compare the recorded module hashes.

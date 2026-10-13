@@ -14,6 +14,36 @@ intent, transformations, execution context, observations, assessments, and
 bounded claims. The native E7Q language is one supported front end into that
 protocol.
 
+## Resource-aware simulation
+
+Native dense simulation and comparison now preflight allocations against a
+configurable **256 MiB default budget**, including conservative working/output
+allowances and available host/container headroom. Structural validation and
+planning do not imply execution completion. Resource refusal is not a failed
+quantum property check.
+
+An explicitly selected optional **Stim 1.16.0 stabilizer backend** admits
+Clifford circuits, individual/full measurement and classical feed-forward without
+dense expansion. Exact premeasurement Pauli expectations are separate from
+finite-shot counts; unsupported checks remain unassessed. Neither simulator
+results nor QCEC/PyZX equivalence evidence establish hardware fidelity or advantage.
+
+```bash
+pip install -e '.[test,simulation-test]'
+e7q verify examples/ghz-25-stabilizer.e7q \
+  --memory-budget-bytes 134217728 \
+  --pauli-check XXXXXXXXXXXXXXXXXXXXXXXXX=1 \
+  --pauli-check ZZIIIIIIIIIIIIIIIIIIIIIII=1 --proof ghz25-proof.json
+python scripts/benchmark_execution.py --output /tmp/execution-results.json
+python scripts/benchmark_execution.py --baseline --output /tmp/execution-baseline.json
+```
+
+The example checks normalization, X⊗25 coherence and one ZZ correlation;
+the benchmark checks all adjacent ZZ correlations and single-Z expectations.
+See [resource/backend scopes and reproduction](docs/RESOURCE_EXECUTION.md).
+Existing exact-equivalence criteria, eight-qubit native F2 replay and historical
+IR evidence identities are unchanged.
+
 ## See the difference
 
 Suppose two sets of quantum runs look similar. Did the observed distribution

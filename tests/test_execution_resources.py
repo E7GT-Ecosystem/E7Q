@@ -123,3 +123,55 @@ def test_terminal_preparation_reused_without_rng_change(monkeypatch):
         counts[str(outcome)*4] += 1
     assert execution.counts == counts
     assert all(step.get("executed", 64) == 64 for step in execution.proof)
+
+
+def test_detected_headroom_reduces_usable_budget(monkeypatch):
+    import e7q.resources as resources
+    monkeypatch.setattr(resources, "host_headroom", lambda: [{"source": "test-container", "headroom_bytes": 1024**2}])
+    with pytest.raises(ResourceBlocked) as caught:
+        l.run(program())
+    assert caught.value.assessment["usable_budget_bytes"] == 512*1024
+    assert caught.value.assessment["host_headroom"][0]["source"] == "test-container"
+    assert preflight(program(), ExecutionPolicy(respect_host_limits=False))["status"] == "ADMITTED"
+
+
+def test_both_comparison_inputs_admitted_before_allocating_left(monkeypatch):
+    def forbidden(*args, **kwargs):
+        pytest.fail("comparison allocated before admitting both inputs")
+    monkeypatch.setattr(np, "zeros", forbidden)
+    p = program()
+    with pytest.raises(ResourceBlocked):
+        l.compare(p, replace(p, bits=4096), policy=ExecutionPolicy(67_160_000, False))
+
+
+@pytest.mark.parametrize("failure", ["signal", "timeout", "invalid-receipt"])
+def test_benchmark_supervisor_never_fabricates_oom_or_worker_receipt(monkeypatch, tmp_path, failure):
+    import importlib.util
+    from pathlib import Path
+    import subprocess
+    import sys
+    from types import SimpleNamespace
+    path = Path(__file__).resolve().parents[1] / "scripts/benchmark_execution.py"
+    spec = importlib.util.spec_from_file_location("bounded_benchmark_test", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    monkeypatch.setattr(module.subprocess, "check_output", lambda args, **kw: "" if "status" in args else "f"*40+"\n")
+    def failed_worker(args, **kwargs):
+        if failure == "timeout":
+            raise subprocess.TimeoutExpired(args, 30)
+        return SimpleNamespace(returncode=-9 if failure == "signal" else 0, stdout="not a receipt", stderr="")
+    monkeypatch.setattr(module.subprocess, "run", failed_worker)
+    output = tmp_path / "result.json"
+    monkeypatch.setattr(sys, "argv", [str(path), "--output", str(output)])
+    with pytest.raises(SystemExit) as caught:
+        module.main()
+    assert caught.value.code == 1
+    artifact = json.loads(output.read_text())
+    assert artifact["benchmark_status"] == "FAIL"
+    for row in artifact["results"]:
+        assert row["peak_rss_bytes"] is None
+        assert row["confirmed_oom"] is False
+        assert row["completion_receipt_received"] is False
+        assert row["status"] == ("FAILED" if failure == "invalid-receipt" else "INCOMPLETE")
+        if failure == "signal":
+            assert row["signal"] == 9
