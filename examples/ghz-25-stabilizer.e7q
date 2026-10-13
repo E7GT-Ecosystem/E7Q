@@ -1,0 +1,37 @@
+context GHZ25 {
+ shots: 1024
+ backend: stabilizer
+ seed: 42
+}
+qubits q[25]
+bits c[25]
+invariant normalized
+path GHZ {
+ H q[0]
+ CX q[0], q[1]
+ CX q[0], q[2]
+ CX q[0], q[3]
+ CX q[0], q[4]
+ CX q[0], q[5]
+ CX q[0], q[6]
+ CX q[0], q[7]
+ CX q[0], q[8]
+ CX q[0], q[9]
+ CX q[0], q[10]
+ CX q[0], q[11]
+ CX q[0], q[12]
+ CX q[0], q[13]
+ CX q[0], q[14]
+ CX q[0], q[15]
+ CX q[0], q[16]
+ CX q[0], q[17]
+ CX q[0], q[18]
+ CX q[0], q[19]
+ CX q[0], q[20]
+ CX q[0], q[21]
+ CX q[0], q[22]
+ CX q[0], q[23]
+ CX q[0], q[24]
+ measure q -> c
+}
+verify GHZ

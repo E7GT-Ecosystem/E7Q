@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:e7q:execution-outcome:1",
+  "title": "Interrupted or refused execution, not a property assessment",
+  "type": "object",
+  "required": ["schema", "status", "execution_status", "verification_status", "checks", "detail", "boundary"],
+  "properties": {
+    "schema": {"const": "e7q.execution-outcome/1"},
+    "status": {"enum": ["RESOURCE_BLOCKED", "INCOMPLETE", "FAILED", "UNSUPPORTED"]},
+    "execution_status": {"enum": ["RESOURCE_BLOCKED", "INCOMPLETE", "FAILED", "UNSUPPORTED"]},
+    "verification_status": {"const": "NOT_ASSESSED"},
+    "checks": {"type": "array", "maxItems": 0},
+    "detail": {"type": "object"},
+    "boundary": {"type": "string"}
+  },
+  "additionalProperties": false
+}

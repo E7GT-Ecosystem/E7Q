@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:e7q:stabilizer-result:1",
+  "type": "object",
+  "required": ["schema", "status", "execution_status", "verification_status", "checks", "counts", "sample_frequencies", "probabilities", "probability_semantics", "state", "proof", "resources", "evidence", "first_failure"],
+  "properties": {
+    "schema": {"const": "e7q.stabilizer-result/1"},
+    "status": {"enum": ["PASS", "FAIL", "NOT_ASSESSED"]},
+    "execution_status": {"const": "COMPLETED"},
+    "verification_status": {"enum": ["PASS", "FAIL", "NOT_ASSESSED"]},
+    "checks": {"type": "array", "items": {"type": "object", "required": ["name", "status", "passed"], "properties": {"status": {"enum": ["PASS", "FAIL", "UNSUPPORTED"]}, "passed": {"type": ["boolean", "null"]}}}},
+    "counts": {"type": "object", "propertyNames": {"pattern": "^[01]+$"}, "additionalProperties": {"type": "integer", "minimum": 1}},
+    "sample_frequencies": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0, "maximum": 1}},
+    "probabilities": {"type": "null"},
+    "probability_semantics": {"type": "string"},
+    "state": {"type": "object", "required": ["representation", "scope", "qubits", "generators"], "properties": {"representation": {"const": "stabilizer-generators"}, "scope": {"const": "final-shot collapsed state"}, "qubits": {"type": "integer", "minimum": 1}, "generators": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false},
+    "proof": {"type": "array"},
+    "resources": {"type": "object"},
+    "evidence": {"type": "object"},
+    "first_failure": {"type": ["object", "null"]}
+  },
+  "additionalProperties": false
+}

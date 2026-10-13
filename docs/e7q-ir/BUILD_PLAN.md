@@ -1508,3 +1508,47 @@ The initial objective order is proposed, not universal: admission and declared s
 ### AI handoff
 
 At the start of any K12 package, report the exact E7Q main baseline, active branch, kernel pin, profile disposition, files/interfaces, preservation/loss, migration effect, focused tests and next gate. If current hardening changes the required interface, reconcile it rather than creating a parallel planner.
+
+## 13. Resource-aware execution and optional Clifford simulation — 2026-10-13
+
+Builder: Trejo Mansfield; isolated branch `feat/resource-aware-clifford`, starting
+main `ce9d969a3337ee76b894dae11e8e243ff09a7390`. This owner-selected software
+milestone retains IR IDs, exact-equivalence criteria/budgets and the eight-qubit
+native F2 replay domain. It adapts dense execution/resource failure handling and
+adds explicitly selected optional Stim 1.16.0 Clifford simulation. No signed-
+permutation cap increase, hardware/provider execution, QCEC/PyZX requalification,
+source-pin migration or production release is part of this package.
+
+New conceptual reference: E7G-T v0.15/MSC1
+`2cba2045bb22036ce489083a5ac853a9d867eb21`. Actual downstream architecture pin is
+still v0.12.1-experimental/RGP2 `fc4cdf95c6434e653efbe017587aab60b4b2a86c`; legacy
+v0.11-UC5 compatibility remains. This mismatch is declared, not silently corrected.
+Component disposition: retain quantum/IR identities and evidence semantics;
+adapt dense allocation/gate/measurement/sampling paths; add optional compact
+backend/check/result editions; no replacement/retirement or v0.15 conformance claim.
+
+Acceptance: GHZ-25 within declared budget, small independent references, exact
+Z correlation and X⊗n coherence with phase/mixture negative controls, preallocation
+refusal, truthful unsupported/unassessed requests, applicable regression/schema
+checks and reproducible resource artifacts. See [execution contract](../RESOURCE_EXECUTION.md)
+and `scripts/benchmark_execution.py`. Completed source slices are independently
+compared with Qiskit model implementations; this is not independent physics,
+security, production or original-external-harness acceptance.
+
+The compact backend intentionally does not implement noise/mixed states,
+exhaustive probabilities, exact classical support or mid-circuit ensemble Pauli
+checks. Structural schema/planning success, simulator completion, property
+assessment, all-input equivalence and hardware fidelity remain distinct gates.
+Measured improvements are implementation/backend results, not quantum advantage
+or a new E7G-T simulation algorithm. Benchmark/result commits and PR record the
+actual measured gates and remaining limitations; broader release gates stay open.
+
+Recorded engineering gate at implementation/harness commit
+`e6f26e81a7a0313e429a58596d852eef74468877`: **672 local tests passed**, including
+independent Qiskit comparisons and new schemas. GHZ-25, 1024 shots, 128 MiB declared
+budget: full measurement 0.118530 s / 42.88 MiB peak RSS; individual measurement
+0.156816 s / 42.86 MiB. Exact phase/correlation/balance checks, opposite-phase and
+small incoherent-mixture controls, preallocation refusal, unsupported requests and
+supervisor failure controls are scoped in the execution documentation. Versioned
+artifacts are under `benchmarks/execution/`; this is a software-model milestone,
+not physical/scientific/release acceptance. PR review and merge remain pending.
