@@ -1,0 +1,1163 @@
+{
+  "benchmark_status": "PASS",
+  "created_at": "2026-10-13T20:55:40.050621+00:00",
+  "environment": {
+    "machine": "x86_64",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "thread_settings": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1"
+    },
+    "versions": {
+      "e7q": "1.0.0rc12",
+      "jsonschema": "4.26.0",
+      "numpy": "2.5.4",
+      "python": "3.12.3",
+      "qiskit": "2.5.2",
+      "stim": "1.16.0"
+    }
+  },
+  "harness_commit": "e6f26e81a7a0313e429a58596d852eef74468877",
+  "implementation_commit": "ce9d969a3337ee76b894dae11e8e243ff09a7390",
+  "results": [
+    {
+      "assessed_properties": [
+        {
+          "name": "normalized",
+          "passed": true
+        },
+        {
+          "counts": {
+            "000000000000": 2,
+            "111111111111": 6
+          },
+          "method": "finite-shot observation only; no coherence assessment",
+          "name": "Z counts"
+        }
+      ],
+      "backend": "statevector",
+      "budget": 268435456,
+      "circuit_sha256": "6796d49374572139d31b24b920b318fcabc2d5615abb1b10a2ab9076f45d725b",
+      "command": [
+        "/tmp/e7q-resource-20261013-venv/bin/python",
+        "scripts/benchmark_execution.py",
+        "--worker",
+        "{\"backend\": \"statevector\", \"budget\": 268435456, \"expected_status\": \"PASS\", \"id\": \"ghz-12-full-dense\", \"mode\": \"full\", \"shots\": 8, \"variant\": \"plus\", \"width\": 12}",
+        "--baseline"
+      ],
+      "completion_receipt_received": true,
+      "counts": {
+        "000000000000": 2,
+        "111111111111": 6
+      },
+      "elapsed_seconds": 0.1131843359908089,
+      "expected_outcome_met": true,
+      "expected_status": "PASS",
+      "id": "ghz-12-full-dense",
+      "language_sha256": "8b097ffa7cb628b9f7e246cdc7de8bb365c434d59232c740d198420e044fb7f7",
+      "mode": "full",
+      "peak_rss_bytes": 42831872,
+      "result": {
+        "checks": [
+          {
+            "name": "normalized",
+            "passed": true
+          }
+        ],
+        "counts": {
+          "000000000000": 2,
+          "111111111111": 6
+        },
+        "first_failure": null,
+        "probabilities": {
+          "000000000000": 0.4999999999999999,
+          "111111111111": 0.4999999999999999
+        },
+        "proof": [
+          {
+            "kind": "initialize",
+            "state_norm": 1.0,
+            "step": 0
+          },
+          {
+            "kind": "transform",
+            "operator": "H",
+            "qubits": [
+              0
+            ],
+            "state_norm": 0.9999999999999998,
+            "step": 1
+          },
+          {
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              1
+            ],
+            "state_norm": 0.9999999999999998,
+            "step": 2
+          },
+          {
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              2
+            ],
+            "state_norm": 0.9999999999999998,
+            "step": 3
+          },
+          {
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              3
+            ],
+            "state_norm": 0.9999999999999998,
+            "step": 4
+          },
+          {
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              4
+            ],
+            "state_norm": 0.9999999999999998,
+            "step": 5
+          },
+          {
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              5
+            ],
+            "state_norm": 0.9999999999999998,
+            "step": 6
+          },
+          {
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              6
+            ],
+            "state_norm": 0.9999999999999998,
+            "step": 7
+          },
+          {
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              7
+            ],
+            "state_norm": 0.9999999999999998,
+            "step": 8
+          },
+          {
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              8
+            ],
+            "state_norm": 0.9999999999999998,
+            "step": 9
+          },
+          {
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              9
+            ],
+            "state_norm": 0.9999999999999998,
+            "step": 10
+          },
+          {
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              10
+            ],
+            "state_norm": 0.9999999999999998,
+            "step": 11
+          },
+          {
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              11
+            ],
+            "state_norm": 0.9999999999999998,
+            "step": 12
+          },
+          {
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "000000000000": 2,
+              "111111111111": 6
+            },
+            "shots": 8,
+            "step": 13
+          }
+        ],
+        "status": "PASS"
+      },
+      "rss_scope": "whole fresh worker including imports, execution, verification and reference (when used)",
+      "seed": 42,
+      "shots": 8,
+      "source": "context GHZ12 {\n shots: 8\n backend: statevector\n seed: 42\n}\nqubits q[12]\nbits c[12]\ninvariant normalized\npath GHZ {\n H q[0]\n CX q[0], q[1]\n CX q[0], q[2]\n CX q[0], q[3]\n CX q[0], q[4]\n CX q[0], q[5]\n CX q[0], q[6]\n CX q[0], q[7]\n CX q[0], q[8]\n CX q[0], q[9]\n CX q[0], q[10]\n CX q[0], q[11]\n measure q -> c\n}\nverify GHZ\n",
+      "status": "PASS",
+      "supervisor_elapsed_seconds": 0.4058584659942426,
+      "timeout_seconds": 30,
+      "variant": "plus",
+      "versions": {
+        "e7q": "1.0.0rc12",
+        "jsonschema": "4.26.0",
+        "numpy": "2.5.4",
+        "python": "3.12.3",
+        "qiskit": "2.5.2",
+        "stim": "1.16.0"
+      },
+      "width": 12,
+      "worker_address_limit": {
+        "effective_address_space_bytes": 661651456,
+        "enforced": true,
+        "mechanism": "posix-RLIMIT_AS",
+        "requested_additional_bytes": 536870912
+      }
+    },
+    {
+      "assessed_properties": [
+        {
+          "name": "normalized",
+          "passed": true
+        },
+        {
+          "counts": {
+            "000000000000": 6,
+            "111111111111": 2
+          },
+          "method": "finite-shot observation only; no coherence assessment",
+          "name": "Z counts"
+        }
+      ],
+      "backend": "statevector",
+      "budget": 268435456,
+      "circuit_sha256": "62fa8fd5ccd2a91e464cdd3d08ae58db47c49c29a7c9aef190f0cea5ddfc0c8a",
+      "command": [
+        "/tmp/e7q-resource-20261013-venv/bin/python",
+        "scripts/benchmark_execution.py",
+        "--worker",
+        "{\"backend\": \"statevector\", \"budget\": 268435456, \"expected_status\": \"PASS\", \"id\": \"ghz-12-individual-dense\", \"mode\": \"individual\", \"shots\": 8, \"variant\": \"plus\", \"width\": 12}",
+        "--baseline"
+      ],
+      "completion_receipt_received": true,
+      "counts": {
+        "000000000000": 6,
+        "111111111111": 2
+      },
+      "elapsed_seconds": 1.1045361370197497,
+      "expected_outcome_met": true,
+      "expected_status": "PASS",
+      "id": "ghz-12-individual-dense",
+      "language_sha256": "8b097ffa7cb628b9f7e246cdc7de8bb365c434d59232c740d198420e044fb7f7",
+      "mode": "individual",
+      "peak_rss_bytes": 42754048,
+      "result": {
+        "checks": [
+          {
+            "name": "normalized",
+            "passed": true
+          }
+        ],
+        "counts": {
+          "000000000000": 6,
+          "111111111111": 2
+        },
+        "first_failure": null,
+        "probabilities": {
+          "000000000000": 0.75,
+          "111111111111": 0.25
+        },
+        "proof": [
+          {
+            "kind": "initialize",
+            "shots": 8,
+            "state_norm": 1.0,
+            "step": 0
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "H",
+            "qubits": [
+              0
+            ],
+            "skipped": 0,
+            "step": 1
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              1
+            ],
+            "skipped": 0,
+            "step": 2
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              2
+            ],
+            "skipped": 0,
+            "step": 3
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              3
+            ],
+            "skipped": 0,
+            "step": 4
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              4
+            ],
+            "skipped": 0,
+            "step": 5
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              5
+            ],
+            "skipped": 0,
+            "step": 6
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              6
+            ],
+            "skipped": 0,
+            "step": 7
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              7
+            ],
+            "skipped": 0,
+            "step": 8
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              8
+            ],
+            "skipped": 0,
+            "step": 9
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              9
+            ],
+            "skipped": 0,
+            "step": 10
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              10
+            ],
+            "skipped": 0,
+            "step": 11
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              11
+            ],
+            "skipped": 0,
+            "step": 12
+          },
+          {
+            "bits": [
+              0
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 6,
+              "1": 2
+            },
+            "qubits": [
+              0
+            ],
+            "step": 13
+          },
+          {
+            "bits": [
+              1
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 6,
+              "1": 2
+            },
+            "qubits": [
+              1
+            ],
+            "step": 14
+          },
+          {
+            "bits": [
+              2
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 6,
+              "1": 2
+            },
+            "qubits": [
+              2
+            ],
+            "step": 15
+          },
+          {
+            "bits": [
+              3
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 6,
+              "1": 2
+            },
+            "qubits": [
+              3
+            ],
+            "step": 16
+          },
+          {
+            "bits": [
+              4
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 6,
+              "1": 2
+            },
+            "qubits": [
+              4
+            ],
+            "step": 17
+          },
+          {
+            "bits": [
+              5
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 6,
+              "1": 2
+            },
+            "qubits": [
+              5
+            ],
+            "step": 18
+          },
+          {
+            "bits": [
+              6
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 6,
+              "1": 2
+            },
+            "qubits": [
+              6
+            ],
+            "step": 19
+          },
+          {
+            "bits": [
+              7
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 6,
+              "1": 2
+            },
+            "qubits": [
+              7
+            ],
+            "step": 20
+          },
+          {
+            "bits": [
+              8
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 6,
+              "1": 2
+            },
+            "qubits": [
+              8
+            ],
+            "step": 21
+          },
+          {
+            "bits": [
+              9
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 6,
+              "1": 2
+            },
+            "qubits": [
+              9
+            ],
+            "step": 22
+          },
+          {
+            "bits": [
+              10
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 6,
+              "1": 2
+            },
+            "qubits": [
+              10
+            ],
+            "step": 23
+          },
+          {
+            "bits": [
+              11
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 6,
+              "1": 2
+            },
+            "qubits": [
+              11
+            ],
+            "step": 24
+          },
+          {
+            "kind": "result",
+            "outcomes": {
+              "000000000000": 6,
+              "111111111111": 2
+            },
+            "shots": 8,
+            "step": 25
+          }
+        ],
+        "status": "PASS"
+      },
+      "rss_scope": "whole fresh worker including imports, execution, verification and reference (when used)",
+      "seed": 42,
+      "shots": 8,
+      "source": "context GHZ12 {\n shots: 8\n backend: statevector\n seed: 42\n}\nqubits q[12]\nbits c[12]\ninvariant normalized\npath GHZ {\n H q[0]\n CX q[0], q[1]\n CX q[0], q[2]\n CX q[0], q[3]\n CX q[0], q[4]\n CX q[0], q[5]\n CX q[0], q[6]\n CX q[0], q[7]\n CX q[0], q[8]\n CX q[0], q[9]\n CX q[0], q[10]\n CX q[0], q[11]\n measure q[0] -> c[0]\n measure q[1] -> c[1]\n measure q[2] -> c[2]\n measure q[3] -> c[3]\n measure q[4] -> c[4]\n measure q[5] -> c[5]\n measure q[6] -> c[6]\n measure q[7] -> c[7]\n measure q[8] -> c[8]\n measure q[9] -> c[9]\n measure q[10] -> c[10]\n measure q[11] -> c[11]\n}\nverify GHZ\n",
+      "status": "PASS",
+      "supervisor_elapsed_seconds": 1.350208421004936,
+      "timeout_seconds": 30,
+      "variant": "plus",
+      "versions": {
+        "e7q": "1.0.0rc12",
+        "jsonschema": "4.26.0",
+        "numpy": "2.5.4",
+        "python": "3.12.3",
+        "qiskit": "2.5.2",
+        "stim": "1.16.0"
+      },
+      "width": 12,
+      "worker_address_limit": {
+        "effective_address_space_bytes": 661635072,
+        "enforced": true,
+        "mechanism": "posix-RLIMIT_AS",
+        "requested_additional_bytes": 536870912
+      }
+    },
+    {
+      "assessed_properties": [
+        {
+          "name": "normalized",
+          "passed": true
+        },
+        {
+          "counts": {
+            "00000000000000": 2,
+            "11111111111111": 6
+          },
+          "method": "finite-shot observation only; no coherence assessment",
+          "name": "Z counts"
+        }
+      ],
+      "backend": "statevector",
+      "budget": 268435456,
+      "circuit_sha256": "2b8e4ff87ff31714d3d1331f5e677d2e606ac0ef6c3fed16068bbaf193937b04",
+      "command": [
+        "/tmp/e7q-resource-20261013-venv/bin/python",
+        "scripts/benchmark_execution.py",
+        "--worker",
+        "{\"backend\": \"statevector\", \"budget\": 268435456, \"expected_status\": \"PASS\", \"id\": \"ghz-14-individual-dense\", \"mode\": \"individual\", \"shots\": 8, \"variant\": \"plus\", \"width\": 14}",
+        "--baseline"
+      ],
+      "completion_receipt_received": true,
+      "counts": {
+        "00000000000000": 2,
+        "11111111111111": 6
+      },
+      "elapsed_seconds": 5.319353655038867,
+      "expected_outcome_met": true,
+      "expected_status": "PASS",
+      "id": "ghz-14-individual-dense",
+      "language_sha256": "8b097ffa7cb628b9f7e246cdc7de8bb365c434d59232c740d198420e044fb7f7",
+      "mode": "individual",
+      "peak_rss_bytes": 42893312,
+      "result": {
+        "checks": [
+          {
+            "name": "normalized",
+            "passed": true
+          }
+        ],
+        "counts": {
+          "00000000000000": 2,
+          "11111111111111": 6
+        },
+        "first_failure": null,
+        "probabilities": {
+          "00000000000000": 0.25,
+          "11111111111111": 0.75
+        },
+        "proof": [
+          {
+            "kind": "initialize",
+            "shots": 8,
+            "state_norm": 1.0,
+            "step": 0
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "H",
+            "qubits": [
+              0
+            ],
+            "skipped": 0,
+            "step": 1
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              1
+            ],
+            "skipped": 0,
+            "step": 2
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              2
+            ],
+            "skipped": 0,
+            "step": 3
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              3
+            ],
+            "skipped": 0,
+            "step": 4
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              4
+            ],
+            "skipped": 0,
+            "step": 5
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              5
+            ],
+            "skipped": 0,
+            "step": 6
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              6
+            ],
+            "skipped": 0,
+            "step": 7
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              7
+            ],
+            "skipped": 0,
+            "step": 8
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              8
+            ],
+            "skipped": 0,
+            "step": 9
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              9
+            ],
+            "skipped": 0,
+            "step": 10
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              10
+            ],
+            "skipped": 0,
+            "step": 11
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              11
+            ],
+            "skipped": 0,
+            "step": 12
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              12
+            ],
+            "skipped": 0,
+            "step": 13
+          },
+          {
+            "executed": 8,
+            "kind": "transform",
+            "operator": "CX",
+            "qubits": [
+              0,
+              13
+            ],
+            "skipped": 0,
+            "step": 14
+          },
+          {
+            "bits": [
+              0
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 2,
+              "1": 6
+            },
+            "qubits": [
+              0
+            ],
+            "step": 15
+          },
+          {
+            "bits": [
+              1
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 2,
+              "1": 6
+            },
+            "qubits": [
+              1
+            ],
+            "step": 16
+          },
+          {
+            "bits": [
+              2
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 2,
+              "1": 6
+            },
+            "qubits": [
+              2
+            ],
+            "step": 17
+          },
+          {
+            "bits": [
+              3
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 2,
+              "1": 6
+            },
+            "qubits": [
+              3
+            ],
+            "step": 18
+          },
+          {
+            "bits": [
+              4
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 2,
+              "1": 6
+            },
+            "qubits": [
+              4
+            ],
+            "step": 19
+          },
+          {
+            "bits": [
+              5
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 2,
+              "1": 6
+            },
+            "qubits": [
+              5
+            ],
+            "step": 20
+          },
+          {
+            "bits": [
+              6
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 2,
+              "1": 6
+            },
+            "qubits": [
+              6
+            ],
+            "step": 21
+          },
+          {
+            "bits": [
+              7
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 2,
+              "1": 6
+            },
+            "qubits": [
+              7
+            ],
+            "step": 22
+          },
+          {
+            "bits": [
+              8
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 2,
+              "1": 6
+            },
+            "qubits": [
+              8
+            ],
+            "step": 23
+          },
+          {
+            "bits": [
+              9
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 2,
+              "1": 6
+            },
+            "qubits": [
+              9
+            ],
+            "step": 24
+          },
+          {
+            "bits": [
+              10
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 2,
+              "1": 6
+            },
+            "qubits": [
+              10
+            ],
+            "step": 25
+          },
+          {
+            "bits": [
+              11
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 2,
+              "1": 6
+            },
+            "qubits": [
+              11
+            ],
+            "step": 26
+          },
+          {
+            "bits": [
+              12
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 2,
+              "1": 6
+            },
+            "qubits": [
+              12
+            ],
+            "step": 27
+          },
+          {
+            "bits": [
+              13
+            ],
+            "executed": 8,
+            "full_register": false,
+            "kind": "project",
+            "operator": "measure",
+            "outcomes": {
+              "0": 2,
+              "1": 6
+            },
+            "qubits": [
+              13
+            ],
+            "step": 28
+          },
+          {
+            "kind": "result",
+            "outcomes": {
+              "00000000000000": 2,
+              "11111111111111": 6
+            },
+            "shots": 8,
+            "step": 29
+          }
+        ],
+        "status": "PASS"
+      },
+      "rss_scope": "whole fresh worker including imports, execution, verification and reference (when used)",
+      "seed": 42,
+      "shots": 8,
+      "source": "context GHZ14 {\n shots: 8\n backend: statevector\n seed: 42\n}\nqubits q[14]\nbits c[14]\ninvariant normalized\npath GHZ {\n H q[0]\n CX q[0], q[1]\n CX q[0], q[2]\n CX q[0], q[3]\n CX q[0], q[4]\n CX q[0], q[5]\n CX q[0], q[6]\n CX q[0], q[7]\n CX q[0], q[8]\n CX q[0], q[9]\n CX q[0], q[10]\n CX q[0], q[11]\n CX q[0], q[12]\n CX q[0], q[13]\n measure q[0] -> c[0]\n measure q[1] -> c[1]\n measure q[2] -> c[2]\n measure q[3] -> c[3]\n measure q[4] -> c[4]\n measure q[5] -> c[5]\n measure q[6] -> c[6]\n measure q[7] -> c[7]\n measure q[8] -> c[8]\n measure q[9] -> c[9]\n measure q[10] -> c[10]\n measure q[11] -> c[11]\n measure q[12] -> c[12]\n measure q[13] -> c[13]\n}\nverify GHZ\n",
+      "status": "PASS",
+      "supervisor_elapsed_seconds": 5.557632183947135,
+      "timeout_seconds": 30,
+      "variant": "plus",
+      "versions": {
+        "e7q": "1.0.0rc12",
+        "jsonschema": "4.26.0",
+        "numpy": "2.5.4",
+        "python": "3.12.3",
+        "qiskit": "2.5.2",
+        "stim": "1.16.0"
+      },
+      "width": 14,
+      "worker_address_limit": {
+        "effective_address_space_bytes": 661635072,
+        "enforced": true,
+        "mechanism": "posix-RLIMIT_AS",
+        "requested_additional_bytes": 536870912
+      }
+    }
+  ],
+  "schema": "e7q.execution-benchmark/1",
+  "scope": "synthetic local simulator execution; no hardware, advantage, universal equivalence or E7G-T conformance",
+  "supplied_observations": {
+    "GHZ25": "Reported signal 9 near 1 GiB RSS; structural import/schema/planning passed; smaller native cases slow/timed out. Not confirmed OOM.",
+    "reproduced": false
+  }
+}

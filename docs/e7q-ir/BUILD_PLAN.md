@@ -1542,3 +1542,13 @@ assessment, all-input equivalence and hardware fidelity remain distinct gates.
 Measured improvements are implementation/backend results, not quantum advantage
 or a new E7G-T simulation algorithm. Benchmark/result commits and PR record the
 actual measured gates and remaining limitations; broader release gates stay open.
+
+Recorded engineering gate at implementation/harness commit
+`e6f26e81a7a0313e429a58596d852eef74468877`: **672 local tests passed**, including
+independent Qiskit comparisons and new schemas. GHZ-25, 1024 shots, 128 MiB declared
+budget: full measurement 0.118530 s / 42.88 MiB peak RSS; individual measurement
+0.156816 s / 42.86 MiB. Exact phase/correlation/balance checks, opposite-phase and
+small incoherent-mixture controls, preallocation refusal, unsupported requests and
+supervisor failure controls are scoped in the execution documentation. Versioned
+artifacts are under `benchmarks/execution/`; this is a software-model milestone,
+not physical/scientific/release acceptance. PR review and merge remain pending.

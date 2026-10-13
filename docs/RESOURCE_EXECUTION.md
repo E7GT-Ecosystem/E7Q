@@ -138,3 +138,47 @@ unreproduced, distinct from the new bounded measurements.
 Versioned checked-in baseline/current artifacts will identify the exact clean
 implementation/harness commits measured. Later documentation/result-only commits
 need not be the measured code commit; compare the recorded module hashes.
+
+## Recorded milestone result
+
+Measured implementation/harness commit:
+`e6f26e81a7a0313e429a58596d852eef74468877`. Starting implementation:
+`ce9d969a3337ee76b894dae11e8e243ff09a7390`.
+[Baseline artifact](../benchmarks/execution/baseline-20261013-v1.json) and
+[current artifact](../benchmarks/execution/resource-clifford-20261013-v1.json)
+include exact commands/hashes and fresh-process measurements on Linux x86_64,
+Python 3.12.3, NumPy 2.5.4, Stim 1.16.0, Qiskit 2.5.2 and jsonschema 4.26.0.
+
+| Synthetic case | Shots | Baseline seconds | Current seconds | Current peak RSS |
+|---|---:|---:|---:|---:|
+| GHZ-12 dense/full measurement | 8 | 0.113184 | 0.015129 | 39.15 MiB |
+| GHZ-12 dense/individual measurement | 8 | 1.104536 | 0.022725 | 38.37 MiB |
+| GHZ-14 dense/individual measurement | 8 | 5.319354 | 0.036948 | 39.40 MiB |
+| GHZ-25 stabilizer/full measurement | 1024 | not run | 0.118530 | 42.88 MiB |
+| GHZ-25 stabilizer/individual measurement | 1024 | not run | 0.156816 | 42.86 MiB |
+
+GHZ-25 used a declared 128 MiB budget. Working estimates were 64.94/64.99 MiB,
+**not** the measured 42.88/42.86 MiB RSS. Both runs passed 50 exact Pauli checks:
+X⊗25=+1, all 24 neighboring ZZ=+1, and all 25 single Z=0. Normalization is a
+separate tableau-construction check. Counts are finite-shot observations.
+
+Opposite-phase GHZ-25 completed but failed the requested +1 coherence check
+(X⊗25=-1), while correlations/balance remained correct. The small incoherent
+mixture completed and passed trace normalization; its separately assessed GHZ
+coherence failed (XXX=0) although ZZI=+1. Its native verification PASS is **not**
+a GHZ-property PASS; `ghz_property_status: FAIL` and scoped checks preserve this
+distinction. Over-budget dense/density GHZ-25 were refused before state allocation;
+T was UNSUPPORTED. No uncontrolled memory-exhaustion test was run.
+
+One timed observation per synthetic case is recorded, not a statistical
+performance distribution or independent performance audit. Improvements are
+attributed to bounded NumPy kernels/preparation reuse or the selected Stim backend.
+They are not arbitrary-width guarantees, hardware superiority or quantum advantage.
+
+Final implementation regression at the measured commit: `python -m pytest -q`,
+**672 passed in 57.00 s**, with optional independent-reference/schema extras
+installed. Core usability without Stim was checked by a subprocess blocking its
+import. QCEC/PyZX were not requalified, and no hardware/provider/live/production
+validation or broader release/security/physics gate is closed by these results.
+All seven software milestone acceptance criteria are met by this bounded evidence;
+external review/merge and broader release qualification remain separate.
