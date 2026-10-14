@@ -1,5 +1,12 @@
 E7Q
 Copyright 2026 Oleksandr Razinkov
 
-Code: Apache-2.0. Documentation and specifications: CC-BY-SA-4.0.
+Current published code, including E7Q-IR: Apache-2.0.
+Specifications and documentation: CC-BY-SA-4.0 unless explicitly noted.
+Separately designated future commercial components under commercial/e7q_ir/:
+PolyForm-Noncommercial-1.0.0, or rights in a separately executed commercial agreement.
+The component register identifies designated code; none is present at this checkpoint.
+Prior public licence permissions and third-party terms are preserved.
+See docs/licensing/COMMERCIAL_POLICY.md for the publication boundary.
+
 E7Q is experimental. E7G-T supplies modelling vocabulary, not quantum-physical semantics.

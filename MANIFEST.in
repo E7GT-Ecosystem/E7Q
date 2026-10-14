@@ -1,0 +1,2 @@
+# Keep separately licensed components out of the Apache distribution.
+prune commercial

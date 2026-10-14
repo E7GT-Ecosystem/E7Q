@@ -1,0 +1,1669 @@
+{
+  "schema": "e7q.licensing-baseline/1",
+  "baseline_commit": "c519484bccdbe411b05acdba9c24ef1cd852d041",
+  "scope": "Published main snapshot, not a copyright-ownership certification. Public PR history outside main also retains its granted permissions.",
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "git_blob": "2657e0b6023a6b98f95726ce58a92962bef6e9a6",
+      "sha256": "c8edf5d621daae84d1bdf721d6810a8d2a7499cf5ea8760b45572ddb9631a958",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": ".gitignore",
+      "git_blob": "4f8db28f36e2963272686333fcf2422fd4de5612",
+      "sha256": "8f4b02bf92a6d0ce6da030530f304a73655f5e58e78bfe65c3530bbdb69ea524",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "AGENTS.md",
+      "git_blob": "edb1dd964ed1502eda25b99ccd30d8d2e0408fef",
+      "sha256": "8aa87f7d5ff0724986e4c256314d1ea72df6269487f93c9ddcaa98cca9467b08",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "CITATION.cff",
+      "git_blob": "48b55bddf3e61346186b4b5da623e8d7177e1b44",
+      "sha256": "7534949739a624bf829c567ef6a10bf4e1847ba9bb2efe36d038177b893255fd",
+      "declared_scope": "licensing-or-attribution-record"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "git_blob": "166bbed367416a7a04c5f127e491aa40cb799172",
+      "sha256": "4c6ebe45075af89e574e4bf64329239f6eec5c319800cc315fe8f703231c84fa",
+      "declared_scope": "licensing-or-attribution-record"
+    },
+    {
+      "path": "GOVERNANCE.md",
+      "git_blob": "88f1828d47c3ba9ec14f0e37296fafe1009f8f71",
+      "sha256": "0216fd0a052dfae0d4c0edbdb4d50b3086621d575fedc390c90812aea51a435e",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "LICENSE",
+      "git_blob": "2cb4d3fed2ccf56a8cdeff3b646794df9d07c5ea",
+      "sha256": "c315153910735d220bfeec0f1146de57006ee75602265ac6c717e7fa0f177959",
+      "declared_scope": "licensing-or-attribution-record"
+    },
+    {
+      "path": "LICENSE-DOCS",
+      "git_blob": "5f1a1031f95ba6d5cc57b2fba43768774b77bc34",
+      "sha256": "fda51e3f08acdd8229eacbd01b412d913a6745e21a287f5d733a436e5f398fa2",
+      "declared_scope": "licensing-or-attribution-record"
+    },
+    {
+      "path": "NOTICE",
+      "git_blob": "68ab7e10ca7eb19a1bfd8e6203705d01a8976fcf",
+      "sha256": "07733151495ac2d8f4cc3d0a46eb70f59960870f21ef7bffde40b7e0f0e72702",
+      "declared_scope": "licensing-or-attribution-record"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "9db78c32b676380e4fc66950b0bbdd7b23d0fcee",
+      "sha256": "fa94fd5d99b0295527a46cf1ec68a413b7d352efd6274d6e232b30fc7f482632",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "ROADMAP.md",
+      "git_blob": "7cec26dc60a5594c935e13a005724c889a02ce50",
+      "sha256": "24321c31aa1acdadce0f9a326e9b58c769de34afefa3bd6a99db918f78611a2f",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "benchmarks/e7q-ir/compiler-proof-nonlocal-cx-results.json",
+      "git_blob": "cb420f2fe63e259cba18de758be44d1a1d58cad7",
+      "sha256": "43fa6b4e605af97fd5f70ae8847f3d3b2612ebaabc4a78d9eddfe5ed7ed52c5f",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "benchmarks/e7q-ir/external-qcec-32-results.json",
+      "git_blob": "6f207566bbf2b8fda644163ca7368cecf9743618",
+      "sha256": "dc168fcb509b5416cb085c9c3bbce54e4fc19a81b637ba28267df03b36761fe1",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "benchmarks/e7q-ir/history/qcec-3.9.0-results-a19e9108-invalid-exact-criteria.json",
+      "git_blob": "2a3937b2e2facef05f313c5441bb4bdeba4a9b51",
+      "sha256": "f4770c4898b1d3bd7d96d6c998f92f98413f8822eaa0dd9fcbe395382ae9f97f",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "benchmarks/e7q-ir/legacy-receipt-results.json",
+      "git_blob": "5163955edf4d5fc4f128703add34ede7ae8b8a22",
+      "sha256": "fb956e9f02a93034a5f331aa1eca8a3299e4116136626d2599f030640a11fed7",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "benchmarks/e7q-ir/native-external-qcec-bell-results.json",
+      "git_blob": "3dfe84908174e627c27cfe689adabe5f63826356",
+      "sha256": "693df09552080ebf266fb3bce4ebea6e25cf85eeb32f6bc8d14057734e3d12e7",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "benchmarks/e7q-ir/pyzx-0.10.6-results.json",
+      "git_blob": "70e82bfa70b356b2660fb2361fbeb88a3a602365",
+      "sha256": "d17160e7ef5b0fe731dac223c2877eb31a3d166d74460f00cfedfeb2496fae47",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "benchmarks/e7q-ir/qcec-3.9.0-results.json",
+      "git_blob": "dfe34e3ee5e3854d37d7be68021e13a1359cd99b",
+      "sha256": "2a47731bd1f7461fff6f5f6ca54bdc2d3308337a5246a71abc9127f4381a409a",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "benchmarks/e7q-ir/qcec-e5-repeated-ladder-results.json",
+      "git_blob": "68d7b08498b12b66fe47efb2b64e5a5460c61d09",
+      "sha256": "5536da3de6ceac9ea514dc7e7da8429bc5bf0ae5e5223af5edeb4a0492bcaef8",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "benchmarks/e7q-research/dhsp-affine-corpus.json",
+      "git_blob": "c56ce01681cd50d861aeb646e36a52a16b999624",
+      "sha256": "9dea71677ee9272cb0a88f37c38a27743f6c70e5cb66df509c997f4c1ed4b634",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "benchmarks/execution/baseline-20261013-v1.json",
+      "git_blob": "c35130934005d28ebf5aec005ac07a840147b586",
+      "sha256": "64c9ad5751470deab33be3605980118eee36292d4b14044d284cf2c698896600",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "benchmarks/execution/resource-clifford-20261013-v1.json",
+      "git_blob": "6b6aac1d93d53379e6347fa90896ef27d75e387b",
+      "sha256": "bcac6837ed779398255fb83d30b436f78657a61cd8153781369f079527a2d951",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "docs/Architecture.md",
+      "git_blob": "33eb08e5283b8cb47cefea2fb101518af14e23c8",
+      "sha256": "2bc52a6fae71aa91b4b3cb967858a2d5cf7cb9a0247505bd023a7ccd3dae63b9",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/COMPARATIVE_EXPERIMENTS.md",
+      "git_blob": "1962d323649faabbd14b5ab8fedda0b42bfa9d15",
+      "sha256": "daf94c4e579354d59daf6a9224948fa3831b4d7732424d81a3597aab7fbb702e",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/E7GT_Quantum_Mapping.md",
+      "git_blob": "291435eab8fa5e69256ee1a3219db1255ac2ef78",
+      "sha256": "346c8975f1abcbacec0fdbb68c3e59e5f821fdd07749d8a8e44211b599084fb0",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/E7Q_Language_Specification.md",
+      "git_blob": "ac71320380ba4706418d44a34e9e243217c28544",
+      "sha256": "62d86f5b87285875a368666a5a7d96c52d44f9a3625a57fab70170764d2d0fef",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/ECOSYSTEM_DIRECTION.md",
+      "git_blob": "ef8c40493ea697d08afc56a20e6e8308fd95db36",
+      "sha256": "e7ac6bc4eac7936e7e1a538676a306f853d028705c7b9f3a6a3ac7aec3fb3ec7",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/EXTERNAL_EVIDENCE_IMPORTER.md",
+      "git_blob": "a52b9db37e642dd9cf23da73fc6ebf15bac6d004",
+      "sha256": "ad43dcabe37258499ad03ef25c7d3f4af79da02a436f2bc7965a14f49f2678f1",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/KERNEL_ALIGNMENT.md",
+      "git_blob": "e60eb76ef3bfd9f878216680bf23f002f4f3a528",
+      "sha256": "f905aa51c5ba6ca44312339f8027de79c543114db1b06628e13a4a9809cd1afe",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_10.md",
+      "git_blob": "4631a95fc427d1035ecebbfba32a84f58aa244dd",
+      "sha256": "118971bf9e9ead129c33abd8fa105e9c53d75bdc2b13cfff4ae40c5ba4d5af9e",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_11.md",
+      "git_blob": "6e0c1382f2c03f9314a141fa20ecb31d42ee2d5a",
+      "sha256": "ea8a5870e17802ea5d74fae3f072104136e3023f7463c3f9b41dbd14c26c0f23",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_12.md",
+      "git_blob": "d9e42042a417f2186f00719a2ccdfd5f99058d9f",
+      "sha256": "6108682e2f5faa1424bd709cd51aa44d286fb00059392f21bd17dd0671fc49c9",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_13.md",
+      "git_blob": "8358d9025b254066896266e5ddcfd882761bd9f9",
+      "sha256": "2a6f20e54af0f44ae1a49212f9b0154374709954420ac89740517b6bf3a33e28",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_14.md",
+      "git_blob": "b6406959d597f440f3baa8259590b95124d37433",
+      "sha256": "d3614825db0f45ef59dccf6019134c9920329e19eb04f06fd0aefdeef8ef65dc",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_15.md",
+      "git_blob": "d54305e79be066e1a06b596245adb47434db9eb0",
+      "sha256": "def0d1788c02b29c277a631b4c1d1fdff5700a477efa2608889a109b7de4464b",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_16.md",
+      "git_blob": "406139d23ac3e3e4833034c3429ae60a60e4e601",
+      "sha256": "2dacde60acd0753ca476c239c8b714b76b3195d9953d3ed65de4164d9ca5af4a",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_17.md",
+      "git_blob": "83dffd167390ac70ef5fd8af8aff9e30f426c8c9",
+      "sha256": "5de260a04cb11aa652810e8e455837eec34d9148343d6ef653bf7c7a0347b334",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_18.md",
+      "git_blob": "f4deea8f6abf8c3e7e52bde12d0674facbc60a9b",
+      "sha256": "91e0cfbba6247512b43004a083049c23df1b402ed96c984635cb10fdfc1c13fb",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_19.md",
+      "git_blob": "a7fdde0c23753129d58dec4993270d0c4c500b61",
+      "sha256": "e7da8ab332a397f39369291fe84bf2921bb4921638c52877653583c1416fb5af",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_20.md",
+      "git_blob": "ecddf8dc092a08a34455377eec6bef51d42f523d",
+      "sha256": "1533187b4d61b512eec3e1d1d01b2b904d9172dcbba65bb53c61db2b3e97c6d1",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_21.md",
+      "git_blob": "75147582f68d9306e567a211f93b377a28c32dac",
+      "sha256": "3b67953e65de1aae97302eea5ee517de30b81634c8e108c1a98bb29d865fccaa",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_22.md",
+      "git_blob": "f376cfe68095148b475fcd59a73abba4d5ba9aa9",
+      "sha256": "8e437395801da13cb465ae7aceebbca11e481da9847c018ca4924b9a09a23ca7",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_23.md",
+      "git_blob": "b7849437efaa0e93d8d47eda66472eb60af04c37",
+      "sha256": "cb14c8ffbdfc06401f6e48cfdba6a092855e6fe8456616dffa89c07d07c818c9",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_3.md",
+      "git_blob": "ea859de93a9d2978599bc17cac523e3c6aec267d",
+      "sha256": "98ca2cf5166b97afada2c4b61bda2eae3692168637597710579a3c0392923c79",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_4.md",
+      "git_blob": "d5e29f112208f634a10a49348187f790d9e36d8a",
+      "sha256": "6b36c9ee36970147446427958baf37f25733b89fed08d906aa7dbda5d251535f",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_5.md",
+      "git_blob": "c6c5340d1d1761fb812c5e62a494c292e91ec7cd",
+      "sha256": "7e8e9d81cd7a767e15c6320456e58dc82b26801fad7e5d99bba194daffae27a7",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_6.md",
+      "git_blob": "a9404f9f68848dcd2aa009ccd47689cf753b1535",
+      "sha256": "58b4513e2695f949296ad340a240f45a6389b8f81824448e04095c16008472a7",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_7.md",
+      "git_blob": "2fc41438cf46e49dd3fa1024a27ca07e3ec67b67",
+      "sha256": "56fd11a96950517e374c4b7ab663a35b80ff2f96fced39d60882ad5c93787945",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_8.md",
+      "git_blob": "3465f5aa6f4deaf8bc4116b7420bb1a11a13c5a8",
+      "sha256": "423d317d875c3ab94892adb1fd81dc18d4cedbd250dec7ac22daa521b4e495b1",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/MILESTONE_9.md",
+      "git_blob": "73cba6592465f803bb1d4c46ff1858758a4ff1ea",
+      "sha256": "292aeaefe50fae6c87fbda328cf6814e0a2d00d3f7cf4b338dfbe8cde2868157",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/OBSERVATIONAL_CLAIM_PILOT.md",
+      "git_blob": "64e0237e80c87822810d6e0bfa02d37532e66493",
+      "sha256": "cb381b3fc2b434f2d6ec98a07dc02b60db66fa7806ca807582edaed0b8930ad6",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/OPENQASM2_AND_DETERMINISTIC_ASSESSMENT.md",
+      "git_blob": "9aa760979013d5f2ac8cbbd95224151109148e62",
+      "sha256": "78a9455d517a85b0604d065ae7f0c405caa6ea637fc66dc46a7f09100a44dc70",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/QEC_SYNDROME_PILOT.md",
+      "git_blob": "acb6b8e25488a51d6bc2d5134f7311ad1e7504ad",
+      "sha256": "fb6d120732ef0eea8413e877f2cce65ca55521066f6473f6ecc6c45332736194",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/QUICKSTART.md",
+      "git_blob": "60503bbf66a11d7c56085e4c57948717af3524b7",
+      "sha256": "a19e6c053377f020a5e33eb626a7a14d4ca02a33b6abcf24e025b9ca09174abc",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/RELATIVE_SUPPORT_PILOT.md",
+      "git_blob": "78c872c3a8dcb97df031d32be0f2a60a65868f29",
+      "sha256": "3e772391038fc49706258782be17f0f5d2b66ea67c90bfd9018511196dc1fe15",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/RELEASE_NOTES_1.0.0rc12.md",
+      "git_blob": "b84083229723ac0059401acfe770d9b6987a316c",
+      "sha256": "43b34044f6e1cc09c5fb18d9479eb988ac760a0d0406cccd3fd2c08ef9acabd6",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/RESOURCE_EXECUTION.md",
+      "git_blob": "c2700fb1cd6cffdd2ed963fd9c89ce7d3dcbc64c",
+      "sha256": "da11a510ecf62ca80b15130eca1ce2ae8decfb6c3c0c48b8e3345c2a06afa68f",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/TEMPORAL_EVIDENCE_PROFILE.md",
+      "git_blob": "f591644076d4d585265fb70afcedc557ec651648",
+      "sha256": "ce923fe66b311ae01b552b4f73c0681bd7bed3a0a71ea948d9d29a6d376523f2",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/TEMPORAL_ORIENTATION_PILOT.md",
+      "git_blob": "d8181cc49ea9f9fe5366a61096be63535042cee1",
+      "sha256": "09095ec7b41ccc09313c084e77562568922a274156ea2ced51fda453e94b6d67",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/V012_REFOUNDATION_DECISION.md",
+      "git_blob": "f65c6c07f915460eb043e2dff8e24670c7011725",
+      "sha256": "1aecb0527292115c4e41057fea752ecebb762e58c848568b9eb3ea556f4f4760",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/ADR-0001-E7Q-IR-CONSOLIDATION.md",
+      "git_blob": "d9f0832cad87e7a9764f3038b368519f11afa0bc",
+      "sha256": "773cc5ca0b8a576c04ebb5fcebc38d97c58f67fa7c2d0f5dee82a7540f314229",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/ARCHITECTURE.md",
+      "git_blob": "e3f835f9939b248523e90634cac7ecf1c5f7432f",
+      "sha256": "992dfeeb08b05801de6f7b459bc787b509e0d6d8210582f6f86615cac8cf8271",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/BASIS_MEASUREMENT.md",
+      "git_blob": "662fe44456d348c7d9469b1be09ea63860f70ecc",
+      "sha256": "c3ff484d23bc799b8f0eebfa42ea097d0bbb62f63bb6591080eff167581eaa48",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/BUILD_PLAN.md",
+      "git_blob": "e7f32ceccac388085de8adceb4521e59c592b33c",
+      "sha256": "2cfbf0cf6135af5805c965b672cd4d46273d34807fce1e800f20e29c3798814c",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/CANDIDATE_FAMILY.md",
+      "git_blob": "b643a94f5c89a6c42e6904c27be9762f39e1c494",
+      "sha256": "f7bfcbd2c157012ed2d84148382e494e5c2647871daa1db40f9b85202a88a51b",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/CONFORMANCE.md",
+      "git_blob": "717d468330502b27969b8ceb0b2cc8a79162d5b8",
+      "sha256": "83276f8184cd1dccdaba6af712185b52391b2f17c8fb2f3ac222467d35d7bfac",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/ECOSYSTEM_HANDOFF.md",
+      "git_blob": "84b73113e3f1a8757851ac557d79be961f3864b8",
+      "sha256": "758ef151d97effe02916117efb67f535a9607456487f1e48a7f97e5c1eaa0476",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/EQUIVALENCE_DIRECTION.md",
+      "git_blob": "dcd566ba887426f557bdbb057b0760c3c3d3412d",
+      "sha256": "145524092c7aa7252aed6269bab3bb2f493aac6411af18b4c945605a36d0404e",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/EXACT_UNITARY.md",
+      "git_blob": "70b468775c8374ce89ee0483a75210b569042e8c",
+      "sha256": "61f1b032d86987b690aea04d927adc0456ca4e1c978aaec39bf4fd59172e828f",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/GLOBAL_PHASE.md",
+      "git_blob": "e4f6bb706122545a1a83508dd645e02699891ce0",
+      "sha256": "eb1650e3f92e4d37d1d6dc04b6ad6c09ed4aab0e4bc53029f8324e9d6b30d070",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/LEGACY_PRESERVATION.md",
+      "git_blob": "ea27b5c24e2c1136e6feb842131aeb0d1666e767",
+      "sha256": "29345430326f51e68cdf386756f33df37fbe3e9de545032de7fd0e0e3352e730",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/MILESTONE_F2_FRAMEWORK.md",
+      "git_blob": "8e89cf493b43f5502e61dc9031fe6cc5bfedc2a5",
+      "sha256": "3c18dd2d23b2955e445e28630234b85e8b6b48414fbfbf6a21e535a3f4060172",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/NATIVE_EXECUTION.md",
+      "git_blob": "17fd33a6b0a32ff62b9df42f6c57d50093324ee6",
+      "sha256": "9617ddae24fa3878f91987caa84fd6f72b166da5c84b062a0f62e495ddd2ba9a",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/PHASE_1B.md",
+      "git_blob": "9d9f25133ed76ae9111a1bbae05acbfdb17353d1",
+      "sha256": "181ba23d6d78bda1586ff6fafbce2087bda25a05eb0e2c4c29eddb4cc888d9c1",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/PHASE_1C.md",
+      "git_blob": "71937a98562261c8dc68d03ee761e1f45eb9068f",
+      "sha256": "654a0cebde9c500d8c8eb452d2f42b641ae896918d72db728410f2e1f172c0bd",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/PROFILE_AUTHORING.md",
+      "git_blob": "2fdd160fc4fc8d0a561d533a055af648159a26c8",
+      "sha256": "f30164eddd194f7fe7d31e76f808e0a4c622c46dd862b20f52721bff10ccd352",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/PROTOCOL.md",
+      "git_blob": "2439d1e49bd888bfbe91c766c78ee6718fc5b480",
+      "sha256": "235eaba172423a71162b86e57631d2d59e0affbf9cfa1734f6d13898d8e25504",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/PYZX.md",
+      "git_blob": "36701680edf651bb68dd5c9d857b671a0ebc0f24",
+      "sha256": "1b1e480bca03e3d8757e600b5069a5b364acf583d6f4cf1f6e500e5611229377",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/REALISATION.md",
+      "git_blob": "ade86b99378f96f5e39f258f858164045f39f05b",
+      "sha256": "c8660db61469ca699e665c993c1024b386afc794c75f61fd14a93566c55c90ad",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/REAL_H_UNITARY.md",
+      "git_blob": "4be29ac34614e8f2a0559c6e7693571a93960c95",
+      "sha256": "8475889f61fff19e1216cce75f257adbf8df115c5fbf78dd4609e4d53f65c32a",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/RESEARCH_FOUNDATIONS.md",
+      "git_blob": "a824ce70bb2ae41114919bc252794737943fd6ad",
+      "sha256": "6cbb213fa93ea6a0152b2971518af5acf5453081ebc6192a22942cdf7fbf2164",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/REVIEW_CAMPAIGN.json",
+      "git_blob": "d6112b35e3d28a1ed5fc8c3043a23275400e0275",
+      "sha256": "87801ea82a773f2f82dbac42d30421a0a8fe83888d184cd0df49d1d448d2242e",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "docs/e7q-ir/REVIEW_HARDENING.md",
+      "git_blob": "a02b73d269be2bddf46066d2d07f193913cdfc92",
+      "sha256": "e7d7bb0204bb7a785945d6abf1b05f9b2243b2948585c6dfdccbbacff8fb2e71",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/REVIEW_RUNNER.md",
+      "git_blob": "0541f135370dbc05b1d1809f285b0567bd09c13a",
+      "sha256": "5a368dda7838946c060b91b3f6525ccf5bddf9a2a447ea4e28cc7dbb9cb9cff7",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/SECOND_PRODUCT_JOINT_PILOT_SCOPE.md",
+      "git_blob": "a1fca0e10520e11de1956104a402edc2928f1ff0",
+      "sha256": "02a068395b0af6a5334a717df2cfacbf43863df97f4939ae0a9fe7f5a9540049",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/SECURITY_AND_TRUST.md",
+      "git_blob": "acf87499b6c7246add70f3ce4c83506dfab7a5ce",
+      "sha256": "f056618f70ab914e765c81e6badff3314de3e6fec12d7cb7b6d90c17f3809e3b",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/TRANSFORMATION_HISTORY.md",
+      "git_blob": "b23d238e0ccdfaec46fa7122d2ca89670a28f438",
+      "sha256": "790453c0fe7913182589e7c66b16bb2204c597be0faf0990113881bf8f205c89",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/UNITARY_CHANNEL.md",
+      "git_blob": "a958ec49d025e5bf1da089a853f5b660fcb95a65",
+      "sha256": "f9ffa9905b4abf887efb6ac6fdf3698453dd2046978cc8cfc6bbd4790ab8f91b",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-ir/V012_COMPONENT_AUDIT.md",
+      "git_blob": "f3b367da0d9c62b068afabc09913680a7e21de1b",
+      "sha256": "493c07b617f6e724abd87687f5c9c5f09fca25e14619d87cdb3a6020a420c589",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "docs/e7q-research/DHSP_LAB.md",
+      "git_blob": "7b17bd2725e521542d8e568a780bc9bc0dbf82e9",
+      "sha256": "3aa7d008c023272242af4abfcfa43506f682574a2abf25b9d32d994b0c66d784",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "examples/bell-reference.json",
+      "git_blob": "d9f1bdadc4670cb01fd7900cacabad93dc253d23",
+      "sha256": "d00dec59a9cad2838b33a97bcd24d5dbdb524996c8d9cbde779852145729cdab",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/bell.e7q",
+      "git_blob": "9cbb022a4fd10440e5e081a25ec14a52a406ebba",
+      "sha256": "d0618c5fc2df6dd246449bfeeca3c49ac58e990f08af389bd19e8d8693524207",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/calibration-snapshot.json",
+      "git_blob": "7d7ad18cc7dbf8e071995bb2889b3361683783a7",
+      "sha256": "27267528fdfcae70990d5e90fbebd18217cdeaed01c32d5c48ca22daf2adc010",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/comparative-experiment-synthetic.json",
+      "git_blob": "4ad77a0ac54b5978d8dc10c43b4d6a9751edfe9d",
+      "sha256": "23f2d5f62c0fd9acb028f377ee7573118f63130bd62031212a8e7c38ed73a73f",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/deutsch-jozsa-balanced.e7q",
+      "git_blob": "ad1087e3d7a5715e566b1a45568e5c29917a1b00",
+      "sha256": "81883913c57db68edbe45a791dc1e6c4f3207a129aa08760a618b285a557d8e1",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/diagnostic-composition.e7q",
+      "git_blob": "d707d164101b5dff0f1a2e0ae73d29a6c7385567",
+      "sha256": "c9545bd44a194d2bdf6550e97ea65a866c15b40e20c9a4b3c4ca31c1ceed90f8",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/basis-measurement-graph.json",
+      "git_blob": "80f7d3d225c9381b341cf4e5110480b993bbf332",
+      "sha256": "14a092d444967c5b88b076d194b5a3d9b26bdfb1f5662756a8c84f41e308d281",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/byte-identity-graph.json",
+      "git_blob": "689ecc088fdafe8d89bf19d1aad5487f73178e9a",
+      "sha256": "9def85098b707bbc2624429152bf03245178b961bbc4df0ade65d58108138a18",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/compiler-proof/README.md",
+      "git_blob": "b1887f539835b7a7437cfbe5f663bff67bc0d1c3",
+      "sha256": "63d1636d10932a1d7a4ed19bd68ff3a257b53f5544e58ec61a78268bce0dbc14",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "examples/e7q-ir/compiler-proof/nonlocal-cx.e7q",
+      "git_blob": "7352dfb16634649d74cf1c161d00807dad839cf6",
+      "sha256": "257d685017101fe7a0360735606d29ce0f8a6d6d2a586543bbf1b4d45e52464e",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/counts.json",
+      "git_blob": "1c4acb4e97e44f411b4460f684ca6f5087ec4fa3",
+      "sha256": "b42c8f079588260f4cb81945b690f900b4a13ef451590846c5ebe446b623b8b1",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/exact-unitary-graph.json",
+      "git_blob": "f364ff30778149d256edf1dd229245905f5976b6",
+      "sha256": "2291c652c6d9c457b4e74c8ab6782f05ac119239a6d96d1a5cd6e4b039011d57",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/external-circuit-workflow.json",
+      "git_blob": "8766ee1dcccafb3f12e18a6c87e53f46efe49bb1",
+      "sha256": "dee50e36239b0049e3b2aff59b95207be205fcdc6f158d6f4ffb23076d7834c9",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/f2-framework-not-assessed.json",
+      "git_blob": "aae76ce01192771d45870c12cd945ec1763e065e",
+      "sha256": "26d3e2a1b5dba5bbb0dfd41f1ebf4a1c923083faa6badf4125af92899fb828a0",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/f2-phase1b.json",
+      "git_blob": "1ecde7cd6e63630aba1aa519ed35ce4b92cff53d",
+      "sha256": "894b30d9dc4152910f29c119e8d54d2f6cc46afc359cab482fca6ff03098c850",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/global-phase-graph.json",
+      "git_blob": "4082d585a0072f04a502c991c59cf16a99652ff1",
+      "sha256": "a407be2dfb41c669462af3cc42c1e081cfddebbad35081b7caa9d29e003daee9",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/legacy-receipt/README.md",
+      "git_blob": "e2198d2a179bdfe8bd8788aeeb47c5dc9d5bcfaf",
+      "sha256": "2adb48711a53f9c2cf78f94a843e7a38859390a2f4119014443bf1de26102d42",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "examples/e7q-ir/legacy-receipt/bundle.json",
+      "git_blob": "7a7c4e0349f59c5c116afce1ea9204bf4a7a0950",
+      "sha256": "61766d2bcad1202a2498bb2b343ab0d0fdcbc01c10e99fc31fac11909d40e6f1",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/legacy-receipt/calibration.json",
+      "git_blob": "5401c9110fd89e4b4c9e61cd20c2ed8e29d40abb",
+      "sha256": "290f2b4c82c734ba9d2db20842f1ef357c5a55da2f9db744e54ce2ee5dc32933",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/legacy-receipt/program.e7q",
+      "git_blob": "1bc104bed682e96b5fb2d25fce71007444f3291c",
+      "sha256": "6ba3816eb4b592ea11e1e90ac593a0d468f3bba21753d5425d05ff3152948a10",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/legacy-receipt/receipt.json",
+      "git_blob": "ee5cb6bf5a9d6f4682e958fc827356e123332021",
+      "sha256": "4a553b6e6f94243a5bd5fbc308935a8ede4eb29b433bc7931568a306d755587d",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/legacy-receipt/result.json",
+      "git_blob": "e4e3f502dbe2bf583de03252d18cf3f6dfb35c26",
+      "sha256": "0f1f0acf47427c9555104c21ea272f97468aada9cc6423938a911f1448e37c3f",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/native-execution-bell-f2-resource-safe.json",
+      "git_blob": "798b58a5c551d1f6485afbcfd4845590113d0ba8",
+      "sha256": "91f9e695cce04d3c826bfadd4722b646f0b5d0b94cd0f50ccb6d32d260db9bc9",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/native-execution-bell-f2.json",
+      "git_blob": "47b71d7f0f426e80f6cc3f16ed501c560cacfe95",
+      "sha256": "475bae0b062182c8eadfe695ac1f74065e9bf524a5d9dc500d4f1fa69b6f2fa7",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/native-execution-bell-graph.json",
+      "git_blob": "1cb8122c29af37e57d6c962a4a58acb72f5880a8",
+      "sha256": "6f87323108011255ddfea928b4180f612d8af8a51053a1a28c44910d84b74a1f",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/qcec-pair-32/left.qasm",
+      "git_blob": "c78c13f9f64606ccfa471b5baff8d9fc3b244921",
+      "sha256": "320ec788f9d4425bfe886aaebc85baadde55dace6b124ada42bdcefc6d788a60",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/qcec-pair-32/right.qasm",
+      "git_blob": "4bd68ef4cb178bc5eb9a9c6631f9ce7e591fb86d",
+      "sha256": "e7797c093299f34c0956ea4f5521ce1ce1f0d1f5e2ab5928f81fa0882337aa7c",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/real-h-unitary-graph.json",
+      "git_blob": "a41dc22f86d8ad5c2538b9b64def4cfdf8b99720",
+      "sha256": "4da62929e91dd7c98a1a641542419ff17050467dee8b52221bfb81293f299430",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/source.qasm",
+      "git_blob": "49095c42fe032798de62eecc8288579c264568a7",
+      "sha256": "2fb143875ed170f0535a9227c3f6bece9ac82278de05a5a9513aec75dc9ada33",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/structural-identity-graph.json",
+      "git_blob": "a15ed4f8ccbcb05c1bd54e5177daf157bc97ad41",
+      "sha256": "6c4889f91980ca3d181c4a0a0b78aa71a951501a3b8aa195109f610e9d287ac6",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/transpiled.qasm",
+      "git_blob": "d302d1b5622a3bd48a3ae3310aec703e230774f6",
+      "sha256": "2ecb97226585c4c6145ac9dd54673e5e6c0c5349bf256db513e157a2039926e1",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/e7q-ir/unitary-channel-graph.json",
+      "git_blob": "3dcf940a8d0534ca80fe9f5dba4b52b6580ef588",
+      "sha256": "e53d341e0c0861165774ce61704e3c1fc3cf70034027b819a6b170a1b8fee873",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/external-evidence-synthetic/README.md",
+      "git_blob": "53979384488e01f36fb062536758908ec631bcc0",
+      "sha256": "3cf06fdc401ff2530fa40c1d7742ebcc169f8505b10351d7613106f1ac338f31",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "examples/external-evidence-synthetic/synthetic_bell/MANIFEST.md",
+      "git_blob": "a0364b7a086c6cb4c77702afbf260c81ae463c35",
+      "sha256": "43e9e17528383c5e50345fac955cbbc2378ef4a95c4d3e04a5ffbdee78ef499b",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "examples/external-evidence-synthetic/synthetic_bell/calibration.json",
+      "git_blob": "3f095a939f5437ff9bf04c1adc699053b049b654",
+      "sha256": "a1f15f095667ef4e9c3f0b98e34c1c0ead972e58124f177d97f1f232102def20",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/external-evidence-synthetic/synthetic_bell/final_circuit.qasm",
+      "git_blob": "c3bf3c2b43674a1c2f2638e66e05940c42932486",
+      "sha256": "ae0cd142574796138ef95bd28378ae0a56b611999e3e31369cdacefe51a7b825",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/external-evidence-synthetic/synthetic_bell/hieroglyphs_ir.json",
+      "git_blob": "8b5bb64c8ef3d9a92f0283d7a468f887af5a0d6b",
+      "sha256": "83f21848b704d9a100a2af8831fe06ae8ac206b7fa7f0bad4e4e63ac27f43a1e",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/external-evidence-synthetic/synthetic_bell/job_metadata.json",
+      "git_blob": "928b78cb4fa6eacf67bd3639df5996c9283984b9",
+      "sha256": "695718370dd46d81c757cea13db86110c12413e9013a8a840ff11b93b10dcac7",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/external-evidence-synthetic/synthetic_bell/mapping.json",
+      "git_blob": "2a63400d3b074b91c25e7262b5104cf1c86b6384",
+      "sha256": "3290ee023f38bab8796849827c2b99a1df24b33b46870ad804a1bdcce1604d41",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/external-evidence-synthetic/synthetic_bell/pre_transpile_circuit.qasm",
+      "git_blob": "c3bf3c2b43674a1c2f2638e66e05940c42932486",
+      "sha256": "ae0cd142574796138ef95bd28378ae0a56b611999e3e31369cdacefe51a7b825",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/external-evidence-synthetic/synthetic_bell/raw_counts.json",
+      "git_blob": "f848f1fd5bbd48202eb940188bbd09aa7e584773",
+      "sha256": "82286dba63dc0c6b4ecc65fd6ef87b3e7345746c9337d734798908db2f3a80cc",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/external-evidence-synthetic/synthetic_bell/versions.json",
+      "git_blob": "d657560cdcf9936e40ee7de85d031adca3616288",
+      "sha256": "2aaf18df3a26a7ae15fb26bf72b2d7c3ba99902c6c8ce61892a1a77c8ab7b7ec",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/ghz-25-stabilizer.e7q",
+      "git_blob": "3886d196b3dfb8c4602815394627b64ea414c77b",
+      "sha256": "405c2c832e43e6f9e4cb3de629b6070819cb359239e48b085b01df4a9b4431a9",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/ibm-calibration-export.json",
+      "git_blob": "80fcee6cbb2024b97ab3ba9f78574782478f3ef8",
+      "sha256": "355f070fbbb40dc04ef767f6e3224246e819d9cc0d969048e8a1a7d8106b4134",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/identity-direct.e7q",
+      "git_blob": "a4cd55c9d0a631ff6388b6a27f12fe1283859d12",
+      "sha256": "348242eafe20b2432664f5f50f0b042607aef18275b44a88e1203c3c207392b4",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/identity-optimized.e7q",
+      "git_blob": "c922a1fe9f27fa9c08cd9614697a1a66a411acb6",
+      "sha256": "75fef4a31c7c4606680e3b47c120e0f09ec05f4fb42471e84f2b697306f1b4db",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/noisy-bell.e7q",
+      "git_blob": "11afe03d7e69835bd5db3373cb6a710fd29df3c6",
+      "sha256": "9a99eec5b3755063f0f5ec63c230d1cb1e900a43c9a361d590df48cdac9a6598",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/nonlocal-cx.e7q",
+      "git_blob": "60d1661310b441af1878dd261ba17f91ee33cd04",
+      "sha256": "adee81e504c3ddb575992182c8d507c0a1654b316270f9884968f1913c789a05",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/qec-syndrome/ixi.e7q",
+      "git_blob": "446ee3cff3aa4772f3bd4d0f06256c82ba69cd76",
+      "sha256": "4b7391560b43a5b2be9f1bd82dcd5cebb39beeef0744d7722c1a0a3a5c1093f9",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/qec-syndrome/no-error.e7q",
+      "git_blob": "007d83080f0a3026fb5c4b60b9e61598d5baac7f",
+      "sha256": "cbfb6226364213fa840b7250543bd916dce7f454d353f698aa050a870e952e91",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/qec-syndrome/xii.e7q",
+      "git_blob": "4c5cb5018bd457a7a3f17abb376fbf1db8674eab",
+      "sha256": "3850cfda96bee102edb48b8c55f3d44095fd7fcc85f94766557f1156f2779aa8",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/qec-syndrome/xxi.e7q",
+      "git_blob": "00f02be2387f45f3bc860f1d308e40e3761b2de4",
+      "sha256": "2ba7df56f26ca6f668ad63e2bdf5abe9722a291c87d543f8a08534a92870e34e",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/qec-syndrome/xxx-logical.e7q",
+      "git_blob": "eb5ffcbf784c9133e9f027b8b175e70ffbd5375f",
+      "sha256": "b7e1947721d4b01df2a1a23be53788a7d09ed3b548f4ceaf9dcc1724c809fb89",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/qec-syndrome/zzi-stabilizer.e7q",
+      "git_blob": "fae957e36fcc15e38ad5edb9527af9dde196e900",
+      "sha256": "dd3ff68cdcfccb56b42eac2c001c1bfc89523a73ae8e8e5a24b50cdf32f8906a",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "examples/teleportation.e7q",
+      "git_blob": "41d6a8807cc924381fea31ac64adfed3b0e4dd71",
+      "sha256": "7f587b7ab029681196ad15cf30519cc9fad281fe3602937ed67800afe03dec75",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "grammar/E7Q.ebnf",
+      "git_blob": "db994007696682216da670d184f218a3519b2ed1",
+      "sha256": "10f6753c3a1d6e7a26325ddc752a23b65cfe6a4838d63670b849ce8d4775631a",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "pilots/qec_syndrome/expected_results.json",
+      "git_blob": "67a854b1355899cb1309b5b60f551ae0afb882d7",
+      "sha256": "06855b9941d21b4cb7441cd1919254aba7d30c665091be0e808184fbb458c297",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "pilots/qec_syndrome/hardware_reference.json",
+      "git_blob": "08f60c5800a1a333161957ae77b73ade2e77af3f",
+      "sha256": "7af31a0d72333f9378370f6e2b835d844e640ac621a83c023f61741e6c018b88",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "pilots/qec_syndrome/reference_checker.py",
+      "git_blob": "2cbf801f4ac4094423042f2c1f3e4e9037064f6a",
+      "sha256": "42dee66c0631e4b1185dc638bca7591e519fa260378ea084f99b54ab09600de4",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "profiles/circuit-basic-v0alpha1.json",
+      "git_blob": "707293364d9e5d114d35f57c3cfa369b0e0a3d5a",
+      "sha256": "fddeacf1fe8365477772ecda263424a23a4fcb42687ca30025ae93aae8e6a920",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "profiles/native-execution-v0alpha1.json",
+      "git_blob": "1524cdd5caac14818f2abae468748dde6e7e641a",
+      "sha256": "3fb51eac4ec12ba737732bb48b1d0cd0755031b67354305c9290834e740d1eb9",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "pyproject.toml",
+      "git_blob": "aa5dfdd777c2a057c18105a3ed92d9f67aac5f41",
+      "sha256": "15d6469ac7ba78fdf7de788b3ae907202ff3eeb14b9d64ee05819cc25bf58f7c",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "references/E7GT_UPSTREAM.md",
+      "git_blob": "3efc05dfff72462e754fe13e880199ae0a819ead",
+      "sha256": "b87895a9b154099f6577b771a22527075cfb2e41768d1bd2322c580ae648efde",
+      "declared_scope": "CC-BY-SA-4.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "schemas/e7q-ir-candidate-family-v0alpha1.schema.json",
+      "git_blob": "92ed997d038dceb6d3c3d788c30dea2bab146694",
+      "sha256": "4cde9f38ec10ed168928c522ac5ef6323f7fd378f499ecf5475f36a54deaabab",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "schemas/e7q-ir-candidate-family-view-v0alpha2.schema.json",
+      "git_blob": "bcf1ee1e28b622c371e1458ac1185a62dde6f200",
+      "sha256": "841b4fb5c209009b2a34bba376dcd855252f2e8190f37ec20c345f6d1fa4082f",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "schemas/e7q-ir-candidate-restriction-v0alpha2.schema.json",
+      "git_blob": "2199b1505cc352ad16fb036f58eaf12f1b919c79",
+      "sha256": "e689d1ecb6855ea240708b28a5a3d1e90efe25274647dfa6cc2bfa49caeb7ed0",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "schemas/e7q-ir-realisation-v0alpha1.schema.json",
+      "git_blob": "9d45d491ae1a65ca84ddb7bf113e12217316058d",
+      "sha256": "a8a38299f482ec460ee64f78b9767e724bcae4fe00beaf4bc6109d3a246012f1",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "schemas/e7q-ir-transformation-history-v0alpha1.schema.json",
+      "git_blob": "440ad6623fd18d5c10a3b687d3f476ed352b2c03",
+      "sha256": "c466ae29440cf0b2a7c162f3a1b4471c2d7f3ec9da52f10c327a01ad42daf804",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "schemas/e7q-ir/claim-v0alpha1.schema.json",
+      "git_blob": "d83ac09cb5e13a08b00e0796f60129d668314f85",
+      "sha256": "6dad39eb8fdf493457b73d28dea43ff4feda74394e770efe40b9ad2a6f8950ec",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "schemas/e7q-ir/conformance-report-v0alpha1.schema.json",
+      "git_blob": "9cd48f59147e6b3d918ac814da8632d9c3b4bf45",
+      "sha256": "e2cfad111c3efa90f0eac4d4fb1b9938ee9ec0398251fe79df77cfa396ad9260",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "schemas/e7q-ir/envelope-v0alpha1.schema.json",
+      "git_blob": "3342aae92b4140406439eeea662b89f2cb215d5a",
+      "sha256": "8f72da4bc0864501de72e9139ab516e071010e41709c456ac6d2178aa595b515",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "schemas/e7q-ir/graph-v0alpha1.schema.json",
+      "git_blob": "335597d24625a050894b11b12d2ec5638818155c",
+      "sha256": "88f8b173a07cf100e07f5a45f6bed62ea66636c100f602c803baf0adb80722a3",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "schemas/e7q-ir/profile-v0alpha1.schema.json",
+      "git_blob": "77bcebb5d3c6ffbaae91a99b4f5c3b0785a0732e",
+      "sha256": "cdc809e7d458482f5d689964689a5b2b7a4c829656048cb88e14f80553113b33",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "schemas/e7q-ir/semantic-result-v0alpha1.schema.json",
+      "git_blob": "2083946b2c9c5c209eba0803883c88a758cc76d1",
+      "sha256": "ead82581140fe1e8eb79cdabc5ea9b992fd906950047f40e5642ab9910cf71da",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "schemas/e7q-ir/transformation-v0alpha1.schema.json",
+      "git_blob": "a61acf33d5d485b77bd4721abf56a483c9ff9907",
+      "sha256": "66bb20cc5d914e5fd538d54f2aa055a08fcf1de09af04e356dadbdb418baf941",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "schemas/execution-outcome-v1.schema.json",
+      "git_blob": "42a5e0d0203b52961e5022f00bfa1f8fd8630e5e",
+      "sha256": "ab14c61993f7f9efed5fd094fb2fdfa039ccf6375c55af50016d4b252798cbac",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "schemas/stabilizer-result-v1.schema.json",
+      "git_blob": "1310d669baf2b6f360dbd5c1c6841da977718e38",
+      "sha256": "54d14fd86e1013bad21a00acfd0ecfd58462ddfbf1586d391b3e228a1feead38",
+      "declared_scope": "retain existing terms; per-file/third-party scope requires review"
+    },
+    {
+      "path": "scripts/benchmark_dhsp.py",
+      "git_blob": "6d203918d58c702cb07225155929fff3e28637f6",
+      "sha256": "e12910aedd7800f793148560345a66574103dc1c5853ad75f91ca742db6e9757",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "scripts/benchmark_execution.py",
+      "git_blob": "5e0a7d75af533583750aedaa966eda79d67f2f9d",
+      "sha256": "91eb99d53df2b823d00255c1dd01400d94c62e02a3a1cfa23ddd2064919b9394",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "scripts/benchmark_pyzx.py",
+      "git_blob": "3803075f0dcff32cdbfd56b7e105ea359ee4d387",
+      "sha256": "00d5be7aecdcd648ab2f2eaeb68c687c7c610c87ef3ccb4d78f181d6c5f09f4b",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "scripts/benchmark_qcec.py",
+      "git_blob": "0ac9da2bacdacf030e482c8afe3dcc94b86cb1dc",
+      "sha256": "f8964f5c1cfd60deda15d9f0528a3381fc062a10b9e5de026bbee5ca57f86050",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "scripts/review_campaign.py",
+      "git_blob": "7b6589f080ec27acaee91b3c694fbab9195a185b",
+      "sha256": "b695897ce7fc41f62f8fe85f963d2d1f8158173efb3f917d0f19c08c84017d17",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/__init__.py",
+      "git_blob": "4cc821c1e3fff950662af79edd355afd6a38a596",
+      "sha256": "2773cddb2910458d4d386b84d0109c97312bd3f35caa6c9750197ed7f65f67ab",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/adapters.py",
+      "git_blob": "0d045cf88c23492cdecfaf0defb60e92c8ee8860",
+      "sha256": "a2db1100c1fe076b95e1093db4607fb8e7072ae1b2e8c84642ca4e9d59c35e0c",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/artifacts.py",
+      "git_blob": "3debcc095d53c1b6dbe349173acce7e850ffff19",
+      "sha256": "a972009a3a7e7bd91b1421676646894b7bf6585d52e9d35bd6548ffec78778c8",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/assessment.py",
+      "git_blob": "912b0c1136b4cad1fd40d38c12694d761f72a15b",
+      "sha256": "375032c6149f48f33eac14cbe6cb039a694ecb7fa2bbb772045ae0595f7a845e",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/bundles.py",
+      "git_blob": "78c8b88e148beca247dc2b6c0aac5c7814d25b46",
+      "sha256": "781cdfd71c4efee4c53b1cef033cc72e98c5ee3055725358ffc91e0424f8fdec",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/calibration.py",
+      "git_blob": "f0750e491dcf3b9cf5d57e20684d643089a178dc",
+      "sha256": "1fe5ff751ff20ed0541704135aa987489e7d98cd6f7da1a0b9d33a2511c209c7",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/campaigns.py",
+      "git_blob": "55692bf9db6c41ed73565bb8070e35b66cb64aba",
+      "sha256": "c07d55bb0bada8d2f56b835abfe0b5632008ee7fdc6878c327b96dd318de8ea4",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/cli.py",
+      "git_blob": "d97d0298adfea8b334c867d5992c00878a5a8c91",
+      "sha256": "d2a53091210a9109f531c2c03d556c99b25e3b9a44c5f640bfe98702e9cf45a8",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/deterministic.py",
+      "git_blob": "f47482732b491a8005584c5282507a2fe4a42609",
+      "sha256": "950f44da84699a38eb9ab4bb520fe6c564e07868c267d56304857a50b076ea07",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/drift.py",
+      "git_blob": "a9eb6d378b26262dea3dfe25c15461b7ef0152ce",
+      "sha256": "d38bc4cb6935ffa6bac0253705ca1f5196b4b974aa6176b987b1ddf707ec71cc",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/experiments.py",
+      "git_blob": "cc73ac115d703337e268873d821d419190013d19",
+      "sha256": "0f1944a75cce96cb561f5f8447988a16d90a8a311b5cada5106a39d860e2df11",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/external_bundles.py",
+      "git_blob": "c5436780af47b29280b8b3d0e109bd0e3876bc80",
+      "sha256": "8500e3aed08afa79e7e086b978733c998c8b9fcdcb75ea13a2100d539b654b85",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ingestion.py",
+      "git_blob": "2dd0f43d7b8b3942214c0cc57c630b1af8cbf4f0",
+      "sha256": "d9f3ee36bff257ef6d95e1ea6102886fdf895c915260c815e3b3707380e21769",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/__init__.py",
+      "git_blob": "81bbc436ba07b8ab0c4f49a859f44bde91d82fbd",
+      "sha256": "a60e174faf638bc9790799d45525310cdcd53580d1c89a5a846a2c450af3bb7c",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/candidate_family.py",
+      "git_blob": "922c9f215974e7abe79e1c69833b866f1fb1986d",
+      "sha256": "035b56a0bb9240f1ba2cd629a7f129e46c15a0b4b034f635de95826ddb7ae0d4",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/canonical.py",
+      "git_blob": "051b386798eb127b6c7ab0804c9f6d151b529292",
+      "sha256": "a13acfcabbdfa86fec9dda073850d5c3eb5d550b2e9911a5b44e4d6e89f3e997",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/channel.py",
+      "git_blob": "df3b7b9a5c1fc6b1cda5d25f062b2f9da4f0390f",
+      "sha256": "2b37c9f01838af7db668e221a199fe7021a261cda3fb79daa793f69e6bf4d72d",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/circuit.py",
+      "git_blob": "7d3e9199df3e0a010abfe23b48bd46180436c283",
+      "sha256": "2cce8cb14eea4d702612eea42a50ec4954a92eb1bfbf347ea5ee4f8312d026f3",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/compiler_workflow.py",
+      "git_blob": "682044b2baf6baeb9f8c483e2ceb1e66e3ec85e6",
+      "sha256": "b677a2408e47c3ae5055930d875865313f34fcca96d84c47a97085e4fd62dada",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/conformance.py",
+      "git_blob": "42449fba9d6bcea6f40bef0954cac76f7945fcb6",
+      "sha256": "9a0f772f42cf67c6dad2267243918e35b7cdd358a0fcfaac7ce5d1d0a6a5fac6",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/envelope.py",
+      "git_blob": "e611a5b71c6bec5944648e45b64dba327f6f06f1",
+      "sha256": "81944431b8a6e5a8970a6ccc462fdd0a48cdd1c48ac75c15c4ec4cae246e2a08",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/graph.py",
+      "git_blob": "9091e408a65a188270652a5b6fa56946625ed7bd",
+      "sha256": "7c29b52d6cac2fc36d54fb1e6d22ab91ea3185f2c9b0873bde025fc8a11634b2",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/legacy.py",
+      "git_blob": "4741b3d1c679fc77e8b66ade40aba7dd0ba77a63",
+      "sha256": "7057fbb11e7b4df790ca971ef7b193c749901fc7a0fcf9cfdb4a375550c6d24f",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/legacy_receipt_workflow.py",
+      "git_blob": "3db2ba02461ce5300c28d89e52268e691f835311",
+      "sha256": "618dc1b8b46d6438f4ef5710bf5955ef79775fcf490ff7c6a436064c48c513c3",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/measurement.py",
+      "git_blob": "6abdb03b9bc32e5fcfe928adadc950aa1bc557f1",
+      "sha256": "bf93d608006eec33529d9547593bd3f61f0f5e34a7e8252ec9c5a583ea592b19",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/native.py",
+      "git_blob": "49d7e9788a8b47df687602c328594d4025412713",
+      "sha256": "ce2d9093b77926277117c5b1c630ddea98b2c1b27b959802074784f5c8e64796",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/native_qcec_workflow.py",
+      "git_blob": "7753a11af9b80206f1b9c0c954ad8d80e6add000",
+      "sha256": "07e4a2443b56128cc98b8d8e78c4e58bea5f9b5e7b55f2df76abe363ac1efbbd",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/native_semantic.py",
+      "git_blob": "e0d7976368278da53c81095387a3e384c1dab735",
+      "sha256": "a7b2c206b0866620ac336214f252822a3b0b1e94e83b106e73779943df258a2c",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/profiles.py",
+      "git_blob": "5eed6c6c2cb3a07f0d6a3e8428646e4a89919ec5",
+      "sha256": "24f97f2b7ebe649948fdba59f52e06d91563836235651b48c78ebf63221d697f",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/pyzx.py",
+      "git_blob": "97c3767e890268e1fa5a57acaf6d2884fcb9c762",
+      "sha256": "b0524db27dd42a5b79076bfee054cc895607aa6f52e781d7678a17486ae201d0",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/qcec.py",
+      "git_blob": "1630dafed407af257a06b1554ddfb7a4b476724a",
+      "sha256": "230c7054880f0c794bc04477de3788a8bf80302cf0d6280ecbee46072b551e04",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/qcec_workflow.py",
+      "git_blob": "e9608c85358ef205f7520b06e56da6f9aaeafb2c",
+      "sha256": "d6d0ae982114ba2decfe170dbce6fe5ae11e7dc19ae52303146f6311bb02c066",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/real_unitary.py",
+      "git_blob": "7274e5661c82c77af05edc7c5b44c0de1c89a2d6",
+      "sha256": "03ba372d57b2e9e7791531006549ba29064bc431a771c24a7196a059430b79d0",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/realisation.py",
+      "git_blob": "3d9fdea1648ec6981361d619bae0d3d10a530ace",
+      "sha256": "a8276ae0ebd2761b2dcc1a1d6bbeea507b64a9eab9351fe02fbd25836406c7b8",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/semantic.py",
+      "git_blob": "d06e058d48ea3acca4aef5853aa6474b00789470",
+      "sha256": "ccd39041ca4e20bd9ee59cd4b870ca00a049f6e082cc88bdbba0aaff5b2f76ab",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/transformation_history.py",
+      "git_blob": "4e4adf9115bef7346ca2ba4c129a57a8e8356b74",
+      "sha256": "33884950ab843df12614acd2f68d3ed683ccaf208150b6a96166c6dbf1f2f617",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/unitary.py",
+      "git_blob": "b20b161b6ea392578a9c5757547684919ee4bc48",
+      "sha256": "cbca1b36bbf97e17e00edadb16e145bbcd542b5c62f9a12378b0eca29cdd81ce",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/ir/workflow.py",
+      "git_blob": "df0af7233bf7b7e2ef21f273da707a6e07470401",
+      "sha256": "7d47d178a2fb78cd7ac0878b5cf6fe047a835ae5530c777cbe37a6bef60ec666",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/language.py",
+      "git_blob": "09594cd55b58a6ed6f6083bf8e0430dc111a14d1",
+      "sha256": "e593fb2887cccccd97a1c15360e82d69e40bc0fbed16a856d648ae465f1ffeb1",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/observations.py",
+      "git_blob": "946deb39dc9526ac5ef922243c592e6a4e7a38f2",
+      "sha256": "f6a02ffb7fa2859285918e097c5839eaa3f1726c92d4799ff082811f3264d35a",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/openqasm2.py",
+      "git_blob": "a3c28f5936013c74bd0c7fca169f7605e64f68ee",
+      "sha256": "558f04a2303135fdc731ea9bf032a88e71c72e6ce02ba688bab8949983eac2fc",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/orientation.py",
+      "git_blob": "038e8814a757a664ad38f05fc90c906d805053c6",
+      "sha256": "2e168eab0eb68c6a8498cee03bf0292c4b3f319bd542fbcd76a02f70f1f16122",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/planning.py",
+      "git_blob": "431ddff3256cb50992619e8a9acb8ad3ec7a20f1",
+      "sha256": "b24e295c01d173c993f7b7f67f4cebacf89107132dfd87daad9772b1fdc6e6b6",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/qec.py",
+      "git_blob": "464554b170808b230839e9699588a7947660f4e5",
+      "sha256": "072e0cebb549a0e40c1b9793b14bda4c97ccc0bc4de8d1715e919aaec812e594",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/reference.py",
+      "git_blob": "73e8abf3b63ab0dd83dfff4cf40e9865bf062651",
+      "sha256": "323584f041c2c62dc9af54099cd5c71aa8b3491d249d3706d53b4115f6125453",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/research/__init__.py",
+      "git_blob": "67d48cc222f3f6caef779bf6f555b3fd05f6ac21",
+      "sha256": "08f3d4dcc137002220cf24d4c9c4197e81405e4043df32d388f63c9362285b88",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/research/dhsp.py",
+      "git_blob": "6ede1a14aaadaa9e7ca45116f7387d4822179a53",
+      "sha256": "5f9170b665103e2bc864dd991bb2324bb8442e7936cb5ea29646caff2dbc593b",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/resources.py",
+      "git_blob": "a6ed684f573faf369538241a76ed89a4e2dd06ac",
+      "sha256": "9a3da8f8a8f55b365bf1aba976b7e11f3ca26505f71dbca7aa0605461edfaadb",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/results.py",
+      "git_blob": "d818fa586f41b48b8a503dc3f96b42982ced2364",
+      "sha256": "371ca6b6689746ce41ed26f928df28665128674f267262acda127aacc5a85bc3",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/stabilizer.py",
+      "git_blob": "55ea45c7340db284e1bf619d110316ea1ca2368f",
+      "sha256": "c5dcbfcce95644d97c2c61085a23a4bf11c73def691a0fe86696abd9aeaba679",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/support.py",
+      "git_blob": "8dfff43e3da1f606b292c487b2b42d4563b5ed15",
+      "sha256": "b5ca1d7936d6af84138e71f434fcf34d313cb730444ed9ccd706c4b4d6cd2926",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/temporal.py",
+      "git_blob": "cdfa5c2c0c2f9f50659fb80e2bef6d6fb34568bd",
+      "sha256": "56a719e15b2a0c4fd1cfe7e55729196601913d37d0f939195ef29af5735741fd",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "src/e7q/trends.py",
+      "git_blob": "210e1c8279e6638e6ef85a90d8ed66f8c08456c6",
+      "sha256": "7816dd100cd708eee007eb96c3db3bb71b15c9a07bcf03afaba4d07bbdf8597b",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_artifacts.py",
+      "git_blob": "172c875b85325bb1359525a1d9738496282d5e4b",
+      "sha256": "c77eed6b952cb13c0afbb71f455d4b4ee4066597ace10a5836c0aefc8144ab4e",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_assessment.py",
+      "git_blob": "26f006102d0a6c9fe76aea3cf77fcb862e11b036",
+      "sha256": "929820a838c7544e0e6398312525c5645a0a6269da0cb2128a0dd837e1d92ece",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_bell.py",
+      "git_blob": "137df600357538c22f818ffb7c5f094212cb3511",
+      "sha256": "776232b2c50959a8adf3eecae08ecd2e6f8495d22e8731a8b091dd98d07d1495",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_calibration_ingestion.py",
+      "git_blob": "1edc896c417e8af9aeb99f455bf080df2f71f4fd",
+      "sha256": "3d47f28e3e1b1ff445ddf1aa1007ee6fe567ac37b8847bfdf48affd6c783f030",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_calibration_selection.py",
+      "git_blob": "526c3b04a092cb26742d69f73de507b4020281e1",
+      "sha256": "a935c58376cb69eb3c8845c43b816c2893f1347103f69bfe875f2d351e6d19c8",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_campaigns.py",
+      "git_blob": "f604114e2730b4f1b3ce623d159b819c4e469cad",
+      "sha256": "757181d42074950b785a0e914baf2205461eec2f866ad46e2c6fd10744096d27",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_channel_equivalence.py",
+      "git_blob": "69dca96835e2174a5503c3f41f80428ecf932b5d",
+      "sha256": "3b45b6a0dd68d770d5c6e2a742343a86905513a80868ffe90ad3a1613e8e2de1",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_composition_diagnostics.py",
+      "git_blob": "85b37a51f90bd1e50433f208c1db9c4c15ab4a64",
+      "sha256": "c97f44d5bfc8aa7619dad320a5a27e9196edcd315e727feff9ca8df19475097e",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_deterministic_assessment.py",
+      "git_blob": "4d62988dd127a19068d05c9508e63b4d34ce245f",
+      "sha256": "6f0cb98d25cb0afda7438cbce112eea170a12c0a9696ecf4333ca82f53c3bba6",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_drift.py",
+      "git_blob": "db38e3fdd203f79ea59ba89de0f15d5869aeb227",
+      "sha256": "0a2c360ea167f007455e590805221d3fcbb715ba4ba1cead931bddfa5b84b493",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_dynamic.py",
+      "git_blob": "b79d13d9aadd0be50db683d84c57f9019c0e8a84",
+      "sha256": "354a240c521be36025f016a04cc52185a6a34005ff56fecc8f842edbf0f00b76",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_e7q_ir.py",
+      "git_blob": "f067689dfed249701fdc2ae3c7402c36adda22f1",
+      "sha256": "70791bc963a0a62aa67ffee128405553b2511c694ecee669da0d305d8236559e",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_e7q_ir_channel.py",
+      "git_blob": "22a3f4c3b3961599bc076e032d92c970114436f6",
+      "sha256": "4fa92d9cf27751be3f88a0f717773c38e64d56bb903909d1294d6cba3d7b9369",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_e7q_ir_global_phase.py",
+      "git_blob": "e04b36f0798628a2e5f450d4e6f99eb04953c076",
+      "sha256": "5aff6782f443a2b77ebf3c7bc252fef12f6da8015e7a030ed59c26eab710e474",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_e7q_ir_identity.py",
+      "git_blob": "850de6cd6cec45acba735eb6c2d3a62c7683a8ea",
+      "sha256": "eb3c5000f7cea14841f2dd0a35c15e0c3d3df03b9ba782543a7790e64c183cf2",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_e7q_ir_measurement.py",
+      "git_blob": "ded4fa205b2fb118f14caa413a28fcd3020af36e",
+      "sha256": "977f55de3ff6014ee4aa632259c37a4e7f76be1110cdc1e4dd8617821586cadb",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_e7q_ir_real_unitary.py",
+      "git_blob": "9f101348640cd9d3f8a3d405ab4df436de6b01be",
+      "sha256": "7a6b61b55d3afe302245f5964e6094740037a6fead0b7ebcfa3877a3a83b15bf",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_e7q_ir_unitary.py",
+      "git_blob": "4eefafcb21673bb51fd84f9c347efd4d93a92f0f",
+      "sha256": "727a7f2a01bd289ee9f4df7cd1f9ba5bbb0b044511dce06b5fff90b1f43e1956",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_equivalence.py",
+      "git_blob": "58019fbd7858f1df3ae048713ad5ab593fcb7057",
+      "sha256": "7bb7aa143c264cc61e9df50aeb8ec9a1a115c3dfd04c952015a7c9f8039601b5",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_execution_bundles.py",
+      "git_blob": "887b119f3f1a73fcf417600103e76106a27fe317",
+      "sha256": "ebf98bf44268d03b8520c4f59b80e9307e34b8a04ee70ee9c9495652d9095a81",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_execution_resources.py",
+      "git_blob": "a6d5bdef64bce0e789b0c146a465dd9f30f1b04f",
+      "sha256": "5b26a5adf0e9e1eced4ff1ae32ceabdb240819a52bb67448727bf35a5b423627",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_execution_results.py",
+      "git_blob": "abb49daf8a80ece7d4d4fc456c78a69420d672e6",
+      "sha256": "9e253169a33ba4e7b2a11d2202c68e84edd28c721e9e8ad43625fec644f74ddf",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_experiments.py",
+      "git_blob": "0b95a4055f672a309b0d38301ebb5536f9e73433",
+      "sha256": "c66d57ee98cc86c7d0a1335ea3eb6779d9e68f4a5cc92fcf600654bdeb27fbf8",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_external_bundles.py",
+      "git_blob": "7dd75b0816d5d28f923d446ca9187148679dd784",
+      "sha256": "220974d05919fca7cf7b5db64bf4f37c0b95eb1d95b21c1d1d325c198d62c8f3",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_ir_candidate_family.py",
+      "git_blob": "84fd955bb6a1e06856792103bdec4a25b634ec6c",
+      "sha256": "83cc20177f61d0db3facec05f86c2cda5a533db0db47f632fbf5748d446933aa",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_ir_circuit.py",
+      "git_blob": "7b557f46af52f57691fc5e15758adb51044753bf",
+      "sha256": "6a1e1e03aa3e42baf57218866ebb028b5f76345210108b14e339dc03f8b50d5f",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_ir_compiler_workflow.py",
+      "git_blob": "338b547acfd4d6ae7d5efb923e4686291dc65ac2",
+      "sha256": "fe4897bdacadae9836c8bac795e378e74e7bacafe345e4f279aaa798be6f2296",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_ir_legacy.py",
+      "git_blob": "ef195589a94e77ef0dbca519bfb6fd056ec68b89",
+      "sha256": "587fcd8f82813e7588fea11c4f6a08476399132042422583cb2a611821de6071",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_ir_legacy_receipt_workflow.py",
+      "git_blob": "d344376507329908a6d8a0efe1d96eec93972d27",
+      "sha256": "d3839ae0383e3cb62b39574a6596f7d7914296560e310a0c3440f38ce6c531cb",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_ir_native.py",
+      "git_blob": "cbc8066362a5c420426b8c135b27484bb8eb059d",
+      "sha256": "c15b309c1e91887bd010ec6079f334b59eea08ff2f1bb2e97e222248e0d2ace7",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_ir_native_qcec_workflow.py",
+      "git_blob": "92f33e4f03896f5a2f2fe4c81b2cf33931b8e393",
+      "sha256": "0d6570083009c808237c184f2ea652cc5ac92b0559467cfae94f15f1eafd49a1",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_ir_pyzx.py",
+      "git_blob": "112cbdd51b11fe907d80c57110f6c84bb8666b91",
+      "sha256": "8742d06474621455ec0d75974d8795d9091cac910543e3d600819cfbaf27689c",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_ir_qcec.py",
+      "git_blob": "988724bc13236af855e228c5b221426f8a5d5a1c",
+      "sha256": "243ef85b59df126bd5c3f4742a203e3fbe570a619d8ac85396205f31943540b6",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_ir_qcec_benchmark.py",
+      "git_blob": "aa49514818b8ee1b2d747be1c203919a9e6f0ab7",
+      "sha256": "a6b11a1d98594cb1df3a4c3c6bb12975f80eb7ec2dd406d76c19a7a5d01b04c4",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_ir_qcec_workflow.py",
+      "git_blob": "9501de20323ec1f73bc7ce0bb2cca4bbed63316a",
+      "sha256": "fd0c47955d814380d69ccdd73f9c84dacc6a91f68e37fc471e54c8b0456630e7",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_ir_realisation.py",
+      "git_blob": "43935082aefefcb46320418e47d28fab4a961142",
+      "sha256": "317304551bc1d360681e34d72a1a25dea237b86a576b30768810c352ecbe278b",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_ir_transformation_history.py",
+      "git_blob": "0abfe2da695ae19619774e98ea842725784f2e2c",
+      "sha256": "437f4625163bbb424415180df3c28577253eb99e919b0475476d54a602c2c0f3",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_language.py",
+      "git_blob": "c7e112d0fef2a7079c04e4707a0931d5ce0e4d2f",
+      "sha256": "21edd6a25f1bc17c6a86a663246ef62de26d478f159ef27238f82fdb81b38705",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_noise_backend.py",
+      "git_blob": "778cf0f5bcdf4ae55a766989dd4e7bc9435074dd",
+      "sha256": "6a673ee116cf34ddf4a8908d3d8d85da5899b4037e78c36d80eb21b1872f18df",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_observations.py",
+      "git_blob": "9154edce05b4dcfac8c9bcea5c0ef8b9edb8f9f5",
+      "sha256": "2ccbb89f7667875d4b006956591ae929c7bae23375949f85afc96007149719ad",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_openqasm2.py",
+      "git_blob": "197a5d6bf43c3dd22525645df6b58139739c9beb",
+      "sha256": "d0f37cc137cb6d82b61bc871321065748d1ec90cd6edad2f02563f32e9d76acd",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_orientation.py",
+      "git_blob": "fab06deadf6b50791970f6f849775bf042d52cd6",
+      "sha256": "4fecb11d1ef865dfc2b9e6be04f5f7eb182ce1daa67dc1b757bf29d987f738e0",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_qec_syndrome_pilot.py",
+      "git_blob": "4c09224ab7f2bf0325ce00ebf5df353f9dcaff35",
+      "sha256": "52fc461140ffa199186b1188778c89713f4e7581e452f809a392cf0a80d9880e",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_research_dhsp.py",
+      "git_blob": "37497a457c30c1bde78f4239ede16af8388354bd",
+      "sha256": "2f20780ef61de405086c66c8e8e655fa470904747067f171fc256a2e73b92230",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_resource_planning.py",
+      "git_blob": "b0e94519d616f12ca32aecd20fcc20934cc3ff1e",
+      "sha256": "a12602d05e7bb9b4d4dd5daf9357c1df46895fd8ec0f1f9c99eda852a73d9875",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_review_campaign.py",
+      "git_blob": "39ab8b08c0611ac22d8765a34ea60984876c81de",
+      "sha256": "6d97e0f1809793b3cc7b291c5acb29b4a79d00bcc66d30fd1ce57353d0c797b4",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_stabilizer_execution.py",
+      "git_blob": "7c97c464ba68cc51c3c612765f9cd01785a854dc",
+      "sha256": "f7a6714add430a7a287dfdb36e5af445107827b367f1833d017203fd26468528",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_support.py",
+      "git_blob": "0571134e7bcd0b5e0e3329821bbd8d8699375328",
+      "sha256": "f1c5d9ce99e9f82abe70cf7bbd449cd8af0af31d687a2108fc5b07dccbcf0a2d",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_temporal.py",
+      "git_blob": "04cf01d727b6320078da179753f6e161574111c6",
+      "sha256": "fafd27c06df65b398296f0064d39ef09b6d3d54689f626be29e06efb9c4affc5",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_topology_compilation.py",
+      "git_blob": "a61bea6642c0cb809f8435c2105e1509ead4d780",
+      "sha256": "3f7ca10775c21f02ce615102a60694132241fe9ca2773442a8bcd076bc555a0b",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_trends.py",
+      "git_blob": "3180d6746fcc07007889b9fb2c165e91c085d680",
+      "sha256": "e74059e87e7ba27f5115927e5742a1bd495741450af8ed515f5c01a4094bea02",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    },
+    {
+      "path": "tests/test_vendor_adapters.py",
+      "git_blob": "f695fe8c45968f02920fd2be7be8eea910fccd41",
+      "sha256": "627d1c014ea8b5fb3669554c5483037d96c55026e9a9a0a2a86fca434c5d1324",
+      "declared_scope": "Apache-2.0 repository declaration; file notices retained"
+    }
+  ]
+}

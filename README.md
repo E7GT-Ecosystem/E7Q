@@ -400,11 +400,19 @@ remains a separate upstream project and is not silently modified by E7Q.
 
 Copyright © 2026 Oleksandr Razinkov.
 
-- Source code: [Apache License 2.0](LICENSE)
+- Current source code, including E7Q-IR: [Apache License 2.0](LICENSE).
 - Specifications, documentation, examples as expressive works, and
-  explanatory material: [CC BY-SA 4.0](LICENSE-DOCS)
+  explanatory material: [CC BY-SA 4.0](LICENSE-DOCS), unless explicitly noted.
+- Separately designated future commercial E7Q-IR components: standard
+  [PolyForm Noncommercial 1.0.0](commercial/e7q_ir/LICENSE), with a separate
+  commercial agreement for uses outside its permitted scope. No such
+  implementation is included in the current package.
 
-See [`NOTICE`](NOTICE) for the controlling licensing notice.
+The [commercial licensing policy](docs/licensing/COMMERCIAL_POLICY.md) and
+[component register](docs/licensing/component-register.json) define this
+prospective boundary. Existing public permissions are preserved. Designated
+commercial components are source-available, not OSI open source.
+See [`NOTICE`](NOTICE) for scope and attribution.
 
 > Experimental software. Do not use E7Q as the sole basis for safety-critical,
 > security-critical, financial, medical, or physical-system decisions.
