@@ -15,6 +15,13 @@
   "commercial_components": [],
   "open_core_decisions": [
     {
+      "path": "src/e7q/ir/e7c_joint_pilot.py",
+      "sha256": "8b813cefb7278b790a9029dc6b996c9c9cbf239b93b1e5a03bfa0dae8b32721b",
+      "decision": "retain_public_terms",
+      "reason": "Retain the bounded Joint-to-Q-A1 pilot under Apache-2.0 in the existing public E7Q-IR package. This records the exact reconciled file and does not accept its mathematical model, real-task workflow value, E7C conformance or future commercial implementation.",
+      "approval_reference": "Owner explicitly selected retain Apache-2.0 in the E7Q older-PR triage conversation on 2026-10-14 for the #79 reconciliation; exact-hash decision recorded for the file above."
+    },
+    {
       "path": "src/e7q/ir/receipt_binding.py",
       "sha256": "4298d1bd4abb8e92d1d08b6a6a6350cb32eb70be49c1adc40643e5d47a356434",
       "decision": "retain_public_terms",
