@@ -13,6 +13,19 @@ from .candidate_family import (
 )
 from .envelope import build_artifact
 from .graph import build_graph, build_relation
+from .realisation import (
+    PROFILE as REALISATION_PROFILE,
+    TIE_POLICY as REALISATION_TIE_POLICY,
+    SCHEMA as REALISATION_SCHEMA,
+    RESULT_SCHEMA as REALISATION_RESULT_SCHEMA,
+    TABLE_SCHEMA as REALISATION_TABLE_SCHEMA,
+    WITNESS_SCHEMA as REALISATION_WITNESS_SCHEMA,
+    RealisationError,
+    assess_realisation,
+    build_realisation_request,
+    validate_realisation_request,
+    validate_realisation_result,
+)
 from .semantic import SemanticRegistry, SemanticResult, SemanticValidator
 from .transformation_history import (
     TransformationHistoryError,
@@ -24,6 +37,17 @@ from .transformation_history import (
 from .workflow import build_external_circuit_graph, load_external_circuit_manifest
 
 __all__ = [
+    "REALISATION_PROFILE",
+    "REALISATION_TIE_POLICY",
+    "REALISATION_SCHEMA",
+    "REALISATION_RESULT_SCHEMA",
+    "REALISATION_TABLE_SCHEMA",
+    "REALISATION_WITNESS_SCHEMA",
+    "RealisationError",
+    "assess_realisation",
+    "build_realisation_request",
+    "validate_realisation_request",
+    "validate_realisation_result",
     "build_artifact",
     "build_candidate_family",
     "assess_candidate_restriction",

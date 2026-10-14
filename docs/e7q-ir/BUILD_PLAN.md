@@ -1552,3 +1552,37 @@ small incoherent-mixture controls, preallocation refusal, unsupported requests a
 supervisor failure controls are scoped in the execution documentation. Versioned
 artifacts are under `benchmarks/execution/`; this is a software-model milestone,
 not physical/scientific/release acceptance. PR review and merge remain pending.
+
+## 14. Q-A3 finite residual-family realisation — local increment, 2026-10-14
+
+Owner-selected additive slice from merged PR #83 baseline
+`3f5ecb03c3596f667271b1f705cffe354023d0b4`; local branch
+`feat/qa3-finite-realisation-20261014`. The preceding PR-pending text is its earlier
+historical checkpoint, not the current baseline.
+
+Implemented product-local request/table/result/witness records, finite signed
+integer lexicographic objectives, explicit tied-best inventories, and independently
+recomputable residual membership/ranking. One corrected Q-A1 restriction linked
+to one Q-A2 restriction step is supported; arbitrary transformation chains remain
+unsupported. Failed Q-A1 records are not replayed from lost inputs; supported
+upstream terminal outcomes remain declarations without selection certification.
+See [realisation contract](REALISATION.md).
+
+The six-file ceiling leaves prior family/history schemas, canonical IDs, tests,
+calibration, execution backends, native/F2/equivalence workflows and kernel pin
+unchanged. No shared-runtime extraction, physical state interpretation, objective
+truth, hardware, native receipt, storage, dependency or publication grant follows.
+
+Focused verification: new realisation plus retained candidate-family and history
+suites, **84 passed**. The initial 81-pass/one-failure run exposed a missing terminal
+null constraint in the new schema; corrected without weakening tests. Independent
+review initially failed an undeclared backing-data ceiling. That narrowing was
+removed, two source-valid long-string regressions were appended, and the same
+verifier rechecked **84 passed** plus 135 malformed backing probes: **PASS for the
+local planning increment only**. Initial failures remain recorded in the contract.
+No broader full suite, simulator/benchmark or hardware test was run for this slice.
+
+The six-file increment is locally implemented and independently rechecked;
+publication has not been selected. Q-A4 receipt binding, arbitrary transformed-family
+realisation, fractional objective profiles, shared-consumer compatibility and
+broader release remain separate.
