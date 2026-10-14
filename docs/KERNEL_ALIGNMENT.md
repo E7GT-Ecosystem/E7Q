@@ -1,3 +1,8 @@
+> **New-work v0.15 source review:** [component build map](V015_CAPABILITY_BUILD_MAP.md)
+> pins the new source, each profile's local posture, and feature-specific
+> negative gates. The older product alignment record below remains edition
+> pinned; no adapter, API or stored identity is relabelled.
+
 # E7Q and E7Q-IR kernel alignment
 
 Direction: `E7-ECO-DIR-2026-09-13.1`  
@@ -97,3 +102,13 @@ technical PASS with no actionable findings.
 The original checkout/history and earlier worker-note procedural exception are
 preserved. No publication, package build, native/provider/hardware run, remote
 CI, deployment or broader execution/domain gate is selected.
+
+## Published implementation and planning-map reconciliation — 2026-10-14
+
+Main `1fa46ab06ecc68171fcf5891557e46a0cc9b5880` includes #84 and #88.
+The preceding local/unpublished checkpoints are historical; bounded Q-A3
+and offline supplied-receipt Q-A4 are now published under retained terms.
+Their scope, unknowns and earlier verification exceptions remain unchanged.
+[The v0.15 map](V015_CAPABILITY_BUILD_MAP.md) records the newer planning
+reference separately from the retained v0.12.1/RGP2 implementation pin.
+No broader execution acceptance, mathematical review or migration follows.
