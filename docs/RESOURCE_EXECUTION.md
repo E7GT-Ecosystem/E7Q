@@ -139,6 +139,16 @@ Versioned checked-in baseline/current artifacts will identify the exact clean
 implementation/harness commits measured. Later documentation/result-only commits
 need not be the measured code commit; compare the recorded module hashes.
 
+## Externally reported reproduction
+
+An [external GHZ-25 tester account](GHZ_25_EXTERNAL_REPRODUCTION_2026-10-14.md)
+reports untimed exact neighboring ZZ and X⊗25 checks plus Z₀=0, capability/resource
+refusals, and 659 passing tests with one unexplained skip. Its approximately
+0.23-second plain CLI call included startup **without Pauli checks**. This is
+narrative-only external evidence with missing provenance/raw artifacts, not the
+developer benchmark below or exact verification timed at 0.23 seconds. The report
+separately investigates test selection and lists proposed evidence/QEC follow-up.
+
 ## Recorded milestone result
 
 Measured implementation/harness commit:

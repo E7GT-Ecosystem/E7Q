@@ -40,7 +40,10 @@ python scripts/benchmark_execution.py --baseline --output /tmp/execution-baselin
 
 The example checks normalization, X⊗25 coherence and one ZZ correlation;
 the benchmark checks all adjacent ZZ correlations and single-Z expectations.
-See [resource/backend scopes and reproduction](docs/RESOURCE_EXECUTION.md).
+See [resource/backend scopes and reproduction](docs/RESOURCE_EXECUTION.md) and
+[externally reported GHZ-25 reproduction](docs/GHZ_25_EXTERNAL_REPRODUCTION_2026-10-14.md).
+The external account's approximately 0.23-second CLI call included startup but
+no Pauli checks; its exact checks were untimed and its provenance is incomplete.
 Existing exact-equivalence criteria, eight-qubit native F2 replay and historical
 IR evidence identities are unchanged.
 
