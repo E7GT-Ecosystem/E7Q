@@ -17,6 +17,25 @@ rewrite. EEC-Q coefficients are never amplitudes, probabilities or evidence
 weights. See [the component audit](docs/e7q-ir/V012_COMPONENT_AUDIT.md).
 
 
+## GHZ-25 external evidence follow-up — 2026-10-14
+
+Independent GHZ-25 reproduction is **externally reported within a bounded scope**,
+not captured as a full-provenance/raw-artifact reproduction. See the
+[external report and test-selection investigation](docs/GHZ_25_EXTERNAL_REPRODUCTION_2026-10-14.md).
+The approximately 0.23-second plain CLI call had no Pauli checks; exact simulator
+checks were untimed and only one marginal was reported.
+
+- [ ] Capture tester commit, commands, shots/seed, dependencies, skip reason and raw outputs.
+- [ ] Time the checked run with a declared property inventory and resource observations.
+- [ ] Reproduce actual opposite-phase and incoherent-mixture preparations against the original GHZ+ criteria.
+- [ ] Progressively test larger widths with declared budgets and preserved refusal/incomplete outcomes.
+- [ ] Proposed focused Clifford QEC execution/evidence demonstrator, with bounded code/error model and independent reference; **not implemented or complete**.
+
+This evidence lane is separate from Q-A3 PR #84 and its authoritative build-plan
+implementation edits. No kernel pin migration, hardware/advantage claim or author
+attribution change is implied. The existing syndrome-homomorphism pilot is not
+relabeled as the proposed execution demonstrator.
+
 ## E7Q-IR v0.1 — Evidence-native IR foundation
 
 The authoritative [build plan](docs/e7q-ir/BUILD_PLAN.md) v0.14 includes
