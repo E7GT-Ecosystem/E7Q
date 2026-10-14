@@ -1,3 +1,8 @@
+> **New-work v0.15 source review:** [component build map](V015_CAPABILITY_BUILD_MAP.md)
+> pins the new source, each profile's local posture, and feature-specific
+> negative gates. The older product alignment record below remains edition
+> pinned; no adapter, API or stored identity is relabelled.
+
 # E7Q and E7Q-IR kernel alignment
 
 Direction: `E7-ECO-DIR-2026-09-13.1`  

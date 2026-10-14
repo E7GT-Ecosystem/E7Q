@@ -1,3 +1,9 @@
+> **v0.15 planning supplement (2026-09-25).** New build-map work follows
+> [the component-level v0.15 capability map](../V015_CAPABILITY_BUILD_MAP.md), under central
+> source-alignment PR #9. The edition pins and implementation milestones
+> recorded below remain attached to their original versions. This link is
+> a review route, not a v0.15 product migration or conformance claim.
+
 # E7Q-IR Build Plan and AI Engineering Handoff
 
 **Plan version:** 0.17
