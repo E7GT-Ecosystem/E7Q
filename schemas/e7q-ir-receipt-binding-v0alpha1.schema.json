@@ -1,0 +1,507 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e7q.dev/schemas/e7q-ir-receipt-binding-v0alpha1.schema.json",
+  "title": "E7Q-IR product-local supplied-receipt binding request or result",
+  "description": "Strict structural constraints for the selected-legacy-receipt-binding/v0alpha1 profile. Request profile, kernel and edition strings admit bounded alternatives so executable assessment can return unsupported. JSON Schema integer includes mathematically integral JSON numbers such as 1.0; executable admission requires exact built-in int and rejects 1.0 and bool. String lengths here count Unicode code points; executable checks additionally enforce UTF-8 byte limits, reject lone surrogates and require exact finite built-in containers. Executable replay independently recomputes canonical identities, selection, cross-record equality, layer/edge references and byte/target linkage; this schema cannot certify those equalities or authenticate execution. Evidence binding is not program equivalence, semantic preservation, physical execution acceptance or full RGP conformance.",
+  "oneOf": [
+    {"$ref": "#/$defs/request"},
+    {"$ref": "#/$defs/result"}
+  ],
+  "$defs": {
+    "digest": {"type": "string", "minLength": 71, "maxLength": 71, "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nullableDigest": {"anyOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]},
+    "shortText": {"type": "string", "minLength": 1, "maxLength": 128},
+    "contextText": {"type": "string", "minLength": 1, "maxLength": 1024},
+    "realisationOutcome": {"enum": ["unique", "ambiguous", "empty", "invalid_input", "domain_error", "unsupported", "resource_limit"]},
+    "memberInventory": {"type": "array", "maxItems": 4096, "uniqueItems": true, "items": {"$ref": "#/$defs/digest"}},
+    "stateRefs": {"type": "array", "items": {"$ref": "#/$defs/digest"}},
+    "editions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["family", "history", "realisation", "rgp"],
+      "properties": {
+        "family": {"$ref": "#/$defs/shortText"},
+        "history": {"$ref": "#/$defs/shortText"},
+        "realisation": {"$ref": "#/$defs/shortText"},
+        "rgp": {"$ref": "#/$defs/shortText"}
+      }
+    },
+    "limits": {
+      "type": "object", "additionalProperties": false,
+      "required": ["max_graph_bytes", "max_artifacts", "max_relations", "max_source_bytes"],
+      "properties": {
+        "max_graph_bytes": {"type": "integer", "minimum": 1, "maximum": 16777216},
+        "max_artifacts": {"type": "integer", "minimum": 1, "maximum": 64},
+        "max_relations": {"type": "integer", "minimum": 1, "maximum": 128},
+        "max_source_bytes": {"type": "integer", "minimum": 1, "maximum": 1048576}
+      }
+    },
+    "request": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema", "request_id", "profile", "kernel_commit", "editions", "context", "inquiry", "realisation_request_id", "realisation_result_id", "source_digest", "receipt_graph_id", "limits"],
+      "properties": {
+        "schema": {"const": "e7q.ir.receipt-binding-request/v0alpha1"},
+        "request_id": {"$ref": "#/$defs/digest"},
+        "profile": {"$ref": "#/$defs/shortText"},
+        "kernel_commit": {"$ref": "#/$defs/shortText"},
+        "editions": {"$ref": "#/$defs/editions"},
+        "context": {"$ref": "#/$defs/contextText"},
+        "inquiry": {"$ref": "#/$defs/contextText"},
+        "realisation_request_id": {"$ref": "#/$defs/digest"},
+        "realisation_result_id": {"$ref": "#/$defs/digest"},
+        "source_digest": {"$ref": "#/$defs/nullableDigest"},
+        "receipt_graph_id": {"$ref": "#/$defs/nullableDigest"},
+        "limits": {"$ref": "#/$defs/limits"}
+      }
+    },
+    "evidenceDigests": {
+      "type": "object", "additionalProperties": false,
+      "required": ["bundle", "result", "receipt"],
+      "properties": {
+        "bundle": {"$ref": "#/$defs/digest"},
+        "result": {"$ref": "#/$defs/digest"},
+        "receipt": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "unknownComponent": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "value"],
+      "properties": {"status": {"const": "unknown"}, "value": {"type": "null"}}
+    },
+    "signature": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "value"],
+      "properties": {
+        "status": {"const": "declared"},
+        "value": {
+          "type": "object", "additionalProperties": false,
+          "required": ["identity_scope", "state_schema"],
+          "properties": {
+            "identity_scope": {"const": "product-local"},
+            "state_schema": {"enum": ["e7q.ir.candidate-family/v0alpha1", "e7q.ir.transformation-history/v0alpha1", "e7q.ir.candidate-restriction/v0alpha2", "e7q.ir.realisation-result/v0alpha1", "e7q.ir.graph/v0alpha1"]}
+          }
+        }
+      }
+    },
+    "boundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "value"],
+      "properties": {
+        "status": {"const": "declared"},
+        "value": {
+          "type": "object", "additionalProperties": false,
+          "required": ["record_refs", "coupling"],
+          "properties": {
+            "record_refs": {"$ref": "#/$defs/stateRefs"},
+            "coupling": {"const": "joint-record-identity"}
+          }
+        }
+      }
+    },
+    "rule": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "edition"],
+      "properties": {
+        "id": {"enum": ["qa4.restrict-metadata", "qa4.rank-metadata", "qa4.link-supplied-bytes"]},
+        "edition": {"const": "1"}
+      }
+    },
+    "generation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "value"],
+      "properties": {
+        "status": {"const": "declared"},
+        "value": {
+          "type": "object", "additionalProperties": false,
+          "required": ["rules"],
+          "properties": {
+            "rules": {"type": "array", "maxItems": 1, "items": {"$ref": "#/$defs/rule"}}
+          }
+        }
+      }
+    },
+    "interface": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "value"],
+      "properties": {
+        "status": {"const": "declared"},
+        "value": {
+          "type": "object", "additionalProperties": false,
+          "required": ["state_schema", "operations", "boundary"],
+          "properties": {
+            "state_schema": {"$ref": "#/$defs/shortText"},
+            "operations": {"type": "array", "minItems": 1, "maxItems": 2, "items": {"$ref": "#/$defs/shortText"}},
+            "boundary": {"const": "offline record adapter; no execution"}
+          }
+        }
+      }
+    },
+    "invariant": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "value"],
+      "properties": {
+        "status": {"const": "partial"},
+        "value": {
+          "type": "object", "additionalProperties": false,
+          "required": ["scope", "independently_recomputed", "semantic_preservation", "execution_authentication"],
+          "properties": {
+            "scope": {"const": "canonical-record-checks"},
+            "independently_recomputed": {"const": true},
+            "semantic_preservation": {"const": "not-assessed"},
+            "execution_authentication": {"const": "not-assessed"}
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "value"],
+      "properties": {
+        "status": {"const": "declared"},
+        "value": {
+          "type": "object", "additionalProperties": false,
+          "required": ["kernel_commit", "adapter_edition", "role", "source_ids"],
+          "properties": {
+            "kernel_commit": {"const": "fc4cdf95c6434e653efbe017587aab60b4b2a86c"},
+            "adapter_edition": {"const": "1"},
+            "role": {"enum": ["source-family", "ordered-history", "residual-family", "realisation", "supplied-receipt"]},
+            "source_ids": {"$ref": "#/$defs/stateRefs"}
+          }
+        }
+      }
+    },
+    "place": {
+      "type": "object", "additionalProperties": false,
+      "required": ["r", "rho", "tau", "alpha", "c"],
+      "properties": {
+        "r": {"$ref": "#/$defs/unknownComponent"},
+        "rho": {"$ref": "#/$defs/unknownComponent"},
+        "tau": {"$ref": "#/$defs/unknownComponent"},
+        "alpha": {"$ref": "#/$defs/unknownComponent"},
+        "c": {"$ref": "#/$defs/unknownComponent"}
+      }
+    },
+    "layer": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema", "layer_id", "role", "state_refs", "Sigma", "B", "G", "I", "A", "E", "D", "Pi", "K", "M", "place"],
+      "properties": {
+        "schema": {"const": "e7q.ir.receipt-binding-layer/v0alpha1"},
+        "layer_id": {"$ref": "#/$defs/digest"},
+        "role": {"enum": ["source-family", "ordered-history", "residual-family", "realisation", "supplied-receipt"]},
+        "state_refs": {"$ref": "#/$defs/stateRefs"},
+        "Sigma": {"$ref": "#/$defs/signature"},
+        "B": {"$ref": "#/$defs/boundary"},
+        "G": {"$ref": "#/$defs/generation"},
+        "I": {"$ref": "#/$defs/interface"},
+        "A": {"$ref": "#/$defs/unknownComponent"},
+        "E": {"$ref": "#/$defs/unknownComponent"},
+        "D": {"$ref": "#/$defs/unknownComponent"},
+        "Pi": {"$ref": "#/$defs/unknownComponent"},
+        "K": {"$ref": "#/$defs/invariant"},
+        "M": {"$ref": "#/$defs/provenance"},
+        "place": {"$ref": "#/$defs/place"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"role": {"const": "source-family"}}, "required": ["role"]},
+          "then": {"properties": {
+            "state_refs": {"minItems": 1, "maxItems": 1},
+            "Sigma": {"properties": {"value": {"properties": {"state_schema": {"const": "e7q.ir.candidate-family/v0alpha1"}}}}},
+            "B": {"properties": {"value": {"properties": {"record_refs": {"minItems": 1, "maxItems": 1}}}}},
+            "G": {"properties": {"value": {"properties": {"rules": {"const": [{"id": "qa4.restrict-metadata", "edition": "1"}]}}}}},
+            "I": {"properties": {"value": {"properties": {"state_schema": {"const": "e7q.ir.candidate-family/v0alpha1"}, "operations": {"const": ["restrict"]}}}}},
+            "M": {"properties": {"value": {"properties": {"role": {"const": "source-family"}, "source_ids": {"minItems": 1, "maxItems": 1}}}}}
+          }}
+        },
+        {
+          "if": {"properties": {"role": {"const": "ordered-history"}}, "required": ["role"]},
+          "then": {"properties": {
+            "state_refs": {"minItems": 2, "maxItems": 2},
+            "Sigma": {"properties": {"value": {"properties": {"state_schema": {"const": "e7q.ir.transformation-history/v0alpha1"}}}}},
+            "B": {"properties": {"value": {"properties": {"record_refs": {"minItems": 2, "maxItems": 2}}}}},
+            "G": {"properties": {"value": {"properties": {"rules": {"const": []}}}}},
+            "I": {"properties": {"value": {"properties": {"state_schema": {"const": "e7q.ir.transformation-history/v0alpha1"}, "operations": {"const": ["ordered-linkage"]}}}}},
+            "M": {"properties": {"value": {"properties": {"role": {"const": "ordered-history"}, "source_ids": {"minItems": 2, "maxItems": 2}}}}}
+          }}
+        },
+        {
+          "if": {"properties": {"role": {"const": "residual-family"}}, "required": ["role"]},
+          "then": {"properties": {
+            "state_refs": {"minItems": 2, "maxItems": 2},
+            "Sigma": {"properties": {"value": {"properties": {"state_schema": {"const": "e7q.ir.candidate-restriction/v0alpha2"}}}}},
+            "B": {"properties": {"value": {"properties": {"record_refs": {"minItems": 2, "maxItems": 2}}}}},
+            "G": {"properties": {"value": {"properties": {"rules": {"const": [{"id": "qa4.rank-metadata", "edition": "1"}]}}}}},
+            "I": {"properties": {"value": {"properties": {"state_schema": {"const": "e7q.ir.candidate-restriction/v0alpha2"}, "operations": {"const": ["rank"]}}}}},
+            "M": {"properties": {"value": {"properties": {"role": {"const": "residual-family"}, "source_ids": {"minItems": 2, "maxItems": 2}}}}}
+          }}
+        },
+        {
+          "if": {"properties": {"role": {"const": "realisation"}}, "required": ["role"]},
+          "then": {"properties": {
+            "state_refs": {"minItems": 3, "maxItems": 3},
+            "Sigma": {"properties": {"value": {"properties": {"state_schema": {"const": "e7q.ir.realisation-result/v0alpha1"}}}}},
+            "B": {"properties": {"value": {"properties": {"record_refs": {"minItems": 3, "maxItems": 3}}}}},
+            "G": {"properties": {"value": {"properties": {"rules": {"const": []}}}}},
+            "I": {"properties": {"value": {"properties": {"state_schema": {"const": "e7q.ir.realisation-result/v0alpha1"}, "operations": {"const": ["validate-selection"]}}}}},
+            "M": {"properties": {"value": {"properties": {"role": {"const": "realisation"}, "source_ids": {"minItems": 3, "maxItems": 3}}}}}
+          }}
+        },
+        {
+          "if": {"properties": {"role": {"const": "supplied-receipt"}}, "required": ["role"]},
+          "then": {"properties": {
+            "state_refs": {"minItems": 4, "maxItems": 4},
+            "Sigma": {"properties": {"value": {"properties": {"state_schema": {"const": "e7q.ir.graph/v0alpha1"}}}}},
+            "B": {"properties": {"value": {"properties": {"record_refs": {"minItems": 4, "maxItems": 4}}}}},
+            "G": {"properties": {"value": {"properties": {"rules": {"const": []}}}}},
+            "I": {"properties": {"value": {"properties": {"state_schema": {"const": "e7q.ir.graph/v0alpha1"}, "operations": {"const": ["recover-supplied-bytes", "validate-internal-consistency"]}}}}},
+            "M": {"properties": {"value": {"properties": {"role": {"const": "supplied-receipt"}, "source_ids": {"minItems": 4, "maxItems": 4}}}}}
+          }}
+        }
+      ]
+    },
+    "restrictionParameters": {
+      "type": "object", "additionalProperties": false,
+      "required": ["family_id", "history_id", "step_id", "restriction_id", "retained_member_ids"],
+      "properties": {
+        "family_id": {"$ref": "#/$defs/digest"},
+        "history_id": {"$ref": "#/$defs/digest"},
+        "step_id": {"$ref": "#/$defs/digest"},
+        "restriction_id": {"$ref": "#/$defs/digest"},
+        "retained_member_ids": {"allOf": [{"$ref": "#/$defs/memberInventory"}, {"minItems": 1}]}
+      }
+    },
+    "rankingParameters": {
+      "type": "object", "additionalProperties": false,
+      "required": ["residual_family_id", "request_id", "result_id", "witness_id"],
+      "properties": {
+        "residual_family_id": {"$ref": "#/$defs/digest"},
+        "request_id": {"$ref": "#/$defs/digest"},
+        "result_id": {"$ref": "#/$defs/digest"},
+        "witness_id": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "evidenceParameters": {
+      "type": "object", "additionalProperties": false,
+      "required": ["selected_member_id", "graph_id", "source_digest", "bundle_digest", "result_digest", "receipt_digest", "openqasm_digest", "target"],
+      "properties": {
+        "selected_member_id": {"$ref": "#/$defs/digest"},
+        "graph_id": {"$ref": "#/$defs/digest"},
+        "source_digest": {"$ref": "#/$defs/digest"},
+        "bundle_digest": {"$ref": "#/$defs/digest"},
+        "result_digest": {"$ref": "#/$defs/digest"},
+        "receipt_digest": {"$ref": "#/$defs/digest"},
+        "openqasm_digest": {"$ref": "#/$defs/digest"},
+        "target": {"$ref": "#/$defs/shortText"}
+      }
+    },
+    "fieldDisposition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["Sigma", "B", "G", "I", "A", "E", "D", "Pi", "K", "M", "place"],
+      "properties": {
+        "Sigma": {"const": "reconstructed-adapter-signature"},
+        "B": {"const": "reconstructed-from-validated-joint-records"},
+        "G": {"const": "reconstructed-explicit-rule-list"},
+        "I": {"const": "reconstructed-adapter-interface"},
+        "A": {"const": "unresolved"},
+        "E": {"const": "unresolved"},
+        "D": {"const": "unresolved"},
+        "Pi": {"const": "unresolved"},
+        "K": {"const": "recomputed-with-semantic-limitations"},
+        "M": {"const": "reconstructed-edition-and-provenance"},
+        "place": {"const": "unresolved-independent-coordinates"}
+      }
+    },
+    "edge": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema", "edge_id", "kind", "from_layer_id", "to_layer_id", "rule", "state_refs", "parameters", "field_disposition", "introduced_variation", "unresolved", "validation_scope"],
+      "properties": {
+        "schema": {"const": "e7q.ir.receipt-binding-edge/v0alpha1"},
+        "edge_id": {"$ref": "#/$defs/digest"},
+        "kind": {"enum": ["generates-metadata", "references-evidence"]},
+        "from_layer_id": {"$ref": "#/$defs/digest"},
+        "to_layer_id": {"$ref": "#/$defs/digest"},
+        "rule": {"$ref": "#/$defs/rule"},
+        "state_refs": {"$ref": "#/$defs/stateRefs"},
+        "parameters": {"oneOf": [{"$ref": "#/$defs/restrictionParameters"}, {"$ref": "#/$defs/rankingParameters"}, {"$ref": "#/$defs/evidenceParameters"}]},
+        "field_disposition": {"$ref": "#/$defs/fieldDisposition"},
+        "introduced_variation": {"enum": ["restricted-member-inventory", "ranked-best-inventory", "supplied-evidence-reference"]},
+        "unresolved": {"const": ["program-equivalence", "authenticated-execution", "RGP-coordinates", "recursive-capacity"]},
+        "validation_scope": {"enum": ["recomputed-restriction", "recomputed-integer-ranking", "supplied-byte-and-target-linkage"]}
+      },
+      "oneOf": [
+        {"properties": {
+          "kind": {"const": "generates-metadata"},
+          "rule": {"properties": {"id": {"const": "qa4.restrict-metadata"}}},
+          "state_refs": {"minItems": 3, "maxItems": 3},
+          "parameters": {"$ref": "#/$defs/restrictionParameters"},
+          "introduced_variation": {"const": "restricted-member-inventory"},
+          "validation_scope": {"const": "recomputed-restriction"}
+        }},
+        {"properties": {
+          "kind": {"const": "generates-metadata"},
+          "rule": {"properties": {"id": {"const": "qa4.rank-metadata"}}},
+          "state_refs": {"minItems": 3, "maxItems": 3},
+          "parameters": {"$ref": "#/$defs/rankingParameters"},
+          "introduced_variation": {"const": "ranked-best-inventory"},
+          "validation_scope": {"const": "recomputed-integer-ranking"}
+        }},
+        {"properties": {
+          "kind": {"const": "references-evidence"},
+          "rule": {"properties": {"id": {"const": "qa4.link-supplied-bytes"}}},
+          "state_refs": {"minItems": 2, "maxItems": 2},
+          "parameters": {"$ref": "#/$defs/evidenceParameters"},
+          "introduced_variation": {"const": "supplied-evidence-reference"},
+          "validation_scope": {"const": "supplied-byte-and-target-linkage"}
+        }}
+      ]
+    },
+    "witness": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema", "witness_id", "realisation_witness_id", "selected_member_id", "source_digest", "receipt_graph_id", "evidence_digests", "openqasm_digest", "target", "layer_ids", "edge_ids"],
+      "properties": {
+        "schema": {"const": "e7q.ir.receipt-binding-witness/v0alpha1"},
+        "witness_id": {"$ref": "#/$defs/digest"},
+        "realisation_witness_id": {"$ref": "#/$defs/digest"},
+        "selected_member_id": {"$ref": "#/$defs/digest"},
+        "source_digest": {"$ref": "#/$defs/digest"},
+        "receipt_graph_id": {"$ref": "#/$defs/digest"},
+        "evidence_digests": {"$ref": "#/$defs/evidenceDigests"},
+        "openqasm_digest": {"$ref": "#/$defs/digest"},
+        "target": {"$ref": "#/$defs/shortText"},
+        "layer_ids": {"type": "array", "minItems": 5, "maxItems": 5, "uniqueItems": true, "items": {"$ref": "#/$defs/digest"}},
+        "edge_ids": {"type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true, "items": {"$ref": "#/$defs/digest"}}
+      }
+    },
+    "boundLayers": {
+      "type": "array", "minItems": 5, "maxItems": 5, "items": false,
+      "prefixItems": [
+        {"allOf": [{"$ref": "#/$defs/layer"}, {"properties": {"role": {"const": "source-family"}}}]},
+        {"allOf": [{"$ref": "#/$defs/layer"}, {"properties": {"role": {"const": "ordered-history"}}}]},
+        {"allOf": [{"$ref": "#/$defs/layer"}, {"properties": {"role": {"const": "residual-family"}}}]},
+        {"allOf": [{"$ref": "#/$defs/layer"}, {"properties": {"role": {"const": "realisation"}}}]},
+        {"allOf": [{"$ref": "#/$defs/layer"}, {"properties": {"role": {"const": "supplied-receipt"}}}]}
+      ]
+    },
+    "boundEdges": {
+      "type": "array", "minItems": 3, "maxItems": 3, "items": false,
+      "prefixItems": [
+        {"allOf": [{"$ref": "#/$defs/edge"}, {"properties": {"kind": {"const": "generates-metadata"}, "rule": {"properties": {"id": {"const": "qa4.restrict-metadata"}}}}}]},
+        {"allOf": [{"$ref": "#/$defs/edge"}, {"properties": {"kind": {"const": "generates-metadata"}, "rule": {"properties": {"id": {"const": "qa4.rank-metadata"}}}}}]},
+        {"allOf": [{"$ref": "#/$defs/edge"}, {"properties": {"kind": {"const": "references-evidence"}, "rule": {"properties": {"id": {"const": "qa4.link-supplied-bytes"}}}}}]}
+      ]
+    },
+    "result": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema", "binding_id", "outcome", "request_id", "realisation_request_id", "realisation_result_id", "source_family_id", "history_id", "restriction_id", "input_residual_family_id", "realisation_outcome", "best_member_ids", "selected_member_id", "source_digest", "receipt_graph_id", "evidence_digests", "layer_records", "edge_records", "witness", "message"],
+      "properties": {
+        "schema": {"const": "e7q.ir.receipt-binding-result/v0alpha1"},
+        "binding_id": {"$ref": "#/$defs/digest"},
+        "outcome": {"enum": ["bound", "unbound", "invalid_input", "unsupported", "resource_limit"]},
+        "request_id": {"$ref": "#/$defs/nullableDigest"},
+        "realisation_request_id": {"$ref": "#/$defs/nullableDigest"},
+        "realisation_result_id": {"$ref": "#/$defs/nullableDigest"},
+        "source_family_id": {"$ref": "#/$defs/nullableDigest"},
+        "history_id": {"$ref": "#/$defs/nullableDigest"},
+        "restriction_id": {"$ref": "#/$defs/nullableDigest"},
+        "input_residual_family_id": {"$ref": "#/$defs/nullableDigest"},
+        "realisation_outcome": {"anyOf": [{"$ref": "#/$defs/realisationOutcome"}, {"type": "null"}]},
+        "best_member_ids": {"$ref": "#/$defs/memberInventory"},
+        "selected_member_id": {"$ref": "#/$defs/nullableDigest"},
+        "source_digest": {"$ref": "#/$defs/nullableDigest"},
+        "receipt_graph_id": {"$ref": "#/$defs/nullableDigest"},
+        "evidence_digests": {"anyOf": [{"$ref": "#/$defs/evidenceDigests"}, {"type": "null"}]},
+        "layer_records": {"type": "array", "maxItems": 5, "items": {"$ref": "#/$defs/layer"}},
+        "edge_records": {"type": "array", "maxItems": 3, "items": {"$ref": "#/$defs/edge"}},
+        "witness": {"anyOf": [{"$ref": "#/$defs/witness"}, {"type": "null"}]},
+        "message": {"type": "string", "minLength": 1, "maxLength": 160}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"outcome": {"const": "bound"}}, "required": ["outcome"]},
+          "then": {"properties": {
+            "request_id": {"$ref": "#/$defs/digest"},
+            "realisation_request_id": {"$ref": "#/$defs/digest"},
+            "realisation_result_id": {"$ref": "#/$defs/digest"},
+            "source_family_id": {"$ref": "#/$defs/digest"},
+            "history_id": {"$ref": "#/$defs/digest"},
+            "restriction_id": {"$ref": "#/$defs/digest"},
+            "input_residual_family_id": {"$ref": "#/$defs/digest"},
+            "realisation_outcome": {"const": "unique"},
+            "best_member_ids": {"minItems": 1, "maxItems": 1},
+            "selected_member_id": {"$ref": "#/$defs/digest"},
+            "source_digest": {"$ref": "#/$defs/digest"},
+            "receipt_graph_id": {"$ref": "#/$defs/digest"},
+            "evidence_digests": {"$ref": "#/$defs/evidenceDigests"},
+            "layer_records": {"$ref": "#/$defs/boundLayers"},
+            "edge_records": {"$ref": "#/$defs/boundEdges"},
+            "witness": {"$ref": "#/$defs/witness"},
+            "message": {"const": "Selected member is linked to supplied internally consistent receipt evidence."}
+          }}
+        },
+        {
+          "if": {"properties": {"outcome": {"const": "unbound"}}, "required": ["outcome"]},
+          "then": {
+            "properties": {
+              "request_id": {"$ref": "#/$defs/digest"},
+              "realisation_request_id": {"$ref": "#/$defs/digest"},
+              "realisation_result_id": {"$ref": "#/$defs/digest"},
+              "realisation_outcome": {"enum": ["ambiguous", "empty", "invalid_input", "domain_error", "unsupported", "resource_limit"]},
+              "selected_member_id": {"type": "null"},
+              "source_digest": {"type": "null"},
+              "receipt_graph_id": {"type": "null"},
+              "evidence_digests": {"type": "null"},
+              "layer_records": {"maxItems": 0},
+              "edge_records": {"maxItems": 0},
+              "witness": {"type": "null"},
+              "message": {"const": "No unique member is available for receipt binding."}
+            },
+            "allOf": [
+              {
+                "if": {"properties": {"realisation_outcome": {"const": "ambiguous"}}, "required": ["realisation_outcome"]},
+                "then": {"properties": {
+                  "best_member_ids": {"minItems": 2},
+                  "source_family_id": {"$ref": "#/$defs/digest"},
+                  "history_id": {"$ref": "#/$defs/digest"},
+                  "restriction_id": {"$ref": "#/$defs/digest"},
+                  "input_residual_family_id": {"$ref": "#/$defs/digest"}
+                }},
+                "else": {"properties": {"best_member_ids": {"maxItems": 0}}}
+              },
+              {
+                "if": {"properties": {"realisation_outcome": {"const": "empty"}}, "required": ["realisation_outcome"]},
+                "then": {"properties": {
+                  "source_family_id": {"$ref": "#/$defs/digest"},
+                  "history_id": {"$ref": "#/$defs/digest"},
+                  "restriction_id": {"$ref": "#/$defs/digest"},
+                  "input_residual_family_id": {"type": "null"}
+                }}
+              }
+            ]
+          }
+        },
+        {
+          "if": {"properties": {"outcome": {"enum": ["invalid_input", "unsupported", "resource_limit"]}}, "required": ["outcome"]},
+          "then": {"properties": {
+            "best_member_ids": {"maxItems": 0},
+            "selected_member_id": {"type": "null"},
+            "evidence_digests": {"type": "null"},
+            "layer_records": {"maxItems": 0},
+            "edge_records": {"maxItems": 0},
+            "witness": {"type": "null"}
+          }}
+        },
+        {
+          "if": {"properties": {"outcome": {"const": "invalid_input"}}, "required": ["outcome"]},
+          "then": {"properties": {"message": {"const": "Invalid receipt binding input."}}}
+        },
+        {
+          "if": {"properties": {"outcome": {"const": "unsupported"}}, "required": ["outcome"]},
+          "then": {"properties": {"message": {"const": "Receipt binding profile or representation is unsupported."}}}
+        },
+        {
+          "if": {"properties": {"outcome": {"const": "resource_limit"}}, "required": ["outcome"]},
+          "then": {"properties": {"message": {"const": "Receipt binding exceeds a declared resource bound."}}}
+        }
+      ]
+    }
+  }
+}

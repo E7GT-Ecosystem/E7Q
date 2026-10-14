@@ -13,6 +13,28 @@
     "LICENSE-DOCS": "fda51e3f08acdd8229eacbd01b412d913a6745e21a287f5d733a436e5f398fa2"
   },
   "commercial_components": [],
-  "open_core_decisions": [],
+  "open_core_decisions": [
+    {
+      "path": "src/e7q/ir/receipt_binding.py",
+      "sha256": "4298d1bd4abb8e92d1d08b6a6a6350cb32eb70be49c1adc40643e5d47a356434",
+      "decision": "retain_public_terms",
+      "reason": "Retain this bounded Q-A4 supplied-receipt adapter in the Apache-2.0 open core, preserving existing public interfaces, notices and licensing terms; no commercial relicensing or rights certification is inferred.",
+      "approval_reference": "Owner explicitly selected Retain open-core terms in TUNC on 2026-10-14 for Q-A4 alignment, including exact-hash register decisions; turn 71e8d67c-5563-4b15-a48b-f37ef73a6776. Local preparation only; commit, push, PR and deployment remain unapproved."
+    },
+    {
+      "path": "src/e7q/ir/__init__.py",
+      "sha256": "c1b996f18abe3ffee30db94da2c9086abb9006d0e35c77325a86ab4539433bce",
+      "decision": "retain_public_terms",
+      "reason": "Retain the existing Apache-2.0 open-core module and additive Q-A4 public exports under their existing terms; no prior published grant is restricted.",
+      "approval_reference": "Owner explicitly selected Retain open-core terms in TUNC on 2026-10-14 for Q-A4 alignment, including exact-hash register decisions; turn 71e8d67c-5563-4b15-a48b-f37ef73a6776. Local preparation only; commit, push, PR and deployment remain unapproved."
+    },
+    {
+      "path": "schemas/e7q-ir-receipt-binding-v0alpha1.schema.json",
+      "sha256": "70ac8412d25fd5c8c5db75596c69f47d5d5bb4488752529fdff38e1172c1f377",
+      "decision": "retain_public_terms",
+      "reason": "Retain the additive Q-A4 schema under the repository's existing public terms. This hash-bound decision does not move the schema to the commercial component or change existing licence documents.",
+      "approval_reference": "Owner explicitly selected Retain open-core terms in TUNC on 2026-10-14 for Q-A4 alignment, including exact-hash register decisions; turn 71e8d67c-5563-4b15-a48b-f37ef73a6776. Local preparation only; commit, push, PR and deployment remain unapproved."
+    }
+  ],
   "note": "No commercial implementation is published by this change. Records document review decisions; they do not authenticate ownership or signatures."
 }

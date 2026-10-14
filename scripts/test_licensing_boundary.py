@@ -10,22 +10,32 @@ import unittest
 from check_licensing_boundary import BASELINE, REGISTER, check
 
 
+def _copy_fixture(repo, root):
+    paths = [REGISTER, BASELINE, "LICENSE", "LICENSE-DOCS", "pyproject.toml", "MANIFEST.in",
+             "commercial/e7q_ir/LICENSE", "commercial/e7q_ir/NOTICE", "commercial/e7q_ir/README.md"]
+    baseline = json.loads((repo / BASELINE).read_text())
+    paths += [e["path"] for e in baseline["files"]
+              if e["path"].startswith(("src/e7q/ir/", "schemas/e7q-ir-"))]
+    register = json.loads((repo / REGISTER).read_text())
+    paths += [e["path"] for e in register["open_core_decisions"]]
+    paths = list(dict.fromkeys(paths))
+    for path in paths:
+        relative = Path(path)
+        if relative.is_absolute() or ".." in relative.parts:
+            raise ValueError("Fixture path must remain within its root")
+        dest = root / relative
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(repo / relative, dest)
+    return paths
+
+
 class BoundaryControls(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
         repo = Path(__file__).resolve().parents[1]
-        paths = [REGISTER, BASELINE, "LICENSE", "LICENSE-DOCS", "pyproject.toml", "MANIFEST.in",
-                 "commercial/e7q_ir/LICENSE", "commercial/e7q_ir/NOTICE", "commercial/e7q_ir/README.md"]
-        baseline = json.loads((repo / BASELINE).read_text())
-        paths += [e["path"] for e in baseline["files"]
-                  if e["path"].startswith(("src/e7q/ir/", "schemas/e7q-ir-"))]
-        for path in paths:
-            dest = self.root / path
-            dest.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(repo / path, dest)
-        self.paths = paths
+        self.paths = _copy_fixture(repo, self.root)
 
     def write(self, path, text):
         file = self.root / path
@@ -107,6 +117,23 @@ class BoundaryControls(unittest.TestCase):
         self.update("open_core_decisions", {"path": path, "sha256": sha, "decision": "retain_public_terms",
                                            "reason": "synthetic invalid licence choice", "approval_reference": "synthetic-review"})
         self.assertTrue(any("Commercial designation" in e for e in check(self.root, self.paths)))
+
+    def test_approved_addition_survives_fixture_copy_and_still_checks_hash(self):
+        path = "src/e7q/ir/fixture_addition.py"
+        sha = self.write(path, "# SPDX-License-Identifier: Apache-2.0\nx = 1\n")
+        self.update("open_core_decisions", {"path": path, "sha256": sha, "decision": "retain_public_terms",
+                                           "reason": "Synthetic approved addition outside the published baseline",
+                                           "approval_reference": "synthetic-fixture-review"})
+        with tempfile.TemporaryDirectory() as directory:
+            copied = Path(directory)
+            paths = _copy_fixture(self.root, copied)
+            self.assertIn(path, paths)
+            self.assertEqual(len(paths), len(set(paths)))
+            self.assertEqual(hashlib.sha256((copied / path).read_bytes()).hexdigest(), sha)
+            self.assertEqual(check(copied, paths), [])
+            with (copied / path).open("a") as file:
+                file.write("# changed after approval\n")
+            self.assertTrue(any("retain_public_terms" in e for e in check(copied, paths)))
 
     def test_invalid_review_paths_fail_closed(self):
         self.update("commercial_components", {"path": "../outside.py"})

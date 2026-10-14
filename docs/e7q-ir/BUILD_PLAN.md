@@ -1586,3 +1586,64 @@ The six-file increment is locally implemented and independently rechecked;
 publication has not been selected. Q-A4 receipt binding, arbitrary transformed-family
 realisation, fractional objective profiles, shared-consumer compatibility and
 broader release remain separate.
+
+## 15. Q-A4 supplied-receipt binding — local increment, 2026-10-14
+
+Q-A3 and its two-file CI repair were merged through PR #84 at
+`c519484bccdbe411b05acdba9c24ef1cd852d041`; the preceding local/unpublished text
+is the earlier historical checkpoint. All eight pre-merge and four post-merge
+checks passed; the tested tree was preserved. No deployment occurred.
+
+The owner selected QA4-PACKAGE/2026-10-14/1, SHA256
+`065d43e1c4434d9c50f6c9630d54f08ec17829898c4177288f23047c9c0f21df`, for an
+isolated merge-pinned eight-file local implementation and five offline suites.
+The opt-in profile links a unique Q-A3 selection to exact supplied legacy carrier
+bytes, original source/OpenQASM/target commitments, and recomputed internal
+receipt consistency. It preserves unresolved ties and terminal declarations
+without fabricating selected-member receipt evidence.
+
+Partial RGP2-inspired wrappers expose all ten layer components and five
+independent coordinates, with explicit unknowns and typed metadata-generation
+versus evidence-reference edges. This is not a core graph-kind change, kernel
+migration, source-retention tier, F2/F3, authenticated execution, physical
+preservation or shared-runtime conformance. See [receipt-binding contract](RECEIPT_BINDING.md).
+
+Local technical verification passed: the selected five offline suites completed
+311 tests (223 new + 88 unchanged), and independent read-only adversarial/schema
+review returned PASS with no open technical finding. A separate unauthorized
+450-byte worker-output note outside the product checkout is preserved/disclosed
+in the receipt-binding verification record; technical PASS does not erase that
+procedural exception. Prior planning/receipt engines/tests/schemas remain unchanged;
+campaign registration and an append-only alignment note are in the eight-file
+ceiling. No compiler/simulator/native/provider/hardware run, installs, commits,
+pushes, PRs, deployment or broader runtime grant follows. Broader Q-A4 execution
+acceptance, arbitrary histories, fractional objectives and shared consumers
+remain separate gates.
+
+## 16. Q-A4 open-core alignment after PR #87 — 2026-10-14
+
+PR #87 merged the licensing boundary at
+`8193a2818c849bc20caf5ff1c20f2e0b2ce49e20`; it did not publish Q-A4. The
+owner selected existing public terms, three exact-hash retain-public decisions
+in the licensing register (ninth path), and then separately approved repair of
+the licensing-control fixture (tenth path). The original eight-file checkpoint
+above and its checkout remain preserved.
+
+The aligned local branch is `feat/qa4-open-core-alignment-20261014` on that
+merge. Adapter/schema/new test bytes are unchanged; the export module adds only
+an Apache SPDX comment required by the checker. Licensing policy/checker,
+standard texts, published baseline, commercial component and packaging remain
+unchanged. Register decisions record scope, not rights certification or a grant
+to publish.
+
+Actual initial failures are retained in RECEIPT_BINDING.md: missing export-module
+Apache designation, then three fixture failures from omission of registered
+additions. The approved fixture repair preserves all ten original control bodies
+and adds an approved-addition/stale-hash regression. Licensing boundary PASS,
+11 controls passed, and the five offline suites passed 311 tests on the aligned
+base. Independent read-only alignment review returned technical PASS with no
+actionable findings, including unchanged original assertions and missing/stale
+approval refusals. This is local/uncommitted;
+no commit, push, PR, remote CI, package build, deployment or broader execution
+acceptance is selected. The prior worker-note procedural exception remains
+explicit and unchanged.

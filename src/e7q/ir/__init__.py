@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 """Vendor-neutral E7Q-IR evidence protocol."""
 
 from .conformance import validate_graph
@@ -26,6 +27,21 @@ from .realisation import (
     validate_realisation_request,
     validate_realisation_result,
 )
+from .receipt_binding import (
+    PROFILE as RECEIPT_BINDING_PROFILE,
+    KERNEL_COMMIT as RECEIPT_BINDING_KERNEL_COMMIT,
+    EDITIONS as RECEIPT_BINDING_EDITIONS,
+    REQUEST_SCHEMA as RECEIPT_BINDING_REQUEST_SCHEMA,
+    RESULT_SCHEMA as RECEIPT_BINDING_RESULT_SCHEMA,
+    LAYER_SCHEMA as RECEIPT_BINDING_LAYER_SCHEMA,
+    EDGE_SCHEMA as RECEIPT_BINDING_EDGE_SCHEMA,
+    WITNESS_SCHEMA as RECEIPT_BINDING_WITNESS_SCHEMA,
+    ReceiptBindingError,
+    assess_receipt_binding,
+    build_receipt_binding_request,
+    validate_receipt_binding_request,
+    validate_receipt_binding_result,
+)
 from .semantic import SemanticRegistry, SemanticResult, SemanticValidator
 from .transformation_history import (
     TransformationHistoryError,
@@ -37,6 +53,19 @@ from .transformation_history import (
 from .workflow import build_external_circuit_graph, load_external_circuit_manifest
 
 __all__ = [
+    "RECEIPT_BINDING_PROFILE",
+    "RECEIPT_BINDING_KERNEL_COMMIT",
+    "RECEIPT_BINDING_EDITIONS",
+    "RECEIPT_BINDING_REQUEST_SCHEMA",
+    "RECEIPT_BINDING_RESULT_SCHEMA",
+    "RECEIPT_BINDING_LAYER_SCHEMA",
+    "RECEIPT_BINDING_EDGE_SCHEMA",
+    "RECEIPT_BINDING_WITNESS_SCHEMA",
+    "ReceiptBindingError",
+    "assess_receipt_binding",
+    "build_receipt_binding_request",
+    "validate_receipt_binding_request",
+    "validate_receipt_binding_result",
     "REALISATION_PROFILE",
     "REALISATION_TIE_POLICY",
     "REALISATION_SCHEMA",
