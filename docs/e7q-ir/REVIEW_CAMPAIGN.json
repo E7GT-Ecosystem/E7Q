@@ -331,6 +331,18 @@
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {
+      "id": "ir_realisation",
+      "scope": "Q-A3 product-local finite-integer lexicographic realisation of a linked Q-A1/Q-A2 single-step residual; canonical requests/results, complete objective rows, explicit ties and independently recomputed membership/ranking witnesses",
+      "test_file": "tests/test_ir_realisation.py",
+      "implementation": [
+        "src/e7q/ir/realisation.py",
+        "schemas/e7q-ir-realisation-v0alpha1.schema.json"
+      ],
+      "limits": "Planning-only supplied integer objectives and evidence declarations; no authenticated value truth, rule correctness, physical feasibility, arbitrary transformation chains, execution receipt acceptance or hard process containment.",
+      "next_gate": "Q-A4 separately scoped receipt binding; shared-runtime extraction and broader semantic/hardware acceptance remain separate",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
       "id": "ir_transformation_history",
       "scope": "Q-A2 order-sensitive family-chain history with explicit domains, preservation/loss, transform/identify/restrict kinds, terminal empty, identity restriction and retained failures",
       "test_file": "tests/test_ir_transformation_history.py",

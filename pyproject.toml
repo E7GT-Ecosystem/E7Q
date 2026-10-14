@@ -17,7 +17,7 @@ authors = [
 e7q = "e7q.cli:main"
 
 [project.optional-dependencies]
-test = ["pytest>=8"]
+test = ["pytest>=8", "jsonschema>=4"]
 stabilizer = ["stim==1.16.0"]
 simulation-test = ["stim==1.16.0", "qiskit==2.5.2", "jsonschema>=4"]
 qcec = ["mqt.qcec==3.9.0"]
