@@ -1,0 +1,18 @@
+{
+  "schema": "e7q.component-licensing/1",
+  "baseline_commit": "c519484bccdbe411b05acdba9c24ef1cd852d041",
+  "protected_open_prefixes": [
+    "src/e7q/ir/",
+    "schemas/e7q-ir-"
+  ],
+  "commercial_prefix": "commercial/e7q_ir/",
+  "commercial_license": "PolyForm-Noncommercial-1.0.0",
+  "license_text_sha256": "c0ea4a896d2c8c394b29f9427589996db826cd501c512279ff0ed3ef48fabbe5",
+  "preserved_license_sha256": {
+    "LICENSE": "c315153910735d220bfeec0f1146de57006ee75602265ac6c717e7fa0f177959",
+    "LICENSE-DOCS": "fda51e3f08acdd8229eacbd01b412d913a6745e21a287f5d733a436e5f398fa2"
+  },
+  "commercial_components": [],
+  "open_core_decisions": [],
+  "note": "No commercial implementation is published by this change. Records document review decisions; they do not authenticate ownership or signatures."
+}

@@ -28,3 +28,15 @@ Coordination board: [ECOORD #2](https://github.com/E7GT-Ecosystem/E7-Ecosystem/i
 6. Read relevant coordination notes at the next checkpoint. Repository activity cannot reveal all unpublished work in other chats.
 
 Follow the user's current task and standing authorisations. Do not add repeated permission requests for already-authorised work. Finish reversible work within scope. This file does not authorise external messages, provider expenditure, private-code publication or bypassing repository checks. Keep public guidance free of private implementation or collaborator material.
+
+## Commercial licensing boundary — owner direction, 2026-10-14
+
+Before publishing additional E7Q-IR implementation, read
+`docs/licensing/COMMERCIAL_POLICY.md` and `docs/licensing/component-register.json`.
+Preserve already published Apache/CC permissions. Future designated commercial
+code requires rights clearance and PolyForm notices in `commercial/e7q_ir/`; it
+must not be silently published in the Apache `e7q` package. Protected open-core
+IR changes require an explicit hash-bound `retain_public_terms` publication decision.
+Record the decision; do not infer owner approval, contributor assignments or
+commercial relicensing permissions. Run the licensing boundary check. No private
+code, agreement or collaborator material is authorised for publication.

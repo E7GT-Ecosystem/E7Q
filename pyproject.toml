@@ -25,3 +25,9 @@ pyzx = ["pyzx==0.10.6"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
+
+# The standard e7q distribution contains only the Apache open-core package.
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["e7q", "e7q.*"]
+namespaces = false

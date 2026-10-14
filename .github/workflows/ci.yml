@@ -21,6 +21,8 @@ jobs:
           cache: pip
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -e ".[test]"
+      - run: python scripts/check_licensing_boundary.py
+      - run: python scripts/test_licensing_boundary.py
       - run: pytest -q
 
   simulation-reference:
@@ -33,4 +35,6 @@ jobs:
           cache: pip
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -e ".[test,simulation-test]"
+      - run: python scripts/check_licensing_boundary.py
+      - run: python scripts/test_licensing_boundary.py
       - run: pytest -q
