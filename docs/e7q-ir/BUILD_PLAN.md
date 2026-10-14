@@ -1,3 +1,9 @@
+> **v0.15 planning supplement (2026-09-25).** New build-map work follows
+> [the component-level v0.15 capability map](../V015_CAPABILITY_BUILD_MAP.md), under central
+> source-alignment PR #9. The edition pins and implementation milestones
+> recorded below remain attached to their original versions. This link is
+> a review route, not a v0.15 product migration or conformance claim.
+
 # E7Q-IR Build Plan and AI Engineering Handoff
 
 **Plan version:** 0.17
@@ -1647,3 +1653,14 @@ approval refusals. This is local/uncommitted;
 no commit, push, PR, remote CI, package build, deployment or broader execution
 acceptance is selected. The prior worker-note procedural exception remains
 explicit and unchanged.
+
+## 17. Older-PR planning reconciliation — 2026-10-14
+
+At main `1fa46ab06ecc68171fcf5891557e46a0cc9b5880`, #84 and #88
+are merged. Earlier local/unpublished statements in sections 14–16 record
+history, not current publication status. See
+[the refreshed v0.15 capability map](../V015_CAPABILITY_BUILD_MAP.md).
+Q-A3 is bounded finite realisation; Q-A4 is offline supplied-receipt
+consistency with partial RGP2-inspired metadata. Retain their exact editions
+and the actual v0.12.1 pin. Broader execution and shared-runtime acceptance
+remain open. The Joint workflow and quantum-view specialist gates are separate.
