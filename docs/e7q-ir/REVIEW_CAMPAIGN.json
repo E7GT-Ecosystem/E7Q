@@ -247,6 +247,19 @@
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {
+      "id": "entanglement_assurance",
+      "scope": "pure two-qubit entanglement assurance — only ideal pre-measurement state-vector classification and explicit profile boundaries asserted in the linked test cases",
+      "test_file": "tests/test_entanglement_assurance.py",
+      "implementation": [
+        "src/e7q/cli.py",
+        "src/e7q/entanglement.py",
+        "src/e7q/language.py"
+      ],
+      "limits": "Internal reference-simulator regression evidence only; no sampled-count certificate, external reproduction, hardware preparation, Bell nonlocality or universal-connection claim.",
+      "next_gate": "Independent mathematical review and a separately specified hardware-evidence profile before any physical entanglement claim",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
       "id": "equivalence",
       "scope": "equivalence \u2014 only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_equivalence.py",

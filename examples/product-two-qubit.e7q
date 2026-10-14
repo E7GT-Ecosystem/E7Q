@@ -1,0 +1,18 @@
+context ProductState {
+  shots: 1000
+  backend: statevector
+  seed: 7
+}
+
+qubits q[2]
+bits c[2]
+
+invariant normalized
+invariant outcomes in {00, 10}
+
+path CreateProductState {
+  H q[0]
+  measure q -> c
+}
+
+verify CreateProductState

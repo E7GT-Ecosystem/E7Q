@@ -461,3 +461,17 @@ See [H1–H10 acceptance gates](docs/e7q-ir/REVIEW_HARDENING.md).
 - [x] Typed conversion of the existing topology-reference compiler Proof-of-Path into E7Q-IR, with explicit compilation request, verbatim and typed traces, independently identified source/compiled representations, isolated criterion-bound QCEC evidence and a bounded compiler-preservation claim. Imported compiler declarations are not native/default F2 truth.
 
 - [x] Typed offline mapping of existing legacy execution bundles, supplied results and receipts into distinct intent, execution, observation, assessment and bounded-claim artifacts, with byte-perfect recovery and independent `build_execution_receipt()` recomputation. Imported verdicts remain excluded from native/default F2 truth; provider/authentication work remains separate.
+
+## Post-rc12 additive pilot — pure two-qubit entanglement assurance
+
+- [x] classify supported ideal pure two-qubit states by reduced-density purity;
+- [x] distinguish entangled, separable, undetermined and unsupported outcomes;
+- [x] preserve the joint-state source, partial-trace projection and declared loss;
+- [x] exclude sampled-count, provider-authentication, hardware-preparation,
+  Bell-nonlocality and universal-connection inferences;
+- [x] provide deterministic CLI reports, fixtures, documentation and regression tests;
+- [ ] add any hardware-entanglement evidence profile;
+- [ ] extend beyond pure two-qubit state vectors under separately reviewed criteria.
+
+This isolated pilot does not alter E7Q-IR F0-F2 meanings or complete the open
+H2/H3 and Phase 2 gates.
