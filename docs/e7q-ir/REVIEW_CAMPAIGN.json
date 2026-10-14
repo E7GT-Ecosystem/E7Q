@@ -331,6 +331,18 @@
       "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
     },
     {
+      "id": "ir_receipt_binding",
+      "scope": "Q-A4 product-local offline unique-selection binding to supplied legacy carrier bytes, source/OpenQASM/target commitments, public consistency replay and explicit partial RGP2 layer/edge records",
+      "test_file": "tests/test_ir_receipt_binding.py",
+      "implementation": [
+        "src/e7q/ir/receipt_binding.py",
+        "schemas/e7q-ir-receipt-binding-v0alpha1.schema.json"
+      ],
+      "limits": "Supplied byte/provenance and internal consistency linkage only; no compiler/semantic equivalence, objective truth, causal/authenticated execution, F2/F3, source-retention tier, physical preservation, full RGP/shared-runtime or hard process containment claim.",
+      "next_gate": "Separately selected publication after verified local alignment on PR87 licensing base; broader Q-A4 execution/domain acceptance, arbitrary histories and shared-runtime extraction remain separate; preserved worker-note procedural exception and approved ten-path alignment are documented in RECEIPT_BINDING.md",
+      "review_status": "LOCAL_OPEN_CORE_ALIGNMENT_TECHNICAL_PASS"
+    },
+    {
       "id": "ir_realisation",
       "scope": "Q-A3 product-local finite-integer lexicographic realisation of a linked Q-A1/Q-A2 single-step residual; canonical requests/results, complete objective rows, explicit ties and independently recomputed membership/ranking witnesses",
       "test_file": "tests/test_ir_realisation.py",
