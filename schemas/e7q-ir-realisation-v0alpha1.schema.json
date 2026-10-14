@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://e7q.dev/schemas/e7q-ir-realisation-v0alpha1.schema.json",
+  "title": "E7Q-IR bounded product-local realisation request or result",
+  "description": "Shape constraints only. Executable validators additionally enforce exact Python integer types, UTF-8 byte bounds, canonical identities, source/history/restriction linkage, residual membership and objective ranking. References do not authenticate claims.",
+  "oneOf": [{"$ref": "#/$defs/request"}, {"$ref": "#/$defs/result"}],
+  "$defs": {
+    "digest": {"type": "string", "minLength": 71, "maxLength": 71, "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nullableDigest": {"anyOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]},
+    "name": {"type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,127}$"},
+    "shortText": {"type": "string", "minLength": 1, "maxLength": 128},
+    "contextText": {"type": "string", "minLength": 1, "maxLength": 1024},
+    "integerValue": {"type": "integer", "minimum": -170141183460469231731687303715884105728, "maximum": 170141183460469231731687303715884105727},
+    "objective": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "edition", "direction", "unit"],
+      "properties": {
+        "id": {"$ref": "#/$defs/name"}, "edition": {"$ref": "#/$defs/shortText"},
+        "direction": {"enum": ["min", "max"]}, "unit": {"$ref": "#/$defs/shortText"}
+      }
+    },
+    "value": {
+      "type": "object", "additionalProperties": false,
+      "required": ["objective_id", "value", "evidence_ref"],
+      "properties": {"objective_id": {"$ref": "#/$defs/name"}, "value": {"$ref": "#/$defs/integerValue"}, "evidence_ref": {"$ref": "#/$defs/digest"}}
+    },
+    "row": {
+      "type": "object", "additionalProperties": false,
+      "required": ["member_id", "values"],
+      "properties": {
+        "member_id": {"$ref": "#/$defs/digest"},
+        "values": {"type": "array", "minItems": 1, "maxItems": 16, "items": {"$ref": "#/$defs/value"}}
+      }
+    },
+    "table": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema", "table_id", "rows"],
+      "properties": {
+        "schema": {"const": "e7q.ir.objective-table/v0alpha1"}, "table_id": {"$ref": "#/$defs/digest"},
+        "rows": {"type": "array", "maxItems": 4096, "items": {"$ref": "#/$defs/row"}}
+      }
+    },
+    "limits": {
+      "type": "object", "additionalProperties": false,
+      "required": ["max_candidates", "max_objectives"],
+      "properties": {
+        "max_candidates": {"type": "integer", "minimum": 1, "maximum": 4096},
+        "max_objectives": {"type": "integer", "minimum": 1, "maximum": 16}
+      }
+    },
+    "request": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema", "request_id", "profile", "tie_policy", "context", "inquiry", "source_family_id", "history_id", "restriction_id", "input_residual_family_id", "objectives", "objective_table", "limits"],
+      "properties": {
+        "schema": {"const": "e7q.ir.realisation-request/v0alpha1"}, "request_id": {"$ref": "#/$defs/digest"},
+        "profile": {"$ref": "#/$defs/shortText"}, "tie_policy": {"$ref": "#/$defs/shortText"},
+        "context": {"$ref": "#/$defs/contextText"}, "inquiry": {"$ref": "#/$defs/contextText"},
+        "source_family_id": {"$ref": "#/$defs/digest"}, "history_id": {"$ref": "#/$defs/digest"},
+        "restriction_id": {"$ref": "#/$defs/nullableDigest"}, "input_residual_family_id": {"$ref": "#/$defs/nullableDigest"},
+        "objectives": {"type": "array", "minItems": 1, "maxItems": 16, "items": {"$ref": "#/$defs/objective"}},
+        "objective_table": {"$ref": "#/$defs/table"}, "limits": {"$ref": "#/$defs/limits"}
+      }
+    },
+    "memberInventory": {"type": "array", "maxItems": 4096, "uniqueItems": true, "items": {"$ref": "#/$defs/digest"}},
+    "witness": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema", "witness_id", "input_residual_family_id", "objective_table_id", "best_value_vector", "best_member_ids"],
+      "properties": {
+        "schema": {"const": "e7q.ir.realisation-witness/v0alpha1"}, "witness_id": {"$ref": "#/$defs/digest"},
+        "input_residual_family_id": {"$ref": "#/$defs/digest"}, "objective_table_id": {"$ref": "#/$defs/digest"},
+        "best_value_vector": {"type": "array", "minItems": 1, "maxItems": 16, "items": {"$ref": "#/$defs/integerValue"}},
+        "best_member_ids": {"allOf": [{"$ref": "#/$defs/memberInventory"}, {"minItems": 1}]}
+      }
+    },
+    "rankedBindings": {
+      "properties": {
+        "request_id": {"$ref": "#/$defs/digest"}, "source_family_id": {"$ref": "#/$defs/digest"},
+        "history_id": {"$ref": "#/$defs/digest"}, "restriction_id": {"$ref": "#/$defs/digest"},
+        "input_residual_family_id": {"$ref": "#/$defs/digest"}, "witness": {"$ref": "#/$defs/witness"},
+        "upstream_outcome": {"const": "success"}
+      }
+    },
+    "result": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema", "result_id", "outcome", "request_id", "source_family_id", "history_id", "restriction_id", "input_residual_family_id", "best_member_ids", "selected_member_id", "witness", "upstream_outcome", "message"],
+      "properties": {
+        "schema": {"const": "e7q.ir.realisation-result/v0alpha1"}, "result_id": {"$ref": "#/$defs/digest"},
+        "outcome": {"enum": ["unique", "ambiguous", "empty", "invalid_input", "domain_error", "unsupported", "resource_limit"]},
+        "request_id": {"$ref": "#/$defs/nullableDigest"}, "source_family_id": {"$ref": "#/$defs/nullableDigest"},
+        "history_id": {"$ref": "#/$defs/nullableDigest"}, "restriction_id": {"$ref": "#/$defs/nullableDigest"},
+        "input_residual_family_id": {"$ref": "#/$defs/nullableDigest"}, "selected_member_id": {"$ref": "#/$defs/nullableDigest"},
+        "best_member_ids": {"$ref": "#/$defs/memberInventory"},
+        "witness": {"anyOf": [{"$ref": "#/$defs/witness"}, {"type": "null"}]},
+        "upstream_outcome": {"enum": [null, "success", "empty", "invalid_input", "domain_error", "unsupported", "resource_limit"]},
+        "message": {"type": "string", "minLength": 1, "maxLength": 1024}
+      },
+      "allOf": [
+        {"if": {"properties": {"outcome": {"const": "unique"}}, "required": ["outcome"]}, "then": {"allOf": [{"$ref": "#/$defs/rankedBindings"}, {"properties": {"best_member_ids": {"minItems": 1, "maxItems": 1}, "selected_member_id": {"$ref": "#/$defs/digest"}}}]}},
+        {"if": {"properties": {"outcome": {"const": "ambiguous"}}, "required": ["outcome"]}, "then": {"allOf": [{"$ref": "#/$defs/rankedBindings"}, {"properties": {"best_member_ids": {"minItems": 2}, "selected_member_id": {"type": "null"}}}]}},
+        {"if": {"properties": {"outcome": {"const": "empty"}}, "required": ["outcome"]}, "then": {"properties": {
+          "request_id": {"$ref": "#/$defs/digest"}, "source_family_id": {"$ref": "#/$defs/digest"},
+          "history_id": {"$ref": "#/$defs/digest"}, "restriction_id": {"$ref": "#/$defs/digest"},
+          "input_residual_family_id": {"type": "null"}, "best_member_ids": {"maxItems": 0},
+          "selected_member_id": {"type": "null"}, "witness": {"type": "null"}, "upstream_outcome": {"const": "empty"}
+        }}},
+        {"if": {"properties": {"outcome": {"enum": ["invalid_input", "domain_error", "unsupported", "resource_limit"]}}, "required": ["outcome"]}, "then": {"properties": {
+          "best_member_ids": {"maxItems": 0}, "selected_member_id": {"type": "null"}, "witness": {"type": "null"}
+        }}},
+        {"if": {"properties": {"upstream_outcome": {"enum": ["invalid_input", "domain_error", "unsupported", "resource_limit"]}}, "required": ["upstream_outcome"]}, "then": {"properties": {
+          "restriction_id": {"type": "null"}, "input_residual_family_id": {"type": "null"}
+        }}}
+      ]
+    }
+  }
+}
