@@ -75,15 +75,19 @@ def transformation_step(
     """Build one canonical step; failed steps have no output family."""
     if type(index) is not int or index < 0 or index >= MAX_STEPS:
         raise TransformationHistoryError("step index is outside the supported bound")
-    if kind not in KINDS:
+    if not isinstance(kind, str) or kind not in KINDS:
         raise TransformationHistoryError("unsupported transformation kind")
     if not isinstance(rule_id, str) or not _NAME.fullmatch(rule_id):
         raise TransformationHistoryError("rule_id is invalid")
     if not isinstance(rule_edition, str) or not rule_edition:
         raise TransformationHistoryError("rule_edition must be non-empty")
+    try:
+        rule_edition.encode("utf-8")
+    except UnicodeEncodeError as exc:
+        raise TransformationHistoryError("rule_edition must be valid UTF-8") from exc
     if not isinstance(input_family_id, str) or not _DIGEST.fullmatch(input_family_id):
         raise TransformationHistoryError("input_family_id must be a SHA-256 identity")
-    if outcome not in OUTCOMES:
+    if not isinstance(outcome, str) or outcome not in OUTCOMES:
         raise TransformationHistoryError("unsupported transformation outcome")
     admitted = _digests(admitted_member_ids, "admitted_member_ids", allow_empty=True)
     excluded = _digests(excluded_member_ids, "excluded_member_ids", allow_empty=True)
@@ -171,13 +175,17 @@ def build_transformation_history(
 def validate_transformation_step(value: dict[str, Any]) -> None:
     if not isinstance(value, dict) or value.get("schema") != STEP_SCHEMA:
         raise TransformationHistoryError("unsupported transformation-step schema")
+    rule = value.get("rule")
+    domain = value.get("domain")
+    if not isinstance(rule, dict) or not isinstance(domain, dict):
+        raise TransformationHistoryError("rule and domain must be objects")
     expected = transformation_step(
         index=value.get("index"), kind=value.get("kind"),
-        rule_id=(value.get("rule") or {}).get("id"),
-        rule_edition=(value.get("rule") or {}).get("edition"),
+        rule_id=rule.get("id"),
+        rule_edition=rule.get("edition"),
         input_family_id=value.get("input_family_id"),
-        admitted_member_ids=(value.get("domain") or {}).get("admitted_member_ids", ()),
-        excluded_member_ids=(value.get("domain") or {}).get("excluded_member_ids", ()),
+        admitted_member_ids=domain.get("admitted_member_ids", ()),
+        excluded_member_ids=domain.get("excluded_member_ids", ()),
         outcome=value.get("outcome"), output_family_id=value.get("output_family_id"),
         preserves=value.get("preserves", ()), loses=value.get("loses", ()),
         limitations=value.get("limitations", ()), message=value.get("message"),

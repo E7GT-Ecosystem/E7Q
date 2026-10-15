@@ -197,7 +197,175 @@ def test_resource_bound_is_reported_not_collapsed_to_empty_family():
         factor("bounded", ("choice",), too_many)
 
 
-@pytest.mark.parametrize("malformed", [None, "layout", 7])
+@pytest.mark.parametrize("malformed", [None, "layout", 7, b"layout"])
 def test_malformed_collections_raise_typed_error(malformed):
     with pytest.raises(CandidateFamilyError, match="collection"):
         factor("bounded", malformed, ({"layout": "a"},))
+
+
+@pytest.mark.parametrize("malformed", [None, 7, "alternatives", [], [None], [7], ["x"], [[]], [{"bindings": None}]])
+def test_nested_alternatives_are_typed_invalid_not_empty(malformed):
+    family = _two_member_family()
+    family["factors"][0]["alternatives"] = malformed
+    with pytest.raises(CandidateFamilyError):
+        validate_candidate_family(family)
+    result = assess_candidate_restriction(
+        family, (), criterion_id="none", criterion_edition="1", criterion_text="retain none"
+    )
+    assert result["outcome"] == "invalid_input"
+    assert result["result_family"] is None
+    assert result["retained_member_ids"] == []
+
+
+@pytest.mark.parametrize("field", ["factors", "assumptions", "limitations"])
+@pytest.mark.parametrize("malformed", [None, 7, "text", [None], [[]], [{}]])
+def test_family_nested_collections_fail_with_typed_error(field, malformed):
+    family = _two_member_family()
+    family[field] = malformed
+    with pytest.raises(CandidateFamilyError):
+        validate_candidate_family(family)
+
+
+def test_nested_alternatives_enforce_existing_bound_before_reconstruction():
+    family = _two_member_family()
+    family["factors"][0]["alternatives"] = [family["factors"][0]["alternatives"][0]] * 257
+    result = assess_candidate_restriction(
+        family, (), criterion_id="bounded", criterion_edition="1", criterion_text="retain none"
+    )
+    assert result["outcome"] == "resource_limit"
+    assert result["result_family"] is None
+
+
+@pytest.mark.parametrize("malformed", [None, 7, "text", [[]], [{}], ["unknown"]])
+def test_malformed_retained_references_are_typed_in_both_editions(malformed):
+    family = _two_member_family()
+    with pytest.raises(CandidateFamilyError):
+        restrict_candidate_family(family, malformed, criterion="declared")
+    result = assess_candidate_restriction(
+        family, malformed, criterion_id="filter", criterion_edition="1", criterion_text="declared"
+    )
+    assert result["outcome"] == "invalid_input"
+    assert result["result_family"] is None
+
+
+def test_legacy_duplicate_references_preserve_existing_identity():
+    family = _two_member_family()
+    retained = family["members"][0]["member_id"]
+    assert restrict_candidate_family(family, [retained] * 65_537, criterion="declared") == (
+        restrict_candidate_family(family, [retained], criterion="declared")
+    )
+
+
+def test_valid_family_keeps_accepted_main_identity():
+    # Captured from accepted main 86447771544e836222847ed04b0236cc27f2881b.
+    assert _two_member_family()["family_id"] == (
+        "sha256:e438ca5798c270d3f296571f71c88ffcdb749efc3b41f6b67655374250502cf9"
+    )
+
+
+def test_nested_alternative_stream_stops_after_one_overflow_observation():
+    from e7q.ir.candidate_family import MAX_ALTERNATIVES_PER_FACTOR
+
+    class GuardedAlternatives:
+        def __init__(self, alternative):
+            self.alternative = alternative
+            self.consumed = 0
+
+        def __iter__(self):
+            return self
+
+        def __next__(self):
+            # A regression cannot hang: the first extra read fails immediately.
+            if self.consumed >= MAX_ALTERNATIVES_PER_FACTOR + 1:
+                raise AssertionError("alternative stream read past the overflow observation")
+            self.consumed += 1
+            return self.alternative
+
+    family = _two_member_family()
+    stream = GuardedAlternatives(family["factors"][0]["alternatives"][0])
+    family["factors"][0]["alternatives"] = stream
+    result = assess_candidate_restriction(
+        family, (), criterion_id="bounded", criterion_edition="1", criterion_text="retain none"
+    )
+    assert MAX_ALTERNATIVES_PER_FACTOR == 256
+    assert stream.consumed == MAX_ALTERNATIVES_PER_FACTOR + 1
+    assert result["outcome"] == "resource_limit"
+    assert result["retained_member_ids"] == []
+    assert result["result_family"] is None
+
+
+def test_maintenance_member_product_refusal_is_resource_before_expansion(monkeypatch):
+    from e7q.ir import candidate_family as candidate
+
+    factors = [
+        factor(name, [name], [{name: str(index)} for index in range(count)])
+        for name, count in (("first", 256), ("second", 256), ("third", 2))
+    ]
+
+    def forbidden_expansion(*args, **kwargs):
+        raise AssertionError("oversized Cartesian product must not be expanded")
+
+    family = _two_member_family()
+    monkeypatch.setattr(candidate, "product", forbidden_expansion)
+    with pytest.raises(CandidateFamilyError, match="supported member bound"):
+        build_candidate_family(SOURCE, factors)
+    family["factors"] = factors
+    result = assess_candidate_restriction(
+        family, (), criterion_id="bounded", criterion_edition="1", criterion_text="retain none"
+    )
+    assert result["outcome"] == "resource_limit"
+    assert result["criterion"] is None
+    assert result["retained_member_ids"] == result["excluded_member_ids"] == []
+    assert result["result_family"] is None
+
+
+@pytest.mark.parametrize("field", ["criterion_edition", "criterion_text"])
+@pytest.mark.parametrize("malformed", ["\ud800", "prefix\udfff"])
+def test_maintenance_surrogate_criterion_is_typed_invalid(field, malformed):
+    kwargs = dict(criterion_id="filter", criterion_edition="1", criterion_text="declared")
+    kwargs[field] = malformed
+    result = assess_candidate_restriction(_two_member_family(), (), **kwargs)
+    assert result["outcome"] == "invalid_input"
+    assert result["criterion"] is None
+    assert result["retained_member_ids"] == result["excluded_member_ids"] == []
+    assert result["result_family"] is None
+
+
+@pytest.mark.parametrize("text", ["é", "e\u0301", "\U0001f680"])
+def test_maintenance_valid_unicode_criterion_keeps_bytes_and_identity(text):
+    from e7q.ir.canonical import canonical_bytes, identified_digest
+
+    family = _two_member_family()
+    result = assess_candidate_restriction(
+        family, [family["members"][0]["member_id"]], criterion_id="filter",
+        criterion_edition=text, criterion_text=text,
+    )
+    assert result["outcome"] == "success"
+    assert result["criterion"] == {"id": "filter", "edition": text, "text": text}
+    assert text.encode("utf-8") in canonical_bytes(result)
+    assert result["restriction_id"] == identified_digest(result, "restriction_id")
+
+
+@pytest.mark.parametrize("malformed", [None, 7, b"alternatives", [], [None], [7], [[]]])
+def test_maintenance_direct_factor_rejects_malformed_alternatives(malformed):
+    with pytest.raises(CandidateFamilyError):
+        factor("layout", ["layout"], malformed)
+
+
+@pytest.mark.parametrize("field", ["factors", "assumptions", "limitations"])
+def test_maintenance_bytes_family_collections_are_typed(field):
+    family = _two_member_family()
+    family[field] = b"collection"
+    with pytest.raises(CandidateFamilyError, match="collection"):
+        validate_candidate_family(family)
+
+
+def test_maintenance_bytes_retained_references_are_typed_in_both_editions():
+    family = _two_member_family()
+    with pytest.raises(CandidateFamilyError):
+        restrict_candidate_family(family, b"member", criterion="declared")
+    result = assess_candidate_restriction(
+        family, b"member", criterion_id="filter", criterion_edition="1", criterion_text="declared"
+    )
+    assert result["outcome"] == "invalid_input"
+    assert result["result_family"] is None

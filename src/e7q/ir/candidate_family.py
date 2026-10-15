@@ -183,7 +183,12 @@ def restrict_candidate_family(
     validate_candidate_family(family)
     if not isinstance(criterion, str) or not criterion:
         raise CandidateFamilyError("restriction criterion must be non-empty")
-    retained = set(retained_member_ids)
+    if isinstance(retained_member_ids, (str, bytes)):
+        raise CandidateFamilyError("retained_member_ids must be a collection")
+    try:
+        retained = set(retained_member_ids)
+    except TypeError as exc:
+        raise CandidateFamilyError("retained_member_ids must contain hashable identities") from exc
     known = {item["member_id"] for item in family["members"]}
     if not retained or not retained.issubset(known):
         raise CandidateFamilyError("restriction must retain known family members")
@@ -284,8 +289,11 @@ def assess_candidate_restriction(
                 "member_ids": retained,
             }
             result_family["family_id"] = digest(result_family)
-    except CandidateFamilyError as exc:
-        if "exceeds the supported bound" in str(exc):
+    except (CandidateFamilyError, UnicodeEncodeError) as exc:
+        if (
+            "exceeds the supported bound" in str(exc)
+            or str(exc) == "candidate family exceeds the supported member bound"
+        ):
             outcome = "resource_limit"
         else:
             outcome = "invalid_input"
@@ -350,9 +358,13 @@ def candidate_family_view_v2(family: dict[str, Any]) -> dict[str, Any]:
 def _validate_factor(value: dict[str, Any]) -> None:
     if not isinstance(value, dict):
         raise CandidateFamilyError("factor must be an object")
+    alternatives = _bounded_tuple(
+        value.get("alternatives", ()), MAX_ALTERNATIVES_PER_FACTOR, "factor alternatives"
+    )
+    if any(not isinstance(item, dict) for item in alternatives):
+        raise CandidateFamilyError("factor alternatives must contain objects")
     expected = factor(value.get("name"), value.get("dimensions", ()), [
-        item.get("bindings", {}) if isinstance(item, dict) else {}
-        for item in value.get("alternatives", ())
+        item.get("bindings", {}) for item in alternatives
     ])
     if value != expected:
         raise CandidateFamilyError("factor is non-canonical or has a stale identity")

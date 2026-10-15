@@ -34,6 +34,20 @@
       "decision": "retain_public_terms",
       "reason": "Retain the additive Q-A4 schema under the repository's existing public terms. This hash-bound decision does not move the schema to the commercial component or change existing licence documents.",
       "approval_reference": "Owner explicitly selected Retain open-core terms in TUNC on 2026-10-14 for Q-A4 alignment, including exact-hash register decisions; turn 71e8d67c-5563-4b15-a48b-f37ef73a6776. Local preparation only; commit, push, PR and deployment remain unapproved."
+    },
+    {
+      "path": "src/e7q/ir/candidate_family.py",
+      "sha256": "4fbe20f363c6bff49cb599a024b6416f6e9cc57c783b4edd789ff5def46d27c0",
+      "decision": "retain_public_terms",
+      "reason": "Retain this bounded candidate-family admission, typed resource-outcome and Unicode validation maintenance under existing Apache-2.0 open-core terms and notices; no commercial relicensing, ownership certification or new third-party clearance is inferred.",
+      "approval_reference": "Oleksandr Razinkov explicitly selected retain_public_and_publish_e7q_maintenance in TUNC on 2026-10-15 at 12:14 CEST for the exact maintenance source hashes; coordination/E7Q_MAINTENANCE_PUBLICATION_PROMPT_2026-10-15.md records the decision. Scoped PR publication is authorized; merge and deployment remain unapproved."
+    },
+    {
+      "path": "src/e7q/ir/transformation_history.py",
+      "sha256": "0b654170ee2a93d2c4a24de8ff20efcaf676517eef7216a953e9b5c81381db7e",
+      "decision": "retain_public_terms",
+      "reason": "Retain this bounded transformation-history admission and typed rule-edition Unicode validation maintenance under existing Apache-2.0 open-core terms and notices; no commercial relicensing, ownership certification or new third-party clearance is inferred.",
+      "approval_reference": "Oleksandr Razinkov explicitly selected retain_public_and_publish_e7q_maintenance in TUNC on 2026-10-15 at 12:14 CEST for the exact maintenance source hashes; coordination/E7Q_MAINTENANCE_PUBLICATION_PROMPT_2026-10-15.md records the decision. Scoped PR publication is authorized; merge and deployment remain unapproved."
     }
   ],
   "note": "No commercial implementation is published by this change. Records document review decisions; they do not authenticate ownership or signatures."
