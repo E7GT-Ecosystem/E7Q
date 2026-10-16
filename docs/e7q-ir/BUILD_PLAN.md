@@ -2,6 +2,16 @@
 
 **Plan version:** 0.17
 
+**Additive workstream registration (2026-10-16, local candidate only):**
+`E7Q-CIRQ/0.1` reuses the current exporter, native comparer and E7Q-IR graph
+contracts. The bounded missing slice is non-executing admission of the exported
+Cirq dialect, optional pinned local simulation, native assessment and F1/replay
+evidence. See [capability audit](cirq/CAPABILITY_AUDIT.md),
+[integration contract](cirq/INTEGRATION_CONTRACT.md) and
+[validation report](cirq/VALIDATION_REPORT.md). This does not replace the plan,
+repin the kernel, extend F2 semantics or supersede Q-A3/Q-A4. Full /0.1 acceptance,
+publication, merge and deployment remain separately gated.
+
 **Status:** authoritative implementation plan for the experimental E7Q-IR line.  
 **Direction:** `E7-ECO-DIR-2026-09-13.1`.
 
