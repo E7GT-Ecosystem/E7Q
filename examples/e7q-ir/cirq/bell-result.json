@@ -1,0 +1,684 @@
+{
+  "criterion": "tolerance",
+  "diagnostics": {
+    "mapping_all_basis_max_matrix_error": 1.1102230246251565e-16,
+    "mapping_consistent": true,
+    "mapping_tolerance": 1e-09,
+    "mapping_zero_input_max_vector_error": 1.1102230246251565e-16,
+    "measurement_relative_zero_input_max_error": 2.220446049250313e-16,
+    "state_relative_zero_input_max_error": 1.1102230246251565e-16,
+    "zero_input_ideal_probabilities": [
+      0.5000000000000001,
+      0.0,
+      0.0,
+      0.5000000000000001
+    ]
+  },
+  "environment": {
+    "cirq": "1.6.1",
+    "numpy": "2.5.4",
+    "python": "3.12.3"
+  },
+  "graph": {
+    "artifacts": [
+      {
+        "artifact_id": "sha256:ba82a9f7fad368d7c3f7ecd80712acacbc6a27d5e7d833d616549907c9426b65",
+        "kind": "source",
+        "limitations": [
+          "F0/F1 identity and reference integrity only; no F2 SDK semantic validator or F3 claim.",
+          "Cirq observations are local ideal simulation, not independently authenticated evidence.",
+          "No hardware, noise, sampling, shots, credentials, or physical fidelity claim.",
+          "created_at is a fixed identity sentinel, not an event timestamp.",
+          "Export loses native context name, shots, seed, invariants, and reusable-path structure."
+        ],
+        "payload": {
+          "encoding": "utf-8",
+          "format": "e7q",
+          "source": "context CirqBell {\n  backend: statevector\n  seed: 7\n}\nqubits q[2]\nbits c[2]\ninvariant normalized\ninvariant outcomes in {00, 11}\npath Bell {\n  H q[0]\n  CX q[0], q[1]\n  measure q -> c\n}\nverify Bell\n"
+        },
+        "profile": {
+          "capabilities_required": [],
+          "id": "e7q.ir.core",
+          "version": "0alpha1"
+        },
+        "provenance": {
+          "actor": "E7Q-CIRQ/0.1",
+          "created_at": "1970-01-01T00:00:00Z",
+          "source_refs": []
+        },
+        "schema": "e7q.ir.artifact/v0alpha1"
+      },
+      {
+        "artifact_id": "sha256:590d1baea29d1dc966ce7103459352b508a3383558868b3f3c82d71aad786f8d",
+        "kind": "source",
+        "limitations": [
+          "F0/F1 identity and reference integrity only; no F2 SDK semantic validator or F3 claim.",
+          "Cirq observations are local ideal simulation, not independently authenticated evidence.",
+          "No hardware, noise, sampling, shots, credentials, or physical fidelity claim.",
+          "created_at is a fixed identity sentinel, not an event timestamp.",
+          "Export loses native context name, shots, seed, invariants, and reusable-path structure."
+        ],
+        "payload": {
+          "encoding": "utf-8",
+          "format": "cirq-export",
+          "source": "import cirq\n\nqubits = cirq.LineQubit.range(2)\ncircuit = cirq.Circuit()\ncircuit.append(cirq.H(qubits[0]))\ncircuit.append(cirq.CNOT(qubits[0], qubits[1]))\ncircuit.append(cirq.measure(qubits[0], qubits[1], key=\"c\"))\n"
+        },
+        "profile": {
+          "capabilities_required": [],
+          "id": "e7q.ir.core",
+          "version": "0alpha1"
+        },
+        "provenance": {
+          "actor": "E7Q-CIRQ/0.1",
+          "created_at": "1970-01-01T00:00:00Z",
+          "source_refs": []
+        },
+        "schema": "e7q.ir.artifact/v0alpha1"
+      },
+      {
+        "artifact_id": "sha256:89f3b484a06b5a88a4e12bbd05a204c1518bcd06f46f6c4e3dab24bdda87f58c",
+        "kind": "source",
+        "limitations": [
+          "F0/F1 identity and reference integrity only; no F2 SDK semantic validator or F3 claim.",
+          "Cirq observations are local ideal simulation, not independently authenticated evidence.",
+          "No hardware, noise, sampling, shots, credentials, or physical fidelity claim.",
+          "created_at is a fixed identity sentinel, not an event timestamp.",
+          "Export loses native context name, shots, seed, invariants, and reusable-path structure."
+        ],
+        "payload": {
+          "encoding": "utf-8",
+          "format": "cirq-return",
+          "source": "import cirq\n\nqubits = cirq.LineQubit.range(2)\ncircuit = cirq.Circuit()\ncircuit.append(cirq.H(qubits[0]))\ncircuit.append(cirq.CNOT(qubits[0], qubits[1]))\ncircuit.append(cirq.measure(qubits[0], qubits[1], key=\"c\"))\n"
+        },
+        "profile": {
+          "capabilities_required": [],
+          "id": "e7q.ir.core",
+          "version": "0alpha1"
+        },
+        "provenance": {
+          "actor": "E7Q-CIRQ/0.1",
+          "created_at": "1970-01-01T00:00:00Z",
+          "source_refs": []
+        },
+        "schema": "e7q.ir.artifact/v0alpha1"
+      },
+      {
+        "artifact_id": "sha256:9f2767c6b641704264e6fecd459c1782e67bb962ba1605e8b95b3585a30417cc",
+        "kind": "representation",
+        "limitations": [
+          "F0/F1 identity and reference integrity only; no F2 SDK semantic validator or F3 claim.",
+          "Cirq observations are local ideal simulation, not independently authenticated evidence.",
+          "No hardware, noise, sampling, shots, credentials, or physical fidelity claim.",
+          "created_at is a fixed identity sentinel, not an event timestamp.",
+          "Export loses native context name, shots, seed, invariants, and reusable-path structure."
+        ],
+        "payload": {
+          "admitted": {
+            "allowed_outcomes": null,
+            "backend": "statevector",
+            "bits": 2,
+            "name": "cirq_admitted",
+            "operations": [
+              {
+                "bits": [],
+                "condition": null,
+                "full_register": false,
+                "gate": "H",
+                "label": null,
+                "probability": null,
+                "qubits": [
+                  0
+                ]
+              },
+              {
+                "bits": [],
+                "condition": null,
+                "full_register": false,
+                "gate": "CX",
+                "label": null,
+                "probability": null,
+                "qubits": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "bits": [],
+                "condition": null,
+                "full_register": true,
+                "gate": "MEASURE",
+                "label": null,
+                "probability": null,
+                "qubits": []
+              }
+            ],
+            "path": "cirq_admitted",
+            "qubits": 2,
+            "require_normalized": false,
+            "seed": null,
+            "shots": 1,
+            "subpaths": []
+          },
+          "format": "E7Q-CIRQ/0.1/programs",
+          "native": {
+            "allowed_outcomes": [
+              "00",
+              "11"
+            ],
+            "backend": "statevector",
+            "bits": 2,
+            "name": "CirqBell",
+            "operations": [
+              {
+                "bits": [],
+                "condition": null,
+                "full_register": false,
+                "gate": "H",
+                "label": null,
+                "probability": null,
+                "qubits": [
+                  0
+                ]
+              },
+              {
+                "bits": [],
+                "condition": null,
+                "full_register": false,
+                "gate": "CX",
+                "label": null,
+                "probability": null,
+                "qubits": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "bits": [],
+                "condition": null,
+                "full_register": true,
+                "gate": "MEASURE",
+                "label": null,
+                "probability": null,
+                "qubits": []
+              }
+            ],
+            "path": "Bell",
+            "qubits": 2,
+            "require_normalized": true,
+            "seed": 7,
+            "shots": 1024,
+            "subpaths": []
+          }
+        },
+        "profile": {
+          "capabilities_required": [],
+          "id": "e7q.ir.core",
+          "version": "0alpha1"
+        },
+        "provenance": {
+          "actor": "E7Q-CIRQ/0.1",
+          "created_at": "1970-01-01T00:00:00Z",
+          "source_refs": [
+            "sha256:ba82a9f7fad368d7c3f7ecd80712acacbc6a27d5e7d833d616549907c9426b65",
+            "sha256:590d1baea29d1dc966ce7103459352b508a3383558868b3f3c82d71aad786f8d",
+            "sha256:89f3b484a06b5a88a4e12bbd05a204c1518bcd06f46f6c4e3dab24bdda87f58c"
+          ]
+        },
+        "schema": "e7q.ir.artifact/v0alpha1"
+      },
+      {
+        "artifact_id": "sha256:8febd6bb62552ce789c6e630bb58335096dc198f9eb0bf4d7fe8f0bbfa27a95f",
+        "kind": "execution",
+        "limitations": [
+          "F0/F1 identity and reference integrity only; no F2 SDK semantic validator or F3 claim.",
+          "Cirq observations are local ideal simulation, not independently authenticated evidence.",
+          "No hardware, noise, sampling, shots, credentials, or physical fidelity claim.",
+          "created_at is a fixed identity sentinel, not an event timestamp.",
+          "Export loses native context name, shots, seed, invariants, and reusable-path structure."
+        ],
+        "payload": {
+          "environment": {
+            "cirq": "1.6.1",
+            "numpy": "2.5.4",
+            "python": "3.12.3"
+          },
+          "format": "E7Q-CIRQ/0.1/execution",
+          "limits": {
+            "ast_depth": 32,
+            "ast_nodes": 2048,
+            "cpu_seconds": 10,
+            "json_bytes": 32768,
+            "memory_bytes": 3221225472,
+            "native_memory_budget_bytes": 268435456,
+            "qubits": 2,
+            "source_bytes": 16384,
+            "timeout_seconds": 15.0,
+            "unitary_gates": 64
+          },
+          "method": {
+            "basis_inputs": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "dtype": "complex128",
+            "native_criterion_scope": "all-basis unitary or all-basis measurement probabilities",
+            "observations": "ideal probabilities only; no sampling",
+            "qubit_order": "LineQubit ascending; q0 tensor MSB",
+            "sampling_status": "NOT_ASSESSED",
+            "simulator": "cirq.Simulator",
+            "split_untangled_states": false,
+            "terminal_measurement": "excluded from simulation; identity q->c map"
+          }
+        },
+        "profile": {
+          "capabilities_required": [],
+          "id": "e7q.ir.core",
+          "version": "0alpha1"
+        },
+        "provenance": {
+          "actor": "E7Q-CIRQ/0.1",
+          "created_at": "1970-01-01T00:00:00Z",
+          "source_refs": [
+            "sha256:9f2767c6b641704264e6fecd459c1782e67bb962ba1605e8b95b3585a30417cc"
+          ]
+        },
+        "schema": "e7q.ir.artifact/v0alpha1"
+      },
+      {
+        "artifact_id": "sha256:d40dda5702eda980a0873653ecffec0bc2015db6fb52e93ec39af95d1124a092",
+        "kind": "observation",
+        "limitations": [
+          "F0/F1 identity and reference integrity only; no F2 SDK semantic validator or F3 claim.",
+          "Cirq observations are local ideal simulation, not independently authenticated evidence.",
+          "No hardware, noise, sampling, shots, credentials, or physical fidelity claim.",
+          "created_at is a fixed identity sentinel, not an event timestamp.",
+          "Export loses native context name, shots, seed, invariants, and reusable-path structure."
+        ],
+        "payload": {
+          "diagnostics": {
+            "mapping_all_basis_max_matrix_error": 1.1102230246251565e-16,
+            "mapping_consistent": true,
+            "mapping_tolerance": 1e-09,
+            "mapping_zero_input_max_vector_error": 1.1102230246251565e-16,
+            "measurement_relative_zero_input_max_error": 2.220446049250313e-16,
+            "state_relative_zero_input_max_error": 1.1102230246251565e-16,
+            "zero_input_ideal_probabilities": [
+              0.5000000000000001,
+              0.0,
+              0.0,
+              0.5000000000000001
+            ]
+          },
+          "format": "E7Q-CIRQ/0.1/observation",
+          "simulator": {
+            "environment": {
+              "cirq": "1.6.1",
+              "numpy": "2.5.4",
+              "python": "3.12.3"
+            },
+            "imag": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "real": [
+              [
+                0.7071067811865476,
+                0.0,
+                0.7071067811865476,
+                0.0
+              ],
+              [
+                0.0,
+                0.7071067811865476,
+                0.0,
+                0.7071067811865476
+              ],
+              [
+                -0.0,
+                0.7071067811865476,
+                -0.0,
+                -0.7071067811865476
+              ],
+              [
+                0.7071067811865476,
+                -0.0,
+                -0.7071067811865476,
+                -0.0
+              ]
+            ],
+            "status": "OK"
+          }
+        },
+        "profile": {
+          "capabilities_required": [],
+          "id": "e7q.ir.core",
+          "version": "0alpha1"
+        },
+        "provenance": {
+          "actor": "E7Q-CIRQ/0.1",
+          "created_at": "1970-01-01T00:00:00Z",
+          "source_refs": [
+            "sha256:8febd6bb62552ce789c6e630bb58335096dc198f9eb0bf4d7fe8f0bbfa27a95f"
+          ]
+        },
+        "schema": "e7q.ir.artifact/v0alpha1"
+      },
+      {
+        "artifact_id": "sha256:a634d059b812f53af958c0fb7c548bcf601025fa9487295b8e9055f5ac516a71",
+        "kind": "assessment",
+        "limitations": [
+          "F0/F1 identity and reference integrity only; no F2 SDK semantic validator or F3 claim.",
+          "Cirq observations are local ideal simulation, not independently authenticated evidence.",
+          "No hardware, noise, sampling, shots, credentials, or physical fidelity claim.",
+          "created_at is a fixed identity sentinel, not an event timestamp.",
+          "Export loses native context name, shots, seed, invariants, and reusable-path structure."
+        ],
+        "payload": {
+          "criterion": "tolerance",
+          "format": "E7Q-CIRQ/0.1/assessment",
+          "native_assessment": {
+            "criterion": "tolerance",
+            "equivalent": true,
+            "global_phase": null,
+            "maximum_error": 0.0,
+            "proof": [
+              {
+                "criterion": "tolerance",
+                "kind": "compare",
+                "left": "CirqBell",
+                "qubits": 2,
+                "representation": "unitary",
+                "right": "cirq_admitted",
+                "step": 0
+              },
+              {
+                "equivalent": true,
+                "global_phase": null,
+                "kind": "equivalence",
+                "maximum_error": 0.0,
+                "step": 1,
+                "tolerance": 1e-09
+              }
+            ],
+            "status": "PASS",
+            "tolerance": 1e-09
+          },
+          "status": "PASS",
+          "tolerance": 1e-09
+        },
+        "profile": {
+          "capabilities_required": [],
+          "id": "e7q.ir.core",
+          "version": "0alpha1"
+        },
+        "provenance": {
+          "actor": "E7Q-CIRQ/0.1",
+          "created_at": "1970-01-01T00:00:00Z",
+          "source_refs": [
+            "sha256:9f2767c6b641704264e6fecd459c1782e67bb962ba1605e8b95b3585a30417cc",
+            "sha256:d40dda5702eda980a0873653ecffec0bc2015db6fb52e93ec39af95d1124a092"
+          ]
+        },
+        "schema": "e7q.ir.artifact/v0alpha1"
+      },
+      {
+        "artifact_id": "sha256:929df30f692b583a1ce217f5a83c73ed470901cb2b822aa5931bd6384d8a6c1c",
+        "kind": "claim",
+        "limitations": [
+          "F0/F1 identity and reference integrity only; no F2 SDK semantic validator or F3 claim.",
+          "Cirq observations are local ideal simulation, not independently authenticated evidence.",
+          "No hardware, noise, sampling, shots, credentials, or physical fidelity claim.",
+          "created_at is a fixed identity sentinel, not an event timestamp.",
+          "Export loses native context name, shots, seed, invariants, and reusable-path structure."
+        ],
+        "payload": {
+          "boundaries": [
+            "F0/F1 identity and reference integrity only; no F2 SDK semantic validator or F3 claim.",
+            "Cirq observations are local ideal simulation, not independently authenticated evidence.",
+            "No hardware, noise, sampling, shots, credentials, or physical fidelity claim.",
+            "created_at is a fixed identity sentinel, not an event timestamp.",
+            "Export loses native context name, shots, seed, invariants, and reusable-path structure."
+          ],
+          "claim_type": "bounded-local-reference-comparison",
+          "evidence_refs": [
+            "sha256:a634d059b812f53af958c0fb7c548bcf601025fa9487295b8e9055f5ac516a71"
+          ],
+          "format": "E7Q-CIRQ/0.1/claim",
+          "native_criterion": "tolerance",
+          "native_outcome": "PASS",
+          "prohibited_inferences": [
+            "F2 SDK truth",
+            "F3",
+            "hardware fidelity"
+          ],
+          "scope": "F0/F1 only",
+          "statement": "A bounded native return assessment and SDK mapping diagnostic were made; not an unqualified equivalence claim.",
+          "support_status": "supported-within-declared-scope"
+        },
+        "profile": {
+          "capabilities_required": [],
+          "id": "e7q.ir.core",
+          "version": "0alpha1"
+        },
+        "provenance": {
+          "actor": "E7Q-CIRQ/0.1",
+          "created_at": "1970-01-01T00:00:00Z",
+          "source_refs": [
+            "sha256:a634d059b812f53af958c0fb7c548bcf601025fa9487295b8e9055f5ac516a71"
+          ]
+        },
+        "schema": "e7q.ir.artifact/v0alpha1"
+      }
+    ],
+    "extensions": {
+      "e7q.cirq_interop": {
+        "optional": true,
+        "scope": "F0/F1",
+        "sdk_truth": false
+      }
+    },
+    "graph_id": "sha256:e34ce3fd7599edb688a79ef96b7da037a46d0deceeeab2b8fd447c3273bd0d55",
+    "name": "E7Q-CIRQ/0.1",
+    "relations": [
+      {
+        "kind": "represents",
+        "relation_id": "sha256:47a5e2c6d7726763e81c1439b5c23bb2aa5f03dee336c86866b6897bd649bfb6",
+        "source": "sha256:ba82a9f7fad368d7c3f7ecd80712acacbc6a27d5e7d833d616549907c9426b65",
+        "target": "sha256:9f2767c6b641704264e6fecd459c1782e67bb962ba1605e8b95b3585a30417cc",
+        "validation_status": "declared-not-verified"
+      },
+      {
+        "kind": "represents",
+        "relation_id": "sha256:e38a9b3eecdc85280285576334040357fc4bf790908ceb6503e378cbdb299914",
+        "source": "sha256:590d1baea29d1dc966ce7103459352b508a3383558868b3f3c82d71aad786f8d",
+        "target": "sha256:9f2767c6b641704264e6fecd459c1782e67bb962ba1605e8b95b3585a30417cc",
+        "validation_status": "declared-not-verified"
+      },
+      {
+        "kind": "represents",
+        "relation_id": "sha256:ee9324391112c1605baa2944c0ac1835e36dcba006daced5c9575c9ac5fcb873",
+        "source": "sha256:89f3b484a06b5a88a4e12bbd05a204c1518bcd06f46f6c4e3dab24bdda87f58c",
+        "target": "sha256:9f2767c6b641704264e6fecd459c1782e67bb962ba1605e8b95b3585a30417cc",
+        "validation_status": "declared-not-verified"
+      },
+      {
+        "kind": "produces",
+        "relation_id": "sha256:c26ab1a67696ee09b826b036b9283a9110109b0923a7e3f97dbe3e589525a397",
+        "source": "sha256:9f2767c6b641704264e6fecd459c1782e67bb962ba1605e8b95b3585a30417cc",
+        "target": "sha256:8febd6bb62552ce789c6e630bb58335096dc198f9eb0bf4d7fe8f0bbfa27a95f",
+        "validation_status": "declared-not-verified"
+      },
+      {
+        "kind": "produces",
+        "relation_id": "sha256:3590cd99b5defddb9e37862b3e52801af83185be312c976ff2acc9b063e797d2",
+        "source": "sha256:8febd6bb62552ce789c6e630bb58335096dc198f9eb0bf4d7fe8f0bbfa27a95f",
+        "target": "sha256:d40dda5702eda980a0873653ecffec0bc2015db6fb52e93ec39af95d1124a092",
+        "validation_status": "declared-not-verified"
+      },
+      {
+        "kind": "assesses",
+        "relation_id": "sha256:07813291609c6b9298e219736db15842a804db412584aa0d41608cf490a1ccb0",
+        "source": "sha256:a634d059b812f53af958c0fb7c548bcf601025fa9487295b8e9055f5ac516a71",
+        "target": "sha256:d40dda5702eda980a0873653ecffec0bc2015db6fb52e93ec39af95d1124a092",
+        "validation_status": "declared-not-verified"
+      },
+      {
+        "kind": "supports",
+        "relation_id": "sha256:4826bb4bedba2f3a00b4bc2ce6110de9037bca5843e2adb7ddaca1ba91359967",
+        "source": "sha256:a634d059b812f53af958c0fb7c548bcf601025fa9487295b8e9055f5ac516a71",
+        "target": "sha256:929df30f692b583a1ce217f5a83c73ed470901cb2b822aa5931bd6384d8a6c1c",
+        "validation_status": "declared-not-verified"
+      }
+    ],
+    "schema": "e7q.ir.graph/v0alpha1"
+  },
+  "limitations": [
+    "F0/F1 identity and reference integrity only; no F2 SDK semantic validator or F3 claim.",
+    "Cirq observations are local ideal simulation, not independently authenticated evidence.",
+    "No hardware, noise, sampling, shots, credentials, or physical fidelity claim.",
+    "created_at is a fixed identity sentinel, not an event timestamp.",
+    "Export loses native context name, shots, seed, invariants, and reusable-path structure."
+  ],
+  "limits": {
+    "ast_depth": 32,
+    "ast_nodes": 2048,
+    "cpu_seconds": 10,
+    "json_bytes": 32768,
+    "memory_bytes": 3221225472,
+    "native_memory_budget_bytes": 268435456,
+    "qubits": 2,
+    "source_bytes": 16384,
+    "timeout_seconds": 15.0,
+    "unitary_gates": 64
+  },
+  "method": {
+    "basis_inputs": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "dtype": "complex128",
+    "native_criterion_scope": "all-basis unitary or all-basis measurement probabilities",
+    "observations": "ideal probabilities only; no sampling",
+    "qubit_order": "LineQubit ascending; q0 tensor MSB",
+    "sampling_status": "NOT_ASSESSED",
+    "simulator": "cirq.Simulator",
+    "split_untangled_states": false,
+    "terminal_measurement": "excluded from simulation; identity q->c map"
+  },
+  "native_assessment": {
+    "criterion": "tolerance",
+    "equivalent": true,
+    "global_phase": null,
+    "maximum_error": 0.0,
+    "proof": [
+      {
+        "criterion": "tolerance",
+        "kind": "compare",
+        "left": "CirqBell",
+        "qubits": 2,
+        "representation": "unitary",
+        "right": "cirq_admitted",
+        "step": 0
+      },
+      {
+        "equivalent": true,
+        "global_phase": null,
+        "kind": "equivalence",
+        "maximum_error": 0.0,
+        "step": 1,
+        "tolerance": 1e-09
+      }
+    ],
+    "status": "PASS",
+    "tolerance": 1e-09
+  },
+  "schema": "E7Q-CIRQ/0.1",
+  "simulator": {
+    "environment": {
+      "cirq": "1.6.1",
+      "numpy": "2.5.4",
+      "python": "3.12.3"
+    },
+    "imag": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "real": [
+      [
+        0.7071067811865476,
+        0.0,
+        0.7071067811865476,
+        0.0
+      ],
+      [
+        0.0,
+        0.7071067811865476,
+        0.0,
+        0.7071067811865476
+      ],
+      [
+        -0.0,
+        0.7071067811865476,
+        -0.0,
+        -0.7071067811865476
+      ],
+      [
+        0.7071067811865476,
+        -0.0,
+        -0.7071067811865476,
+        -0.0
+      ]
+    ],
+    "status": "OK"
+  },
+  "status": "PASS",
+  "tolerance": 1e-09
+}
