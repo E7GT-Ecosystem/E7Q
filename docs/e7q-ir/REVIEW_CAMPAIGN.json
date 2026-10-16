@@ -3,6 +3,15 @@
   "baseline": "4210bd595566af0f6458cac2c4870a6d98a3410e",
   "capabilities": [
     {
+      "id": "cirq_interop",
+      "scope": "Bounded E7Q-CIRQ/0.1 admission, native comparison, ideal SDK mapping and F1/replay; only behaviours asserted in linked tests",
+      "test_file": "tests/test_cirq_interop.py",
+      "implementation": ["src/e7q/cirq_interop.py", "src/e7q/adapters.py", "src/e7q/language.py"],
+      "limits": "Optional pinned Cirq 1.6.1; at most 2 qubits and 64 gates; no sampling, SDK F2, provider authentication or hardware claim. Live SDK tests skip without the optional dependency.",
+      "next_gate": "Maintainer acceptance, scoped publication and external reproduction of a pinned candidate",
+      "review_status": "LOCAL_CAMPAIGN_PENDING_RUN"
+    },
+    {
       "id": "artifacts",
       "scope": "artifacts \u2014 only the behaviours asserted in the linked test cases",
       "test_file": "tests/test_artifacts.py",
