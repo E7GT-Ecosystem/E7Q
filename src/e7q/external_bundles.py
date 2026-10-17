@@ -2,6 +2,7 @@
 """Safe, provider-neutral verification of supplied external evidence bundles."""
 from __future__ import annotations
 
+from contextlib import contextmanager
 from dataclasses import dataclass
 from datetime import datetime
 from hashlib import sha256
@@ -120,54 +121,106 @@ def _load_zip(path: Path) -> _Source:
     return _Source("zip", _digest(archive_bytes), members, total)
 
 
+# Capture platform capabilities before tests/callers wrap the OS functions. An
+# operational error must fail closed, never silently downgrade to path traversal.
+_DIRECTORY_FD_SUPPORTED = (
+    os.name == "posix"
+    and os.open in os.supports_dir_fd
+    and os.scandir in os.supports_fd
+    and hasattr(os, "O_DIRECTORY")
+    and hasattr(os, "O_NOFOLLOW")
+)
+
+
+def _same_directory_entry(expected: os.stat_result, opened: os.stat_result) -> bool:
+    return (expected.st_dev, expected.st_ino, stat.S_IFMT(expected.st_mode)) == (
+        opened.st_dev, opened.st_ino, stat.S_IFMT(opened.st_mode)
+    )
+
+
+@contextmanager
+def _anchored_directory(path, info: os.stat_result, *, dir_fd=None):
+    descriptor = os.open(path, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=dir_fd)
+    try:
+        opened = os.fstat(descriptor)
+        if not stat.S_ISDIR(opened.st_mode) or not _same_directory_entry(info, opened):
+            raise E7QError("external bundle directory changed during inspection")
+        yield descriptor
+    finally:
+        os.close(descriptor)
+
+
 def _load_directory(path: Path) -> _Source:
-    root = path.resolve()
-    if path.is_symlink():
-        raise E7QError("external bundle directory must not be a symlink")
     members: dict[str, bytes] = {}
     total = 0
-    pending = [(root, 0)]
     entries = 0
-    try:
-        while pending:
-            directory, depth = pending.pop()
-            with os.scandir(directory) as children:
-                for entry in children:
-                    entries += 1
-                    if entries > _MAX_DIRECTORY_ENTRIES:
-                        raise E7QError("external bundle exceeds the directory entry limit")
-                    candidate = Path(entry.path)
-                    name = _member_name(candidate.relative_to(root).as_posix())
-                    info = entry.stat(follow_symlinks=False)
-                    if stat.S_ISLNK(info.st_mode):
-                        raise E7QError(f"external bundle contains a symlink: {name}")
-                    if stat.S_ISDIR(info.st_mode):
-                        if depth + 1 > _MAX_DIRECTORY_DEPTH:
-                            raise E7QError("external bundle exceeds the directory depth limit")
-                        pending.append((candidate, depth + 1))
-                        continue
-                    if not stat.S_ISREG(info.st_mode):
-                        raise E7QError(f"external bundle contains a non-regular member: {name}")
-                    if len(members) >= _MAX_FILES:
-                        raise E7QError("external bundle directory exceeds the safety limits")
-                    budget = min(_MAX_FILE_BYTES, _MAX_TOTAL_BYTES - total)
-                    if info.st_size > budget:
-                        raise E7QError(f"external bundle member is too large for safety limits: {name}")
-                    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_NONBLOCK", 0)
-                    with os.fdopen(os.open(candidate, flags), "rb") as stream:
-                        opened = os.fstat(stream.fileno())
-                        if not stat.S_ISREG(opened.st_mode) or (
-                            opened.st_dev, opened.st_ino
-                        ) != (info.st_dev, info.st_ino):
+    anchored = _DIRECTORY_FD_SUPPORTED
+
+    def visit(directory, prefix: str, depth: int) -> None:
+        nonlocal entries, total
+        # Depth-first traversal retains at most depth + 1 directory anchors (and
+        # their scandir handles), plus one file; no breadth-sized FD queue.
+        with os.scandir(directory) as children:
+            for entry in children:
+                entries += 1
+                if entries > _MAX_DIRECTORY_ENTRIES:
+                    raise E7QError("external bundle exceeds the directory entry limit")
+                name = _member_name(f"{prefix}/{entry.name}" if prefix else entry.name)
+                info = entry.stat(follow_symlinks=False)
+                if stat.S_ISLNK(info.st_mode):
+                    raise E7QError(f"external bundle contains a symlink: {name}")
+                if stat.S_ISDIR(info.st_mode):
+                    if depth + 1 > _MAX_DIRECTORY_DEPTH:
+                        raise E7QError("external bundle exceeds the directory depth limit")
+                    if anchored:
+                        with _anchored_directory(entry.name, info, dir_fd=directory) as child:
+                            visit(child, name, depth + 1)
+                    else:
+                        visit(Path(entry.path), name, depth + 1)
+                    continue
+                if not stat.S_ISREG(info.st_mode):
+                    raise E7QError(f"external bundle contains a non-regular member: {name}")
+                if len(members) >= _MAX_FILES:
+                    raise E7QError("external bundle directory exceeds the safety limits")
+                budget = min(_MAX_FILE_BYTES, _MAX_TOTAL_BYTES - total)
+                if info.st_size > budget:
+                    raise E7QError(f"external bundle member is too large for safety limits: {name}")
+                flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_NONBLOCK", 0)
+                if anchored:
+                    descriptor = os.open(entry.name, flags, dir_fd=directory)
+                else:
+                    descriptor = os.open(Path(entry.path), flags)
+                try:
+                    # closefd=False keeps ownership explicit even if fdopen fails.
+                    with os.fdopen(descriptor, "rb", closefd=False) as stream:
+                        opened = os.fstat(descriptor)
+                        if not stat.S_ISREG(opened.st_mode) or not _same_directory_entry(info, opened):
                             raise E7QError(f"external bundle member changed during inspection: {name}")
                         content = stream.read(budget + 1)
-                        after = os.fstat(stream.fileno())
-                    if len(content) > budget:
-                        raise E7QError(f"external bundle member is too large for safety limits: {name}")
-                    if (opened.st_size, opened.st_mtime_ns) != (after.st_size, after.st_mtime_ns) or len(content) != after.st_size:
-                        raise E7QError(f"external bundle member changed during inspection: {name}")
-                    members[name] = content
-                    total += len(content)
+                        after = os.fstat(descriptor)
+                finally:
+                    os.close(descriptor)
+                if len(content) > budget:
+                    raise E7QError(f"external bundle member is too large for safety limits: {name}")
+                if (opened.st_size, opened.st_mtime_ns) != (after.st_size, after.st_mtime_ns) or len(content) != after.st_size:
+                    raise E7QError(f"external bundle member changed during inspection: {name}")
+                members[name] = content
+                total += len(content)
+
+    try:
+        if anchored:
+            info = path.lstat()
+            if stat.S_ISLNK(info.st_mode):
+                raise E7QError("external bundle directory must not be a symlink")
+            with _anchored_directory(path, info) as root:
+                visit(root, "", 0)
+        else:
+            # Compatibility only: immutable trusted-local snapshots are required;
+            # platforms without these descriptor APIs retain the prior race boundary.
+            root = path.resolve()
+            if path.is_symlink():
+                raise E7QError("external bundle directory must not be a symlink")
+            visit(root, "", 0)
     except OSError as exc:
         raise E7QError(f"cannot inspect external bundle directory: {exc}") from exc
     canonical = sha256()

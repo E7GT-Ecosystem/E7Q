@@ -629,3 +629,84 @@ paths remain inspectable, applicable conformance
 checks fail closed, preservation/loss is explicit and imported verdicts cannot
 become native/default F2 truth. H1/H2/H3/H6/H8, E3/E5, authentication, broader
 interoperability and K12/CFS remain separate open gates.
+
+## H3 bounded POSIX directory anchoring checkpoint
+
+Baseline: `e3b66877b60e96a656d709e83aff37089f1d2199` (merged Cirq integration).
+This increment closes the bounded descendant/ancestor path-replacement gap in
+`_load_directory()` on POSIX platforms advertising descriptor-relative `open`,
+FD-based `scandir`, `O_DIRECTORY` and `O_NOFOLLOW`. Capability admission is captured
+at module import. Operational errors fail closed; they do not trigger a weaker
+fallback. Root admission compares non-following `lstat` identity/type with the
+opened directory's `fstat`; a replacement root symlink is not followed. Descendant
+directories and files open by entry name relative to retained parent descriptors,
+not by paths re-resolved through mutable ancestors. Enumerated device/inode/type
+must match opened identity/type. An admitted directory that is subsequently moved
+can still be read from its anchor without redirecting file opens to its replacement.
+
+A shared depth-first traversal keeps all previous entry (1,024), depth (32), file
+(512), per-file (32 MiB), aggregate (128 MiB), bounded-read and observed
+size/mtime-mutation checks. It retains at most depth + 1 explicit directory
+anchors, their bounded active scanner handles, and one file descriptor. Contexts
+and explicit `finally` ownership close descriptors on success, admission errors,
+OS errors and stream-construction/read failures. Platforms without the descriptor
+capabilities retain path-based directory loading as an explicit compatibility
+fallback; that fallback does **not** gain the stronger POSIX race boundary and
+still requires an immutable trusted-local snapshot.
+
+Deterministic synthetic temporary-file regressions were run **before** the fix:
+**5 failed, 58 deselected**. Child-directory replacement after enumeration, by
+either a symlink or real directory, and root replacement after `lstat`, by either
+kind, all failed with `DID NOT RAISE E7QError`. Moving an ancestor before scanning
+its children admitted `b'replacement'` instead of `b'admitted'`. These failures
+record the actual baseline defect, not a timing-dependent stress assumption.
+
+After the fix, the focused external-bundle suite passes **79 tests, zero skips**.
+Controls cover those races, moving an anchored root/child after file enumeration
+but before file open, leaf symlink/regular-file/directory replacement, compatibility
+path traversal and entry limits, descriptor bounds/cleanup on success and six
+error scenarios, and unchanged canonical digest/full receipt identity. Existing
+ZIP, valid fixture, count-order, byte/file/depth/entry limits and exact bounded-read
+controls remain green. Linux `/proc/self/fd` checks also account for scanner
+handles. Production and tests were frozen for the parent's independent review;
+full-suite verification is not claimed by this checkpoint.
+
+The trusted synthetic directory retains source digest
+`sha256:69811dece0bcc4c247d3c6044b5217fbf651af3b1b08a7162ae7da48b9916208`.
+Its complete default receipt equals the unmodified baseline receipt; canonical
+JSON (`sort_keys=True`, separators `(',', ':')`) SHA-256 remains
+`ac6228cc052e98c2b65eff493ef5be7296f174ea85b67347fe387593715b79e6`.
+The same identities are asserted for the compatibility fallback. Verification used
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=$PWD/src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1
+/tmp/e7q-evidence-research-20261016/bin/python -B -m pytest -q tests/test_external_bundles.py`
+from the isolated checkout, after verifying `e7q.__file__` resolves into that
+checkout rather than the research environment's editable install. `git diff
+--check` is clean.
+
+This is **not** an atomic filesystem snapshot or authentication mechanism. It does
+not prevent hardlink aliasing, mount swaps, or malicious in-place mutation that
+evades the existing observed size/mtime checks. The immutable trusted-local
+snapshot boundary remains required even on POSIX. H2/H3 as a whole, independent
+external review and provider authentication remain open. Recommended independent
+probes: repeat the exact baseline races, inject failure into child-directory
+`fstat`/scanner construction, exercise maximum-depth and wide directory trees,
+and validate the compatibility branch on an actual unsupported platform.
+
+### Final local verification — 2026-10-17
+
+The separate read-only AI verifier found no blocking issue in the bounded POSIX
+anchoring scope: **24 independently authored probes passed**, plus **79 focused
+suite passes**, with zero focused skips. Probes include root/child identity
+mismatch, moved ancestors, operational errors without fallback downgrade, and
+cleanup after child scanner construction and root/child/file failures. The
+reviewed production SHA-256 is
+`c55cf804990654c70cf8c09eb2d8813fbe3242455ad23aa71ec45b627729dbfe`.
+This is local AI verification, not external independent acceptance.
+
+The coordinator ran the full suite against this checkout's actual `src` module:
+**1212 passed, 1 skipped in 114.17s**, exit 0. The only skip is optional Stim
+absence. Declared licensing-boundary, dependency consistency and whitespace
+checks also passed. Full log: coordinator
+`.tunc/background-bash/4f4242a3-696c-4c6c-ba83-c5a4ea27a576/stdout.log`.
+No code or tests changed after the verified freeze. This three-file follow-on
+remains local and uncommitted; no new PR, release or deployment is implied.
