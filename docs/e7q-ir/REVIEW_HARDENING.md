@@ -710,3 +710,79 @@ checks also passed. Full log: coordinator
 `.tunc/background-bash/4f4242a3-696c-4c6c-ba83-c5a4ea27a576/stdout.log`.
 No code or tests changed after the verified freeze. This three-file follow-on
 remains local and uncommitted; no new PR, release or deployment is implied.
+
+### H2 supplied count-register consistency — 2026-10-17 (local after PR #95)
+
+Baseline: merged PR #95, `fc34483e3a0ece5693a2e69de1c312a7b5b2ea49`.
+This is a separate local increment on
+`feature/e7q-h2-bundle-consistency-20261017`, not a reopening of the historical
+H3 checkpoint above. Current remote main and open-PR file overlap were checked
+before isolation; existing candidates were left untouched. Scope is restricted
+to this checkpoint, `src/e7q/external_bundles.py` and its existing test module.
+
+**Established uncovered defect.** All 79 existing focused tests passed, but a
+synthetic bundle whose `raw_counts.json` declares `classical_register: "other"`
+while its final OpenQASM declares only `creg c[2]` still received both integrity
+and internal-consistency PASS after full manifest hashes were recomputed.
+Existing tests covered count width/order, mapping edges, numeric metadata and
+malformed JSON, but not this supplied register-name contradiction. Matching
+widths, shot totals and measurement mappings do not resolve that contradiction.
+
+The deterministic new regression rebuilds every manifest member hash and covers
+both directory and ZIP ingestion. Before the production correction it recorded
+**16 failed, 6 passed, 79 deselected**: eight contradictory/malformed declarations
+in two containers produced false PASS; matching, absent and consistently renamed
+register controls passed. Case mismatches, empty names, null, integer, boolean,
+list and object declarations are included. Integrity remains PASS in every case;
+negative cases fail internal consistency, not the manifest or unrelated count
+sums/mapping checks. Repeated verification of the same input is deterministic.
+
+**Small correction.** The private QASM parse result retains the admitted classical
+register name. The existing `qasm:declared-registers` check additionally requires
+an explicitly supplied counts register to be a string equal to that name.
+Absence remains permitted, without inventing a register declaration or label
+order. Consistent non-`c` register names remain valid. No receipt field, schema,
+check identity/order for valid inputs, quantum semantics or licence changes.
+
+Verification uses Python 3.12.3 / pytest 8.4.2 in the existing
+`/tmp/e7q-evidence-research-20261016/bin/python` environment, with explicit
+`PYTHONPATH=$PWD/src`, bytecode/cache/plugin autoload disabled and single-threaded
+BLAS. Package/module origins and the production hash were asserted against this
+isolated checkout, not the environment's other editable install. Commands:
+
+- Source-asserting `python -B` harness calling
+  `pytest.main(['-q', '-ra', '-p', 'no:cacheprovider', 'tests/test_external_bundles.py'])`:
+  **101 passed, zero skips in 0.97s**.
+- `python -B -m pytest -q -ra -p no:cacheprovider` from the repository root,
+  including `scripts/` licensing negative controls: **1234 passed, 1 skipped in
+  90.06s**. The only skip is the absent optional Stim dependency.
+- `python -B scripts/check_licensing_boundary.py`, `python -B -m pip check` and
+  `git diff --check`: **PASS**; licensing is declared-boundary checking, not
+  rights certification. No dependency installation was needed.
+
+An initial full-test harness incorrectly launched pytest from stdin, causing
+multiprocessing workers to fail loading `<stdin>`: 86 failed, 1127 passed,
+1 skipped. Source stayed unchanged; the normal `python -m pytest` entrypoint
+resolved the launcher defect and produced the successful full result above.
+The first test-helper draft also changed a shared manifest digest globally;
+rebuilding hashes per actual member corrected that helper before the preserved
+16-failure baseline and production fix. No assertion was weakened or removed.
+Successful full log in the coordinator workspace:
+`.tunc/background-bash/b0f6f2cb-e01c-496a-a236-61ea4f68d8d0/stdout.log`.
+
+**Preservation.** AST comparison with the pinned baseline confirms every other
+module-level node is unchanged, including all H3 admission/anchoring/cleanup
+code, resource limits, source digesting and receipt assembly. All pre-existing
+test functions are unchanged. Eight complete valid receipt comparisons against
+the hash-verified baseline source are identical: directory/ZIP, anchored/forced
+fallback, with/without embedded counts. The default directory source digest and
+full canonical receipt hash remain the H3 goldens documented above.
+
+**Limits and next gate.** This validates a supplied register declaration, not
+provider authenticity, bit-order inference, semantic circuit equivalence or
+scientific truth. External provenance remains PARTIAL and algorithmic-claim
+validation NOT_EVALUATED. All H3 snapshot/fallback limits remain. H2 is not closed;
+the next bounded audit target, not an established new finding here, is consistency
+of backend/execution declarations across records sharing a job identity.
+This three-file candidate is local and uncommitted; no push, PR, merge, external
+reviewer contact, release or deployment was performed or authorised.
