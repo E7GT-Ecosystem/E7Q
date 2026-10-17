@@ -316,6 +316,57 @@ def test_missing_count_order_is_explicitly_unknown():
     assert 'counts:label-order-declared' in receipt['circuits'][0]['warnings']
 
 
+@pytest.mark.parametrize('kind', ['directory', 'zip'])
+@pytest.mark.parametrize('qasm_register,declaration,expected', [
+    pytest.param('c', {'classical_register': 'other'}, 'FAIL', id='contradictory-name'),
+    pytest.param('c', {'classical_register': 'C'}, 'FAIL', id='case-mismatch'),
+    pytest.param('c', {'classical_register': ''}, 'FAIL', id='empty-name'),
+    pytest.param('c', {'classical_register': None}, 'FAIL', id='null-name'),
+    pytest.param('c', {'classical_register': 0}, 'FAIL', id='integer-name'),
+    pytest.param('c', {'classical_register': False}, 'FAIL', id='boolean-name'),
+    pytest.param('c', {'classical_register': ['c']}, 'FAIL', id='list-name'),
+    pytest.param('c', {'classical_register': {'name': 'c'}}, 'FAIL', id='object-name'),
+    pytest.param('c', {'classical_register': 'c'}, 'PASS', id='matching-name'),
+    pytest.param('c', {}, 'PASS', id='undeclared-name'),
+    pytest.param('readout', {'classical_register': 'readout'}, 'PASS', id='renamed-register'),
+])
+def test_rehashed_counts_register_matches_qasm(tmp_path, kind, qasm_register, declaration, expected):
+    from hashlib import sha256
+    package = tmp_path / 'fixture'
+    shutil.copytree(EXAMPLE, package)
+    record = package / 'synthetic_bell'
+    counts = json.loads((record / 'raw_counts.json').read_bytes())
+    counts.pop('classical_register')
+    counts.update(declaration)
+    qasm = (record / 'final_circuit.qasm').read_text().replace('c[', f'{qasm_register}[')
+    for filename, content in [('raw_counts.json', json.dumps(counts)), ('final_circuit.qasm', qasm)]:
+        (record / filename).write_text(content)
+    manifest = record / 'MANIFEST.md'
+    manifest.write_text('| File | Purpose | SHA256 |\n| --- | --- | --- |\n' + ''.join(
+        f'| `{path.name}` | Synthetic test member | `{sha256(path.read_bytes()).hexdigest()}` |\n'
+        for path in sorted(record.iterdir()) if path.is_file() and path != manifest
+    ))
+    source = package
+    if kind == 'zip':
+        source = tmp_path / 'fixture.zip'
+        with ZipFile(source, 'w') as archive:
+            for path in sorted(package.rglob('*')):
+                if path.is_file():
+                    archive.write(path, path.relative_to(package))
+    receipt = verify_external_bundle(source, include_counts=True)
+    assert receipt['judgments']['artifact_integrity']['status'] == 'PASS'
+    assert receipt['judgments']['internal_consistency']['status'] == expected
+    assert receipt['status'] == expected
+    assert receipt['judgments']['external_provenance']['status'] == 'PARTIAL'
+    assert receipt['judgments']['algorithmic_claim_validation']['status'] == 'NOT_EVALUATED'
+    if expected == 'FAIL':
+        checks = {check['name']: check for check in receipt['circuits'][0]['checks']}
+        assert checks['qasm:declared-registers']['passed'] is False
+        assert checks['counts:sum-to-shots']['passed'] is True
+        assert checks['mapping:qasm-measurements']['passed'] is True
+    assert receipt == verify_external_bundle(source, include_counts=True)
+
+
 # Synthetic races run synchronously at the admission/open boundary, not by timing.
 def _replace_after_entry_stat(monkeypatch, victim, replace):
     import e7q.external_bundles as bundles

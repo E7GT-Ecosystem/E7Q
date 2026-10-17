@@ -359,6 +359,7 @@ def _parse_qasm(raw: bytes) -> dict[str, object]:
     return {
         "qreg_width": qreg_width,
         "creg_width": creg_width,
+        "creg_name": cname,
         "operations": imported["operation_counts"],
         "instructions": instructions,
         "measurements": measurements,
@@ -621,7 +622,15 @@ def _validate_record(
             isinstance(qasm["qreg_width"], int)
             and qasm["qreg_width"] > 0
             and isinstance(qasm["creg_width"], int)
-            and qasm["creg_width"] > 0,
+            and qasm["creg_width"] > 0
+            and (
+                counts_value is None
+                or "classical_register" not in counts_value
+                or (
+                    isinstance(counts_value["classical_register"], str)
+                    and counts_value["classical_register"] == qasm["creg_name"]
+                )
+            ),
         )
         _check(
             checks,
