@@ -1,0 +1,51 @@
+{
+  "name": "E7Q-QEC/0.1 conventional reference probe",
+  "quantum_state_model": "three-qubit complex statevectors",
+  "single_bit_flip_reference": {
+    "cases": 16,
+    "passed": 16
+  },
+  "fault_injection": {
+    "fault": "swap two syndrome recovery actions",
+    "cases": 16,
+    "detected": 8
+  },
+  "negative_control": {
+    "fault": "single Z phase error",
+    "syndrome": [
+      0,
+      0
+    ],
+    "recovery_fails": true
+  },
+  "independent_logical_error_rate_checks": [
+    {
+      "physical_bit_flip_p": 0.01,
+      "unencoded_error_rate": 0.01,
+      "encoded_logical_error_rate": 0.000298
+    },
+    {
+      "physical_bit_flip_p": 0.05,
+      "unencoded_error_rate": 0.05,
+      "encoded_logical_error_rate": 0.00725
+    },
+    {
+      "physical_bit_flip_p": 0.1,
+      "unencoded_error_rate": 0.1,
+      "encoded_logical_error_rate": 0.028
+    },
+    {
+      "physical_bit_flip_p": 0.25,
+      "unencoded_error_rate": 0.25,
+      "encoded_logical_error_rate": 0.15625
+    },
+    {
+      "physical_bit_flip_p": 0.5,
+      "unencoded_error_rate": 0.5,
+      "encoded_logical_error_rate": 0.5
+    }
+  ],
+  "e7q_adapter_tested": false,
+  "e7gt_adapter_tested": false,
+  "claim": "Reference baseline only; no E7Q/E7G-T validation"
+}

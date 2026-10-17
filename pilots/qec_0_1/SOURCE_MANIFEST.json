@@ -1,0 +1,31 @@
+{
+  "e7q_baseline": "b7989c647e5d0e22ed1128c41aceb2dda2f23405",
+  "e7gt_commit": "4d6e02f16363f2333961cf4350d584c92d51bbc6",
+  "reference_zip_sha256": "6d6d814fc98ce51eb1493805a7f53f444b8cb8f9b855345eb251641ee58e1f87",
+  "kernel_files": {
+    "E7G-T_Kernel_v0.15_Experimental_Canonical_Reference.md": "2ff03589387cbd216bb2559957c1d6959ca132b251d484826168d1b19d33341a",
+    "E7G-T_v0.15_Experimental_Release_Manifest.md": "0569f21cf769fe30bd42a776132a5236aa90833192047aa2e65384f3d185fa66",
+    "proposals/msc-0.1/E7G-T_MSC_v0.1_Multi-Scope_Coherence_Proposal.md": "07dba33fe194f0a346b33941f5c7292fcf7397c9f2a22815fc8e274ca68f9cb2",
+    "proposals/msc-0.1/e7gt_msc_v0_1.py": "3dc068b2885fd08b511e27813af0c38bc6e365dc7b07fb50971c80b258a3314c",
+    "packages/rec-0.1/E7G-T_REC_v0.1_Reasoning-Evidence_Calculus_Profile.md": "41cc8fd24404026b1f5354d4177335dd40f82461aff5fd912ceb3cf355050842",
+    "packages/rec-0.1/e7gt_rec_v0_1.py": "8902086db749567b0360bbb7ec4e71127f272791bf27b14d5f89b7049c197c55",
+    "packages/rec-0.1/check_trace.py": "ff145ff10f60ab440602f2de87d94dc51d865ef29478ad486d191ee291cac304"
+  },
+  "pilot_sources": {
+    "adapter.py": "3d41402ccf267f17b508a740deea77bbcbf01d8b4a2dfa79526bc1da92354e9a",
+    "claim_controls.py": "4f97042b100b9409d6349002ec85121c45e90305fb61619fe68c58369b26c153",
+    "conventional.py": "9c63cbe656095d34925c7364fe162c21cc04931e1129fce9e8f6fbc713def3ae",
+    "decoder_table.py": "9da6c86b6f09d1490b84d5b1115d68e83bf0ab2bbe462f9f25ef00d2b1d38e7a",
+    "profiles.py": "14ddfdaa32e8721a6431f4aa4ab4fe72e3a447cacc4dec7ee042c8cea2ef5f3c",
+    "test_adapter.py": "6067fd71566e274f068a2bf40223b2f620f366665351278e13c962f4636f528d",
+    "test_profiles.py": "b420404de40c35f3eb101c671494ec792e1cc3bc58c6b6538ae009d81b8b00e1"
+  },
+  "results": {
+    "results/cases-and-witnesses.json": "e9fd08e2f532b4ea18fbfb6be340b5d554698be0e54ccebcea39680cd25b8ce3",
+    "results/claim-controls.json": "0fc96dfc4fd9bae781709f016ab9f9f2167577309aba32a446e037e29298d2b9",
+    "results/conventional-stim.json": "eaa54678f4a191fc3d68f43d937aa69dcf605b4c386d20be7c2ccfa9f5c6b5f5",
+    "results/decoder-table.json": "502dd36a505c97f75a16ef418beeaf9cf6456b47644b879fef04112fb5246aac",
+    "results/msc-rec.json": "9af0bb9510afd26c75dde5b94633d0592a5f8a684fd4d75d04bf9d9f801a424d",
+    "results/summary.json": "ef527e86cbc0c02622a0f73dbcf4a53989d44f0b093722e393cb1a7164819572"
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "baseline": "b7989c647e5d0e22ed1128c41aceb2dda2f23405",
+  "python": "3.12.14",
+  "numpy": "2.3.5",
+  "groups": {
+    "good": {
+      "cases": 16,
+      "PASS": 16,
+      "FAIL": 0,
+      "oracle_agreement": 16
+    },
+    "swapped-decoder": {
+      "cases": 16,
+      "PASS": 8,
+      "FAIL": 8,
+      "oracle_agreement": 16
+    },
+    "wrong-syndrome": {
+      "cases": 16,
+      "PASS": 0,
+      "FAIL": 16,
+      "oracle_agreement": 16
+    },
+    "wrong-recovery": {
+      "cases": 16,
+      "PASS": 0,
+      "FAIL": 16,
+      "oracle_agreement": 16
+    },
+    "phase-control": {
+      "cases": 1,
+      "PASS": 0,
+      "FAIL": 1,
+      "oracle_agreement": 1
+    },
+    "double-X": {
+      "cases": 12,
+      "PASS": 3,
+      "FAIL": 9,
+      "oracle_agreement": 12
+    }
+  },
+  "normalization_only_phase_control": {
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "normalized",
+        "passed": true
+      }
+    ],
+    "probabilities": {
+      "10000": 0.9999999999999996
+    },
+    "counts": {
+      "10000": 32
+    },
+    "proof": [
+      {
+        "step": 0,
+        "kind": "initialize",
+        "state_norm": 1.0
+      },
+      {
+        "step": 1,
+        "kind": "transform",
+        "operator": "H",
+        "qubits": [
+          0
+        ],
+        "state_norm": 0.9999999999999998
+      },
+      {
+        "step": 2,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          0,
+          1
+        ],
+        "state_norm": 0.9999999999999998
+      },
+      {
+        "step": 3,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          0,
+          2
+        ],
+        "state_norm": 0.9999999999999998
+      },
+      {
+        "step": 4,
+        "kind": "transform",
+        "operator": "Z",
+        "qubits": [
+          0
+        ],
+        "state_norm": 0.9999999999999998
+      },
+      {
+        "step": 5,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          0,
+          3
+        ],
+        "state_norm": 0.9999999999999998
+      },
+      {
+        "step": 6,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          1,
+          3
+        ],
+        "state_norm": 0.9999999999999998
+      },
+      {
+        "step": 7,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          1,
+          4
+        ],
+        "state_norm": 0.9999999999999998
+      },
+      {
+        "step": 8,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          2,
+          4
+        ],
+        "state_norm": 0.9999999999999998
+      },
+      {
+        "step": 9,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          0,
+          2
+        ],
+        "state_norm": 0.9999999999999998
+      },
+      {
+        "step": 10,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          0,
+          1
+        ],
+        "state_norm": 0.9999999999999998
+      },
+      {
+        "step": 11,
+        "kind": "transform",
+        "operator": "H",
+        "qubits": [
+          0
+        ],
+        "state_norm": 0.9999999999999996
+      },
+      {
+        "step": 12,
+        "kind": "project",
+        "operator": "measure",
+        "shots": 32,
+        "outcomes": {
+          "10000": 32
+        }
+      }
+    ],
+    "first_failure": null
+  },
+  "timing": {
+    "e7q_ns": {
+      "median_ns": 1319351,
+      "min_ns": 727881,
+      "calls": 385
+    },
+    "oracle_ns": {
+      "median_ns": 338617,
+      "min_ns": 215818,
+      "calls": 385
+    }
+  },
+  "independence": "No qec_probe imports; existing E7Q simulator/verifier compared with dense Pauli-matrix oracle. Same author/session, not independent external review."
+}
