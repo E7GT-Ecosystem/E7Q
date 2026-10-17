@@ -9,7 +9,7 @@ import pytest
 
 from e7q.artifacts import validate_artifact
 from e7q.cli import main
-from e7q.external_bundles import SCHEMA, verify_external_bundle
+from e7q.external_bundles import SCHEMA, _DIRECTORY_FD_SUPPORTED, verify_external_bundle
 from e7q.language import E7QError
 from e7q.temporal import conformance_checks as temporal_checks
 
@@ -283,7 +283,7 @@ def test_directory_growth_cannot_bypass_read_budget(tmp_path, monkeypatch):
             return self.stream.read(size)
 
     monkeypatch.setattr(bundles, '_MAX_FILE_BYTES', 4)
-    monkeypatch.setattr(bundles.os, 'fdopen', lambda *args: GrowingStream(real_fdopen(*args)))
+    monkeypatch.setattr(bundles.os, 'fdopen', lambda *args, **kwargs: GrowingStream(real_fdopen(*args, **kwargs)))
     with pytest.raises(E7QError, match='too large'):
         bundles._load_directory(tmp_path)
     assert reads == [5]
@@ -314,3 +314,279 @@ def test_missing_count_order_is_explicitly_unknown():
     assert receipt['status'] == 'PASS'
     assert receipt['circuits'][0]['counts']['label_order'] is None
     assert 'counts:label-order-declared' in receipt['circuits'][0]['warnings']
+
+
+# Synthetic races run synchronously at the admission/open boundary, not by timing.
+def _replace_after_entry_stat(monkeypatch, victim, replace):
+    import e7q.external_bundles as bundles
+    real_scandir = bundles.os.scandir
+    fired = []
+
+    class Entry:
+        def __init__(self, entry):
+            self.entry = entry
+        def __getattr__(self, name):
+            return getattr(self.entry, name)
+        def stat(self, **kwargs):
+            info = self.entry.stat(**kwargs)
+            if self.entry.name == victim.name and not fired:
+                fired.append(True)
+                replace()
+            return info
+
+    class Scan:
+        def __init__(self, directory):
+            self.scan = real_scandir(directory)
+        def __enter__(self):
+            self.scan.__enter__()
+            return (Entry(entry) for entry in self.scan)
+        def __exit__(self, *args):
+            return self.scan.__exit__(*args)
+
+    monkeypatch.setattr(bundles.os, 'scandir', Scan)
+    return fired
+
+
+@pytest.mark.skipif(not _DIRECTORY_FD_SUPPORTED, reason='POSIX directory descriptors unavailable')
+@pytest.mark.parametrize('replacement', ['symlink', 'directory'])
+def test_directory_replacement_after_admission_is_rejected(tmp_path, monkeypatch, replacement):
+    import e7q.external_bundles as bundles
+    root = tmp_path / 'bundle'
+    victim = root / 'record'
+    victim.mkdir(parents=True)
+    (victim / 'data').write_bytes(b'admitted')
+    outside = tmp_path / 'outside'
+    outside.mkdir()
+    (outside / 'data').write_bytes(b'replacement')
+
+    def replace():
+        victim.rename(tmp_path / 'moved')
+        if replacement == 'symlink':
+            victim.symlink_to(outside, target_is_directory=True)
+        else:
+            outside.rename(victim)
+
+    fired = _replace_after_entry_stat(monkeypatch, victim, replace)
+    with pytest.raises(E7QError, match='changed|cannot inspect|symlink'):
+        bundles._load_directory(root)
+    assert fired == [True]
+
+
+@pytest.mark.skipif(not _DIRECTORY_FD_SUPPORTED, reason='POSIX directory descriptors unavailable')
+@pytest.mark.parametrize('ancestor', ['root', 'child'])
+def test_anchored_ancestor_move_cannot_redirect_file_open(tmp_path, monkeypatch, ancestor):
+    import os
+    import e7q.external_bundles as bundles
+    root = tmp_path / 'bundle'
+    child = root / 'record'
+    child.mkdir(parents=True)
+    (child / 'data').write_bytes(b'admitted')
+    target = root if ancestor == 'root' else child
+    identity = target.stat().st_ino
+    real_scandir = bundles.os.scandir
+    fired = []
+
+    def scan(directory):
+        info = os.fstat(directory) if isinstance(directory, int) else Path(directory).stat()
+        if info.st_ino == identity and not fired:
+            fired.append(True)
+            target.rename(tmp_path / 'moved')
+            child.mkdir(parents=True)
+            (child / 'data').write_bytes(b'replacement')
+        return real_scandir(directory)
+
+    monkeypatch.setattr(bundles.os, 'scandir', scan)
+    source = bundles._load_directory(root)
+    assert fired == [True]
+    assert source.members == {'record/data': b'admitted'}
+
+
+@pytest.mark.skipif(not _DIRECTORY_FD_SUPPORTED, reason='POSIX directory descriptors unavailable')
+@pytest.mark.parametrize('replacement', ['symlink', 'directory'])
+def test_root_replacement_between_stat_and_open_is_rejected(tmp_path, monkeypatch, replacement):
+    import e7q.external_bundles as bundles
+    root = tmp_path / 'bundle'
+    root.mkdir()
+    (root / 'data').write_bytes(b'admitted')
+    outside = tmp_path / 'outside'
+    outside.mkdir()
+    (outside / 'data').write_bytes(b'replacement')
+    real_lstat = Path.lstat
+    fired = []
+
+    def lstat(path, *args, **kwargs):
+        info = real_lstat(path, *args, **kwargs)
+        if path == root and not fired:
+            fired.append(True)
+            root.rename(tmp_path / 'moved')
+            if replacement == 'symlink':
+                root.symlink_to(outside, target_is_directory=True)
+            else:
+                outside.rename(root)
+        return info
+
+    monkeypatch.setattr(Path, 'lstat', lstat)
+    with pytest.raises(E7QError, match='changed|cannot inspect|symlink'):
+        bundles._load_directory(root)
+    assert fired == [True]
+
+
+@pytest.mark.skipif(not _DIRECTORY_FD_SUPPORTED, reason='POSIX directory descriptors unavailable')
+@pytest.mark.parametrize('replacement', ['file', 'symlink', 'directory'])
+def test_file_replacement_after_admission_is_rejected(tmp_path, monkeypatch, replacement):
+    import e7q.external_bundles as bundles
+    target = tmp_path / 'data'
+    target.write_bytes(b'admitted')
+
+    def replace():
+        target.rename(tmp_path / 'saved')
+        if replacement == 'file':
+            target.write_bytes(b'replacement')
+        elif replacement == 'directory':
+            target.mkdir()
+        else:
+            target.symlink_to(tmp_path / 'saved')
+
+    fired = _replace_after_entry_stat(monkeypatch, target, replace)
+    with pytest.raises(E7QError, match='changed|cannot inspect'):
+        bundles._load_directory(tmp_path)
+    assert fired == [True]
+
+
+@pytest.mark.parametrize('anchored', [False, True])
+def test_directory_canonical_and_receipt_identity_retained(monkeypatch, anchored):
+    from hashlib import sha256
+    import e7q.external_bundles as bundles
+    if anchored and not _DIRECTORY_FD_SUPPORTED:
+        pytest.skip('POSIX directory descriptors unavailable')
+    monkeypatch.setattr(bundles, '_DIRECTORY_FD_SUPPORTED', anchored)
+    receipt = verify_external_bundle(EXAMPLE)
+    # Frozen from unmodified e3b6687, including the entire deterministic receipt.
+    assert receipt['source']['digest'] == 'sha256:69811dece0bcc4c247d3c6044b5217fbf651af3b1b08a7162ae7da48b9916208'
+    canonical = json.dumps(receipt, sort_keys=True, separators=(',', ':')).encode()
+    assert sha256(canonical).hexdigest() == 'ac6228cc052e98c2b65eff493ef5be7296f174ea85b67347fe387593715b79e6'
+
+
+def test_directory_compatibility_fallback_uses_paths(tmp_path, monkeypatch):
+    import e7q.external_bundles as bundles
+    root = tmp_path / 'bundle'
+    (root / 'record').mkdir(parents=True)
+    (root / 'record/data').write_bytes(b'admitted')
+    real_open, real_scandir = bundles.os.open, bundles.os.scandir
+    opens, scans = [], []
+
+    def open_path(path, flags, *args, **kwargs):
+        assert not isinstance(path, int)
+        assert 'dir_fd' not in kwargs
+        opens.append(path)
+        return real_open(path, flags, *args, **kwargs)
+
+    def scan_path(path):
+        assert isinstance(path, Path)
+        scans.append(path)
+        return real_scandir(path)
+
+    monkeypatch.setattr(bundles, '_DIRECTORY_FD_SUPPORTED', False)
+    monkeypatch.setattr(bundles.os, 'open', open_path)
+    monkeypatch.setattr(bundles.os, 'scandir', scan_path)
+    assert bundles._load_directory(root).members == {'record/data': b'admitted'}
+    assert len(opens) == 1 and len(scans) == 2
+    monkeypatch.setattr(bundles, '_MAX_DIRECTORY_ENTRIES', 1)
+    with pytest.raises(E7QError, match='entry limit'):
+        bundles._load_directory(root)
+
+
+@pytest.mark.skipif(not _DIRECTORY_FD_SUPPORTED, reason='POSIX directory descriptors unavailable')
+@pytest.mark.parametrize('failure', [None, 'entry-limit', 'open', 'fstat', 'fdopen', 'read', 'mutation'])
+def test_directory_descriptors_are_bounded_and_closed(tmp_path, monkeypatch, failure):
+    import os
+    import e7q.external_bundles as bundles
+    root = tmp_path / 'bundle'
+    leaf = root.joinpath(*['nested'] * 6)
+    leaf.mkdir(parents=True)
+    target = leaf / 'data'
+    target.write_bytes(b'admitted')
+    real_open, real_close = bundles.os.open, bundles.os.close
+    real_fdopen, real_fstat = bundles.os.fdopen, bundles.os.fstat
+    live, opened = set(), []
+    peak = 0
+    before = len(os.listdir('/proc/self/fd')) if Path('/proc/self/fd').is_dir() else None
+
+    def open_tracked(path, flags, *args, **kwargs):
+        nonlocal peak
+        if failure == 'open' and path == 'data':
+            raise OSError('injected open failure')
+        descriptor = real_open(path, flags, *args, **kwargs)
+        live.add(descriptor)
+        opened.append(descriptor)
+        peak = max(peak, len(live))
+        return descriptor
+
+    def close_tracked(descriptor):
+        live.remove(descriptor)
+        return real_close(descriptor)
+
+    def fstat_injected(descriptor):
+        if failure == 'fstat':
+            raise OSError('injected fstat failure')
+        return real_fstat(descriptor)
+
+    class Stream:
+        def __init__(self, stream):
+            self.stream = stream
+        def __enter__(self):
+            return self
+        def __exit__(self, *args):
+            return self.stream.__exit__(*args)
+        def read(self, size):
+            if failure == 'read':
+                raise OSError('injected read failure')
+            content = self.stream.read(size)
+            if failure == 'mutation':
+                target.write_bytes(b'changed-size')
+            return content
+
+    def fdopen_injected(*args, **kwargs):
+        if failure == 'fdopen':
+            raise OSError('injected fdopen failure')
+        return Stream(real_fdopen(*args, **kwargs))
+
+    monkeypatch.setattr(bundles.os, 'open', open_tracked)
+    monkeypatch.setattr(bundles.os, 'close', close_tracked)
+    monkeypatch.setattr(bundles.os, 'fstat', fstat_injected)
+    monkeypatch.setattr(bundles.os, 'fdopen', fdopen_injected)
+    if failure == 'entry-limit':
+        monkeypatch.setattr(bundles, '_MAX_DIRECTORY_ENTRIES', 3)
+    if failure is None:
+        assert bundles._load_directory(root).members == {'nested/' * 6 + 'data': b'admitted'}
+    else:
+        with pytest.raises(E7QError, match='cannot inspect|entry limit|changed'):
+            bundles._load_directory(root)
+    assert opened and not live
+    assert peak <= 8  # seven directory anchors plus one file, independent of width
+    for descriptor in set(opened):
+        with pytest.raises(OSError):
+            real_fstat(descriptor)
+    if before is not None:
+        assert len(os.listdir('/proc/self/fd')) == before  # includes scandir handles
+
+
+@pytest.mark.skipif(not _DIRECTORY_FD_SUPPORTED, reason='POSIX directory descriptors unavailable')
+@pytest.mark.parametrize('ancestor', ['root', 'child'])
+def test_admitted_file_opens_from_anchor_after_ancestor_move(tmp_path, monkeypatch, ancestor):
+    import e7q.external_bundles as bundles
+    root = tmp_path / 'bundle'
+    child = root / 'record'
+    child.mkdir(parents=True)
+    target = child / 'data'
+    target.write_bytes(b'admitted')
+    moved = root if ancestor == 'root' else child
+
+    def replace():
+        moved.rename(tmp_path / 'moved')
+        child.mkdir(parents=True)
+        target.write_bytes(b'replacement')
+
+    fired = _replace_after_entry_stat(monkeypatch, target, replace)
+    assert bundles._load_directory(root).members == {'record/data': b'admitted'}
+    assert fired == [True]
