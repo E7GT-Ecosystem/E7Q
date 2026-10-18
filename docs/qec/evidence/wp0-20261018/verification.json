@@ -1,0 +1,30 @@
+{
+  "acceptance": "PROPOSED; no owner acceptance or further feature authorization recorded",
+  "baseline_tests": {
+    "passed": 1202,
+    "skipped": 12
+  },
+  "checked_at": "2026-10-18T18:56:03.039902+00:00",
+  "full_g2_gate": "OPEN; not waived",
+  "handoff_base": "88467d51b21d3e072baae583fc4f23e676db59d6",
+  "msc_tests": 26,
+  "only_added_scope": "docs/qec/",
+  "oracle_verdicts": {
+    "all_dense_stim_agree": true,
+    "coherent_fulltable": {
+      "FAIL": 9,
+      "PASS": 24
+    },
+    "specialized": 77
+  },
+  "pilot_manifest_sources_and_results": "PASS",
+  "pilot_tests": 12,
+  "preserved_dirty_paths": 46,
+  "preserved_existing_checkouts": 16,
+  "rec_tests": 24,
+  "relative_links_and_whitespace": "PASS",
+  "remote_main": "b7989c647e5d0e22ed1128c41aceb2dda2f23405",
+  "staged_diff": "empty",
+  "tool_error_recovery": "verified; original failures and recoveries retained",
+  "tracked_diff": "empty"
+}

@@ -1,0 +1,1398 @@
+{
+  "stim_version": "1.16.0",
+  "cases": [
+    {
+      "case_id": "good-zero-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 201337,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "good-zero-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 133098,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "good-zero-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 106606,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "good-zero-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 100164,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "good-one-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 95066,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "good-one-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 100099,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "good-one-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 132266,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "good-one-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 99163,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "good-plus-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 97243,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "good-plus-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 101530,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "good-plus-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 99638,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "good-plus-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 111792,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "good-plus_i-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 97878,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "good-plus_i-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 103928,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "good-plus_i-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 101366,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "good-plus_i-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 102250,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-zero-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 92546,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-zero-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          -1,
+          -1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 97971,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-zero-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          -1,
+          -1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 97838,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-zero-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 98224,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-one-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 92659,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-one-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          -1,
+          -1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 99127,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-one-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          -1,
+          -1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 115859,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-one-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 97722,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-plus-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 94791,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-plus-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          -1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 98923,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-plus-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          -1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 100061,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-plus-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 109825,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-plus_i-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 97363,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-plus_i-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          -1,
+          1,
+          -1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 101951,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-plus_i-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          -1,
+          1,
+          -1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 100619,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "swapped-decoder-plus_i-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 100061,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-zero-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 89841,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-zero-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 97632,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-zero-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 95486,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-zero-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 94728,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-one-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 91460,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-one-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 128497,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-one-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 111675,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-one-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 96986,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-plus-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 96004,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-plus-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 98062,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-plus-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 97680,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-plus-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 112705,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-plus_i-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 96797,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-plus_i-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 99294,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-plus_i-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 101001,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-syndrome-good-plus_i-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 99781,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-zero-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          -1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 95028,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-zero-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          -1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 98291,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-zero-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          -1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 97365,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-zero-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          -1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 100234,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-one-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          -1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 104593,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-one-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          -1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 97426,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-one-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          -1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 104956,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-one-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          -1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 106678,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-plus-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          -1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 133662,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-plus-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          -1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 113076,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-plus-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          -1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 110874,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-plus-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          -1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 102781,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-plus_i-III",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          -1,
+          -1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 102760,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-plus_i-XII",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          -1,
+          -1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 101125,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-plus_i-IXI",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          -1,
+          -1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 151739,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "wrong-recovery-good-plus_i-IIX",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          -1,
+          -1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 116858,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "phase-control-plus-ZII",
+      "stim": {
+        "syndrome": [
+          0,
+          0
+        ],
+        "restoration_expectations": [
+          -1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 159302,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "double-X-zero-XXI",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          -1,
+          -1,
+          -1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 117130,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "double-X-zero-XIX",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          -1,
+          -1,
+          -1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 192597,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "double-X-zero-IXX",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          -1,
+          -1,
+          -1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 183547,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "double-X-one-XXI",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          -1,
+          -1,
+          -1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 138233,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "double-X-one-XIX",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          -1,
+          -1,
+          -1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 162658,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "double-X-one-IXX",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          -1,
+          -1,
+          -1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 102399,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "double-X-plus-XXI",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 103302,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "double-X-plus-XIX",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 100929,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "double-X-plus-IXX",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          1,
+          1,
+          1
+        ],
+        "passes": true
+      },
+      "elapsed_ns": 99877,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "double-X-plus_i-XXI",
+      "stim": {
+        "syndrome": [
+          0,
+          1
+        ],
+        "restoration_expectations": [
+          -1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 103483,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "double-X-plus_i-XIX",
+      "stim": {
+        "syndrome": [
+          1,
+          1
+        ],
+        "restoration_expectations": [
+          -1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 101887,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    },
+    {
+      "case_id": "double-X-plus_i-IXX",
+      "stim": {
+        "syndrome": [
+          1,
+          0
+        ],
+        "restoration_expectations": [
+          -1,
+          1,
+          1
+        ],
+        "passes": false
+      },
+      "elapsed_ns": 102718,
+      "agrees_with_e7q": true,
+      "agrees_with_dense_oracle": true
+    }
+  ],
+  "all_agree": true,
+  "timing": {
+    "median_ns": 100218,
+    "min_ns": 90824,
+    "calls": 385
+  },
+  "boundary": "Separate mathematical implementation and backend; same-session author, no external review. Checks three independent signed stabilizers of each prepared pure state, not a universal recovery theorem."
+}

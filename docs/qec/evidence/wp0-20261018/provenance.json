@@ -1,0 +1,22 @@
+{
+  "baseline": "b7989c647e5d0e22ed1128c41aceb2dda2f23405",
+  "published_pilot": "6f66233e68d3cd52a3f01f6548259003e497b2c5",
+  "published_parent": "b7989c647e5d0e22ed1128c41aceb2dda2f23405",
+  "published_tree": "f58a7e4d41afb7bef68244ca333309e9e55b06f6",
+  "original_pilot": "4be5125c3198c9db980865c57814cb41aa4b13b5",
+  "original_tree_equivalence": "handoff attestation; original Git object not available here",
+  "handoff": "88467d51b21d3e072baae583fc4f23e676db59d6",
+  "kernel": "4d6e02f16363f2333961cf4350d584c92d51bbc6",
+  "verified_pilot_sources": 7,
+  "verified_historical_results": 6,
+  "verified_kernel_files": 7,
+  "pilot_only_added_paths": 19,
+  "unchanged_upstream_surface": [
+    "src",
+    "tests",
+    "scripts",
+    "schemas",
+    "pyproject.toml",
+    "docs/KERNEL_ALIGNMENT.md"
+  ]
+}

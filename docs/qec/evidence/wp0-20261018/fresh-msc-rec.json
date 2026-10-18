@@ -1,0 +1,1230 @@
+{
+  "restricted-X": {
+    "input": {
+      "schema_version": "msc-diagram-v1",
+      "diagram_id": "qec-fibre",
+      "max_combinations": 1000,
+      "carriers": [
+        {
+          "carrier_id": "errors",
+          "values": [
+            "III",
+            "XII",
+            "IXI",
+            "IIX"
+          ]
+        },
+        {
+          "carrier_id": "observed",
+          "values": [
+            "00"
+          ]
+        },
+        {
+          "carrier_id": "syndromes",
+          "values": [
+            "00",
+            "01",
+            "10",
+            "11"
+          ]
+        }
+      ],
+      "scopes": [
+        {
+          "scope_id": "pauli",
+          "edition": "1",
+          "state_carrier": "errors"
+        },
+        {
+          "scope_id": "record",
+          "edition": "1",
+          "state_carrier": "observed"
+        }
+      ],
+      "maps": [
+        {
+          "map_id": "parity",
+          "source_carrier": "errors",
+          "target_carrier": "syndromes",
+          "table": {
+            "III": "00",
+            "XII": "10",
+            "IXI": "11",
+            "IIX": "01"
+          }
+        },
+        {
+          "map_id": "read",
+          "source_carrier": "observed",
+          "target_carrier": "syndromes",
+          "table": {
+            "00": "00"
+          }
+        }
+      ],
+      "links": [
+        {
+          "link_id": "syndrome-agreement",
+          "lower_scope": "pauli",
+          "upper_scope": "record",
+          "projection_map": "read",
+          "comparison_map": "parity",
+          "criterion": "exact"
+        }
+      ],
+      "access_profiles": [],
+      "invariant_tests": [],
+      "reconstruction_queries": []
+    },
+    "result": {
+      "schema_version": "msc-result-v1",
+      "diagram_id": "qec-fibre",
+      "outcome": "unique",
+      "scope_order_reflexive_transitive_closure": [
+        [
+          "pauli",
+          "pauli"
+        ],
+        [
+          "pauli",
+          "record"
+        ],
+        [
+          "record",
+          "record"
+        ]
+      ],
+      "candidate_combinations": 4,
+      "compatible_count": 1,
+      "compatible_families": [
+        {
+          "pauli": "III",
+          "record": "00"
+        }
+      ],
+      "linkwise_satisfiable": {
+        "syndrome-agreement": true
+      },
+      "all_links_individually_satisfiable": true,
+      "global_obstruction_despite_linkwise_satisfiability": false,
+      "access_quotients": [],
+      "commutation_tests": [],
+      "invariant_tests": [],
+      "reconstruction_queries": [],
+      "interpretation_boundary": "Finite model-relative coherence only; no external existence, infinity, causation or authority claim."
+    },
+    "elapsed_ns": 146396
+  },
+  "full-Pauli-zero-syndrome": {
+    "input": {
+      "schema_version": "msc-diagram-v1",
+      "diagram_id": "qec-fibre",
+      "max_combinations": 1000,
+      "carriers": [
+        {
+          "carrier_id": "errors",
+          "values": [
+            "III",
+            "IIX",
+            "IIY",
+            "IIZ",
+            "IXI",
+            "IXX",
+            "IXY",
+            "IXZ",
+            "IYI",
+            "IYX",
+            "IYY",
+            "IYZ",
+            "IZI",
+            "IZX",
+            "IZY",
+            "IZZ",
+            "XII",
+            "XIX",
+            "XIY",
+            "XIZ",
+            "XXI",
+            "XXX",
+            "XXY",
+            "XXZ",
+            "XYI",
+            "XYX",
+            "XYY",
+            "XYZ",
+            "XZI",
+            "XZX",
+            "XZY",
+            "XZZ",
+            "YII",
+            "YIX",
+            "YIY",
+            "YIZ",
+            "YXI",
+            "YXX",
+            "YXY",
+            "YXZ",
+            "YYI",
+            "YYX",
+            "YYY",
+            "YYZ",
+            "YZI",
+            "YZX",
+            "YZY",
+            "YZZ",
+            "ZII",
+            "ZIX",
+            "ZIY",
+            "ZIZ",
+            "ZXI",
+            "ZXX",
+            "ZXY",
+            "ZXZ",
+            "ZYI",
+            "ZYX",
+            "ZYY",
+            "ZYZ",
+            "ZZI",
+            "ZZX",
+            "ZZY",
+            "ZZZ"
+          ]
+        },
+        {
+          "carrier_id": "observed",
+          "values": [
+            "00"
+          ]
+        },
+        {
+          "carrier_id": "syndromes",
+          "values": [
+            "00",
+            "01",
+            "10",
+            "11"
+          ]
+        }
+      ],
+      "scopes": [
+        {
+          "scope_id": "pauli",
+          "edition": "1",
+          "state_carrier": "errors"
+        },
+        {
+          "scope_id": "record",
+          "edition": "1",
+          "state_carrier": "observed"
+        }
+      ],
+      "maps": [
+        {
+          "map_id": "parity",
+          "source_carrier": "errors",
+          "target_carrier": "syndromes",
+          "table": {
+            "III": "00",
+            "IIX": "01",
+            "IIY": "01",
+            "IIZ": "00",
+            "IXI": "11",
+            "IXX": "10",
+            "IXY": "10",
+            "IXZ": "11",
+            "IYI": "11",
+            "IYX": "10",
+            "IYY": "10",
+            "IYZ": "11",
+            "IZI": "00",
+            "IZX": "01",
+            "IZY": "01",
+            "IZZ": "00",
+            "XII": "10",
+            "XIX": "11",
+            "XIY": "11",
+            "XIZ": "10",
+            "XXI": "01",
+            "XXX": "00",
+            "XXY": "00",
+            "XXZ": "01",
+            "XYI": "01",
+            "XYX": "00",
+            "XYY": "00",
+            "XYZ": "01",
+            "XZI": "10",
+            "XZX": "11",
+            "XZY": "11",
+            "XZZ": "10",
+            "YII": "10",
+            "YIX": "11",
+            "YIY": "11",
+            "YIZ": "10",
+            "YXI": "01",
+            "YXX": "00",
+            "YXY": "00",
+            "YXZ": "01",
+            "YYI": "01",
+            "YYX": "00",
+            "YYY": "00",
+            "YYZ": "01",
+            "YZI": "10",
+            "YZX": "11",
+            "YZY": "11",
+            "YZZ": "10",
+            "ZII": "00",
+            "ZIX": "01",
+            "ZIY": "01",
+            "ZIZ": "00",
+            "ZXI": "11",
+            "ZXX": "10",
+            "ZXY": "10",
+            "ZXZ": "11",
+            "ZYI": "11",
+            "ZYX": "10",
+            "ZYY": "10",
+            "ZYZ": "11",
+            "ZZI": "00",
+            "ZZX": "01",
+            "ZZY": "01",
+            "ZZZ": "00"
+          }
+        },
+        {
+          "map_id": "read",
+          "source_carrier": "observed",
+          "target_carrier": "syndromes",
+          "table": {
+            "00": "00"
+          }
+        }
+      ],
+      "links": [
+        {
+          "link_id": "syndrome-agreement",
+          "lower_scope": "pauli",
+          "upper_scope": "record",
+          "projection_map": "read",
+          "comparison_map": "parity",
+          "criterion": "exact"
+        }
+      ],
+      "access_profiles": [],
+      "invariant_tests": [],
+      "reconstruction_queries": []
+    },
+    "result": {
+      "schema_version": "msc-result-v1",
+      "diagram_id": "qec-fibre",
+      "outcome": "ambiguous",
+      "scope_order_reflexive_transitive_closure": [
+        [
+          "pauli",
+          "pauli"
+        ],
+        [
+          "pauli",
+          "record"
+        ],
+        [
+          "record",
+          "record"
+        ]
+      ],
+      "candidate_combinations": 64,
+      "compatible_count": 16,
+      "compatible_families": [
+        {
+          "pauli": "III",
+          "record": "00"
+        },
+        {
+          "pauli": "IIZ",
+          "record": "00"
+        },
+        {
+          "pauli": "IZI",
+          "record": "00"
+        },
+        {
+          "pauli": "IZZ",
+          "record": "00"
+        },
+        {
+          "pauli": "XXX",
+          "record": "00"
+        },
+        {
+          "pauli": "XXY",
+          "record": "00"
+        },
+        {
+          "pauli": "XYX",
+          "record": "00"
+        },
+        {
+          "pauli": "XYY",
+          "record": "00"
+        },
+        {
+          "pauli": "YXX",
+          "record": "00"
+        },
+        {
+          "pauli": "YXY",
+          "record": "00"
+        },
+        {
+          "pauli": "YYX",
+          "record": "00"
+        },
+        {
+          "pauli": "YYY",
+          "record": "00"
+        },
+        {
+          "pauli": "ZII",
+          "record": "00"
+        },
+        {
+          "pauli": "ZIZ",
+          "record": "00"
+        },
+        {
+          "pauli": "ZZI",
+          "record": "00"
+        },
+        {
+          "pauli": "ZZZ",
+          "record": "00"
+        }
+      ],
+      "linkwise_satisfiable": {
+        "syndrome-agreement": true
+      },
+      "all_links_individually_satisfiable": true,
+      "global_obstruction_despite_linkwise_satisfiability": false,
+      "access_quotients": [],
+      "commutation_tests": [],
+      "invariant_tests": [],
+      "reconstruction_queries": [],
+      "interpretation_boundary": "Finite model-relative coherence only; no external existence, infinity, causation or authority claim."
+    },
+    "elapsed_ns": 196964
+  },
+  "incorrect-syndrome": {
+    "input": {
+      "schema_version": "msc-diagram-v1",
+      "diagram_id": "qec-fibre",
+      "max_combinations": 1000,
+      "carriers": [
+        {
+          "carrier_id": "errors",
+          "values": [
+            "XII"
+          ]
+        },
+        {
+          "carrier_id": "observed",
+          "values": [
+            "00"
+          ]
+        },
+        {
+          "carrier_id": "syndromes",
+          "values": [
+            "00",
+            "01",
+            "10",
+            "11"
+          ]
+        }
+      ],
+      "scopes": [
+        {
+          "scope_id": "pauli",
+          "edition": "1",
+          "state_carrier": "errors"
+        },
+        {
+          "scope_id": "record",
+          "edition": "1",
+          "state_carrier": "observed"
+        }
+      ],
+      "maps": [
+        {
+          "map_id": "parity",
+          "source_carrier": "errors",
+          "target_carrier": "syndromes",
+          "table": {
+            "XII": "10"
+          }
+        },
+        {
+          "map_id": "read",
+          "source_carrier": "observed",
+          "target_carrier": "syndromes",
+          "table": {
+            "00": "00"
+          }
+        }
+      ],
+      "links": [
+        {
+          "link_id": "syndrome-agreement",
+          "lower_scope": "pauli",
+          "upper_scope": "record",
+          "projection_map": "read",
+          "comparison_map": "parity",
+          "criterion": "exact"
+        }
+      ],
+      "access_profiles": [],
+      "invariant_tests": [],
+      "reconstruction_queries": []
+    },
+    "result": {
+      "schema_version": "msc-result-v1",
+      "diagram_id": "qec-fibre",
+      "outcome": "incompatible",
+      "scope_order_reflexive_transitive_closure": [
+        [
+          "pauli",
+          "pauli"
+        ],
+        [
+          "pauli",
+          "record"
+        ],
+        [
+          "record",
+          "record"
+        ]
+      ],
+      "candidate_combinations": 1,
+      "compatible_count": 0,
+      "compatible_families": [],
+      "linkwise_satisfiable": {
+        "syndrome-agreement": false
+      },
+      "all_links_individually_satisfiable": false,
+      "global_obstruction_despite_linkwise_satisfiability": false,
+      "access_quotients": [],
+      "commutation_tests": [],
+      "invariant_tests": [],
+      "reconstruction_queries": [],
+      "interpretation_boundary": "Finite model-relative coherence only; no external existence, infinity, causation or authority claim."
+    },
+    "elapsed_ns": 81168
+  },
+  "missing-map": {
+    "input": {
+      "schema_version": "msc-diagram-v1",
+      "diagram_id": "qec-fibre",
+      "max_combinations": 1000,
+      "carriers": [
+        {
+          "carrier_id": "errors",
+          "values": [
+            "XII"
+          ]
+        },
+        {
+          "carrier_id": "observed",
+          "values": [
+            "10"
+          ]
+        },
+        {
+          "carrier_id": "syndromes",
+          "values": [
+            "00",
+            "01",
+            "10",
+            "11"
+          ]
+        }
+      ],
+      "scopes": [
+        {
+          "scope_id": "pauli",
+          "edition": "1",
+          "state_carrier": "errors"
+        },
+        {
+          "scope_id": "record",
+          "edition": "1",
+          "state_carrier": "observed"
+        }
+      ],
+      "maps": [
+        {
+          "map_id": "parity",
+          "source_carrier": "errors",
+          "target_carrier": "syndromes",
+          "table": {}
+        },
+        {
+          "map_id": "read",
+          "source_carrier": "observed",
+          "target_carrier": "syndromes",
+          "table": {
+            "10": "10"
+          }
+        }
+      ],
+      "links": [
+        {
+          "link_id": "syndrome-agreement",
+          "lower_scope": "pauli",
+          "upper_scope": "record",
+          "projection_map": "read",
+          "comparison_map": "parity",
+          "criterion": "exact"
+        }
+      ],
+      "access_profiles": [],
+      "invariant_tests": [],
+      "reconstruction_queries": []
+    },
+    "result": {
+      "schema_version": "msc-result-v1",
+      "diagram_id": "qec-fibre",
+      "outcome": "unsupported",
+      "reason": "MSC-B1 requires total-on-admitted-carrier coherence maps",
+      "interpretation_boundary": "Finite model-relative coherence only; no external existence, infinity, causation or authority claim."
+    },
+    "elapsed_ns": 63903
+  },
+  "bounded-refusal": {
+    "input": {
+      "schema_version": "msc-diagram-v1",
+      "diagram_id": "qec-fibre",
+      "max_combinations": 1,
+      "carriers": [
+        {
+          "carrier_id": "errors",
+          "values": [
+            "III",
+            "IIX",
+            "IIY",
+            "IIZ",
+            "IXI",
+            "IXX",
+            "IXY",
+            "IXZ",
+            "IYI",
+            "IYX",
+            "IYY",
+            "IYZ",
+            "IZI",
+            "IZX",
+            "IZY",
+            "IZZ",
+            "XII",
+            "XIX",
+            "XIY",
+            "XIZ",
+            "XXI",
+            "XXX",
+            "XXY",
+            "XXZ",
+            "XYI",
+            "XYX",
+            "XYY",
+            "XYZ",
+            "XZI",
+            "XZX",
+            "XZY",
+            "XZZ",
+            "YII",
+            "YIX",
+            "YIY",
+            "YIZ",
+            "YXI",
+            "YXX",
+            "YXY",
+            "YXZ",
+            "YYI",
+            "YYX",
+            "YYY",
+            "YYZ",
+            "YZI",
+            "YZX",
+            "YZY",
+            "YZZ",
+            "ZII",
+            "ZIX",
+            "ZIY",
+            "ZIZ",
+            "ZXI",
+            "ZXX",
+            "ZXY",
+            "ZXZ",
+            "ZYI",
+            "ZYX",
+            "ZYY",
+            "ZYZ",
+            "ZZI",
+            "ZZX",
+            "ZZY",
+            "ZZZ"
+          ]
+        },
+        {
+          "carrier_id": "observed",
+          "values": [
+            "00"
+          ]
+        },
+        {
+          "carrier_id": "syndromes",
+          "values": [
+            "00",
+            "01",
+            "10",
+            "11"
+          ]
+        }
+      ],
+      "scopes": [
+        {
+          "scope_id": "pauli",
+          "edition": "1",
+          "state_carrier": "errors"
+        },
+        {
+          "scope_id": "record",
+          "edition": "1",
+          "state_carrier": "observed"
+        }
+      ],
+      "maps": [
+        {
+          "map_id": "parity",
+          "source_carrier": "errors",
+          "target_carrier": "syndromes",
+          "table": {
+            "III": "00",
+            "IIX": "01",
+            "IIY": "01",
+            "IIZ": "00",
+            "IXI": "11",
+            "IXX": "10",
+            "IXY": "10",
+            "IXZ": "11",
+            "IYI": "11",
+            "IYX": "10",
+            "IYY": "10",
+            "IYZ": "11",
+            "IZI": "00",
+            "IZX": "01",
+            "IZY": "01",
+            "IZZ": "00",
+            "XII": "10",
+            "XIX": "11",
+            "XIY": "11",
+            "XIZ": "10",
+            "XXI": "01",
+            "XXX": "00",
+            "XXY": "00",
+            "XXZ": "01",
+            "XYI": "01",
+            "XYX": "00",
+            "XYY": "00",
+            "XYZ": "01",
+            "XZI": "10",
+            "XZX": "11",
+            "XZY": "11",
+            "XZZ": "10",
+            "YII": "10",
+            "YIX": "11",
+            "YIY": "11",
+            "YIZ": "10",
+            "YXI": "01",
+            "YXX": "00",
+            "YXY": "00",
+            "YXZ": "01",
+            "YYI": "01",
+            "YYX": "00",
+            "YYY": "00",
+            "YYZ": "01",
+            "YZI": "10",
+            "YZX": "11",
+            "YZY": "11",
+            "YZZ": "10",
+            "ZII": "00",
+            "ZIX": "01",
+            "ZIY": "01",
+            "ZIZ": "00",
+            "ZXI": "11",
+            "ZXX": "10",
+            "ZXY": "10",
+            "ZXZ": "11",
+            "ZYI": "11",
+            "ZYX": "10",
+            "ZYY": "10",
+            "ZYZ": "11",
+            "ZZI": "00",
+            "ZZX": "01",
+            "ZZY": "01",
+            "ZZZ": "00"
+          }
+        },
+        {
+          "map_id": "read",
+          "source_carrier": "observed",
+          "target_carrier": "syndromes",
+          "table": {
+            "00": "00"
+          }
+        }
+      ],
+      "links": [
+        {
+          "link_id": "syndrome-agreement",
+          "lower_scope": "pauli",
+          "upper_scope": "record",
+          "projection_map": "read",
+          "comparison_map": "parity",
+          "criterion": "exact"
+        }
+      ],
+      "access_profiles": [],
+      "invariant_tests": [],
+      "reconstruction_queries": []
+    },
+    "result": {
+      "schema_version": "msc-result-v1",
+      "diagram_id": "qec-fibre",
+      "outcome": "resource_limit",
+      "candidate_combinations": 64,
+      "limit": 1,
+      "interpretation_boundary": "Finite model-relative coherence only; no external existence, infinity, causation or authority claim."
+    },
+    "elapsed_ns": 91569
+  },
+  "REC-agreement": {
+    "input": {
+      "kernel": "0.14-experimental-draft",
+      "profile": "REC/0.1-proposed",
+      "model": "REC-B1/0.1",
+      "reasoning_id": "qec-corpus-audit",
+      "edition": "1",
+      "as_of": "2026-10-18T00:00:00Z",
+      "claims": [
+        {
+          "id": "corpus-agreement",
+          "proposition": "E7Q circuit verdicts match dense oracle on this corpus",
+          "modality": "fact",
+          "scope": {
+            "code": "repetition-3",
+            "corpus": "E7Q-QEC/0.1-77",
+            "backend": "local-statevector"
+          },
+          "temporal_scope": "pinned-run"
+        },
+        {
+          "id": "hardware-correction",
+          "proposition": "physical hardware correction established",
+          "modality": "fact",
+          "scope": {
+            "code": "repetition-3",
+            "corpus": "E7Q-QEC/0.1-77",
+            "backend": "local-statevector"
+          },
+          "temporal_scope": "pinned-run"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "computed-agreement",
+          "claim_id": "corpus-agreement",
+          "polarity": "support",
+          "source_id": "cases-and-witnesses.json",
+          "source_edition": "1",
+          "provenance_group": "same-session-computation",
+          "scope": {
+            "code": "repetition-3",
+            "corpus": "E7Q-QEC/0.1-77",
+            "backend": "local-statevector"
+          },
+          "valid_from": "2026-10-17T00:00:00Z"
+        }
+      ],
+      "rules": [],
+      "query": {
+        "claim_id": "corpus-agreement",
+        "policy": "rely_if_supported_only"
+      }
+    },
+    "result": {
+      "kernel": "0.14-experimental-draft",
+      "profile": "REC/0.1-proposed",
+      "model": "REC-B1/0.1",
+      "reasoning_id": "qec-corpus-audit",
+      "edition": "1",
+      "as_of": "2026-10-18T00:00:00Z",
+      "envelope_sha256": "0f63748db5f4af797d65a8eca234caf1fa0b6f76706e06412016cc11bd5093b8",
+      "statuses": {
+        "corpus-agreement": "supported",
+        "hardware-correction": "neither"
+      },
+      "query": {
+        "claim_id": "corpus-agreement",
+        "status": "supported",
+        "policy": "rely_if_supported_only",
+        "next_action": "rely_within_declared_scope"
+      },
+      "admitted_evidence": [
+        "computed-agreement"
+      ],
+      "stale_evidence": [],
+      "evidence_by_claim": {
+        "corpus-agreement": [
+          "computed-agreement"
+        ],
+        "hardware-correction": []
+      },
+      "provenance_groups_by_claim": {
+        "corpus-agreement": [
+          "same-session-computation"
+        ],
+        "hardware-correction": []
+      },
+      "rule_applications": [],
+      "conflicts": [],
+      "unsupported_steps": [],
+      "scope": {
+        "code": "repetition-3",
+        "corpus": "E7Q-QEC/0.1-77",
+        "backend": "local-statevector"
+      },
+      "temporal_scope": "pinned-run",
+      "modality": "fact",
+      "witness_sha256": "dab42adf09fac1c39e2066ddf51aa457941edfd3c82f0a1c1a30717e9a67ad99"
+    },
+    "elapsed_ns": 351860
+  },
+  "REC-conflict": {
+    "input": {
+      "kernel": "0.14-experimental-draft",
+      "profile": "REC/0.1-proposed",
+      "model": "REC-B1/0.1",
+      "reasoning_id": "qec-corpus-audit",
+      "edition": "1",
+      "as_of": "2026-10-18T00:00:00Z",
+      "claims": [
+        {
+          "id": "corpus-agreement",
+          "proposition": "E7Q circuit verdicts match dense oracle on this corpus",
+          "modality": "fact",
+          "scope": {
+            "code": "repetition-3",
+            "corpus": "E7Q-QEC/0.1-77",
+            "backend": "local-statevector"
+          },
+          "temporal_scope": "pinned-run"
+        },
+        {
+          "id": "hardware-correction",
+          "proposition": "physical hardware correction established",
+          "modality": "fact",
+          "scope": {
+            "code": "repetition-3",
+            "corpus": "E7Q-QEC/0.1-77",
+            "backend": "local-statevector"
+          },
+          "temporal_scope": "pinned-run"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "computed-agreement",
+          "claim_id": "corpus-agreement",
+          "polarity": "support",
+          "source_id": "cases-and-witnesses.json",
+          "source_edition": "1",
+          "provenance_group": "same-session-computation",
+          "scope": {
+            "code": "repetition-3",
+            "corpus": "E7Q-QEC/0.1-77",
+            "backend": "local-statevector"
+          },
+          "valid_from": "2026-10-17T00:00:00Z"
+        },
+        {
+          "id": "contradictory-declaration",
+          "claim_id": "corpus-agreement",
+          "polarity": "refute",
+          "source_id": "cases-and-witnesses.json",
+          "source_edition": "1",
+          "provenance_group": "same-session-computation",
+          "scope": {
+            "code": "repetition-3",
+            "corpus": "E7Q-QEC/0.1-77",
+            "backend": "local-statevector"
+          },
+          "valid_from": "2026-10-17T00:00:00Z"
+        }
+      ],
+      "rules": [],
+      "query": {
+        "claim_id": "corpus-agreement",
+        "policy": "rely_if_supported_only"
+      }
+    },
+    "result": {
+      "kernel": "0.14-experimental-draft",
+      "profile": "REC/0.1-proposed",
+      "model": "REC-B1/0.1",
+      "reasoning_id": "qec-corpus-audit",
+      "edition": "1",
+      "as_of": "2026-10-18T00:00:00Z",
+      "envelope_sha256": "d4753bf91591e447f6ea183c362b9f815418fd325fb13421acbb8dc685df5795",
+      "statuses": {
+        "corpus-agreement": "both",
+        "hardware-correction": "neither"
+      },
+      "query": {
+        "claim_id": "corpus-agreement",
+        "status": "both",
+        "policy": "rely_if_supported_only",
+        "next_action": "resolve_conflict_or_abstain"
+      },
+      "admitted_evidence": [
+        "computed-agreement",
+        "contradictory-declaration"
+      ],
+      "stale_evidence": [],
+      "evidence_by_claim": {
+        "corpus-agreement": [
+          "computed-agreement",
+          "contradictory-declaration"
+        ],
+        "hardware-correction": []
+      },
+      "provenance_groups_by_claim": {
+        "corpus-agreement": [
+          "same-session-computation"
+        ],
+        "hardware-correction": []
+      },
+      "rule_applications": [],
+      "conflicts": [
+        "corpus-agreement"
+      ],
+      "unsupported_steps": [],
+      "scope": {
+        "code": "repetition-3",
+        "corpus": "E7Q-QEC/0.1-77",
+        "backend": "local-statevector"
+      },
+      "temporal_scope": "pinned-run",
+      "modality": "fact",
+      "witness_sha256": "aa3e9b2268342a22dffb3cffbb08b2227577ecea768d9573a83fdc780967137d"
+    },
+    "elapsed_ns": 240105
+  },
+  "REC-scope-expansion": {
+    "input": {
+      "kernel": "0.14-experimental-draft",
+      "profile": "REC/0.1-proposed",
+      "model": "REC-B1/0.1",
+      "reasoning_id": "qec-corpus-audit",
+      "edition": "1",
+      "as_of": "2026-10-18T00:00:00Z",
+      "claims": [
+        {
+          "id": "corpus-agreement",
+          "proposition": "E7Q circuit verdicts match dense oracle on this corpus",
+          "modality": "fact",
+          "scope": {
+            "code": "repetition-3",
+            "corpus": "E7Q-QEC/0.1-77",
+            "backend": "local-statevector"
+          },
+          "temporal_scope": "pinned-run"
+        },
+        {
+          "id": "hardware-correction",
+          "proposition": "physical hardware correction established",
+          "modality": "fact",
+          "scope": {
+            "code": "repetition-3",
+            "corpus": "E7Q-QEC/0.1-77",
+            "backend": "local-statevector"
+          },
+          "temporal_scope": "pinned-run"
+        },
+        {
+          "id": "general",
+          "proposition": "all QEC works",
+          "modality": "fact",
+          "scope": {},
+          "temporal_scope": "pinned-run"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "computed-agreement",
+          "claim_id": "corpus-agreement",
+          "polarity": "support",
+          "source_id": "cases-and-witnesses.json",
+          "source_edition": "1",
+          "provenance_group": "same-session-computation",
+          "scope": {
+            "code": "repetition-3",
+            "corpus": "E7Q-QEC/0.1-77",
+            "backend": "local-statevector"
+          },
+          "valid_from": "2026-10-17T00:00:00Z"
+        }
+      ],
+      "rules": [
+        {
+          "id": "invalid-generalization",
+          "premises": [
+            {
+              "claim_id": "corpus-agreement",
+              "requires": "supported"
+            }
+          ],
+          "conclusion": {
+            "claim_id": "general",
+            "polarity": "support"
+          }
+        }
+      ],
+      "query": {
+        "claim_id": "corpus-agreement",
+        "policy": "rely_if_supported_only"
+      }
+    },
+    "result": {
+      "outcome": "rejected",
+      "reason": "rule expands scope"
+    },
+    "elapsed_ns": 31788
+  },
+  "REC-no-hardware-evidence": {
+    "input": {
+      "kernel": "0.14-experimental-draft",
+      "profile": "REC/0.1-proposed",
+      "model": "REC-B1/0.1",
+      "reasoning_id": "qec-corpus-audit",
+      "edition": "1",
+      "as_of": "2026-10-18T00:00:00Z",
+      "claims": [
+        {
+          "id": "corpus-agreement",
+          "proposition": "E7Q circuit verdicts match dense oracle on this corpus",
+          "modality": "fact",
+          "scope": {
+            "code": "repetition-3",
+            "corpus": "E7Q-QEC/0.1-77",
+            "backend": "local-statevector"
+          },
+          "temporal_scope": "pinned-run"
+        },
+        {
+          "id": "hardware-correction",
+          "proposition": "physical hardware correction established",
+          "modality": "fact",
+          "scope": {
+            "code": "repetition-3",
+            "corpus": "E7Q-QEC/0.1-77",
+            "backend": "local-statevector"
+          },
+          "temporal_scope": "pinned-run"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "computed-agreement",
+          "claim_id": "corpus-agreement",
+          "polarity": "support",
+          "source_id": "cases-and-witnesses.json",
+          "source_edition": "1",
+          "provenance_group": "same-session-computation",
+          "scope": {
+            "code": "repetition-3",
+            "corpus": "E7Q-QEC/0.1-77",
+            "backend": "local-statevector"
+          },
+          "valid_from": "2026-10-17T00:00:00Z"
+        }
+      ],
+      "rules": [],
+      "query": {
+        "claim_id": "hardware-correction",
+        "policy": "rely_if_supported_only"
+      }
+    },
+    "result": {
+      "kernel": "0.14-experimental-draft",
+      "profile": "REC/0.1-proposed",
+      "model": "REC-B1/0.1",
+      "reasoning_id": "qec-corpus-audit",
+      "edition": "1",
+      "as_of": "2026-10-18T00:00:00Z",
+      "envelope_sha256": "d8d3afa373f2e772eea32f028fb1dd6f65241f86fd3b4ec30207535200e0e201",
+      "statuses": {
+        "corpus-agreement": "supported",
+        "hardware-correction": "neither"
+      },
+      "query": {
+        "claim_id": "hardware-correction",
+        "status": "neither",
+        "policy": "rely_if_supported_only",
+        "next_action": "seek_evidence_or_abstain"
+      },
+      "admitted_evidence": [
+        "computed-agreement"
+      ],
+      "stale_evidence": [],
+      "evidence_by_claim": {
+        "corpus-agreement": [
+          "computed-agreement"
+        ],
+        "hardware-correction": []
+      },
+      "provenance_groups_by_claim": {
+        "corpus-agreement": [
+          "same-session-computation"
+        ],
+        "hardware-correction": []
+      },
+      "rule_applications": [],
+      "conflicts": [],
+      "unsupported_steps": [],
+      "scope": {
+        "code": "repetition-3",
+        "corpus": "E7Q-QEC/0.1-77",
+        "backend": "local-statevector"
+      },
+      "temporal_scope": "pinned-run",
+      "modality": "fact",
+      "witness_sha256": "5fdbaf469330f6cf8c380ba885101ac12c479328465604e62c6c2ea2ec93581d"
+    },
+    "elapsed_ns": 183230
+  },
+  "REC-replay": {
+    "result": {
+      "outcome": "PASS",
+      "checked": [
+        "agreement",
+        "conflict",
+        "no-hardware-evidence"
+      ]
+    }
+  },
+  "REC-rehashed-forgery": {
+    "result": {
+      "outcome": "rejected",
+      "reason": "trace mismatch: query"
+    }
+  }
+}

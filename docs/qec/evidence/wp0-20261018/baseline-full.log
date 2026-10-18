@@ -1,0 +1,4075 @@
+........................................................................ [  5%]
+...............ssssssss........s.ss..................................... [ 11%]
+........................................................................ [ 17%]
+........................................................................ [ 23%]
+........................................................................ [ 29%]
+........................................................................ [ 35%]
+........................................................................ [ 41%]
+.............................................................FFF........ [ 47%]
+..FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF.FFFFFFF.....FF................ [ 53%]
+........................................................................ [ 59%]
+........................................................................ [ 65%]
+........................................................................ [ 71%]
+........................................................................ [ 77%]
+........................................................................ [ 83%]
+........................................................................ [ 89%]
+........................................................................ [ 94%]
+.............................................................            [100%]
+=================================== FAILURES ===================================
+________ test_native_bell_reaches_deterministic_f2_and_preserves_source ________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+    def test_native_bell_reaches_deterministic_f2_and_preserves_source():
+>       graph = execute_native(BELL, created_at=STAMP)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_____ test_failed_native_invariant_remains_fail_but_f2_conformance_passes ______
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+    def test_failed_native_invariant_remains_fail_but_f2_conformance_passes():
+>       graph = execute_native(BELL.replace(b"{00, 11}", b"{00}"), created_at=STAMP)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:127: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+__________________ test_asymmetric_count_order_and_extra_bits __________________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+    def test_asymmetric_count_order_and_extra_bits():
+        raw = BELL.replace(b"H q[0]", b"X q[0]").replace(b"  CX q[0], q[1]\n", b"")
+        raw = raw.replace(b"bits c[2]", b"bits c[3]").replace(b"{00, 11}", b"{100}")
+>       graph = execute_native(raw, created_at=STAMP)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:140: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_______ test_rehashed_semantic_tampering_never_passes_f2[source-content] _______
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'source-content'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_______ test_rehashed_semantic_tampering_never_passes_f2[source-digest] ________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'source-digest'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_______ test_rehashed_semantic_tampering_never_passes_f2[source-length] ________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'source-length'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+________ test_rehashed_semantic_tampering_never_passes_f2[intent-path] _________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'intent-path'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_____ test_rehashed_semantic_tampering_never_passes_f2[intent-normalized] ______
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'intent-normalized'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+______ test_rehashed_semantic_tampering_never_passes_f2[intent-outcomes] _______
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'intent-outcomes'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_______ test_rehashed_semantic_tampering_never_passes_f2[intent-backend] _______
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'intent-backend'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+________ test_rehashed_semantic_tampering_never_passes_f2[intent-shots] ________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'intent-shots'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+________ test_rehashed_semantic_tampering_never_passes_f2[intent-seed] _________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'intent-seed'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_______ test_rehashed_semantic_tampering_never_passes_f2[operation-name] _______
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'operation-name'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+______ test_rehashed_semantic_tampering_never_passes_f2[operation-order] _______
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'operation-order'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_____ test_rehashed_semantic_tampering_never_passes_f2[operation-operands] _____
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'operation-operands'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+____ test_rehashed_semantic_tampering_never_passes_f2[measurement-mapping] _____
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'measurement-mapping'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+______ test_rehashed_semantic_tampering_never_passes_f2[backend-profile] _______
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'backend-profile'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+___ test_rehashed_semantic_tampering_never_passes_f2[implementation-version] ___
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'implementation-version'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+______ test_rehashed_semantic_tampering_never_passes_f2[execution-proof] _______
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'execution-proof'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+___________ test_rehashed_semantic_tampering_never_passes_f2[counts] ___________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'counts'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_______ test_rehashed_semantic_tampering_never_passes_f2[probabilities] ________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'probabilities'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_________ test_rehashed_semantic_tampering_never_passes_f2[bit-width] __________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'bit-width'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+________ test_rehashed_semantic_tampering_never_passes_f2[label-order] _________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'label-order'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+______ test_rehashed_semantic_tampering_never_passes_f2[assessment-check] ______
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'assessment-check'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_____ test_rehashed_semantic_tampering_never_passes_f2[assessment-status] ______
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'assessment-status'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+__ test_rehashed_semantic_tampering_never_passes_f2[assessment-first-failure] __
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'assessment-first-failure'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+____ test_rehashed_semantic_tampering_never_passes_f2[provenance-reference] ____
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'provenance-reference'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_____ test_rehashed_semantic_tampering_never_passes_f2[profile-capability] _____
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'profile-capability'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+____ test_rehashed_semantic_tampering_never_passes_f2[transform-criterion] _____
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'transform-criterion'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+___ test_rehashed_semantic_tampering_never_passes_f2[transform-preservation] ___
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'transform-preservation'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_______ test_rehashed_semantic_tampering_never_passes_f2[transform-loss] _______
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'transform-loss'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+____ test_rehashed_semantic_tampering_never_passes_f2[transform-assumption] ____
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'transform-assumption'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_____ test_rehashed_semantic_tampering_never_passes_f2[validation-status] ______
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'validation-status'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_____ test_rehashed_semantic_tampering_never_passes_f2[relation-endpoint] ______
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+case = 'relation-endpoint'
+
+    @pytest.mark.parametrize("case", [
+        "source-content", "source-digest", "source-length",
+        "intent-path", "intent-normalized", "intent-outcomes", "intent-backend", "intent-shots", "intent-seed",
+        "operation-name", "operation-order", "operation-operands", "measurement-mapping",
+        "backend-profile", "implementation-version", "execution-proof",
+        "counts", "probabilities", "bit-width", "label-order",
+        "assessment-check", "assessment-status", "assessment-first-failure",
+        "provenance-reference", "profile-capability",
+        "transform-criterion", "transform-preservation", "transform-loss", "transform-assumption",
+        "validation-status", "relation-endpoint",
+    ])
+    def test_rehashed_semantic_tampering_never_passes_f2(case):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:258: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_ test_rehashed_unsupported_source_never_passes_f2[backend: statevector-backend: densitymatrix-UNSUPPORTED] _
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+old = b'backend: statevector', new = b'backend: densitymatrix'
+expected = 'UNSUPPORTED'
+
+    @pytest.mark.parametrize("old,new,expected", [
+        (b"backend: statevector", b"backend: densitymatrix", "UNSUPPORTED"),
+        (b"  seed: 7\n", b"", "UNSUPPORTED"),
+        (b"shots: 1000", b"shots: 100001", "BLOCKED"),
+        (b"  H q[0]", b"  noise depolarizing(0.1) q[0]", "UNSUPPORTED"),
+        (b"  H q[0]", b"  if c[0] == 1 X q[0]", "UNSUPPORTED"),
+    ])
+    def test_rehashed_unsupported_source_never_passes_f2(old, new, expected):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:272: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+__ test_rehashed_unsupported_source_never_passes_f2[  seed: 7\n--UNSUPPORTED] __
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+old = b'  seed: 7\n', new = b'', expected = 'UNSUPPORTED'
+
+    @pytest.mark.parametrize("old,new,expected", [
+        (b"backend: statevector", b"backend: densitymatrix", "UNSUPPORTED"),
+        (b"  seed: 7\n", b"", "UNSUPPORTED"),
+        (b"shots: 1000", b"shots: 100001", "BLOCKED"),
+        (b"  H q[0]", b"  noise depolarizing(0.1) q[0]", "UNSUPPORTED"),
+        (b"  H q[0]", b"  if c[0] == 1 X q[0]", "UNSUPPORTED"),
+    ])
+    def test_rehashed_unsupported_source_never_passes_f2(old, new, expected):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:272: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_ test_rehashed_unsupported_source_never_passes_f2[shots: 1000-shots: 100001-BLOCKED] _
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+old = b'shots: 1000', new = b'shots: 100001', expected = 'BLOCKED'
+
+    @pytest.mark.parametrize("old,new,expected", [
+        (b"backend: statevector", b"backend: densitymatrix", "UNSUPPORTED"),
+        (b"  seed: 7\n", b"", "UNSUPPORTED"),
+        (b"shots: 1000", b"shots: 100001", "BLOCKED"),
+        (b"  H q[0]", b"  noise depolarizing(0.1) q[0]", "UNSUPPORTED"),
+        (b"  H q[0]", b"  if c[0] == 1 X q[0]", "UNSUPPORTED"),
+    ])
+    def test_rehashed_unsupported_source_never_passes_f2(old, new, expected):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:272: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_ test_rehashed_unsupported_source_never_passes_f2[  H q[0]-  noise depolarizing(0.1) q[0]-UNSUPPORTED] _
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+old = b'  H q[0]', new = b'  noise depolarizing(0.1) q[0]'
+expected = 'UNSUPPORTED'
+
+    @pytest.mark.parametrize("old,new,expected", [
+        (b"backend: statevector", b"backend: densitymatrix", "UNSUPPORTED"),
+        (b"  seed: 7\n", b"", "UNSUPPORTED"),
+        (b"shots: 1000", b"shots: 100001", "BLOCKED"),
+        (b"  H q[0]", b"  noise depolarizing(0.1) q[0]", "UNSUPPORTED"),
+        (b"  H q[0]", b"  if c[0] == 1 X q[0]", "UNSUPPORTED"),
+    ])
+    def test_rehashed_unsupported_source_never_passes_f2(old, new, expected):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:272: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_ test_rehashed_unsupported_source_never_passes_f2[  H q[0]-  if c[0] == 1 X q[0]-UNSUPPORTED] _
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+old = b'  H q[0]', new = b'  if c[0] == 1 X q[0]', expected = 'UNSUPPORTED'
+
+    @pytest.mark.parametrize("old,new,expected", [
+        (b"backend: statevector", b"backend: densitymatrix", "UNSUPPORTED"),
+        (b"  seed: 7\n", b"", "UNSUPPORTED"),
+        (b"shots: 1000", b"shots: 100001", "BLOCKED"),
+        (b"  H q[0]", b"  noise depolarizing(0.1) q[0]", "UNSUPPORTED"),
+        (b"  H q[0]", b"  if c[0] == 1 X q[0]", "UNSUPPORTED"),
+    ])
+    def test_rehashed_unsupported_source_never_passes_f2(old, new, expected):
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:272: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+________________ test_missing_required_relation_never_passes_f2 ________________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+    def test_missing_required_relation_never_passes_f2():
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:283: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_______________ test_unknown_native_source_format_is_unsupported _______________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+    def test_unknown_native_source_format_is_unsupported():
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:290: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+___________ test_historical_core_profile_native_graph_stays_f1_only ____________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+    def test_historical_core_profile_native_graph_stays_f1_only():
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:297: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_ test_validator_failure_modes_fail_closed[exception-e7q.ir.framework.validator-exception-FAIL] _
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+mode = 'exception', expected_check = 'e7q.ir.framework.validator-exception'
+expected_status = 'FAIL'
+
+    @pytest.mark.parametrize("mode,expected_check,expected_status", [
+        ("exception", "e7q.ir.framework.validator-exception", "FAIL"),
+        ("malformed", "e7q.ir.framework.validator-result-contract", "FAIL"),
+        ("empty", "e7q.ir.framework.no-validator-results", "NOT_ASSESSED"),
+    ])
+    def test_validator_failure_modes_fail_closed(mode, expected_check, expected_status):
+>       graph = execute_native(BELL, created_at=STAMP)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:346: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_ test_validator_failure_modes_fail_closed[malformed-e7q.ir.framework.validator-result-contract-FAIL] _
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+mode = 'malformed'
+expected_check = 'e7q.ir.framework.validator-result-contract'
+expected_status = 'FAIL'
+
+    @pytest.mark.parametrize("mode,expected_check,expected_status", [
+        ("exception", "e7q.ir.framework.validator-exception", "FAIL"),
+        ("malformed", "e7q.ir.framework.validator-result-contract", "FAIL"),
+        ("empty", "e7q.ir.framework.no-validator-results", "NOT_ASSESSED"),
+    ])
+    def test_validator_failure_modes_fail_closed(mode, expected_check, expected_status):
+>       graph = execute_native(BELL, created_at=STAMP)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:346: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_ test_validator_failure_modes_fail_closed[empty-e7q.ir.framework.no-validator-results-NOT_ASSESSED] _
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+mode = 'empty', expected_check = 'e7q.ir.framework.no-validator-results'
+expected_status = 'NOT_ASSESSED'
+
+    @pytest.mark.parametrize("mode,expected_check,expected_status", [
+        ("exception", "e7q.ir.framework.validator-exception", "FAIL"),
+        ("malformed", "e7q.ir.framework.validator-result-contract", "FAIL"),
+        ("empty", "e7q.ir.framework.no-validator-results", "NOT_ASSESSED"),
+    ])
+    def test_validator_failure_modes_fail_closed(mode, expected_check, expected_status):
+>       graph = execute_native(BELL, created_at=STAMP)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:346: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+___ test_native_context_cache_is_bounded_and_does_not_retain_supplied_graphs ___
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+    def test_native_context_cache_is_bounded_and_does_not_retain_supplied_graphs():
+        _CONTEXT_CACHE.clear()
+        for seed in range(_CONTEXT_CACHE_LIMIT + 2):
+            raw = BELL.replace(b"seed: 7", f"seed: {seed + 1}".encode())
+>           execute_native(raw, created_at=STAMP)
+
+tests/test_ir_native.py:359: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+_____ test_public_native_bell_f2_evidence_is_stable_and_fresh_graph_passes _____
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+    def test_public_native_bell_f2_evidence_is_stable_and_fresh_graph_passes():
+>       graph = execute_native(BELL, created_at=STAMP)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:370: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+__________________________ test_cli_native_execution ___________________________
+
+tmp_path = PosixPath('/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/pytest-full/test_cli_native_execution0')
+
+    def test_cli_native_execution(tmp_path):
+        output = tmp_path / "graph.json"
+>       subprocess.run([
+            sys.executable, "-m", "e7q.ir.native", "examples/bell.e7q",
+            "--created-at", STAMP, "--output", str(output),
+        ], check=True)
+
+tests/test_ir_native.py:406: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python', '-m', 'e7q.ir.native', 'examples/bell.e7q', '--created-at', '2026-09-07T00:00:00Z', ...],)
+kwargs = {}
+process = <Popen: returncode: 1 args: ['/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/...>
+stdout = None, stderr = None, retcode = 1
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python', '-m', 'e7q.ir.native', 'examples/bell.e7q', '--created-at', '2026-09-07T00:00:00Z', '--output', '/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/pytest-full/test_cli_native_execution0/graph.json']' returned non-zero exit status 1.
+
+/usr/lib/python3.12/subprocess.py:571: CalledProcessError
+----------------------------- Captured stderr call -----------------------------
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 397, in from_name
+    return next(cls.discover(name=name))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline/src/e7q/ir/native.py", line 175, in <module>
+    main()
+  File "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline/src/e7q/ir/native.py", line 168, in main
+    graph = execute_native(raw, created_at=args.created_at)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline/src/e7q/ir/native.py", line 119, in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline/src/e7q/ir/native_semantic.py", line 122, in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 889, in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 862, in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/metadata/__init__.py", line 399, in from_name
+    raise PackageNotFoundError(name)
+importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+__________ test_native_f2_compact_fanout_is_blocked_before_simulation __________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+    def test_native_f2_compact_fanout_is_blocked_before_simulation():
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:434: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+______ test_graph_supplied_resource_values_cannot_weaken_installed_policy ______
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+    def test_graph_supplied_resource_values_cannot_weaken_installed_policy():
+>       graph = deepcopy(execute_native(BELL, created_at=STAMP))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:545: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+____________ test_native_context_cache_key_includes_resource_policy ____________
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+>           return next(cls.discover(name=name))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           StopIteration
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:397: StopIteration
+
+During handling of the above exception, another exception occurred:
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7461fe4b64b0>
+
+    def test_native_context_cache_key_includes_resource_policy(monkeypatch):
+        _CONTEXT_CACHE.clear()
+>       graph = execute_native(BELL, created_at=STAMP)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_ir_native.py:563: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/e7q/ir/native.py:119: in execute_native
+    "implementation": implementation_versions(),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+src/e7q/ir/native_semantic.py:122: in implementation_versions
+    return {"e7q": version("e7q"), "numpy": version("numpy")}
+                   ^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:889: in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/lib/python3.12/importlib/metadata/__init__.py:862: in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+cls = <class 'importlib.metadata.Distribution'>, name = 'e7q'
+
+    @classmethod
+    def from_name(cls, name: str):
+        """Return the Distribution for the given package name.
+    
+        :param name: The name of the distribution package to search for.
+        :return: The Distribution instance (or subclass thereof) for the named
+            package, if found.
+        :raises PackageNotFoundError: When the named package's distribution
+            metadata cannot be found.
+        :raises ValueError: When an invalid value is supplied for name.
+        """
+        if not name:
+            raise ValueError("A distribution name is required.")
+        try:
+            return next(cls.discover(name=name))
+        except StopIteration:
+>           raise PackageNotFoundError(name)
+E           importlib.metadata.PackageNotFoundError: No package metadata was found for e7q
+
+/usr/lib/python3.12/importlib/metadata/__init__.py:399: PackageNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_ir_native.py::test_native_bell_reaches_deterministic_f2_and_preserves_source
+FAILED tests/test_ir_native.py::test_failed_native_invariant_remains_fail_but_f2_conformance_passes
+FAILED tests/test_ir_native.py::test_asymmetric_count_order_and_extra_bits - ...
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[source-content]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[source-digest]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[source-length]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[intent-path]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[intent-normalized]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[intent-outcomes]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[intent-backend]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[intent-shots]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[intent-seed]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[operation-name]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[operation-order]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[operation-operands]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[measurement-mapping]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[backend-profile]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[implementation-version]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[execution-proof]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[counts]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[probabilities]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[bit-width]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[label-order]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[assessment-check]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[assessment-status]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[assessment-first-failure]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[provenance-reference]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[profile-capability]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[transform-criterion]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[transform-preservation]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[transform-loss]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[transform-assumption]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[validation-status]
+FAILED tests/test_ir_native.py::test_rehashed_semantic_tampering_never_passes_f2[relation-endpoint]
+FAILED tests/test_ir_native.py::test_rehashed_unsupported_source_never_passes_f2[backend: statevector-backend: densitymatrix-UNSUPPORTED]
+FAILED tests/test_ir_native.py::test_rehashed_unsupported_source_never_passes_f2[  seed: 7\n--UNSUPPORTED]
+FAILED tests/test_ir_native.py::test_rehashed_unsupported_source_never_passes_f2[shots: 1000-shots: 100001-BLOCKED]
+FAILED tests/test_ir_native.py::test_rehashed_unsupported_source_never_passes_f2[  H q[0]-  noise depolarizing(0.1) q[0]-UNSUPPORTED]
+FAILED tests/test_ir_native.py::test_rehashed_unsupported_source_never_passes_f2[  H q[0]-  if c[0] == 1 X q[0]-UNSUPPORTED]
+FAILED tests/test_ir_native.py::test_missing_required_relation_never_passes_f2
+FAILED tests/test_ir_native.py::test_unknown_native_source_format_is_unsupported
+FAILED tests/test_ir_native.py::test_historical_core_profile_native_graph_stays_f1_only
+FAILED tests/test_ir_native.py::test_validator_failure_modes_fail_closed[exception-e7q.ir.framework.validator-exception-FAIL]
+FAILED tests/test_ir_native.py::test_validator_failure_modes_fail_closed[malformed-e7q.ir.framework.validator-result-contract-FAIL]
+FAILED tests/test_ir_native.py::test_validator_failure_modes_fail_closed[empty-e7q.ir.framework.no-validator-results-NOT_ASSESSED]
+FAILED tests/test_ir_native.py::test_native_context_cache_is_bounded_and_does_not_retain_supplied_graphs
+FAILED tests/test_ir_native.py::test_public_native_bell_f2_evidence_is_stable_and_fresh_graph_passes
+FAILED tests/test_ir_native.py::test_cli_native_execution - subprocess.Called...
+FAILED tests/test_ir_native.py::test_native_f2_compact_fanout_is_blocked_before_simulation
+FAILED tests/test_ir_native.py::test_graph_supplied_resource_values_cannot_weaken_installed_policy
+FAILED tests/test_ir_native.py::test_native_context_cache_key_includes_resource_policy
+51 failed, 1151 passed, 12 skipped in 75.77s (0:01:15)

@@ -1,0 +1,3 @@
+3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]
+/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline/src/e7q/__init__.py
+{'numpy': '2.5.4', 'pytest': '8.4.2', 'stim': '1.16.0', 'jsonschema': '4.26.0'}

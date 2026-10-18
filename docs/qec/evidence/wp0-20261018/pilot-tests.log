@@ -1,0 +1,17 @@
+test_algebra_all_paulis_and_generator_rejections (test_adapter.AdapterChecks.test_algebra_all_paulis_and_generator_rejections) ... ok
+test_ccx_on_all_basis_states (test_adapter.AdapterChecks.test_ccx_on_all_basis_states) ... ok
+test_coherent_decoder_uses_table_not_selected_recovery (test_adapter.AdapterChecks.test_coherent_decoder_uses_table_not_selected_recovery) ... ok
+test_corpus_matches_two_independent_oracles (test_adapter.AdapterChecks.test_corpus_matches_two_independent_oracles) ... ok
+test_fault_sensitivity (test_adapter.AdapterChecks.test_fault_sensitivity) ... ok
+test_native_bit_order_bridge (test_adapter.AdapterChecks.test_native_bit_order_bridge) ... ok
+test_normalization_does_not_prove_recovery (test_adapter.AdapterChecks.test_normalization_does_not_prove_recovery) ... ok
+test_stabilizer_backend_support_request_not_assessed (test_adapter.AdapterChecks.test_stabilizer_backend_support_request_not_assessed) ... ok
+test_strict_exchange_rejects_malformed_and_unsupported (test_adapter.AdapterChecks.test_strict_exchange_rejects_malformed_and_unsupported) ... ok
+test_fibres_and_no_map (test_profiles.ProfileChecks.test_fibres_and_no_map) ... ok
+test_rec_conflict_replay_and_resigned_forgery (test_profiles.ProfileChecks.test_rec_conflict_replay_and_resigned_forgery) ... ok
+test_rec_expansion_rejected (test_profiles.ProfileChecks.test_rec_expansion_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.923s
+
+OK

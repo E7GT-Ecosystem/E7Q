@@ -1,0 +1,222 @@
+{
+  "executed_at": "2026-10-18T18:39:43.425351+00:00",
+  "environment": {
+    "PYTHONPATH": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline/src",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTEST_DISABLE_PLUGIN_AUTOLOAD": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "E7GT_CHECKOUT": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/kernel"
+  },
+  "runs": [
+    {
+      "name": "environment",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "-c",
+        "import sys,importlib.metadata as m,e7q; print(sys.version); print(e7q.__file__); print({n:m.version(n) for n in [\"numpy\",\"pytest\",\"stim\",\"jsonschema\"]}); assert e7q.__file__.startswith('/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline/src')"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline",
+      "exit_code": 0,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/environment.log"
+    },
+    {
+      "name": "reference",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/reproduction/pilot/reference/qec_probe.py"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/reproduction/pilot/reference",
+      "exit_code": 0,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/reference.log"
+    },
+    {
+      "name": "adapter",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/reproduction/pilot/adapter.py"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline",
+      "exit_code": 0,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/adapter.log"
+    },
+    {
+      "name": "conventional",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/reproduction/pilot/conventional.py"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline",
+      "exit_code": 0,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/conventional.log"
+    },
+    {
+      "name": "decoder-table",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/reproduction/pilot/decoder_table.py"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline",
+      "exit_code": 0,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/decoder-table.log"
+    },
+    {
+      "name": "claim-controls",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/reproduction/pilot/claim_controls.py"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline",
+      "exit_code": 0,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/claim-controls.log"
+    },
+    {
+      "name": "profiles",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/reproduction/pilot/profiles.py",
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/kernel"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline",
+      "exit_code": 0,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/profiles.log"
+    },
+    {
+      "name": "pilot-tests",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/reproduction/pilot",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline",
+      "exit_code": 0,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/pilot-tests.log"
+    },
+    {
+      "name": "baseline-focused",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp=/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/pytest-focused",
+        "tests/test_qec_syndrome_pilot.py",
+        "tests/test_language.py",
+        "tests/test_stabilizer_execution.py"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline",
+      "exit_code": 0,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline-focused.log"
+    },
+    {
+      "name": "msc-model-tests",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/kernel/proposals/msc-0.1/test_e7gt_msc_v0_1.py"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/kernel",
+      "exit_code": 0,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/msc-model-tests.log"
+    },
+    {
+      "name": "rec-model-tests",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/kernel/packages/rec-0.1/test_e7gt_rec_v0_1.py"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/kernel",
+      "exit_code": 0,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/rec-model-tests.log"
+    },
+    {
+      "name": "baseline-cli",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "-m",
+        "e7q",
+        "qec-homomorphism"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline",
+      "exit_code": 1,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline-cli.log"
+    },
+    {
+      "name": "licensing-boundary",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline/scripts/check_licensing_boundaries.py"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline",
+      "exit_code": 2,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/licensing-boundary.log"
+    }
+  ],
+  "recovery_runs": [
+    {
+      "name": "baseline-cli",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "-m",
+        "e7q.cli",
+        "qec-homomorphism",
+        "XII",
+        "IXI",
+        "--generator",
+        "ZZI",
+        "--generator",
+        "IZZ"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline",
+      "exit_code": 0,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline-cli-recovered.log"
+    },
+    {
+      "name": "baseline-independent-checker",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline/pilots/qec_syndrome/reference_checker.py"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline",
+      "exit_code": 0,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline-independent-checker-recovered.log"
+    },
+    {
+      "name": "licensing-boundary",
+      "command": [
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/venv/bin/python",
+        "-B",
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline/scripts/check_licensing_boundary.py",
+        "--root",
+        "/home/luxaeternum/Work/Dev/E7-ECosystem/coordination/checkouts/e7q-qec-wp0-reconciliation-20261018"
+      ],
+      "cwd": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline",
+      "exit_code": 0,
+      "log": "/home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/licensing-boundary-recovered.log"
+    }
+  ],
+  "recovery_note": "Initial CLI invocation used nonexistent e7q.__main__; initial licensing path was plural instead of actual singular. Read cli.py parser and actual scripts before corrected invocations. Original failed entries preserved; product code unchanged.",
+  "fresh_groups_match_historical": true
+}

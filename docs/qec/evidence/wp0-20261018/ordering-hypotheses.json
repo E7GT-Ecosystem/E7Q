@@ -1,0 +1,239 @@
+{
+  "interpretation": "Fresh diagnostic mutations, NOT reconstruction of unavailable original failed run",
+  "summary": {
+    "ancilla-swap": {
+      "cases": 16,
+      "FAIL": 8
+    },
+    "full-register-reversal": {
+      "cases": 16,
+      "FAIL": 12
+    }
+  },
+  "rows": [
+    {
+      "case_id": "good-zero-III",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00000",
+      "mutated_label": "00000",
+      "status": "PASS"
+    },
+    {
+      "case_id": "good-zero-III",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00000",
+      "mutated_label": "00000",
+      "status": "PASS"
+    },
+    {
+      "case_id": "good-zero-XII",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00010",
+      "mutated_label": "00001",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-zero-XII",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00010",
+      "mutated_label": "01000",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-zero-IXI",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00011",
+      "mutated_label": "00011",
+      "status": "PASS"
+    },
+    {
+      "case_id": "good-zero-IXI",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00011",
+      "mutated_label": "11000",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-zero-IIX",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00001",
+      "mutated_label": "00010",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-zero-IIX",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00001",
+      "mutated_label": "10000",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-one-III",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00000",
+      "mutated_label": "00000",
+      "status": "PASS"
+    },
+    {
+      "case_id": "good-one-III",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00000",
+      "mutated_label": "00000",
+      "status": "PASS"
+    },
+    {
+      "case_id": "good-one-XII",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00010",
+      "mutated_label": "00001",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-one-XII",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00010",
+      "mutated_label": "01000",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-one-IXI",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00011",
+      "mutated_label": "00011",
+      "status": "PASS"
+    },
+    {
+      "case_id": "good-one-IXI",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00011",
+      "mutated_label": "11000",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-one-IIX",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00001",
+      "mutated_label": "00010",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-one-IIX",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00001",
+      "mutated_label": "10000",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-plus-III",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00000",
+      "mutated_label": "00000",
+      "status": "PASS"
+    },
+    {
+      "case_id": "good-plus-III",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00000",
+      "mutated_label": "00000",
+      "status": "PASS"
+    },
+    {
+      "case_id": "good-plus-XII",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00010",
+      "mutated_label": "00001",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-plus-XII",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00010",
+      "mutated_label": "01000",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-plus-IXI",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00011",
+      "mutated_label": "00011",
+      "status": "PASS"
+    },
+    {
+      "case_id": "good-plus-IXI",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00011",
+      "mutated_label": "11000",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-plus-IIX",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00001",
+      "mutated_label": "00010",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-plus-IIX",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00001",
+      "mutated_label": "10000",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-plus_i-III",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00000",
+      "mutated_label": "00000",
+      "status": "PASS"
+    },
+    {
+      "case_id": "good-plus_i-III",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00000",
+      "mutated_label": "00000",
+      "status": "PASS"
+    },
+    {
+      "case_id": "good-plus_i-XII",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00010",
+      "mutated_label": "00001",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-plus_i-XII",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00010",
+      "mutated_label": "01000",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-plus_i-IXI",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00011",
+      "mutated_label": "00011",
+      "status": "PASS"
+    },
+    {
+      "case_id": "good-plus_i-IXI",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00011",
+      "mutated_label": "11000",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-plus_i-IIX",
+      "hypothesis": "ancilla-swap",
+      "original_label": "00001",
+      "mutated_label": "00010",
+      "status": "FAIL"
+    },
+    {
+      "case_id": "good-plus_i-IIX",
+      "hypothesis": "full-register-reversal",
+      "original_label": "00001",
+      "mutated_label": "10000",
+      "status": "FAIL"
+    }
+  ]
+}

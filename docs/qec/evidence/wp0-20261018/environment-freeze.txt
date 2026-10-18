@@ -1,0 +1,15 @@
+attrs==26.1.0
+e7q @ file:///home/luxaeternum/Work/Dev/E7-ECosystem/.tunc/tmp/qec-wp0-20261018-7ljgdyxl/baseline
+iniconfig==2.3.1
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+numpy==2.5.4
+packaging==26.3
+pluggy==1.7.0
+Pygments==2.21.0
+pytest==8.4.2
+referencing==0.37.0
+rpds-py==2026.9.1
+setuptools==84.0.0
+stim==1.16.0
+typing_extensions==4.16.0

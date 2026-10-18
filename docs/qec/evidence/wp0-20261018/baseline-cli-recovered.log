@@ -1,0 +1,47 @@
+{
+  "assumptions": [
+    "Pauli operators are represented modulo global phase.",
+    "Syndrome bits are ordered exactly as the declared generators.",
+    "Each syndrome bit records commutation parity over F2."
+  ],
+  "boundary": "Phase-insensitive stabilizer algebra and state-vector reference-circuit evidence only; no hardware execution, decoder performance, physical fidelity, fault-tolerance threshold, or new QEC theorem is established.",
+  "claim": "sigma(EF) = sigma(E) xor sigma(F)",
+  "code": {
+    "generators": [
+      "ZZI",
+      "IZZ"
+    ],
+    "name": "declared stabilizer code",
+    "qubits": 3,
+    "syndrome_order": [
+      "ZZI",
+      "IZZ"
+    ]
+  },
+  "operators": {
+    "left": "XII",
+    "product": "XXI",
+    "right": "IXI"
+  },
+  "passed": true,
+  "schema": "e7q.qec-syndrome-homomorphism/v1alpha1",
+  "status": "PASS",
+  "syndromes": {
+    "left": [
+      1,
+      0
+    ],
+    "left_xor_right": [
+      0,
+      1
+    ],
+    "product": [
+      0,
+      1
+    ],
+    "right": [
+      1,
+      1
+    ]
+  }
+}

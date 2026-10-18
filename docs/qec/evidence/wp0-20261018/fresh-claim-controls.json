@@ -1,0 +1,416 @@
+{
+  "Z-vs-I-measurement": {
+    "status": "PASS",
+    "criterion": "measurement",
+    "equivalent": true,
+    "maximum_error": 0.0,
+    "tolerance": 1e-12,
+    "global_phase": null,
+    "proof": [
+      {
+        "step": 0,
+        "kind": "compare",
+        "left": "P",
+        "right": "P",
+        "criterion": "measurement",
+        "qubits": 1,
+        "representation": "unitary"
+      },
+      {
+        "step": 1,
+        "kind": "equivalence",
+        "equivalent": true,
+        "maximum_error": 0.0,
+        "tolerance": 1e-12,
+        "global_phase": null
+      }
+    ]
+  },
+  "Z-vs-I-global-phase": {
+    "status": "FAIL",
+    "criterion": "global-phase",
+    "equivalent": false,
+    "maximum_error": 2.0,
+    "tolerance": 1e-12,
+    "global_phase": null,
+    "proof": [
+      {
+        "step": 0,
+        "kind": "compare",
+        "left": "P",
+        "right": "P",
+        "criterion": "global-phase",
+        "qubits": 1,
+        "representation": "unitary"
+      },
+      {
+        "step": 1,
+        "kind": "equivalence",
+        "equivalent": false,
+        "maximum_error": 2.0,
+        "tolerance": 1e-12,
+        "global_phase": null
+      }
+    ]
+  },
+  "unknown-QEC-criterion": {
+    "status": "rejected",
+    "reason": "unknown equivalence criterion: qec-corrects-all-errors"
+  },
+  "stabilizer-exact-support": {
+    "schema": "e7q.stabilizer-result/1",
+    "status": "NOT_ASSESSED",
+    "execution_status": "COMPLETED",
+    "verification_status": "NOT_ASSESSED",
+    "checks": [
+      {
+        "name": "normalized",
+        "status": "PASS",
+        "passed": true,
+        "method": "normalized pure Clifford tableau by construction"
+      },
+      {
+        "name": "outcomes",
+        "status": "UNSUPPORTED",
+        "passed": null,
+        "reason": "exact classical support check is not implemented; counts are not a substitute"
+      }
+    ],
+    "counts": {
+      "00010": 32
+    },
+    "sample_frequencies": {
+      "00010": 1.0
+    },
+    "probabilities": null,
+    "probability_semantics": "exhaustive exact distribution not materialized",
+    "state": {
+      "representation": "stabilizer-generators",
+      "scope": "final-shot collapsed state",
+      "qubits": 5,
+      "generators": [
+        "+Z____",
+        "+_Z___",
+        "+__Z__",
+        "-_Z_Z_",
+        "+_ZZ_Z"
+      ]
+    },
+    "proof": [
+      {
+        "step": 0,
+        "kind": "initialize",
+        "backend": "stim.TableauSimulator",
+        "shots": 32
+      },
+      {
+        "step": 1,
+        "kind": "transform",
+        "operator": "H",
+        "qubits": [
+          0
+        ],
+        "bits": [],
+        "full_register": false,
+        "executed": 32,
+        "skipped": 0,
+        "failed": 0,
+        "outcomes": {
+          "0": 0,
+          "1": 0
+        }
+      },
+      {
+        "step": 2,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          0,
+          1
+        ],
+        "bits": [],
+        "full_register": false,
+        "executed": 32,
+        "skipped": 0,
+        "failed": 0,
+        "outcomes": {
+          "0": 0,
+          "1": 0
+        }
+      },
+      {
+        "step": 3,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          0,
+          2
+        ],
+        "bits": [],
+        "full_register": false,
+        "executed": 32,
+        "skipped": 0,
+        "failed": 0,
+        "outcomes": {
+          "0": 0,
+          "1": 0
+        }
+      },
+      {
+        "step": 4,
+        "kind": "transform",
+        "operator": "X",
+        "qubits": [
+          0
+        ],
+        "bits": [],
+        "full_register": false,
+        "executed": 32,
+        "skipped": 0,
+        "failed": 0,
+        "outcomes": {
+          "0": 0,
+          "1": 0
+        }
+      },
+      {
+        "step": 5,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          0,
+          3
+        ],
+        "bits": [],
+        "full_register": false,
+        "executed": 32,
+        "skipped": 0,
+        "failed": 0,
+        "outcomes": {
+          "0": 0,
+          "1": 0
+        }
+      },
+      {
+        "step": 6,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          1,
+          3
+        ],
+        "bits": [],
+        "full_register": false,
+        "executed": 32,
+        "skipped": 0,
+        "failed": 0,
+        "outcomes": {
+          "0": 0,
+          "1": 0
+        }
+      },
+      {
+        "step": 7,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          1,
+          4
+        ],
+        "bits": [],
+        "full_register": false,
+        "executed": 32,
+        "skipped": 0,
+        "failed": 0,
+        "outcomes": {
+          "0": 0,
+          "1": 0
+        }
+      },
+      {
+        "step": 8,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          2,
+          4
+        ],
+        "bits": [],
+        "full_register": false,
+        "executed": 32,
+        "skipped": 0,
+        "failed": 0,
+        "outcomes": {
+          "0": 0,
+          "1": 0
+        }
+      },
+      {
+        "step": 9,
+        "kind": "transform",
+        "operator": "X",
+        "qubits": [
+          0
+        ],
+        "bits": [],
+        "full_register": false,
+        "executed": 32,
+        "skipped": 0,
+        "failed": 0,
+        "outcomes": {
+          "0": 0,
+          "1": 0
+        }
+      },
+      {
+        "step": 10,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          0,
+          2
+        ],
+        "bits": [],
+        "full_register": false,
+        "executed": 32,
+        "skipped": 0,
+        "failed": 0,
+        "outcomes": {
+          "0": 0,
+          "1": 0
+        }
+      },
+      {
+        "step": 11,
+        "kind": "transform",
+        "operator": "CX",
+        "qubits": [
+          0,
+          1
+        ],
+        "bits": [],
+        "full_register": false,
+        "executed": 32,
+        "skipped": 0,
+        "failed": 0,
+        "outcomes": {
+          "0": 0,
+          "1": 0
+        }
+      },
+      {
+        "step": 12,
+        "kind": "transform",
+        "operator": "H",
+        "qubits": [
+          0
+        ],
+        "bits": [],
+        "full_register": false,
+        "executed": 32,
+        "skipped": 0,
+        "failed": 0,
+        "outcomes": {
+          "0": 0,
+          "1": 0
+        }
+      },
+      {
+        "step": 13,
+        "kind": "project",
+        "operator": "MEASURE",
+        "qubits": [],
+        "bits": [],
+        "full_register": true,
+        "executed": 32,
+        "skipped": 0,
+        "failed": 0,
+        "outcomes": {
+          "0": 0,
+          "1": 0
+        }
+      },
+      {
+        "step": 14,
+        "kind": "result",
+        "outcomes": {
+          "00010": 32
+        },
+        "shots": 32
+      }
+    ],
+    "resources": {
+      "schema": "e7q.resource-preflight/1",
+      "backend": "stabilizer",
+      "representation": "stabilizer",
+      "dtype": "compact-tableau",
+      "state_storage_bytes": 1480,
+      "estimated_working_bytes": 67166624,
+      "state_storage_expression": "compact-tableau estimate",
+      "output_allowance_bytes": 51840,
+      "runtime_allowance_bytes": 67108864,
+      "configured_budget_bytes": 268435456,
+      "usable_budget_bytes": 268435456,
+      "host_headroom": [
+        {
+          "source": "linux-MemAvailable",
+          "headroom_bytes": 3663155200
+        }
+      ],
+      "host_fraction": 0.5,
+      "host_limits_respected": true,
+      "estimate_not_measured_rss": true,
+      "enforced_process_limit": false,
+      "status": "ADMITTED",
+      "reason": "conservative estimate within budget"
+    },
+    "evidence": {
+      "schema": "e7q.stabilizer-capabilities/1",
+      "backend": "stim.TableauSimulator",
+      "dependency": "stim",
+      "supported_version": "1.16.0",
+      "gates": [
+        "CX",
+        "CZ",
+        "H",
+        "S",
+        "SWAP",
+        "X",
+        "Y",
+        "Z"
+      ],
+      "initialization": "computational zero; X gates prepare other basis states",
+      "measurement": "computational basis; individual/full-register",
+      "classical_control": "one-bit equality controls on admitted Clifford gates; mid-circuit supported",
+      "checks": [
+        "normalized",
+        "exact premeasurement Pauli expectation for unconditional terminal circuits",
+        "finite-shot assertions"
+      ],
+      "unsupported": [
+        "T/non-Clifford",
+        "noise/mixed states",
+        "exhaustive probabilities",
+        "exact output support",
+        "unitary/channel comparison",
+        "ensemble expectations after mid-circuit measurement"
+      ],
+      "fallback": "none",
+      "bit_order": "native q0/c0 first (leftmost)",
+      "seed_scope": "same calls/Stim version/machine; not portable across SIMD or dense backend",
+      "boundary": "Simulator/model evidence only; no hardware fidelity, advantage or universal equivalence.",
+      "dependency_version": "1.16.0",
+      "seed": 710,
+      "shots": 32
+    },
+    "first_failure": null
+  },
+  "anticommuting": {
+    "status": "rejected",
+    "reason": "stabilizer generators must commute"
+  },
+  "dependent": {
+    "status": "rejected",
+    "reason": "stabilizer generators must be independent over F2"
+  }
+}
