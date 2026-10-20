@@ -3,6 +3,13 @@ name: CI
 on:
   push:
   pull_request:
+  workflow_dispatch:
+    inputs:
+      qec_profiles:
+        description: "Run the optional pinned historical MSC/REC QEC profile gate"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -75,3 +82,45 @@ jobs:
         run: python -B scripts/check_cirq_ci.py report "${{ runner.temp }}/cirq-focused.xml"
       - name: Check fresh Bell evidence, native assessment, F1 and real replay
         run: python -B scripts/check_cirq_ci.py bell "${{ runner.temp }}/cirq-bell-fresh.json"
+
+  qec-pilot-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 -m pip install -e ".[test,stabilizer]"
+      - run: python3 -m pip check
+      - name: Require all historical adapter tests with pinned Stim and no skips
+        run: python3 -B scripts/check_qec_ci.py pilot
+
+  qec-profile-reference:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.qec_profiles }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Obtain the optional historical companion, not the architecture baseline
+        uses: actions/checkout@v4
+        with:
+          repository: E7GT-Ecosystem/E7G-T
+          ref: 4d6e02f16363f2333961cf4350d584c92d51bbc6
+          path: .qec-companion
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 -m pip install -e ".[test]"
+      - run: python3 -m pip check
+      - name: Require pinned companion bytes and all historical profile tests
+        run: python3 -B scripts/check_qec_ci.py profiles --companion "${{ github.workspace }}/.qec-companion"
