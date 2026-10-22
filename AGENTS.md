@@ -1,3 +1,17 @@
+# Current source-for-new-planning note (2026-09-25)
+
+For new build-map milestones, review
+`docs/V015_CAPABILITY_BUILD_MAP.md` against E7G-T v0.15/MSC1 at merge
+`2cba2045bb22036ce489083a5ac853a9d867eb21` and central direction
+proposal `E7-ECO-DIR-2026-09-25.1` (E7-Ecosystem PR #9). The older
+v0.12.1-only source instruction below describes existing adoption and
+artifacts, not the new canonical **source**. Preserve current product
+editions, releases, IDs, data and APIs until a reviewed migration. Read
+the local capability map's separate EEC-Q, SF, CFS, RGP/0.2, WPC, REC and
+MSC gates; a map row does not claim implementation.
+
+---
+
 # Current ecosystem realignment control
 
 Direction ID: `E7-ECO-DIR-2026-09-13.1`.
